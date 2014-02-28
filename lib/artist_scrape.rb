@@ -5,7 +5,7 @@ require 'watir'
 require 'csv'
 
 browser = Watir::Browser.start "http://indistreet.com/en/korea/artist?page=1"
-
+@counter = 0
 CSV.open("data.csv", "wb") do |csv|
 	File.open('list.txt', 'r') do |file|
 		# while line = file.gets
@@ -25,6 +25,8 @@ CSV.open("data.csv", "wb") do |csv|
 				csv << [en, ko, twitter, facebook]
 			end
 		sleep rand(5)
+		@counter += 1
+		puts @counter
 		end
 	end
 end
