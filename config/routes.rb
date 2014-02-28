@@ -3,6 +3,7 @@ DoIndie::Application.routes.draw do
   get "home", to: "pages#home", as: "home"
   get "inside", to: "pages#inside", as: "inside"
   
+  resources :bands
     
   devise_for :users
   
@@ -10,5 +11,4 @@ DoIndie::Application.routes.draw do
     root "base#index"
     resources :users
   end
-  
 end

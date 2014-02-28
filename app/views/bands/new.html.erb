@@ -1,0 +1,13 @@
+<%= form_for @band do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, placeholder: "Name..." %><br />
+  <%= f.label :contact %>
+  <%= f.text_field :contact, placeholder: "010-1234-1234" %><br />
+  <%= f.label :facebook %>
+  <%= f.text_field :facebook, placeholder: "facebook.com/yourband" %><br />
+  <%= f.label :twitter %>
+  <%= f.text_field :twitter, placeholder: "twitter.com/yourband" %><br />
+  <%= f.label :site %>
+  <%= f.text_field :site, placeholder: "band site or site to buy music" %><br />
+  <%= f.submit %>
+<% end %>

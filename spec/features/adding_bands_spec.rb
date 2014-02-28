@@ -8,9 +8,9 @@ feature "Adding bands" do
   
   scenario "Admin users can add bands" do  
     visit new_band_path
-    fill_in 'name', with: "Psy"
-    fill_in 'phone', with: "010-1234-5678"
-    click_button('submit')
+    fill_in 'Name', with: "Psy"
+    fill_in 'Contact', with: "010-1234-5678"
+    click_button('Create Band')
     expect(page).to have_content("Band created!")
   end
 end
