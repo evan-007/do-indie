@@ -7,8 +7,27 @@ class EventsController < ApplicationController
 	def show
 	end
 
+	def new
+		@event = Event.new
+	end
+
+	def create
+		@event = Event.create(event_params)
+		if @event.save
+			flash[:notice] = "Event Created!"
+			redirect_to event_path(@event)
+		else
+			flash[:notice] = "Event not created!"
+			redirect_to new_event_path
+		end
+	end
+
 	private
 	  def get_event
 	  	@event = Event.find(params[:id])
+	  end
+
+	  def event_params
+	  	params.require(:event).permit(:name, :contact, :price, :info)
 	  end
 end
