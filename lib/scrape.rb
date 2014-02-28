@@ -5,13 +5,13 @@ require 'watir'
 
 	browser = Watir::Browser.start "http://indistreet.com/en/korea/artist?page=1"
 
-	for n in 101..151 do
+	for n in 152..181 do
 		browser.goto ("http://indistreet.com/en/korea/artist?page=""#{n}")
 		page_html = Nokogiri::HTML.parse(browser.html)
 		page_html.css('a.thumbLink.inited').each do |link|
 		puts link["href"]
-    sleep rnd(5)
 		end
+    sleep rand(5)
 	end
 
 

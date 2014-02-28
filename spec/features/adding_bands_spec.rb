@@ -9,7 +9,7 @@ feature "Adding bands" do
     sign_in @user
     visit new_band_path
     fill_in 'Name', with: "Psy"
-    fill_in 'Korean name', with: 'ㅁㄴㅇ'
+    fill_in 'Korean name', with: 'ㅁㄴㅇㄹ'
     fill_in 'Contact', with: "010-1234-5678"
     click_button('Create Band')
     expect(page).to have_content("Band created!")
