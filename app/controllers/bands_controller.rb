@@ -28,7 +28,7 @@ class BandsController < ApplicationController
   end
   
   def update
-    if @band.update
+    if @band.update(band_params)
       flash[:notice] = "Band updated!"
       redirect_to band_path(@band)
     else

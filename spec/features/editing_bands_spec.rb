@@ -10,7 +10,7 @@ feature "Editing bands" do
     sign_in @user
     visit edit_band_path(@band)
     fill_in 'Name', with: "PSY"
-    click_button "Update"
+    click_button "Update Band"
     expect(page).to have_content('Band updated!') 
   end
 end

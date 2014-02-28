@@ -1,0 +1,5 @@
+<h2><%= @band.name %></h2>
+
+<% if current_user.admin == true %>
+  <%= link_to "Edit this band", edit_band_path(@band) %>
+<% end %>
