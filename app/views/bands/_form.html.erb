@@ -1,6 +1,8 @@
 <%= form_for @band do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name, placeholder: "Name..." %><br />
+  <%= f.label :korean_name %>
+  <%= f.text_field :korean_name, placeholder: "사랑해..." %><br />
   <%= f.label :contact %>
   <%= f.text_field :contact, placeholder: "010-1234-1234" %><br />
   <%= f.label :facebook %>
