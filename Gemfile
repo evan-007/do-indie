@@ -50,9 +50,11 @@ gem 'bootstrap-sass', '~> 3.0.3.0'
 # RSpec
 group :test, :development do
   gem "rspec-rails", '~> 2.14.1'
+  gem "factory_girl_rails"
 end
 
 # Capybara
 group :test do
+  gem "faker"
   gem "capybara", '~> 2.2.1'
 end
