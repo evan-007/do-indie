@@ -23,6 +23,19 @@ class VenuesController < ApplicationController
       redirect_to new_venue_path
     end
   end
+
+  def edit
+  end
+
+  def update
+    if @venue.update(venue_params)
+      flash[:notice] = "Venue updated!"
+      redirect_to @venue
+    else
+      flash[:notice] = "Venue not updated!"
+      redirect_to edit_venue_path(@venue)
+    end
+  end
   
   
   private
