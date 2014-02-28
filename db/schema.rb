@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131103142223) do
+ActiveRecord::Schema.define(version: 20140228010052) do
+
+  create_table "bands", force: true do |t|
+    t.string   "name"
+    t.string   "contact"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "site"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.string   "contact"
+    t.string   "price"
+    t.text     "info"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -54,5 +73,17 @@ ActiveRecord::Schema.define(version: 20131103142223) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true
   add_index "users", ["username"], name: "index_users_on_username", unique: true
+
+  create_table "venues", force: true do |t|
+    t.string   "name"
+    t.string   "phone"
+    t.text     "address"
+    t.text     "misc"
+    t.string   "facebook"
+    t.string   "cafe"
+    t.string   "website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
