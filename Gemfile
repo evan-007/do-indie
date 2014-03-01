@@ -60,3 +60,8 @@ group :test do
   gem "faker"
   gem "capybara", '~> 2.2.1'
 end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
