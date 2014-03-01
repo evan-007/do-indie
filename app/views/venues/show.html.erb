@@ -3,7 +3,7 @@
   <div id="map" style='width: 600px; height: 400px;'></div>
 </div>
 
-
+<% unless @venue.latitude == nil %>
 <script type="text/javascript">
 	handler = Gmaps.build('Google');
 		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
@@ -16,3 +16,6 @@
 			handler.getMap().setZoom(15)
 		});
 </script>
+<% else %>
+<p>Uh-oh, we don't have the address for this venue yet!</p>
+<% end %>
