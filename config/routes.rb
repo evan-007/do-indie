@@ -5,11 +5,13 @@ DoIndie::Application.routes.draw do
   
   resources :bands, :venues, :events
   resources :user_fans, only: [:create, :destroy]
+  resources :event_bands, only: [:create, :destroy]
+  resources :event_venues, only: [:create, :destroy]
     
   devise_for :users
   
   namespace :admin do
     root "base#index"
-    resources :users
+    resources :users, :bands
   end
 end

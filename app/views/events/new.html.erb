@@ -7,5 +7,9 @@
 	<%= f.text_field :price %><br />
 	<%= f.label :info %>
 	<%= f.text_area :info %><br />
+	<%= f.label :band %>
+	<%= select(:event_band, :band_id, options_for_select(Band.order(name: :asc).collect { |b| [b.name, b.id]} )) %><br />
+	<%= f.label :venue %>
+	<%= select(:event_venue, :venue_id, options_for_select(Venue.order(name: :asc).collect { |v| [v.name, v.id]} )) %><br />
 	<%= f.submit %>
 <% end %>

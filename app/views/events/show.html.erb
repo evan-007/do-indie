@@ -1,1 +1,12 @@
 <%= @event.name %>
+
+<% if current_user && current_user.admin == true %>
+
+    <%= form_tag(event_bands_path, method: 'post') do %>
+    <%= label_tag(:event_band, "Add a band") %>
+	<%= select(:event_band, :band_id, options_for_select(Band.order(name: :asc).collect { |b| [b.name, b.id]} )) %>
+	<%= hidden_field_tag :event_id, @event.id%>
+	<%= submit_tag "Add Band" %>
+	<br />
+	<% end %>
+<% end %>

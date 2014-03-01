@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301035936) do
+ActiveRecord::Schema.define(version: 20140301050524) do
 
   create_table "bands", force: true do |t|
     t.string   "name"
@@ -23,6 +23,26 @@ ActiveRecord::Schema.define(version: 20140301035936) do
     t.datetime "updated_at"
     t.string   "korean_name"
   end
+
+  create_table "event_bands", force: true do |t|
+    t.integer  "band_id"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_bands", ["band_id"], name: "index_event_bands_on_band_id"
+  add_index "event_bands", ["event_id"], name: "index_event_bands_on_event_id"
+
+  create_table "event_venues", force: true do |t|
+    t.integer  "venue_id"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_venues", ["event_id"], name: "index_event_venues_on_event_id"
+  add_index "event_venues", ["venue_id"], name: "index_event_venues_on_venue_id"
 
   create_table "events", force: true do |t|
     t.string   "name"
