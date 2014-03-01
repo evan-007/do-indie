@@ -1,5 +1,14 @@
-<h2><%= @band.name %></h2>
+<h2><%= @band.name %></h2><br/>
+<h3><%= @band.korean_name %></h3><br/>
+<%= @band.twitter %><br />
+<%= @band.facebook %>
 
-<% if current_user.admin == true %>
+
+
+<% if current_user %>
+	<%= link_to "Like", user_fans_path(band_id: @band.id), method: 'post', class: "btn btn-default" %>
+<% end %>
+
+<% if current_user && current_user.admin == true %>
   <%= link_to "Edit this band", edit_band_path(@band) %>
 <% end %>

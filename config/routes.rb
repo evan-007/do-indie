@@ -4,6 +4,7 @@ DoIndie::Application.routes.draw do
   get "inside", to: "pages#inside", as: "inside"
   
   resources :bands, :venues, :events
+  resources :user_fans, only: [:create, :destroy]
     
   devise_for :users
   

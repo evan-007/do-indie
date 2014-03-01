@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228133436) do
+ActiveRecord::Schema.define(version: 20140301002940) do
 
   create_table "bands", force: true do |t|
     t.string   "name"
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(version: 20140228133436) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "user_fans", force: true do |t|
+    t.integer  "band_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_fans", ["band_id"], name: "index_user_fans_on_band_id"
+  add_index "user_fans", ["user_id"], name: "index_user_fans_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "username",               default: "",    null: false

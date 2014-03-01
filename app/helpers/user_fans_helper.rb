@@ -1,0 +1,2 @@
+module UserFansHelper
+end

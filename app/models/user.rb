@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :user_fans
+  has_many :bands, through: :user_fans
   # Use friendly_id on Users
   extend FriendlyId
   friendly_id :friendify, use: :slugged
