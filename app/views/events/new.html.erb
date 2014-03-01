@@ -7,6 +7,10 @@
 	<%= f.text_field :price %><br />
 	<%= f.label :info %>
 	<%= f.text_area :info %><br />
+	<%= f.label :date %>
+	<%= f.date_select :date, start_year: 2014 %><br />
+	<%= f.label :time %>
+	<%= f.text_field :time, placeholder: "7:40pm" %><br />
 	<%= f.label :band %>
 	<%= select(:event_band, :band_id, options_for_select(Band.order(name: :asc).collect { |b| [b.name, b.id]} )) %><br />
 	<%= f.label :venue %>

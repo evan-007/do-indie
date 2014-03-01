@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301095722) do
+ActiveRecord::Schema.define(version: 20140301110213) do
 
   create_table "bands", force: true do |t|
     t.string   "name"
@@ -99,6 +99,8 @@ ActiveRecord::Schema.define(version: 20140301095722) do
     t.text     "info"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "date"
+    t.string   "time"
   end
 
   create_table "friendly_id_slugs", force: true do |t|
