@@ -7,6 +7,7 @@ class PagesController < ApplicationController
   end
   
   def inside
+  	@likes = current_user.user_fans
   end 
     
 end
