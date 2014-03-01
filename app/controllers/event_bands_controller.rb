@@ -1,6 +1,6 @@
 class EventBandsController < ApplicationController
 	def create
-		@event_band = EventBand.create(event_id: params[:event_id], band_id: params[:band_id])
+		@event_band = EventBand.new(event_id: (params[:event_id]), band_id: (params[:band_id]))
 		if @event_band.save
 			flash[:notice] = "Band added!"
 			redirect_to events_path
