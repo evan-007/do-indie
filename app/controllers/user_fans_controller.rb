@@ -26,7 +26,7 @@ class UserFansController < ApplicationController
 	  # end
 
 	  def get_user_fans
-	  	@user_fan = current_user.user_fans.where(band_id: params[:band_id]).first
+	  	@user_fan = current_user.user_fans.where(band_id: params[:id]).first
 	  end
 
 end

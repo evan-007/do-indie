@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 1.5.3'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem "geocoder"
 gem 'gmaps4rails'
+gem "paperclip", "~> 4.1"
 
 group :doc do
   gem 'sdoc', require: false
