@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301050524) do
+ActiveRecord::Schema.define(version: 20140301063521) do
 
   create_table "bands", force: true do |t|
     t.string   "name"
@@ -116,6 +116,8 @@ ActiveRecord::Schema.define(version: 20140301050524) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "area"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
 end

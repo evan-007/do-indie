@@ -8,6 +8,8 @@ gem 'jquery-rails', '~> 3.0.4'
 gem 'turbolinks', '~> 2.1.0'
 gem 'jbuilder', '~> 1.5.3'
 gem 'bcrypt-ruby', '~> 3.1.2'
+gem "geocoder"
+gem 'gmaps4rails'
 
 group :doc do
   gem 'sdoc', require: false
