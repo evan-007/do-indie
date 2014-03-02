@@ -1,6 +1,6 @@
 <%= @event.name %>
-<% if @event.event_venues.count != 0 %>
-   <p>It's at: <%= link_to @event.event_venues.first.venue.name, venue_path(@event.event_venues.first.venue) %></p>
+<% if @event.venue %>
+   <p>It's at: <%= link_to @event.venue.name, venue_path(@event.venue) %></p>
 <% else %>
   <p>This event has no venue! Please add one below!<p>
 <% end %>
@@ -20,16 +20,6 @@
 	<%= select_tag(:band_id, options_for_select(Band.order(name: :asc).collect { |b| [b.name, b.id]} )) %>
 	<%= hidden_field_tag :event_id, @event.id%>
 	<%= submit_tag "Add Band" %>
-	<br />
-	<% end %>
-<% end %>
-
-<% if current_user && current_user.admin == true && @event.event_venues.count == 0 %>
-	<%= form_tag(event_venues_path, method: 'post') do %>
-    <%= label_tag(:event_venue, "Add a venue") %>
-	<%= select_tag(:venue_id, options_for_select(Venue.order(name: :asc).collect { |v| [v.name, v.id]} )) %>
-	<%= hidden_field_tag :event_id, @event.id%>
-	<%= submit_tag "Add Venue" %>
 	<br />
 	<% end %>
 <% end %>

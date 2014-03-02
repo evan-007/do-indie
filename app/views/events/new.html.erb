@@ -13,7 +13,7 @@
 	<%= f.text_field :time, placeholder: "7:40pm" %><br />
 	<%= f.label :band %>
 	<%= select(:event_band, :band_id, options_for_select(Band.order(name: :asc).collect { |b| [b.name, b.id]} )) %><br />
-	<%= f.label :venue %>
-	<%= select(:event_venue, :venue_id, options_for_select(Venue.order(name: :asc).collect { |v| [v.name, v.id]} )) %><br />
+	<%= f.label :venue_id %>
+	<%= f.select(:venue_id, options_for_select(Venue.order(name: :asc).collect { |v| [v.name, v.id]} )) %><br />
 	<%= f.submit %>
 <% end %>
