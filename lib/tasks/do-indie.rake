@@ -4,8 +4,9 @@ task :import_artists => :environment do
   ko = 1
   twitter = 2
   facebook = 3
-  CSV.foreach("#{Rails.root}"+"/lib/import.csv") do |row|
-      Band.create(name: row[en], korean_name: row[ko], twitter: row[twitter], facebook: row[facebook])
+  site = 4
+  CSV.foreach("#{Rails.root}"+"/lib/data.csv") do |row|
+      Band.create(name: row[en], korean_name: row[ko], twitter: row[twitter], facebook: row[facebook], site: row[site])
   end
 end
 

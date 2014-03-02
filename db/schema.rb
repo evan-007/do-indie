@@ -28,50 +28,6 @@ ActiveRecord::Schema.define(version: 20140302002249) do
     t.datetime "avatar_updated_at"
   end
 
-  create_table "blog_comments", force: true do |t|
-    t.integer  "post_id",                      null: false
-    t.string   "author",                       null: false
-    t.string   "email",                        null: false
-    t.text     "content"
-    t.boolean  "is_published", default: false, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "blog_comments", ["post_id", "created_at"], name: "index_blog_comments_on_post_id_and_created_at"
-  add_index "blog_comments", ["post_id", "is_published", "created_at"], name: "index_blog_comments_on_post_published_created"
-
-  create_table "blog_posts", force: true do |t|
-    t.integer  "blog_id",                                  null: false
-    t.string   "title",                                    null: false
-    t.string   "slug",                                     null: false
-    t.text     "content"
-    t.string   "excerpt",      limit: 1024
-    t.string   "author"
-    t.integer  "year",         limit: 4,                   null: false
-    t.integer  "month",        limit: 2,                   null: false
-    t.boolean  "is_published",              default: true, null: false
-    t.datetime "published_at",                             null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "blog_posts", ["created_at"], name: "index_blog_posts_on_created_at"
-  add_index "blog_posts", ["is_published", "created_at"], name: "index_blog_posts_on_is_published_and_created_at"
-  add_index "blog_posts", ["is_published", "year", "month", "slug"], name: "index_blog_posts_on_published_year_month_slug"
-
-  create_table "blogs", force: true do |t|
-    t.integer "site_id",                             null: false
-    t.string  "label",                               null: false
-    t.string  "identifier",                          null: false
-    t.string  "app_layout",  default: "application", null: false
-    t.string  "path"
-    t.text    "description"
-  end
-
-  add_index "blogs", ["identifier"], name: "index_blogs_on_identifier"
-  add_index "blogs", ["site_id", "path"], name: "index_blogs_on_site_id_and_path"
-
   create_table "event_bands", force: true do |t|
     t.integer  "band_id"
     t.integer  "event_id"
