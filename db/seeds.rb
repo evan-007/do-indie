@@ -7,7 +7,7 @@ u = User.new(
     password_confirmation: "1234",
     admin: true
 )
-u.skip_confirmation!
+# u.skip_confirmation!
 u.save!
 
 for n in 1..200 do
