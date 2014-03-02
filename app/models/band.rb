@@ -14,6 +14,7 @@ class Band < ActiveRecord::Base
 		self.user_fans.where(band_id: self.id).count
 	end 
 
+
 	
 
 	def self.search_and_order(search, page_number)

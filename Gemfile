@@ -20,6 +20,7 @@ end
 group :development, :test do
   gem 'sqlite3', '~> 1.3.8'    # dev & test database
   gem 'figaro', '~> 0.7.0'     # env variables
+  gem "faker"
 end
 
 # Paging
@@ -58,6 +59,5 @@ end
 
 # Capybara
 group :test do
-  gem "faker"
   gem "capybara", '~> 2.2.1'
 end
