@@ -17,12 +17,12 @@ class Band < ActiveRecord::Base
 	
 
 	def self.search_and_order(search, page_number)
-    if search
-      where("name LIKE ?", "%#{search.downcase}%").order(
-      	name: :asc
-      ).page page_number
-    else
-      order(name: :asc).page page_number
-    end
-  end
+	    if search
+			where("name LIKE ?", "%#{search.downcase}%").order(
+	      	name: :asc
+		    ).page page_number
+	    else
+			order(name: :asc).page page_number
+	    end
+	end
 end

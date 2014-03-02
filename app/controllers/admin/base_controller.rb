@@ -6,5 +6,6 @@ class Admin::BaseController < ApplicationController
     @last_signins = User.last_signins(10)
     @count = User.users_count
     @bands = Band.count
+    @venues = Venue.count
   end
 end

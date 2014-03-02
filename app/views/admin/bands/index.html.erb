@@ -2,13 +2,13 @@
 <p><%= link_to "Back to Admin", admin_root_path %></p>
 
 <div class="text-center">
-  <p>< % = page_entries_info @bands %></p>
-  < %  = paginate @bands %>
+  <p><%= page_entries_info @bands %></p>
+  <%= paginate @bands %>
 </div>
 
 <%= form_tag admin_bands_path, method: 'get', html: {role: "form"} do %>
   <p>
-    <%= text_field_tag :search, params[:search] %>
+    <%= text_field_tag :search, params[:search], placeholder: "English only :(" %>
     <%= submit_tag "Search", :name => nil, class: "btn btn-sm btn-primary" %>
     <%= link_to "All", admin_bands_path, {class: "btn btn-sm btn-link"} %>
   </p>
@@ -48,6 +48,6 @@
 </table>
 
 <div class="text-center">
-  <p>< % = page_entries_info @bands %></p>
-  < % =  paginate @bands %>
+  <p><%= page_entries_info @bands %></p>
+  <%=  paginate @bands %>
 </div>

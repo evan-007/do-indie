@@ -1,0 +1,55 @@
+<h1>Venues <small>Admin</small></h1>
+<p><%= link_to "Back to Admin", admin_root_path %></p>
+
+<div class="text-center">
+  <p><%= page_entries_info @venues %></p>
+  <%= paginate @venues %>
+</div>
+
+<%= form_tag admin_venues_path, method: 'get', html: {role: "form"} do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-sm btn-primary" %>
+    <%= link_to "All", admin_venues_path, {class: "btn btn-sm btn-link"} %>
+  </p>
+<% end %>
+
+<table class="table table-striped">
+  <tr>
+    <th>Venue ID</th>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Address</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>Misc</th>
+    <th>Facebook</th>
+    <th>Cafe</th>
+    <th>Website</th>
+    <th>Created at</th>
+  </tr>
+  
+  <% @venues.each do |venue| %>
+  
+  <tr>
+    <td><%= venue.id %></td>
+    <td><%= link_to venue.name.capitalize, admin_venue_path(venue) %></td>
+    <td><%= venue.phone %></td>
+    <td><%= venue.address %></td>
+    <td><%= venue.latitude %></td>
+    <td><%= venue.longitude %></td>
+    <td><%= venue.misc %></td>
+    <td><%= venue.facebook %></td>
+    <td><%= venue.cafe %></td>
+    <td><%= venue.website %></td>
+    <td><%= time_ago_in_words(venue.created_at) %></td>
+  </tr>
+  
+  <% end %>
+  
+</table>
+
+<div class="text-center">
+  <p><%= page_entries_info @venues %></p>
+  <%= paginate @venues %>
+</div>
