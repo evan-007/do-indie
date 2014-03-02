@@ -1,0 +1,53 @@
+<h1>Events <small>Admin</small></h1>
+<p><%= link_to "Back to Admin", admin_root_path %></p>
+
+<div class="text-center">
+  <p><%= page_entries_info @events %></p>
+  <%= paginate @events %>
+</div>
+
+<%= form_tag admin_events_path, method: 'get', html: {role: "form"} do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-sm btn-primary" %>
+    <%= link_to "All", admin_events_path, {class: "btn btn-sm btn-link"} %>
+  </p>
+<% end %>
+
+<table class="table table-striped">
+  <tr>
+    <th>Event ID</th>
+    <th>Name</th>
+    <th>Contact</th>
+    <th>Price</th>
+    <th>Info</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Venue</th>
+    <th>Created at</th>
+  </tr>
+  
+  <% @events.each do |event| %>
+  
+  <tr>
+    <td><%= event.id %></td>
+    <td><%= link_to event.name.capitalize, admin_event_path(event) %></td>
+    <td><%= event.contact %></td>
+    <td><%= event.price  %></td>
+    <td><%= event.info %></td>
+    <td><%= event.date %></td>
+    <td><%= event.time %></td>
+    <% if event.venue != nil %>
+    <td><%= event.venue.name %></td>
+    <% end %>
+    <td><%= time_ago_in_words(event.created_at) %></td>
+  </tr>
+  
+  <% end %>
+  
+</table>
+
+<div class="text-center">
+  <p><%= page_entries_info @events %></p>
+  <%= paginate @events %>
+</div>

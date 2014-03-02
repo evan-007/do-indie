@@ -5,19 +5,19 @@ class Admin::VenuesController < Admin::BaseController
     :update,
     :destroy
   ]
-  
+
 
   def index
     @venues = Venue.search_and_order(params[:search], params[:page])
   end
-  
+
   def show
     redirect_to edit_admin_venue_path(params[:id])
   end
-  
+
   def edit
   end
-  
+
   def update
     old_name = @venue.name
     new_params = venue_params.dup
@@ -40,8 +40,8 @@ class Admin::VenuesController < Admin::BaseController
 
     
     # if current_user.id != @venue.id
-    #   @user.admin = new_params[:admin]=="0" ? false : true
-    #   @user.locked = new_params[:locked]=="0" ? false : true
+    # @user.admin = new_params[:admin]=="0" ? false : true
+    # @user.locked = new_params[:locked]=="0" ? false : true
     # end
     
     if @venue.valid?
@@ -52,17 +52,17 @@ class Admin::VenuesController < Admin::BaseController
       render :edit
     end
   end
-  
-  
-  private 
-  
+
+
+  private
+
   def set_venue
     @venue = Venue.find(params[:id])
   rescue
     flash[:alert] = "The venue with an id of #{params[:id]} doesn't exist."
     redirect_to admin_venues_path
   end
-  
+
   def venue_params
     params.require(:venue).permit(
     :name,
@@ -74,5 +74,5 @@ class Admin::VenuesController < Admin::BaseController
     :website
     )
   end
-  
+
 end

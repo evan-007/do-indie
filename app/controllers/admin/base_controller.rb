@@ -7,5 +7,6 @@ class Admin::BaseController < ApplicationController
     @count = User.users_count
     @bands = Band.count
     @venues = Venue.count
+    @events = Event.count
   end
 end
