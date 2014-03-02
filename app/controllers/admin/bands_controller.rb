@@ -19,27 +19,24 @@ class Admin::BandsController < Admin::BaseController
   end
   
   def update
-    old_username = @user.username
-    new_params = user_params.dup
-    new_params[:username] = new_params[:username].strip
-    new_params[:email] = new_params[:email].strip
+    old_name = @band.name
+    new_params = band_params.dup
+    new_params[:name] = new_params[:name].strip
+    new_params[:korean_name] = new_params[:korean_name].strip
     
-    @user.username = new_params[:username]
-    @user.email = new_params[:email]
-    @user.password = new_params[:password] if new_params[:password].strip.length > 0
-    @user.password_confirmation = new_params[:password_confirmation] if new_params[:password_confirmation].strip.length > 0
+    @band.name = new_params[:name]
+    @band.korean_name = new_params[:korean_name]
     
-    if current_user.id != @user.id
-      @user.admin = new_params[:admin]=="0" ? false : true
-      @user.locked = new_params[:locked]=="0" ? false : true
-    end
+    # if current_user.id != @band.id
+    #   @user.admin = new_params[:admin]=="0" ? false : true
+    #   @user.locked = new_params[:locked]=="0" ? false : true
+    # end
     
-    if @user.valid?
-      @user.skip_reconfirmation!
-      @user.save
-      redirect_to admin_users_path, notice: "#{@user.username} updated."
+    if @band.valid?
+      @band.save
+      redirect_to admin_bands_path, notice: "#{@band.name} updated."
     else
-      flash[:alert] = "#{old_username} couldn't be updated."
+      flash[:alert] = "#{old_name} couldn't be updated."
       render :edit
     end
   end
@@ -54,14 +51,14 @@ class Admin::BandsController < Admin::BaseController
     redirect_to admin_bands_path
   end
   
-  def user_params
-    params.require(:user).permit(
-    :username,
-    :email,
-    :password,
-    :password_confirmation,
-    :admin,
-    :locked
+  def band_params
+    params.require(:band).permit(
+    :name,
+    :korean_name,
+    :contact,
+    :facebook,
+    :twitter,
+    :site
     )
   end
   

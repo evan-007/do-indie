@@ -1,61 +1,69 @@
 <div class="row">
   <div class="col-sm-6">
     <h1>
-      Edit User <small><%= "#{@user.username.capitalize} - id: #{@user.id}" %></small>
+      Edit band <small><%= "#{@band.name.capitalize} - id: #{@band.id}" %></small>
     </h1>
-    <p><%= link_to "Back to Users", admin_users_path %></p>
+    <p><%= link_to "Back to bands", admin_bands_path %></p>
 
-    <%= form_for [:admin, @user], :html => { :role => "form" } do |f| %>
+    <%= form_for [:admin, @band], :html => { :role => "form" } do |f| %>
     
     <div class="form-group">
-      <%= f.label :username %>
+      <%= f.label :name %>
       <div class="row">
         <div class="col-sm-6">
-          <%= f.text_field :username, :autofocus => true, class: "form-control" %>  
+          <%= f.text_field :name, :autofocus => true, class: "form-control" %>  
         </div>
       </div>
     </div>
     
     <div class="form-group">
-      <%= f.label :email %>
+      <%= f.label :korean_name %>
       <div class="row">
         <div class="col-sm-6">      
-          <%= f.email_field :email, class: "form-control" %>  
+          <%= f.text_field :korean_name, class: "form-control" %>  
         </div>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :password %>
+      <%= f.label :contact %>
       <div class="row">
         <div class="col-sm-6">
-          <%= f.password_field :password, class: "form-control" %>
+          <%= f.text_field :contact, class: "form-control" %>
         </div>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :password_confirmation %>
+      <%= f.label :facebook %>
       <div class="row">
         <div class="col-sm-6">
-          <%= f.password_field :password_confirmation, class: "form-control" %>
+          <%= f.text_field :facebook, class: "form-control" %>
         </div>
       </div>
     </div>
-    
-    <% unless current_user.id == @user.id %>
-    <div class="checkbox">
-      <%= f.check_box :locked %> <%= f.label :locked, "Is Locked?" %>
+
+    <div class="form-group">
+      <%= f.label :twitter %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.text_field :twitter, class: "form-control" %>
+        </div>
+      </div>
     </div>
-    
-    <div class="checkbox">
-      <%= f.check_box :admin %> <%= f.label :admin, "Is Admin?" %>
-    </div>    
-    <% end %>
+
+    <div class="form-group">
+      <%= f.label :site %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.text_field :site, class: "form-control" %>
+        </div>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-sm-6">
-        <%= f.submit "Update User", class: "btn btn-danger" %>
+        <%= f.submit "Update band", class: "btn btn-danger" %>
       </div>
     </div>    
     
