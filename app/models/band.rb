@@ -11,4 +11,6 @@ class Band < ActiveRecord::Base
 	def fans
 		self.user_fans.where(band_id: self.id).count
 	end 
+
+	paginates_per 100
 end

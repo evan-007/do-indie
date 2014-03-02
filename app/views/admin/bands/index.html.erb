@@ -1,0 +1,53 @@
+<h1>Bands <small>Admin</small></h1>
+<p><%= link_to "Back to Admin", admin_root_path %></p>
+
+<div class="text-center">
+  <p>< % = page_entries_info @bands %></p>
+  < %  = paginate @bands %>
+</div>
+
+<%= form_tag admin_bands_path, method: 'get', html: {role: "form"} do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-sm btn-primary" %>
+    <%= link_to "All", admin_bands_path, {class: "btn btn-sm btn-link"} %>
+  </p>
+<% end %>
+
+<table class="table table-striped">
+  <tr>
+    <th>Band ID</th>
+    <th>Name</th>
+    <th>Korean Name</th>
+    <th>Contact</th>
+    <th>Facebook</th>
+    <th>Twitter</th>
+    <th>Site</th>
+    <th>Image</th>
+    <th>Created At</th>
+    <th>Created By</th>
+  </tr>
+  
+  <% @bands.each do |band| %>
+  
+  <tr>
+    <td><%= band.id %></td>
+    <td><%= link_to band.name.capitalize, admin_band_path(band) %></td>
+    <td><%= band.korean_name %></td>
+    <td><%= band.contact %></td>
+    <td><%= band.facebook %></td>
+    <td><%= band.twitter %></td>
+    <td><%= band.site %></td>
+    <td>not done yet</td>
+    <td><%= time_ago_in_words(band.created_at) %></td>
+    <td>not done yet</td>
+  </tr>
+  
+  <% end %>
+  
+</table>
+
+<div class="text-center">
+  <p>< % = page_entries_info @bands %></p>
+  < % =  paginate @bands %>
+</div>
