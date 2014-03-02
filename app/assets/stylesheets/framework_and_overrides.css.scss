@@ -369,6 +369,11 @@ img{
 .navbar-brand {
   font-size: inherit;      
 }
+
+.navbar-inverse {
+  background-color: #198CAF;
+  border-color: #198CAF;
+}
 //***********************************************************
 
 //***********************************************************
@@ -420,3 +425,7 @@ img{
   }
 }
 //***********************************************************
+// BODY padding for fixed header
+body {
+  padding-top: 70px;
+}
