@@ -23,9 +23,17 @@ class Admin::BandsController < Admin::BaseController
     new_params = band_params.dup
     new_params[:name] = new_params[:name].strip
     new_params[:korean_name] = new_params[:korean_name].strip
+    new_params[:contact] = new_params[:contact].strip
+    new_params[:facebook] = new_params[:facebook].strip
+    new_params[:twitter] = new_params[:twitter].strip
+    new_params[:site] = new_params[:site].strip
     
     @band.name = new_params[:name]
     @band.korean_name = new_params[:korean_name]
+    @band.contact = new_params[:contact]
+    @band.facebook = new_params[:facebook]
+    @band.twitter = new_params[:twitter]
+    @band.site = new_params[:site]
     
     # if current_user.id != @band.id
     #   @user.admin = new_params[:admin]=="0" ? false : true

@@ -17,6 +17,11 @@ feature "Admin band panel" do
 		visit admin_bands_path
 		click_link @band.name
 		fill_in "Name", with: "psy psy"
+		fill_in "Korean name", with: "asdf"
+		fill_in "Contact", with: "psy@psy.com"
+		fill_in "Facebook", with: "facebook.com/psy"
+		fill_in "Twitter", with: "twitter.com/psy"
+		fill_in "Site", with: "psy.com"
 		click_button "Update band"
 		expect(page).to have_content("updated")
 	end
