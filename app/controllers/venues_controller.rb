@@ -3,7 +3,7 @@ class VenuesController < ApplicationController
   before_action :get_venue, only: [:show, :edit, :update, :destoy]
   
   def index
-    @venues = Venue.all
+    @venues = Venue.search_and_order(params[:search], params[:page])
   end
   
   def show

@@ -3,7 +3,7 @@ class BandsController < ApplicationController
   before_action :get_band, only: [:show, :edit, :update, :destroy]
   
   def index
-    @bands = Band.all
+    @bands = Band.search_and_order(params[:search], params[:page])
   end
   
   def new
