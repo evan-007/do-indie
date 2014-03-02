@@ -15,6 +15,7 @@ feature "Creating events" do
 		fill_in "Contact", with: "010 -1234-1234"
 		fill_in "Price", with: "1million wons"
 		fill_in "Info", with: "Dress to impress, doors open at 9. Gangnam exit 4"
+		select @venue.name, from: "event[venue_id]"
 		click_button "Create Event"
 		expect(page).to have_content("Event Created!")
 	end

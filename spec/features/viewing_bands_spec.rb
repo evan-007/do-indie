@@ -6,8 +6,8 @@ feature "Viewing bands" do
   end
   
   scenario "public users can view a list of bands" do
-    visit root_path
-    click_link "Bands"
+    visit bands_path
+    click_link @band.name
     expect(page).to have_content (@band.name)
   end
 end

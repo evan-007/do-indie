@@ -6,8 +6,7 @@ feature "Viewing venues" do
   end
   
   scenario "public users can view venues" do
-    visit root_path
-    click_link "Venues"
+    visit venues_path
     click_link @venue.name
     expect(page).to have_content (@venue.name)
   end
