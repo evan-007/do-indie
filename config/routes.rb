@@ -2,11 +2,11 @@ DoIndie::Application.routes.draw do
   # config/routes.rb
 
   root "pages#home"
-  get '/:locale' => 'pages#home'
+  # get '/:locale' => 'pages#home' #this conflicts with other routes
   
   localized do
   
-    get "home", to: "pages#home", as: "home"
+    
     get "inside", to: "pages#inside", as: "inside"
   
     resources :bands, :venues, :events
