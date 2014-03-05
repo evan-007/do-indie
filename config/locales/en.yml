@@ -33,3 +33,10 @@ en:
   blog: "Blog"
   photos: "Photos"
   contact: "Contact"
+  #_navigation_links.html.erb
+  signin: "Sign in"
+  signup: "Sign up"
+  username: "Username"
+  password: "Password"
+  email: "Email"
+  remember: "Remember me"

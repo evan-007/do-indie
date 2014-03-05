@@ -4,11 +4,20 @@ kr:
   slide_1_header: "Example headline."
   #_navigation.html.erb
   events: "공연"
-  add_event: "공연 등록"
+  add_event: "공연 소식"
   venues: "공연장"
   add_venue: "공연장 추가"
   band: "밴드"
   add_band: "밴드 추가"
   blog: "블로그"
   photos: "사진"
-  contact: "연락"
+  contact: "연락처"
+  account: "회원가입"
+  #_navigation_links.html.erb
+  signup: "가입"
+  signin: "로그인"
+  username: "사용자명"
+  password: "암호"
+  email: "이메일"
+  remember: "기억하기"
+  
