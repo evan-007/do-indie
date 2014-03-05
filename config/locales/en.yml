@@ -21,3 +21,15 @@
 
 en:
   hello: "Hello world"
+  sign-up: "Sign up to like your fav bands!"
+  slide_1_header: "Example headline."
+  #_navigavtion.html.erb
+  events: "Events"
+  add_event: "Add an Event"
+  venues: "Venues"
+  add_venue: "Add a Venue"
+  band: "Band"
+  add_band: "Add a Band"
+  blog: "Blog"
+  photos: "Photos"
+  contact: "Contact"

@@ -1,2 +1,14 @@
 kr:
   hello: "Hello world"
+  sign-up: ""
+  slide_1_header: "Example headline."
+  #_navigation.html.erb
+  events: "공연"
+  add_event: "공연 등록"
+  venues: "공연장"
+  add_venue: "공연장 추가"
+  band: "밴드"
+  add_band: "밴드 추가"
+  blog: "블로그"
+  photos: "사진"
+  contact: "연락"
