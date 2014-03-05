@@ -3,9 +3,9 @@
   <div class="col-sm-4">
     <h3>Menu</h3>
     <h4><%= link_to "Users", admin_users_path %> <small>- <%= "#{@count} users" %></small></h4>
-    <h4><%= link_to "Bands", admin_bands_path %> <small>- <%= "#{@bands} bands" %></small></h4>
-    <h4><%= link_to "Venues", admin_venues_path %> <small>- <%= "#{@venues} venues" %></small></h4>
-    <h4><%= link_to "Events", admin_events_path %> <small>- <%= "#{@events} events" %></small></h4>
+    <h4><%= link_to t(:bands), admin_bands_path %> <small>- <%= "#{@bands} bands" %></small></h4>
+    <h4><%= link_to t(:venues), admin_venues_path %> <small>- <%= "#{@venues} venues" %></small></h4>
+    <h4><%= link_to t(:events), admin_events_path %> <small>- <%= "#{@events} events" %></small></h4>
     <hr/>
   </div>
   

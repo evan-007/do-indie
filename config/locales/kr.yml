@@ -6,7 +6,7 @@ kr:
   add_event: "공연 소식"
   venues: "공연장"
   add_venue: "공연장 추가"
-  band: "밴드"
+  bands: "밴드"
   add_band: "밴드 추가"
   blog: "블로그"
   photos: "사진"
