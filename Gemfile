@@ -11,6 +11,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem "geocoder"
 gem 'gmaps4rails'
 gem "paperclip", "~> 4.1"
+gem 'route_translator'
 
 group :doc do
   gem 'sdoc', require: false
