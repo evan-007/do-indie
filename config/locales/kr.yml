@@ -1,6 +1,5 @@
 kr:
   hello: "Hello world"
-  sign-up: ""
   slide_1_header: "Example headline."
   #_navigation.html.erb
   events: "공연"
