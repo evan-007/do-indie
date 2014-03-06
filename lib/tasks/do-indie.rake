@@ -1,6 +1,6 @@
 task :import_artists => :environment do
   require 'csv'
-  @ko = 0 #value is the column in the .csv
+  @ko = 0 
   @en = 1
   @label = 2
   @contact = 3
@@ -8,14 +8,29 @@ task :import_artists => :environment do
   @facebook = 5
   @twitter = 6
   @site = 7 
-  @avatar = File.new("#{Rails.root}"+"/lib/scrape/"+"#{@ko}", "r")
+ 
 
 
   CSV.foreach("#{Rails.root}"+"/lib/scrape/band-info.csv") do |row|
-      Band.create(name: row[@en], korean_name: row[@ko], 
+
+      a = Band.create(name: row[@en], korean_name: row[@ko], 
         contact: row[@contact], genre: row[@genre], 
         twitter: row[@twitter], facebook: row[@facebook], 
-        site: row[@site], avatar: @avatar, label: row[@label])
+        site: row[@site],
+        label: row[@label])
+
+      a.save
+  end
+end
+
+#first run automator to add .png to end of files! will error if no photo!
+task :import_photos => :environment do
+  @bands = Band.all
+  @bands.each do |band|
+    file = File.open("#{Rails.root}"+"/lib/scrape/#{band.korean_name}.png")
+    band.avatar = file
+    file.close
+    band.save!
   end
 end
 

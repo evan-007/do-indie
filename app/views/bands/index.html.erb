@@ -3,7 +3,7 @@
 	<% @bands.each do |band| %>
 		<div class="col-sm-6 col-md-4">
 			<div class="thumbnail">
-				<%= image_tag band.avatar.url(:thumb) %>
+				<%= image_tag band.avatar.url(:medium) %>
 				
 				<div class="caption">
 					<h3><%= link_to band.name, band_path(band) %></h3>
