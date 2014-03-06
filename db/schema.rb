@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302002249) do
+ActiveRecord::Schema.define(version: 20140306090028) do
 
   create_table "bands", force: true do |t|
     t.string   "name"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20140302002249) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "label"
+    t.string   "genre"
   end
 
   create_table "event_bands", force: true do |t|
