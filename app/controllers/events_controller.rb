@@ -14,6 +14,7 @@ class EventsController < ApplicationController
 	def create
 		@event = Event.create(event_params)
 		if @event.save
+			@event.event_bands.create(event_band_params)
 			flash[:notice] = "Event Created!"
 			redirect_to event_path(@event)
 		else
@@ -31,7 +32,7 @@ class EventsController < ApplicationController
 	  	params.require(:event).permit(:name, :contact, :price, :info, :venue_id)
 	  end
 
-	  def event_venue_params
-	  	params.require(:event_venue).permit(:band_id)
+	  def event_band_params
+	  	params.require(:event_band).permit(:band_id)
 	  end
 end

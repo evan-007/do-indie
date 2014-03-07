@@ -1,13 +1,12 @@
 class Event < ActiveRecord::Base
 	validates :name, presence: true
 	belongs_to :venue
-
-	paginates_per 100 #fix pagination
-
 	has_many :event_bands
 	has_many :bands, through: :event_bands
 	# has_many :event_venues
 	# has_many :venues, through: :event_venues
+	paginates_per 100 #fix pagination
+	accepts_nested_attributes_for :event_bands, :venue
 
 	
 	def self.search_and_order(search, page_number)
