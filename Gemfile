@@ -12,6 +12,7 @@ gem "geocoder"
 gem 'gmaps4rails'
 gem "paperclip", "~> 4.1"
 gem 'route_translator'
+gem 'aws-sdk'
 
 group :doc do
   gem 'sdoc', require: false
