@@ -19,23 +19,7 @@ class Admin::EventsController < Admin::BaseController
   end
   
   def update
-    old_eventname = @event.name
-    new_params = event_params.dup
-    new_params[:name] = new_params[:name].strip
-    new_params[:contact] = new_params[:contact].strip
-    new_params[:info] = new_params[:info].strip
-    new_params[:price] = new_params[:price].strip
-    new_params[:date] = new_params[:date].strip
-    new_params[:time] = new_params[:time].strip
-    new_params[:venue_id] = new_params[:venue_id].strip
-    
-    @event.name = new_params[:name]
-    @event.contact = new_params[:contact]
-    @event.info = new_params[:info]
-    @event.price = new_params[:price]
-    @event.date = new_params[:date]
-    @event.time = new_params[:time]
-    @event.venue_id = new_params[:venue_id]
+    @event.update(event_params)
 
     # if current_event.id != @event.id
     #   @event.admin = new_params[:admin]=="0" ? false : true
@@ -43,7 +27,7 @@ class Admin::EventsController < Admin::BaseController
     # end
     
     if @event.valid?
-      @event.skip_reconfirmation!
+     # @event.skip_reconfirmation! only for users model
       @event.save
       redirect_to admin_events_path, notice: "#{@event.name} updated."
     else
@@ -63,15 +47,7 @@ class Admin::EventsController < Admin::BaseController
   end
   
   def event_params
-    params.require(:event).permit(
-    :name,
-    :contact,
-    :info,
-    :price,
-    :date,
-    :time,
-    :venue_id
-    )
+    params.require(:event).permit(:name, :contact, :info, :price, :date, :time, :venue_id)
   end
   
 end

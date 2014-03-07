@@ -26,6 +26,9 @@ DoIndie::Application.configure do
 
   #paperclip
   Paperclip.options[:command_path] = "/usr/local/bin/"
+
+  #i18n
+  config.i18n.available_locales = [:en, :ko]
   
   # Mailer
   config.action_mailer.raise_delivery_errors = true

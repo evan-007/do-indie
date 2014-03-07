@@ -11,5 +11,7 @@
   <%= f.text_field :twitter, placeholder: "twitter.com/yourband" %><br />
   <%= f.label :site %>
   <%= f.text_field :site, placeholder: "band site or site to buy music" %><br />
+  <%= f.label :photo %>
+  <%= f.file_field :avatar %>
   <%= f.submit %>
 <% end %>

@@ -75,6 +75,9 @@ DoIndie::Application.configure do
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 
+  #i18n
+  config.i18n.available_locales = [:en, :ko]
+
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
   

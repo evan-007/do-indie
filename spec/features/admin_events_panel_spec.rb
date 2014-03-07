@@ -14,7 +14,7 @@ feature "Admin event panel" do
 	end
 
 	scenario "admin users can edit events" do
-		visit admin_events_path
+		visit admin_events_en_path
 		click_link @event.name
 		fill_in "Name", with: "psy psy"
 		fill_in "Contact", with: "123-123-123"
