@@ -27,7 +27,7 @@ end
 task :import_photos => :environment do
   @bands = Band.all
   @bands.each do |band|
-    file = File.open("#{Rails.root}"+"/lib/scrape/#{band.korean_name}.png")
+    file = File.open("#{Rails.root}"+"/public/images/bands/#{band.korean_name}.png")
     band.avatar = file
     file.close
     band.save!
