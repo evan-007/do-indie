@@ -30,7 +30,7 @@ class Admin::BandsController < Admin::BaseController
       @band.save
       redirect_to admin_bands_path, notice: "#{@band.name} updated."
     else
-      flash[:alert] = "#{old_name} couldn't be updated."
+      flash[:alert] = "#{@band.name} couldn't be updated."
       render :edit
     end
   end

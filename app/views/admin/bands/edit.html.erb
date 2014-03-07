@@ -64,9 +64,9 @@
     <div class="form-group">
       <%= f.label :photo %><br>
       <p>Current image:</p>
-      <%= @band.avatar.url(:thumb) %>
+      <%= image_tag @band.avatar.url(:thumb) %>
       <p>Images are automatically resized to 300x300, 600x600 and 900x900.
-        For best results upload a square photo of at least 900x900 pixels.</p>
+        For best results upload a square photo of at least 900x900 pixels (.jpeg, .jpg, .png).</p>
       <div class="row">
         <div class="col-sm-6">
           <%= f.file_field :avatar, class: "form-control" %>

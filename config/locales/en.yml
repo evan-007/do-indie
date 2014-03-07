@@ -34,6 +34,7 @@ en:
   photos: "Photos"
   contact: "Contact"
   #_navigation_links.html.erb
+  account: "Account"
   signin: "Sign in"
   signup: "Sign up"
   username: "Username"
