@@ -66,7 +66,7 @@ task :import_venues => :environment do
 
 	CSV.foreach("#{Rails.root}"+"/lib/wp-venues.csv") do |row|
     @name = row[0].gsub(/[^\p{Hangul}]/, '')
-    @en_name =row[0].gsub(/<!--:ko-->(.*?)<!--:-->|<!--:en-->|<!--:-->/, '')
+    @en_name = row[0].gsub(/<!--:ko-->(.*?)<!--:-->|<!--:en-->|<!--:-->/, '')
     @city_ko = row[1].gsub(/[^\p{Hangul}]/, '')
     @city_en = /\w+/.match(row[1]).to_s.capitalize
 		Venue.create(name: @en_name,
@@ -84,3 +84,12 @@ task :import_venues => :environment do
 	end
 end
 
+task :import_venue_data => :environment do
+  #be sure CSV fields all have data!
+  CSV.foreach("#{Rails.root}"+"/lib/venue-data.csv", headers: true) do |row|
+    @text = row[1].gsub(/<!--:ko-->|<!--:en-->|<!--:-->|[a-zA-Z]|<\/>|<div>|<\/div>|<span>|<\/span>/, '')
+    @name = row[0].gsub(/<!--:ko-->(.*?)<!--:-->|<!--:en-->|<!--:-->/, '')
+    a = Venue.find_by(name: @name)
+    a.update(misc: @text)
+  end
+end
