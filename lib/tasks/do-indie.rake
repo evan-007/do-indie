@@ -14,8 +14,6 @@ task :import_artists => :environment do
   @twitter = 13
   @youtube = 15
  
-
-
   CSV.foreach("#{Rails.root}"+"/lib/bands.csv") do |row|
       @ko = row[0].gsub(/[^\p{Hangul}]/, '')
       # en_desc = row[1].gsub(/<!--:ko-->(.*?)<!--:-->/m, '')  
@@ -46,6 +44,14 @@ task :import_photos => :environment do
     file = File.open("#{Rails.root}"+"/public/images/bands/#{band.name}.png")
     band.avatar = file
     file.close
+    band.save!
+  end
+end
+
+task :heroku_import_photos => :environment do
+  @bands = Band.all
+  @bands.each do |band|
+    band.avatar = "http://do-indie.s3.amazonaws.com/bands/raw/#{band.name}"
     band.save!
   end
 end
