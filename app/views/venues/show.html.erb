@@ -1,7 +1,8 @@
 <%= @venue.name %>
 <%= @venue.misc %>
+<%= image_tag @venue.avatar %>
 <div style='width: 600px;'>
-  <div id="map" style='width: 600px; height: 400px;'></div>
+	<div id="map" style='width: 600px; height: 400px;'></div>
 </div>
 
 <% unless @venue.latitude == nil %>

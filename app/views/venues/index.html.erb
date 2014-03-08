@@ -2,7 +2,7 @@
 	<% @venues.each do |venue| %>
 		<div class="col-sm-6 col-md-4">
 			<div class="thumbnail">
-				<%= image_tag venue.avatar.url(:thumb) %>
+				<%= image_tag venue.avatar.url(:medium) %>
 				
 				<div class="caption">
 					<h3><%= link_to venue.name, venue_path(venue) %></h3>

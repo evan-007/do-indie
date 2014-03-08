@@ -10,12 +10,12 @@
 						<h3><%= link_to band.name, band_path(band) %></h3>
 						<h4><%= link_to band.korean_name, band_path(band) %></h4>
 					    <p>Fans: <%= band.fans %></p>
-					    <p><a href="#" class="btn btn-primary" role="button">Button</a>
+					    <p>
 
 					    	<% if current_user && current_user.user_fans.where(band_id: band.id).count != 0 %>
-								<%= link_to "Unlike", user_fan_path(id: band.id), method: 'delete', class: "btn btn-default" %>
+								<%= link_to "Unlike", user_fan_path(id: band.id), method: 'delete', class: "btn btn-primary" %>
 							<% elsif current_user %>
-								<%= link_to "Like", user_fans_path(band_id: band.id), method: 'post', class: "btn btn-default" %>
+								<%= link_to "Like", user_fans_path(band_id: band.id), method: 'post', class: "btn btn-primary" %>
 							<% else %>
 	              <p><%= t(:signup) %></p> 
 							<% end %>

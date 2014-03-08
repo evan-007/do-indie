@@ -2,6 +2,8 @@ DoIndie::Application.routes.draw do
   # config/routes.rb
 
   root "pages#home"
+
+  
   # get '/:locale' => 'pages#home' #this conflicts with other routes
   
   localized do

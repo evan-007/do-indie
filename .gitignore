@@ -29,4 +29,4 @@ doc/
 /config/application.yml
 .secret
 #ignore uploaded files
-public/images/system/
+/public/images/system/

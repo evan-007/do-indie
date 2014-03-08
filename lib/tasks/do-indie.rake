@@ -93,3 +93,13 @@ task :import_venue_data => :environment do
     a.update(misc: @text)
   end
 end
+
+task :import_venue_photos => :environment do
+  @venues = Venue.all
+  @venues.each do |venue|
+    file = File.open("#{Rails.root}"+"/public/images/venues/#{venue.name}.png")
+    venue.avatar = file
+    file.close
+    venue.save!
+  end
+end
