@@ -3,20 +3,20 @@ task :import_artists => :environment do
   @ko = 0 
   @genre = 2 
   @myspace = 4
-  @en = 6
-  @bandcamp = 7
-  @contact = 8
-  @cafe = 9
-  @facebook = 10
-  @itunes = 11 
-  @label = 12
-  @soundcloud = 13
-  @twitter = 14
+  @en = 5
+  @bandcamp = 6
+  @contact = 7
+  @cafe = 8
+  @facebook = 9
+  @itunes = 10
+  @label = 11
+  @soundcloud = 12
+  @twitter = 13
   @youtube = 15
  
 
 
-  CSV.foreach("#{Rails.root}"+"/lib/scrape/bands-no-header.csv") do |row|
+  CSV.foreach("#{Rails.root}"+"/lib/bands.csv") do |row|
       @ko = row[0].gsub(/[^\p{Hangul}]/, '')
       a = Band.create(korean_name: @ko, 
         genre: row[@genre],
@@ -31,7 +31,7 @@ task :import_artists => :environment do
         soundcloud: row[@soundcloud],
         twitter: row[@twitter], 
         youtube: row[@youtube], 
-        site: row[@site],
+        
         )
 
       a.save
