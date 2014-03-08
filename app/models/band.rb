@@ -7,7 +7,7 @@ class Band < ActiveRecord::Base
 
 	paginates_per 50 #fix pagination
 
-	has_attached_file :avatar, :styles => { :large => "900x900>", :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+	has_attached_file :avatar, :styles => { :large => "900x900>", :medium => "300x300#", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
 	def fans
