@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308024709) do
+ActiveRecord::Schema.define(version: 20140308092828) do
 
   create_table "bands", force: true do |t|
     t.string   "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140308024709) do
     t.string   "itunes"
     t.string   "soundcloud"
     t.string   "youtube"
+    t.text     "eng_desc"
   end
 
   create_table "event_bands", force: true do |t|
@@ -139,6 +140,11 @@ ActiveRecord::Schema.define(version: 20140308024709) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "korean_name"
+    t.string   "city_en"
+    t.string   "city_ko"
+    t.string   "email"
+    t.string   "twitter"
   end
 
 end

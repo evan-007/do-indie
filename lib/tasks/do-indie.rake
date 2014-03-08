@@ -52,11 +52,35 @@ end
 
 task :import_venues => :environment do
 	require 'csv'
-	@name = 0
-	@address = 1
-	@area = 2
-	CSV.foreach("#{Rails.root}"+"/lib/street-venues.csv") do |row|
-		Venue.create(name: row[@name], address: row[@address], area: row[@area])
+  @cafe = 2
+  @email = 3
+  @facebook = 4
+  @phone = 5
+  @twitter = 6
+  @website = 7
+	@address = 8
+	
+  
+  
+
+
+	CSV.foreach("#{Rails.root}"+"/lib/wp-venues.csv") do |row|
+    @name = row[0].gsub(/[^\p{Hangul}]/, '')
+    @en_name =row[0].gsub(/<!--:ko-->(.*?)<!--:-->|<!--:en-->|<!--:-->/, '')
+    @city_ko = row[1].gsub(/[^\p{Hangul}]/, '')
+    @city_en = /\w+/.match(row[1]).to_s.capitalize
+		Venue.create(name: @en_name,
+      korean_name: @name,
+      city_en: @city_en,
+      city_ko: @city_ko,
+      cafe: row[@cafe],
+      email: row[@email],
+      facebook: row[@facebook],
+      phone: row[@phone],
+      twitter: row[@twitter],
+      website: row[@website],
+      address: row[@address]
+      )
 	end
 end
 
