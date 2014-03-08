@@ -18,6 +18,7 @@ task :import_artists => :environment do
 
   CSV.foreach("#{Rails.root}"+"/lib/bands.csv") do |row|
       @ko = row[0].gsub(/[^\p{Hangul}]/, '')
+      # en_desc = row[1].gsub(/<!--:ko-->(.*?)<!--:-->/m, '')  
       a = Band.create(korean_name: @ko, 
         genre: row[@genre],
         myspace: row[@myspace],
@@ -42,7 +43,7 @@ end
 task :import_photos => :environment do
   @bands = Band.all
   @bands.each do |band|
-    file = File.open("#{Rails.root}"+"/public/images/bands/#{band.korean_name}.png")
+    file = File.open("#{Rails.root}"+"/public/images/bands/#{band.name}.png")
     band.avatar = file
     file.close
     band.save!
