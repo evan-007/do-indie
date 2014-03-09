@@ -10,10 +10,10 @@ feature "Creating events" do
 
 	scenario "Users can create events" do
 		visit new_event_path
-		fill_in "Name", with: "Best party ever"
-		fill_in "Contact", with: "010 -1234-1234"
-		fill_in "Price", with: "1million wons"
-		fill_in "Info", with: "Dress to impress, doors open at 9. Gangnam exit 4"
+		fill_in "event[name]", with: "Best party ever"
+		fill_in "event[contact]", with: "010 -1234-1234"
+		fill_in "event[price]", with: "1million wons"
+		fill_in "event[info]", with: "Dress to impress, doors open at 9. Gangnam exit 4"
 		select @venue.name, from: "event[venue_id]"
 		click_button "Create Event"
 		expect(page).to have_content("Event Created!")

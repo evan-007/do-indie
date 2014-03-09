@@ -29,7 +29,20 @@ class EventsController < ApplicationController
 	  end
 
 	  def event_params
-	  	params.require(:event).permit(:name, :contact, :price, :info, :venue_id, :date)
+	  	params.require(:event).permit(:name,
+		  	:ko_name,
+		  	:avatar,
+		  	:time,
+		  	:facebook,
+		  	:ticket,
+		  	:door_price,
+		  	:ticket_url,
+		  	:info_kr, 
+	  		:contact, 
+	  		:price,
+	  		:info, 
+	  		:venue_id, 
+	  		:date)
 	  end
 
 	  def event_band_params
