@@ -2,6 +2,7 @@ task :import_artists => :environment do
   require 'csv'
   @ko = 0 
   @genre = 2 
+  @photo_url = 3
   @myspace = 4
   @en = 5
   @bandcamp = 6
@@ -30,7 +31,7 @@ task :import_artists => :environment do
         soundcloud: row[@soundcloud],
         twitter: row[@twitter], 
         youtube: row[@youtube], 
-        
+        photo_url: row[@photo_url]
         )
 
       a.save
@@ -112,5 +113,26 @@ task :import_venue_photos => :environment do
     venue.avatar = file
     file.close
     venue.save!
+  end
+end
+
+task :photo_dump => :environment do
+  require 'open-uri'
+  require 'net/https'
+  require 'uri'
+  @bands = Band.all
+  @bands.each do |band|
+    raw_url = "http://doindie.staging.wpengine.com/wp-content/uploads/#{band.photo_url}"
+    escape_url = URI.escape raw_url #deals with korean characters breaking everything
+    url = URI.parse(escape_url)
+    Net::HTTP.start(url.host, url.port) do |http|
+      @id = band.id
+      req = Net::HTTP.new(url.host, url.port)
+      res = req.request_head(url.path)
+      resd = http.get(url.request_uri)
+      open("#{@id}.png", "wb") do |f|
+        f.write(resd.body)
+      end
+    end
   end
 end

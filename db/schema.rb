@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140309001627) do
+ActiveRecord::Schema.define(version: 20140309021345) do
 
   create_table "bands", force: true do |t|
     t.string   "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140309001627) do
     t.string   "itunes"
     t.string   "soundcloud"
     t.string   "youtube"
+    t.string   "photo_url"
   end
 
   create_table "event_bands", force: true do |t|
