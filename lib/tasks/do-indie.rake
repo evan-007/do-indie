@@ -107,9 +107,13 @@ task :import_venue_data => :environment do
 end
 
 task :import_venue_photos => :environment do
+  require 'uri'
+  require 'net/https'
   @venues = Venue.all
   @venues.each do |venue|
-    file = File.open("http://do-indie.s3.amazonaws.com/venues/raw/#{venue.name}.png")
+    raw_url = "http://do-indie.s3.amazonaws.com/venues/raw/#{venue.name}.png"
+    escape_url = URI.escape raw_url
+    file = File.open(escape_url)
     venue.avatar = file
     file.close
     venue.save!
