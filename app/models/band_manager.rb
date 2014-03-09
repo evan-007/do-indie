@@ -1,6 +1,7 @@
 class BandManager < ActiveRecord::Base
   belongs_to :user
   belongs_to :band
+  scope :approved, -> { where(approved: true) }
 
   def self.search_and_order(search, page_number)
     if search
