@@ -14,4 +14,9 @@ feature "Admin band managers" do
 		click_link ("Band Managers")
 		expect(page).to have_content(@user.username.capitalize)
 	end
+
+	scenario "admins can approve users" do
+	end
+
+	scenario "User gets email when approved?"
 end

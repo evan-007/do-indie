@@ -25,4 +25,11 @@ feature "Band Manager" do
 		visit band_en_path(@band)
 		expect(page).to_not have_content("Edit this band")
 	end
+
+	scenario "Managers can view managed bands on their homepage" do
+		@manager = create(:band_manager, user_id: @user.id, band_id: @band.id)
+		@manager.update(approved: true)
+		visit inside_en_path
+		expect(page).to have_content(@band.name)
+	end
 end

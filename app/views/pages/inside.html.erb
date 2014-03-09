@@ -1,4 +1,14 @@
 <h2><%= current_user.username %>'s page</h2>
+
 <% @likes.each do |fan| %>
-<%= link_to fan.band.name, band_path(fan.band) %>
+	<%= link_to fan.band.name, band_path(fan.band) %>
+<% end %>
+
+<% if @managed_bands != nil %>
+	<p>You're the manager of these bands:</p>
+	<ul>
+	<% @managed_bands.each do |band| %>
+		<li><%= link_to band.band.name, band_path(band.band.id) %></li>
+	<% end %>
+	</ul>
 <% end %>

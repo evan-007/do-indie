@@ -10,6 +10,7 @@ class PagesController < ApplicationController
   
   def inside
   	@likes = current_user.user_fans
+  	@managed_bands = current_user.band_managers
   end 
     
 end
