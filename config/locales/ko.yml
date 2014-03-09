@@ -12,6 +12,7 @@ ko:
   photos: "사진"
   contact: "연락처"
   account: "회원가입"
+  band_manager: "missing"
   #_navigation_links.html.erb
   signup: "가입"
   signin: "로그인"

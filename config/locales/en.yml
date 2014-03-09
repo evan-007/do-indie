@@ -33,6 +33,7 @@ en:
   blog: "Blog"
   photos: "Photos"
   contact: "Contact"
+  band_manager: "Band Managers"
   #_navigation_links.html.erb
   account: "Account"
   signin: "Sign in"

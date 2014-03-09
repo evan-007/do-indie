@@ -10,6 +10,8 @@ FactoryGirl.define do
 
     factory :admin_user do
       admin true
+      username "something"
+      email "alt@alt.com"
     end
   end
 end

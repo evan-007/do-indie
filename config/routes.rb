@@ -21,7 +21,7 @@ DoIndie::Application.routes.draw do
 
     namespace :admin do
       root "base#index"
-      resources :users, :bands, :venues, :events  
+      resources :users, :bands, :venues, :events, :band_managers 
     end  
   end
 end
