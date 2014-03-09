@@ -19,6 +19,9 @@ ko:
   password: "암호"
   email: "이메일"
   remember: "기억하기"
+  band_request: "missing"
+  login_request: "missing"
+  manager_request: "missing"
 
   #i18n translations
   date:

@@ -41,3 +41,6 @@ en:
   password: "Password"
   email: "Email"
   remember: "Remember me"
+  band_request: "Related to this band?"
+  login_request: "Login to request edit privileges."
+  manager_request: "Request manager status"

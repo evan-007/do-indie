@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140309021345) do
+ActiveRecord::Schema.define(version: 20140309093021) do
+
+  create_table "band_managers", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "band_id"
+    t.boolean  "approved"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "band_managers", ["band_id"], name: "index_band_managers_on_band_id"
+  add_index "band_managers", ["user_id"], name: "index_band_managers_on_user_id"
 
   create_table "bands", force: true do |t|
     t.string   "name"
