@@ -109,7 +109,7 @@ end
 task :import_venue_photos => :environment do
   @venues = Venue.all
   @venues.each do |venue|
-    file = File.open("http://do-indie.s3.amazonaws.com/bands/raw/#{venue.name}.png")
+    file = File.open("http://do-indie.s3.amazonaws.com/venues/raw/#{venue.name}.png")
     venue.avatar = file
     file.close
     venue.save!
