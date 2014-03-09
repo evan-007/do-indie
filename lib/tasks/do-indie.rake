@@ -49,6 +49,11 @@ task :import_photos => :environment do
 end
 
 task :heroku_import_photos => :environment do
+  #URI errors: assassination squad, eunsu lee, Say Sue Me.png, Kuang Program, Dead Buttons, Angry Bear
+  # So Long, Buffalo | Jake & the Slut | PLASTIC HEART | Morrison Hotel | Yamagata Tweakster
+  #fix by editing band name to match filename via copy paste, wtf?
+  #seems related to either caps or spaces in file names
+  #use IDS instead of names?
   @bands = Band.all
   @bands.each do |band|
     band.avatar = "http://do-indie.s3.amazonaws.com/bands/raw/#{band.name}.png"

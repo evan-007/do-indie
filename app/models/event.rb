@@ -7,6 +7,8 @@ class Event < ActiveRecord::Base
 	# has_many :venues, through: :event_venues
 	paginates_per 100 #fix pagination
 	accepts_nested_attributes_for :event_bands, :venue
+	has_attached_file :avatar, :styles => { :large => "900x900>", :medium => "300x300#", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
 	
 	def self.search_and_order(search, page_number)

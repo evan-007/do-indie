@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308092828) do
+ActiveRecord::Schema.define(version: 20140309001627) do
 
   create_table "bands", force: true do |t|
     t.string   "name"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20140308092828) do
     t.string   "itunes"
     t.string   "soundcloud"
     t.string   "youtube"
-    t.text     "eng_desc"
   end
 
   create_table "event_bands", force: true do |t|
@@ -67,6 +66,17 @@ ActiveRecord::Schema.define(version: 20140308092828) do
     t.date     "date"
     t.string   "time"
     t.integer  "venue_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "ko_name"
+    t.string   "facebook"
+    t.boolean  "ticket"
+    t.string   "ticket_price"
+    t.string   "door_price"
+    t.string   "ticket_url"
+    t.text     "info_ko"
   end
 
   add_index "events", ["venue_id"], name: "index_events_on_venue_id"
