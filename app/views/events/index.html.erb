@@ -2,13 +2,26 @@
 	<% @events.each do |event| %>
 		<div class="col-sm-6 col-md-4">
 			<div class="thumbnail">
-				< % = image_tag event.avatar.url(:thumb) fix later % >
+				<%= image_tag event.avatar.url(:medium) %>
 				
 				<div class="caption">
 					<h3><%= link_to event.name, event_path(event) %></h3>
-					<h4>date goes here</h4>
-					<h4>venue goes here</h4>
-				    <p>Bands: not finished yet!</p>
+					<h4><%= event.date %></h4>
+					<% unless event.venue == nil %>
+						<h4><%= event.venue.name %></h4>
+					<% else %>
+						<h4>No venue yet</h4>
+					<% end %>
+			    	<% if event.event_bands.count != 0 %>
+						<p>These bands are playing:
+							<% event.event_bands.each do |eventband| %>
+								<%= link_to eventband.band.name, band_path(eventband.band) %>, 
+						<% end %>
+						</p>
+					<% else %>
+						<p>No bands yet!</p>
+					<% end %>
+				   
 				    <p><a href="#" class="btn btn-primary" role="button">Button</a>
 				    </p>
 				</div>
