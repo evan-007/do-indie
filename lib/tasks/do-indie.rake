@@ -112,8 +112,8 @@ task :import_venue_photos => :environment do
   @venues = Venue.all
   @venues.each do |venue|
     raw_url = "http://do-indie.s3.amazonaws.com/venues/raw/#{venue.name}.png"
-    escape_url = URI.escape raw_url
-    venue.avatar = escape_url
+    # escape_url = URI.escape raw_url
+    venue.avatar = raw_url
     venue.save!
   end
 end
