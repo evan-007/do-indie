@@ -17,7 +17,7 @@
 							<% elsif current_user %>
 								<%= link_to "Like", user_fans_path(band_id: band.id), method: 'post', class: "btn btn-primary" %>
 							<% else %>
-	              <p><%= t(:signup) %></p> 
+	              <p><%= link_to t(:signup), new_user_registration_path %></p> 
 							<% end %>
 					</div>
 				</div>
