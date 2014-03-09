@@ -57,7 +57,7 @@ task :heroku_import_photos => :environment do
   #use IDS instead of names?
   @bands = Band.all
   @bands.each do |band|
-    band.avatar = "http://do-indie.s3.amazonaws.com/bands/raw/#{band.name}.png"
+    band.avatar = "http://do-indie.s3.amazonaws.com/bands/raw/#{band.id}.png"
     band.save!
   end
 end
