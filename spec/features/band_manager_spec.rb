@@ -20,5 +20,9 @@ feature "Band Manager" do
 		expect(page).to have_content("You're a manager")
 	end
 
-	scenario "Unapproved users cannot edit"
+	scenario "Unapproved users cannot edit" do
+		@manager = create(:band_manager, user_id: @user.id, band_id: @band.id)
+		visit band_en_path(@band)
+		expect(page).to_not have_content("Edit this band")
+	end
 end
