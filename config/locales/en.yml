@@ -44,3 +44,4 @@ en:
   band_request: "Related to this band?"
   login_request: "Login to request edit privileges."
   manager_request: "Request manager status"
+  pending_approval: "Your request for manager status is pending approval."

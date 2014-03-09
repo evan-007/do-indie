@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   # Use friendly_id on Users
   extend FriendlyId
   friendly_id :friendify, use: :slugged
+
+  def approved_manager?(band_id)
+    self.band_managers.where(band_id: band_id).first.approved
+  end
   
   # necessary to override friendly_id reserved words
   def friendify

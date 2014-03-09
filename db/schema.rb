@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140309093021) do
   create_table "band_managers", force: true do |t|
     t.integer  "user_id"
     t.integer  "band_id"
-    t.boolean  "approved"
+    t.boolean  "approved",   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

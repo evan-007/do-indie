@@ -13,7 +13,12 @@ feature "Band Manager" do
 		expect(page).to have_content("Thanks, admin will check and approve your request shortly.")
 	end
 
-	scenario "Approved users can edit the band"
+	scenario "Approved users can edit the band" do 
+		@manager = create(:band_manager, user_id: @user.id, band_id: @band.id)
+		@manager.update(approved: true)
+		visit band_en_path(@band)
+		expect(page).to have_content("You're a manager")
+	end
 
 	scenario "Unapproved users cannot edit"
 end
