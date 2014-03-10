@@ -16,6 +16,12 @@ feature "Admin band managers" do
 	end
 
 	scenario "admins can approve users" do
+		visit admin_root_en_path
+		click_link("Band Managers")
+		click_link(@user.username.capitalize)
+		select ("yes"), from: "band_manager[approved]"
+		click_button ("Update manager")
+		expect(page).to have_content("Updated permissions")
 	end
 
 	scenario "User gets email when approved?"

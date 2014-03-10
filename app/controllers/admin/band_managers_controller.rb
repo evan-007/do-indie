@@ -12,26 +12,26 @@ class Admin::BandManagersController < Admin::BaseController
   end
   
   def show
-    redirect_to edit_admin_event_path(params[:id])
+    redirect_to edit_admin_band_manager_path(params[:id])
   end
   
   def edit
   end
   
   def update
-    @event.update(event_params)
+    @manager.update(event_params)
 
     # if current_event.id != @event.id
     #   @event.admin = new_params[:admin]=="0" ? false : true
     #   @event.locked = new_params[:locked]=="0" ? false : true
     # end
     
-    if @event.valid?
+    if @manager.valid?
      # @event.skip_reconfirmation! only for users model
-      @event.save
-      redirect_to admin_events_path, notice: "#{@event.name} updated."
+      @manager.save
+      redirect_to admin_band_managers_en_path, notice: "Updated permissions for #{@manager.user.username}."
     else
-      flash[:alert] = "#{old_name} couldn't be updated."
+      flash[:alert] = "#{@manager.user.username} couldn't be updated."
       render :edit
     end
   end
@@ -39,15 +39,15 @@ class Admin::BandManagersController < Admin::BaseController
   
   private 
   
-  def set_event
-    @event = Event.find(params[:id])
+  def set_manager
+    @manager = BandManager.find(params[:id])
   rescue
-    flash[:alert] = "The event with an id of #{params[:id]} doesn't exist."
-    redirect_to admin_events_path
+    flash[:alert] = "The manager with an id of #{params[:id]} doesn't exist."
+    redirect_to admin_band_managers_en
   end
   
   def event_params
-    params.require(:event).permit(:name, :contact, :info, :price, :date, :time, :venue_id)
+    params.require(:band_manager).permit(:approved)
   end
   
 end

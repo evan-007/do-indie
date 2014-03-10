@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-sm-6">
+    <h1>
+      Edit manager <small><%= "#{@manager.user.username.capitalize} - band: #{@manager.band.name}" %></small>
+    </h1>
+    <p><%= link_to "Back to managers", admin_band_managers_path %></p>
+
+    <%= form_for [:admin, @manager], :html => { :role => "form" } do |f| %>
+    
+    <div class="form-group">
+      <%= f.label :approved %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.select(:approved, options_for_select([["no", false], ["yes", true]] ), class: "form-control") %>  
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.submit "Update manager", class: "btn btn-danger" %>
+      </div>
+    </div>    
+    
+    <% end %>
+
+  </div>
+</div>
