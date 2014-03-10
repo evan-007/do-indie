@@ -9,7 +9,7 @@ class BandManager < ActiveRecord::Base
       admin: :desc, username: :asc
       ).page page_number
     else
-      order(approved: :desc, user_id: :asc).page page_number
+      order(approved: :asc, user_id: :asc).page page_number
     end
   end
 end
