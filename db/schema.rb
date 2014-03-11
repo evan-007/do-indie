@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140309093021) do
+ActiveRecord::Schema.define(version: 20140311060734) do
 
   create_table "band_managers", force: true do |t|
     t.integer  "user_id"
@@ -144,6 +144,17 @@ ActiveRecord::Schema.define(version: 20140309093021) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true
   add_index "users", ["username"], name: "index_users_on_username", unique: true
+
+  create_table "venue_managers", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "venue_id"
+    t.boolean  "approved",   default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "venue_managers", ["user_id"], name: "index_venue_managers_on_user_id"
+  add_index "venue_managers", ["venue_id"], name: "index_venue_managers_on_venue_id"
 
   create_table "venues", force: true do |t|
     t.string   "name"
