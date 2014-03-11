@@ -12,3 +12,12 @@
 	<% end %>
 	</ul>
 <% end %>
+
+<% if @managed_venues != nil %>
+	<p>You're the manager of these venues:</p>
+	<ul>
+	<% @managed_venues.each do |venue| %>
+		<li><%= link_to venue.venue.name, venue_path(venue.venue.id) %></li>
+	<% end %>
+	</ul>
+<% end %>

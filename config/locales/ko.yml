@@ -24,6 +24,7 @@ ko:
   login_request: "missing"
   manager_request: "missing"
   pending_approval: "missing"
+  venue_request: "missing"
 
   #i18n translations
   date:

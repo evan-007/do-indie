@@ -2,6 +2,8 @@ class Venue < ActiveRecord::Base
 	validates :name, presence: true, uniqueness: true
 	has_many :event_venues
 	has_many :events, through: :event_venues
+  has_many :venue_managers
+  has_many :users, through: :venue_managers
 
 	paginates_per 100 #fix pagination
 
