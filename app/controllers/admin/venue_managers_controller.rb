@@ -1,4 +1,4 @@
-class Admin::BandManagersController < Admin::BaseController
+class Admin::VenueManagersController < Admin::BaseController
   before_action :set_manager, only: [
     :show,
     :edit,
@@ -8,11 +8,11 @@ class Admin::BandManagersController < Admin::BaseController
   
 
   def index
-    @managers = BandManager.search_and_order(params[:search], params[:page])
+    @managers = VenueManager.search_and_order(params[:search], params[:page])
   end
   
   def show
-    redirect_to edit_admin_band_manager_path(params[:id])
+    redirect_to edit_admin_venue_manager_path(params[:id])
   end
   
   def edit
@@ -29,7 +29,7 @@ class Admin::BandManagersController < Admin::BaseController
     if @manager.valid?
      # @event.skip_reconfirmation! only for users model
       @manager.save
-      redirect_to admin_band_managers_en_path, notice: "Updated permissions for #{@manager.user.username}."
+      redirect_to admin_venue_managers_en_path, notice: "Updated permissions for #{@manager.user.username}."
     else
       flash[:alert] = "#{@manager.user.username} couldn't be updated."
       render :edit
@@ -40,14 +40,14 @@ class Admin::BandManagersController < Admin::BaseController
   private 
   
   def set_manager
-    @manager = BandManager.find(params[:id])
+    @manager = VenueManager.find(params[:id])
   rescue
     flash[:alert] = "The manager with an id of #{params[:id]} doesn't exist."
-    redirect_to admin_band_managers_en
+    redirect_to admin_venue_managers_en
   end
   
   def manager_params
-    params.require(:band_manager).permit(:approved)
+    params.require(:venue_manager).permit(:approved)
   end
   
 end
