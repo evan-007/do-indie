@@ -10,6 +10,7 @@ class Admin::BaseController < ApplicationController
     @events = Event.count
     @managers = BandManager.where(approved: false).count
     @venue_managers = VenueManager.where(approved: false).count
+    @event_managers = EventManager.where(approved: false).count
 
   end
 end

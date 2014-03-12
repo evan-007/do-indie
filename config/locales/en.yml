@@ -35,6 +35,7 @@ en:
   contact: "Contact"
   band_manager: "Band Managers"
   venue_manager: "Venue Managers"
+  event_manager: "Event Managers"
   #_navigation_links.html.erb
   account: "Account"
   signin: "Sign in"
