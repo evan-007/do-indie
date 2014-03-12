@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :managed_bands, :as => :bands, through: :band_managers
   has_many :venue_managers
   has_many :managed_venues, :as => :venues, through: :venue_managers 
+  has_many :event_managers
+  has_many :managed_events, :as => :events, through: :event_managers
   # Use friendly_id on Users
   extend FriendlyId
   friendly_id :friendify, use: :slugged
@@ -15,6 +17,10 @@ class User < ActiveRecord::Base
   
   def venue_manager?(venue_id)
     self.venue_managers.where(venue_id: venue_id).first.approved
+  end
+  
+  def event_manager?(event_id)
+    self.event_managers.where(event_id: event_id).first.approved
   end
   
   # necessary to override friendly_id reserved words

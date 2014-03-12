@@ -3,6 +3,8 @@ class Event < ActiveRecord::Base
 	belongs_to :venue
 	has_many :event_bands
 	has_many :bands, through: :event_bands
+  has_many :event_managers
+  has_many :users, through: :event_managers
 	# has_many :event_venues
 	# has_many :venues, through: :event_venues
 	paginates_per 100 #fix pagination

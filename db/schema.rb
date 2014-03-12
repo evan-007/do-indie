@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311060734) do
+ActiveRecord::Schema.define(version: 20140312051124) do
 
   create_table "band_managers", force: true do |t|
     t.integer  "user_id"
@@ -57,6 +57,17 @@ ActiveRecord::Schema.define(version: 20140311060734) do
 
   add_index "event_bands", ["band_id"], name: "index_event_bands_on_band_id"
   add_index "event_bands", ["event_id"], name: "index_event_bands_on_event_id"
+
+  create_table "event_managers", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.boolean  "approved",   default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_managers", ["event_id"], name: "index_event_managers_on_event_id"
+  add_index "event_managers", ["user_id"], name: "index_event_managers_on_user_id"
 
   create_table "event_venues", force: true do |t|
     t.integer  "venue_id"

@@ -38,6 +38,17 @@
 	<% end %>
   </div>
 </div><!--row-->
+
+<% if current_user && current_user.event_managers.where(event_id: @event.id).count == 0 %>
+	<p><%= t(:event_request) %> <%= link_to t(:manager_request), event_managers_path(event_id: @event.id), method: 'post' %>.</p>
+<% elsif current_user && current_user.event_managers.where(event_id: @event.id).count != 0 && current_user.event_manager?(@event.id) == true %>
+    <p>You're a manager! <%= link_to "Edit this event", edit_event_path(@event) %></p>
+<% elsif current_user && current_user.event_managers.where(event_id: @event.id).count != 0 %>
+    <p><%= t(:pending_approval) %></p>
+<% else %>
+	<p><%= t(:event_request) %> <%= t(:login_request) %><p>
+<% end %>
+
 <% if current_user && current_user.admin == true %>
 	    <p>Hi, <%= current_user.username %>! Only you can see this part. Do you need to add bands?</p>
 	    <%= form_tag(event_bands_path, method: 'post') do %>

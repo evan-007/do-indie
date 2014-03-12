@@ -21,3 +21,12 @@
 	<% end %>
 	</ul>
 <% end %>
+
+<% if @managed_events != nil %>
+	<p>You're the manager of these events:</p>
+	<ul>
+	<% @managed_events.each do |event| %>
+		<li><%= link_to event.event.name, event_path(event.event.id) %></li>
+	<% end %>
+	</ul>
+<% end %>

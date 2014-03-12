@@ -23,6 +23,7 @@ ko:
   band_request: "missing"
   login_request: "missing"
   manager_request: "missing"
+  event_request: "missing"
   pending_approval: "missing"
   venue_request: "missing"
 
