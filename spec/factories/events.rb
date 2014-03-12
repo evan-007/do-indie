@@ -6,5 +6,6 @@ FactoryGirl.define do
     contact "010 -2345 - 2345"
     price "$1000"
     info "it's a massive party"
+    date Date.tomorrow
   end
 end

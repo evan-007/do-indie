@@ -1,3 +1,6 @@
+<p>Here are the upcoming events:</p>
+<p><%= link_to "Click here", nil %> for past events.</p>
+
 <div class="row">
 	<% @events.each do |event| %>
 		<div class="col-sm-6 col-md-4">
@@ -30,7 +33,3 @@
 	<% end %>
 </div>
 
-<div class="text-center">
-  <p><%= page_entries_info @events %></p>
-  <%= paginate @events %>
-</div>
