@@ -53,6 +53,10 @@
     </div>    
     <% end %>
 
+    <div class="checkbox">
+      <%= f.check_box :blogger %> <%= f.label :blogger, "Is Blogger?" %>
+    </div>  
+
     <div class="row">
       <div class="col-sm-6">
         <%= f.submit "Update User", class: "btn btn-danger" %>
