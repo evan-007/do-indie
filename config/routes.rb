@@ -1,4 +1,5 @@
 DoIndie::Application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   # config/routes.rb
 
   root "pages#home"
@@ -9,8 +10,9 @@ DoIndie::Application.routes.draw do
   localized do
   
     get "inside", to: "pages#inside", as: "inside"
+    get "/blog", to: "posts#index", as: "blog"
   
-    resources :bands, :venues, :events
+    resources :bands, :venues, :events, :posts
     resources :user_fans, only: [:create, :destroy]
     resources :event_bands, only: [:create, :destroy]
     resources :event_venues, only: [:create, :destroy]

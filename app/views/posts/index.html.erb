@@ -1,0 +1,10 @@
+Here are the blog posts:
+<% @posts.each do |post| %>
+
+  <%= link_to post.title, post_path(post) %>
+
+<% end %>
+
+<% if current_user && current_user.blogger == true %>
+  <%= link_to "New Post", new_post_path %>
+<% end %>

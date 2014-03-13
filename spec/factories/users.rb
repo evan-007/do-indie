@@ -13,5 +13,11 @@ FactoryGirl.define do
       username "something"
       email "alt@alt.com"
     end
+    
+    factory :blogger do
+      blogger true
+      username "asdfasdf"
+      email "not@thesame.com"
+    end
   end
 end

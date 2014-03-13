@@ -1,0 +1,13 @@
+<%= form_for @post do |f| %>
+<%= f.label :title %>
+<%= f.text_field :title %><br />
+<%= f.label :en_body %>
+<%= f.cktext_area :en_body %><br />
+<%= f.label :ko_body %>
+<%= f.cktext_area :ko_body %><br />
+<%= f.label "URL" %>
+<%= f.text_field :short_title, placeholder: "something-like-this" %><br />
+<%= f.label :published %>
+<%= f.select(:published, options_for_select([['no', false],['yes', true]])) %><br />
+<%= f.submit %>
+<% end %>

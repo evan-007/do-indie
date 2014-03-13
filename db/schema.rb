@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140312051124) do
+ActiveRecord::Schema.define(version: 20140313055953) do
 
   create_table "band_managers", force: true do |t|
     t.integer  "user_id"
@@ -47,6 +47,22 @@ ActiveRecord::Schema.define(version: 20140312051124) do
     t.string   "youtube"
     t.string   "photo_url"
   end
+
+  create_table "ckeditor_assets", force: true do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
 
   create_table "event_bands", force: true do |t|
     t.integer  "band_id"
@@ -117,6 +133,16 @@ ActiveRecord::Schema.define(version: 20140312051124) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
+  create_table "posts", force: true do |t|
+    t.text     "title"
+    t.text     "en_body"
+    t.text     "ko_body"
+    t.string   "short_title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "published"
+  end
+
   create_table "user_fans", force: true do |t|
     t.integer  "band_id"
     t.integer  "user_id"
@@ -148,6 +174,7 @@ ActiveRecord::Schema.define(version: 20140312051124) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "blogger",                default: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

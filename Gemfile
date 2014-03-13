@@ -13,6 +13,7 @@ gem 'gmaps4rails'
 gem "paperclip", "~> 4.1"
 gem 'route_translator'
 gem 'aws-sdk'
+gem 'ckeditor'
 
 group :doc do
   gem 'sdoc', require: false
