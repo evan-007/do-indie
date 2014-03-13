@@ -24,7 +24,7 @@ class PostsController < ApplicationController
   
   private
     def get_post
-      @post = Post.find(:id) #this needs to change when routing is changed
+      @post = Post.find(params[:id]) #this needs to change when routing is changed
     end
     
     def post_params
