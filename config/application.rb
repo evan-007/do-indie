@@ -23,6 +23,7 @@ module DoIndie
     #for Ckeditor/paperclip
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
     config.assets.precompile += Ckeditor.assets
+    config.assets.precompile += %w(ckeditor/*)
 
     
     # turn off warnings triggered by friendly_id
