@@ -10,6 +10,8 @@ class CreateVenues < ActiveRecord::Migration
       t.string :cafe
       t.string :website
       t.string :small_map
+      t.text :en_directions
+      t.text :ko_directions
 
       t.timestamps
     end

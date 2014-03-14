@@ -64,23 +64,26 @@ end
 
 task :import_venues => :environment do
 	require 'csv'
-  @cafe = 2
-  @email = 3
-  @facebook = 4
-  @phone = 5
-  @twitter = 6
-  @website = 7
-	@address = 8
+  @cafe = 7
+  @email = 9
+  @facebook = 10
+  @phone = 11
+  @twitter = 12
+  @website = 13
+	@address = 14
+  @lat = 16
+  @long = 17
 	
   
   
 
-
-	CSV.foreach("#{Rails.root}"+"/lib/wp-venues.csv") do |row|
+	CSV.foreach("#{Rails.root}"+"/lib/venue-data.csv", headers: true) do |row|
     @name = row[0].gsub(/[^\p{Hangul}]/, '')
     @en_name = row[0].gsub(/<!--:ko-->(.*?)<!--:-->|<!--:en-->|<!--:-->/, '')
-    @city_ko = row[1].gsub(/[^\p{Hangul}]/, '')
-    @city_en = /\w+/.match(row[1]).to_s.capitalize
+    unless row[4] == nil
+      @city_ko = row[4].gsub(/[^\p{Hangul}]/, '')
+      @city_en = /\w+/.match(row[4]).to_s.capitalize    
+    end
 		Venue.create(name: @en_name,
       korean_name: @name,
       city_en: @city_en,
@@ -91,8 +94,9 @@ task :import_venues => :environment do
       phone: row[@phone],
       twitter: row[@twitter],
       website: row[@website],
-      address: row[@address]
+      address: row[@address],
       )
+    Venue.last.update(latitude: row[@lat], longitude: row[@long])
 	end
 end
 
@@ -102,9 +106,15 @@ task :import_venue_data => :environment do
     @ko_text = row[1].gsub(/<!--:ko-->|<!--:en-->|<!--:-->|[a-zA-Z]|<\/>|<div>|<\/div>|<span>|<\/span>/, '')
     @name = row[0].gsub(/<!--:ko-->(.*?)<!--:-->|<!--:en-->|<!--:-->/, '')
     @en_text = row[1].gsub(/<!--:ko-->|<!--:en-->|<!--:-->|[\p{Hangul}]|<\/>|<div>|<\/div>|<span>|<\/span>/, '')
+    if row[8] != nil
+      @en_directions = row[8].gsub(/<!--:ko-->|<!--:en-->|<!--:-->|[\p{Hangul}]|<\/>|<div>|<\/div>|<span>|<\/span>/, '')
+      @ko_directions = row[8].gsub(/<!--:ko-->|<!--:en-->|<!--:-->|[a-zA-Z]|<\/>|<div>|<\/div>|<span>|<\/span>/, '')
+    end
     a = Venue.find_by(name: @name)
     a.update(ko_bio: @ko_text)
     a.update(en_bio: @en_text)
+    a.update(en_directions: @en_directions)
+    a.update(ko_directions: @ko_directions)
   end
 end
 

@@ -1,5 +1,5 @@
 <%= @venue.name %>
-<%= @venue.misc %>
+<%= @venue.en_bio.html_safe %>
 <%= image_tag @venue.avatar %>
 <div style='width: 600px;'>
 	<div id="map" style='width: 600px; height: 400px;'></div>
