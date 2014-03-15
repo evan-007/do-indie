@@ -1,23 +1,27 @@
 task :import_artists => :environment do
   require 'csv'
   @ko = 0 
-  @genre = 2 
-  @photo_url = 3
-  @myspace = 4
-  @en = 5
-  @bandcamp = 6
-  @contact = 7
-  @cafe = 8
-  @facebook = 9
-  @itunes = 10
-  @label = 11
-  @soundcloud = 12
-  @twitter = 13
-  @youtube = 15
+  @genre = 4 
+  @photo_url = 5
+  @myspace = 6
+  @en = 8
+  @bandcamp = 9
+  @contact = 10
+  @cafe = 11
+  @facebook = 12
+  @itunes = 13
+  @label = 14
+  @soundcloud = 15
+  @twitter = 16
+  @youtube = 18
+  @bio = 1
  
-  CSV.foreach("#{Rails.root}"+"/lib/bands.csv") do |row|
+  CSV.foreach("#{Rails.root}"+"/lib/bands-raw-2.csv", headers: true) do |row|
       @ko = row[0].gsub(/[^\p{Hangul}]/, '')
-      # en_desc = row[1].gsub(/<!--:ko-->(.*?)<!--:-->/m, '')  
+      unless row[@bio] == nil
+        @en_bio = row[@bio].gsub(/^[^_]*<!--:en-->|<!--:-->/, '')
+        @ko_bio = row[@bio].match(/^[^_]*<!--:en-->|<!--:-->/).to_s.gsub(/<!--:ko-->|<!--:-->|<!--:en-->/, '')
+      end  
       a = Band.create(korean_name: @ko, 
         genre: row[@genre],
         myspace: row[@myspace],
@@ -31,7 +35,9 @@ task :import_artists => :environment do
         soundcloud: row[@soundcloud],
         twitter: row[@twitter], 
         youtube: row[@youtube], 
-        photo_url: row[@photo_url]
+        photo_url: row[@photo_url],
+        en_bio: @en_bio,
+        ko_bio: @ko_bio
         )
 
       a.save
@@ -107,7 +113,7 @@ task :import_venue_data => :environment do
     @name = row[0].gsub(/<!--:ko-->(.*?)<!--:-->|<!--:en-->|<!--:-->/, '')
     @en_text = row[1].gsub(/<!--:ko-->|<!--:en-->|<!--:-->|[\p{Hangul}]|<\/>|<div>|<\/div>|<span>|<\/span>/, '')
     if row[8] != nil
-      @en_directions = row[8].gsub(/<!--:ko-->|<!--:en-->|<!--:-->|[\p{Hangul}]|<\/>|<div>|<\/div>|<span>|<\/span>/, '')
+      @en_directions = row[8].gsub(/^[^_]*<!--:en-->|<!--:-->/, '')
       @ko_directions = row[8].gsub(/<!--:ko-->|<!--:en-->|<!--:-->|[a-zA-Z]|<\/>|<div>|<\/div>|<span>|<\/span>/, '')
     end
     a = Venue.find_by(name: @name)

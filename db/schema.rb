@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20140313055953) do
     t.string   "facebook"
     t.string   "twitter"
     t.string   "site"
+    t.text     "en_bio"
+    t.text     "ko_bio"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "korean_name"

@@ -6,6 +6,8 @@ class CreateBands < ActiveRecord::Migration
       t.string :facebook
       t.string :twitter
       t.string :site
+      t.text :en_bio
+      t.text :ko_bio
 
       t.timestamps
     end
