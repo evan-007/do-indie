@@ -40,7 +40,22 @@ class BandsController < ApplicationController
   private
   
   def band_params
-    params.require(:band).permit(:name, :contact, :facebook, :twitter, :site)
+    params.require(:band).permit(:name,
+    :korean_name,
+    :contact,
+    :facebook,
+    :myspace,
+    :bandcamp,
+    :twitter,
+    :cafe,
+    :itunes,
+    :soundcloud,
+    :youtube,
+    :site,
+    :en_bio,
+    :ko_bio,
+    :avatar
+    )
   end
   
   def get_band
