@@ -109,9 +109,9 @@ end
 task :import_venue_data => :environment do
   #be sure CSV fields all have data!
   CSV.foreach("#{Rails.root}"+"/lib/venue-data.csv", headers: true) do |row|
-    @ko_text = row[1].gsub(/<!--:ko-->|<!--:en-->|<!--:-->|[a-zA-Z]|<\/>|<div>|<\/div>|<span>|<\/span>/, '')
+    @ko_text = row[1].match(/^[^_]*<!--:en-->|<!--:-->/).to_s.gsub(/<!--:ko-->|<!--:-->|<!--:en-->/, '')
     @name = row[0].gsub(/<!--:ko-->(.*?)<!--:-->|<!--:en-->|<!--:-->/, '')
-    @en_text = row[1].gsub(/<!--:ko-->|<!--:en-->|<!--:-->|[\p{Hangul}]|<\/>|<div>|<\/div>|<span>|<\/span>/, '')
+    @en_text = row[1].gsub(/^[^_]*<!--:en-->|<!--:-->/, '')
     if row[8] != nil
       @en_directions = row[8].gsub(/^[^_]*<!--:en-->|<!--:-->/, '')
       @ko_directions = row[8].gsub(/<!--:ko-->|<!--:en-->|<!--:-->|[a-zA-Z]|<\/>|<div>|<\/div>|<span>|<\/span>/, '')
