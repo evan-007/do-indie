@@ -54,6 +54,28 @@ task :band_categories => :environment do
   end
 end
 
+task :build_genres => :environment do
+  #create genre entries
+  @bands = Band.all
+  @bands.each do |band|
+    unless band.genre == nil
+      if Genre.where(name: band.genre) == []
+        Genre.create(name: band.genre)
+      end
+    end
+  end
+end
+
+task :seed_genres => :environment do
+  #build the relationships
+  @bands = Band.all
+  @bands.each do |band| 
+    unless band.genre == nil
+      band.band_genres.create(genre_id: (Genre.find_by(name: band.genre).id))
+    end
+  end
+end
+
 #first run automator to add .png to end of files! will error if no photo!
 task :import_photos => :environment do
   @bands = Band.all

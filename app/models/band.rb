@@ -3,6 +3,8 @@ class Band < ActiveRecord::Base
 	has_many :users, through: :user_fans
 	has_many :event_bands
 	has_many :events, through: :event_bands
+	has_many :band_genres
+	has_many :genres, through: :band_genres
 	validates :name, presence: true, uniqueness: true
 
 	paginates_per 50 #fix pagination

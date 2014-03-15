@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140315043705) do
+ActiveRecord::Schema.define(version: 20140315055458) do
+
+  create_table "band_genres", force: true do |t|
+    t.integer  "band_id"
+    t.integer  "genre_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "band_genres", ["band_id"], name: "index_band_genres_on_band_id"
+  add_index "band_genres", ["genre_id"], name: "index_band_genres_on_genre_id"
 
   create_table "band_managers", force: true do |t|
     t.integer  "user_id"
@@ -134,6 +144,12 @@ ActiveRecord::Schema.define(version: 20140315043705) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "genres", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "posts", force: true do |t|
     t.text     "title"
