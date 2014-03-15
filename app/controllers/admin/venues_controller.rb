@@ -19,30 +19,7 @@ class Admin::VenuesController < Admin::BaseController
   end
 
   def update
-    old_name = @venue.name
-    new_params = venue_params.dup
-    new_params[:name] = new_params[:name].strip
-    new_params[:phone] = new_params[:phone].strip
-    new_params[:address] = new_params[:address].strip
-    new_params[:misc] = new_params[:misc].strip
-    new_params[:facebook] = new_params[:facebook].strip
-    new_params[:cafe] = new_params[:cafe].strip
-    new_params[:website] = new_params[:website].strip
-
-    
-    @venue.name = new_params[:name]
-    @venue.phone = new_params[:phone]
-    @venue.address = new_params[:address]
-    @venue.misc = new_params[:misc]
-    @venue.facebook = new_params[:facebook]
-    @venue.cafe = new_params[:cafe]
-    @venue.website = new_params[:website]
-
-    
-    # if current_user.id != @venue.id
-    # @user.admin = new_params[:admin]=="0" ? false : true
-    # @user.locked = new_params[:locked]=="0" ? false : true
-    # end
+    @venue.update(venue_params)
     
     if @venue.valid?
       @venue.save
@@ -68,7 +45,8 @@ class Admin::VenuesController < Admin::BaseController
     :name,
     :phone,
     :address,
-    :misc,
+    :en_bio,
+    :ko_bio,
     :facebook,
     :cafe,
     :website

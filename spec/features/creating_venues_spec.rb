@@ -10,7 +10,7 @@ feature "Creating venues" do
 		fill_in "Name", with: "Avalon"
 		fill_in "Phone", with: "010-1234-1234"
 		fill_in "Address", with: "Gangnam station, exit 2"
-		fill_in "Misc", with: "Best club in G-nam"
+		fill_in "venue[en_bio]", with: "Best club in G-nam"
 		fill_in "Facebook", with: "facebook.com"
 		fill_in "Cafe", with: "naver.com"
 		fill_in "Website", with: "gangnamstyle.com"

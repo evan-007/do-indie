@@ -5,7 +5,7 @@ FactoryGirl.define do
     name "Ellui"
     phone "010 -2345 - 2345"
     address "123 Plastic Surgery St, Gangnam, Korea"
-    misc "Gangnam's best nightclub"
+    en_bio "Gangnam's best nightclub"
     facebook "facebook.com/ellui"
     cafe "cafe.naver.com/ellui"
     website "ellui.com"

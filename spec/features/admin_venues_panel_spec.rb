@@ -19,7 +19,7 @@ feature "Admin band panel" do
 		fill_in "Name", with: "psy psy"
 		fill_in "Phone", with: "123-123-123"
 		fill_in "Address", with: "123 fake street"
-		fill_in "Misc", with: "best venue ever"
+		fill_in "venue[en_bio]", with: "best venue ever"
 		fill_in "Facebook", with: "facebook.com/psy"
 		fill_in "Cafe", with: "naver.com/psy"
 		fill_in "Website", with: "psy.com"

@@ -1,9 +1,11 @@
 <%= @venue.name %>
-<%= @venue.en_bio.html_safe %>
-<%= image_tag @venue.avatar %>
+
+<%= image_tag @venue.avatar :medium%>
 <div style='width: 600px;'>
 	<div id="map" style='width: 600px; height: 400px;'></div>
 </div>
+
+<p><%= @venue.en_bio.html_safe %></p>
 
 <% unless @venue.latitude == nil %>
 <script type="text/javascript">

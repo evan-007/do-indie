@@ -35,10 +35,19 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :misc %>
+      <%= f.label :en_bio %>
       <div class="row">
         <div class="col-sm-6">      
-          <%= f.text_area :misc, class: "form-control" %>  
+          <%= f.cktext_area :en_bio, class: "form-control" %>  
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :ko_bio %>
+      <div class="row">
+        <div class="col-sm-6">      
+          <%= f.cktext_area :ko_bio, class: "form-control" %>  
         </div>
       </div>
     </div>
