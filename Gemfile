@@ -15,6 +15,8 @@ gem 'route_translator'
 gem 'aws-sdk'
 gem 'ckeditor'
 gem 'soundcloud'
+gem "auto_html"
+
 
 group :doc do
   gem 'sdoc', require: false

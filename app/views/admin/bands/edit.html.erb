@@ -44,6 +44,24 @@
     </div>
 
     <div class="form-group">
+      <%= f.label :myspace %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.text_field :myspace, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :bandcamp %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.text_field :bandcamp, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
       <%= f.label :twitter %>
       <div class="row">
         <div class="col-sm-6">
@@ -53,10 +71,64 @@
     </div>
 
     <div class="form-group">
+      <%= f.label :cafe %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.text_field :cafe, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :itunes %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.text_field :itunes, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :soundcloud %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.text_field :soundcloud, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :youtube %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.text_field :youtube, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
       <%= f.label :site %>
       <div class="row">
         <div class="col-sm-6">
           <%= f.text_field :site, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "English Bio" %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.text_area :en_bio, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "Korean bio" %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.text_area :ko_bio, class: "form-control" %>
         </div>
       </div>
     </div>

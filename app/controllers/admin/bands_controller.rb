@@ -20,12 +20,6 @@ class Admin::BandsController < Admin::BaseController
   
   def update
     @band.update(band_params)
-    
-    # if current_user.id != @band.id
-    #   @user.admin = new_params[:admin]=="0" ? false : true
-    #   @user.locked = new_params[:locked]=="0" ? false : true
-    # end
-    
     if @band.valid?
       @band.save
       redirect_to admin_bands_path, notice: "#{@band.name} updated."
@@ -46,13 +40,20 @@ class Admin::BandsController < Admin::BaseController
   end
   
   def band_params
-    params.require(:band).permit(
-    :name,
+    params.require(:band).permit(:name,
     :korean_name,
     :contact,
     :facebook,
+    :myspace,
+    :bandcamp,
     :twitter,
+    :cafe,
+    :itunes,
+    :soundcloud,
+    :youtube,
     :site,
+    :en_bio,
+    :ko_bio,
     :avatar
     )
   end
