@@ -4,6 +4,7 @@ class BandsController < ApplicationController
   
   def index
     @bands = Band.search_and_order(params[:search], params[:page])
+    @genres = Genre.all
   end
   
   def new

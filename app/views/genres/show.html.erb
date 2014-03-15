@@ -1,6 +1,7 @@
+<div class="text-center"><%= @genre.name %></div>
 
 <div class="row">
-	<% @bands.each do |band| %>
+	<% @genre.bands.each do |band| %>
 		<div class="col-sm-6 col-md-4">
 			<%= div_for(band, class: "list") do %>
 				<div class="thumbnail">
@@ -10,7 +11,6 @@
 						<h4><%= link_to band.korean_name, band_path(band) %></h4>
 					    <p>Fans: <%= band.fans %></p>
 					    <p>
-
 					    	<% if current_user && current_user.user_fans.where(band_id: band.id).count != 0 %>
 								<%= link_to "Unlike", user_fan_path(id: band.id), method: 'delete', class: "btn btn-primary" %>
 							<% elsif current_user %>
@@ -24,15 +24,4 @@
 			<% end %> <!--div_for-->
 		</div>
 	<% end %>
-</div><!--row-->
-<div class="text-center">
-	<p><%= page_entries_info @bands %></p>
-	<%= paginate @bands %>
-</div>
-<div class="text-center">
-	<p>Genres:
-		<% @genres.each do |genre| %>
-		<%= link_to genre.name, genre_path(genre.name) %> 
-		<% end %>
-	</p>
 </div>

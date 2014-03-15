@@ -11,6 +11,7 @@ DoIndie::Application.routes.draw do
   
     get "inside", to: "pages#inside", as: "inside"
     get "/blog", to: "posts#index", as: "blog"
+    get "/genres/:name", to: "genres#show", as: "genre"
   
     resources :bands, :venues, :events, :posts
     resources :user_fans, only: [:create, :destroy]
