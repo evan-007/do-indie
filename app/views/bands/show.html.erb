@@ -9,7 +9,12 @@
 <%= @band.contact %>
 <%= @band.site %>
 <%= @band.label %>
-<%= @band.genre %>
+<p>Genres:
+	<% @band.genres.each do |genre| %>
+		<%= link_to genre.name, genre_path(genre.name) %>
+	<% end %>
+</p>
+
 
 
 
