@@ -44,6 +44,16 @@ task :import_artists => :environment do
   end
 end
 
+task :band_categories => :environment do
+  #crude, only gets last category
+  @bands = Band.all
+  @bands.each do |band|
+    unless band.genre == nil
+      band.update(genre: band.genre.gsub(/^[^_]*:/, ''))
+    end
+  end
+end
+
 #first run automator to add .png to end of files! will error if no photo!
 task :import_photos => :environment do
   @bands = Band.all
