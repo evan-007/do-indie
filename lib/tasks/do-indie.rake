@@ -58,9 +58,7 @@ end
 task :heroku_import_photos => :environment do
   #URI errors: assassination squad, eunsu lee, Say Sue Me.png, Kuang Program, Dead Buttons, Angry Bear
   # So Long, Buffalo | Jake & the Slut | PLASTIC HEART | Morrison Hotel | Yamagata Tweakster
-  #fix by editing band name to match filename via copy paste, wtf?
-  #seems related to either caps or spaces in file names
-  #use IDS instead of names?
+  #this will work until the CSV used to import is changed.
   @bands = Band.all
   @bands.each do |band|
     band.avatar = "http://do-indie.s3.amazonaws.com/bands/raw/#{band.id}.png"
@@ -79,6 +77,7 @@ task :import_venues => :environment do
 	@address = 14
   @lat = 16
   @long = 17
+  @map = 6
 	
   
   
@@ -101,6 +100,7 @@ task :import_venues => :environment do
       twitter: row[@twitter],
       website: row[@website],
       address: row[@address],
+      small_map: row[@map]
       )
     Venue.last.update(latitude: row[@lat], longitude: row[@long])
 	end
@@ -134,6 +134,43 @@ task :import_venue_photos => :environment do
     escape_url = URI.escape raw_url
     venue.avatar = escape_url
     venue.save!
+  end
+end
+
+task :import_venue_maps => :environment do
+  require 'uri'
+  require 'net/https'
+  @venues = Venue.all
+  @venues.each do |venue|
+    unless venue.small_map == nil
+      url = "http://do-indie.s3.amazonaws.com/venues/map_raw/#{venue.id}.png"
+      venue.minimap = url
+      venue.save!
+    end
+  end
+end
+
+task :venue_map_dump => :environment do
+  require 'open-uri'
+  require 'net/https'
+  require 'uri'
+  @venues = Venue.all
+  @venues.each do |venue|
+    if venue.small_map != nil
+      puts venue.name
+      raw_url = venue.small_map
+      escape_url = URI.escape raw_url #deals with korean characters breaking everything
+      url = URI.parse(escape_url)
+      Net::HTTP.start(url.host, url.port) do |http|
+        @id = venue.id
+        req = Net::HTTP.new(url.host, url.port)
+        res = req.request_head(url.path)
+        resd = http.get(url.request_uri)
+        open("#{@id}.png", "wb") do |f|
+          f.write(resd.body)
+        end
+      end
+    end
   end
 end
 

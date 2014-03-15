@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140313055953) do
+ActiveRecord::Schema.define(version: 20140315043705) do
 
   create_table "band_managers", force: true do |t|
     t.integer  "user_id"
@@ -222,6 +222,10 @@ ActiveRecord::Schema.define(version: 20140313055953) do
     t.string   "city_ko"
     t.string   "email"
     t.string   "twitter"
+    t.string   "minimap_file_name"
+    t.string   "minimap_content_type"
+    t.integer  "minimap_file_size"
+    t.datetime "minimap_updated_at"
   end
 
 end
