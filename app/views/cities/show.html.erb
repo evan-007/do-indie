@@ -1,5 +1,5 @@
 <div class="row">
-	<% @venues.each do |venue| %>
+	<% @city.venues.each do |venue| %>
 		<div class="col-sm-6 col-md-4">
 			<div class="thumbnail">
 				<%= image_tag venue.avatar.url(:medium) %>
@@ -12,16 +12,4 @@
 			</div>
 		</div>
 	<% end %>
-</div>
-
-<div class="text-center">
-  <p><%= page_entries_info @venues %></p>
-  <%= paginate @venues %>
-</div>
-<div class="text-center">
-	<p>Cities:
-	<% @cities.each do |city| %>
-		<%= link_to city.en_name, city_path(city.en_name) %>
-		<% end %>
-	</p>
 </div>

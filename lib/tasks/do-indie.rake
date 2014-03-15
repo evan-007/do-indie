@@ -44,6 +44,7 @@ task :import_artists => :environment do
   end
 end
 
+#run following 3 tasks in succession!
 task :band_categories => :environment do
   #crude, only gets last category
   @bands = Band.all
@@ -178,6 +179,24 @@ task :import_venue_maps => :environment do
       url = "http://do-indie.s3.amazonaws.com/venues/map_raw/#{venue.id}.png"
       venue.minimap = url
       venue.save!
+    end
+  end
+end
+
+task :seed_cities => :environment do
+  @venues = Venue.all
+  @venues.each do |venue|
+    unless venue.city_en == nil && venue.city_ko == nil
+      City.create(en_name: venue.city_en, ko_name: venue.city_ko)
+    end
+  end
+end
+
+task :venue_cities => :environment do
+  @venues = Venue.all
+  @venues.each do |venue|
+    unless venue.city_en == nil && venue.city_ko == nil
+      venue.venue_cities.create(city_id: City.find_by(en_name: venue.city_en).id)
     end
   end
 end

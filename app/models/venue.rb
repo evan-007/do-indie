@@ -4,6 +4,8 @@ class Venue < ActiveRecord::Base
 	has_many :events, through: :event_venues
 	has_many :venue_managers
 	has_many :users, through: :venue_managers
+	has_many :venue_cities
+	has_many :cities, through: :venue_cities
 
 	paginates_per 100 #fix pagination
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140315055458) do
+ActiveRecord::Schema.define(version: 20140315083647) do
 
   create_table "band_genres", force: true do |t|
     t.integer  "band_id"
@@ -58,6 +58,13 @@ ActiveRecord::Schema.define(version: 20140315055458) do
     t.string   "soundcloud"
     t.string   "youtube"
     t.string   "photo_url"
+  end
+
+  create_table "cities", force: true do |t|
+    t.string   "en_name"
+    t.string   "ko_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "ckeditor_assets", force: true do |t|
@@ -200,6 +207,16 @@ ActiveRecord::Schema.define(version: 20140315055458) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true
   add_index "users", ["username"], name: "index_users_on_username", unique: true
+
+  create_table "venue_cities", force: true do |t|
+    t.integer  "venue_id"
+    t.integer  "city_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "venue_cities", ["city_id"], name: "index_venue_cities_on_city_id"
+  add_index "venue_cities", ["venue_id"], name: "index_venue_cities_on_venue_id"
 
   create_table "venue_managers", force: true do |t|
     t.integer  "user_id"

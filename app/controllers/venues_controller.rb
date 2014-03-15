@@ -4,6 +4,7 @@ class VenuesController < ApplicationController
   
   def index
     @venues = Venue.search_and_order(params[:search], params[:page])
+    @cities = City.all
   end
   
   def show
