@@ -58,7 +58,7 @@ class EventsController < ApplicationController
 	  		:info_ko, 
 	  		:venue_id, 
 	  		:date,
-	  		bands_attributes:[ band_ids: [] ]
+	  		band_ids: []
 	  		)
 	  end
 

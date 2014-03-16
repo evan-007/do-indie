@@ -11,10 +11,6 @@
 	</p>
 	
 
-	<%= f.fields_for :event_band do |b| %>
-		<%= b.label "Bands playing" %>
-		<%= b.collection_select :band_ids, Band.order(:name), :id, :name, {}, {multiple: true} %><br />
-	<% end %>
 	<p>Additional bands can be added after the event is created</p>
 	<%= link_to "Band not listed?", nil %><br />
 	<p>only get new band name</p>
