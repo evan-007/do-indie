@@ -25,11 +25,8 @@
 <% end %>
 
 <p>
-<% if @venue.venue_cities.first != nil %>
-	<%= @venue.venue_cities.first.city.en_name %>
-	<% if @venue.venue_cities.first.city.ko_name != nil %>
-		- <%= @venue.venue_cities.first.city.ko_name %>
-	<% end %>
+<% @venue.venue_cities.each do |venue_city| %>
+	<%= link_to venue_city.city.en_name+"-"+venue_city.city.ko_name, city_path(venue_city.city.en_name) %> 
 <% end %>
 </p>
 
