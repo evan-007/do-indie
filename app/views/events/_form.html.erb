@@ -5,9 +5,15 @@
 	<%= f.text_field :ko_name, class: "form-control half" %><br />
 	<%= f.label "Event Poster" %>
 	<%= f.file_field :avatar %><br />
-	<%= f.fields_for :event_band do |event_band| %>
+	<p>
 		<%= f.label "Bands playing" %>
-		<%= select(:event_band, :band_id, options_for_select(Band.order(name: :asc).collect { |b| [b.name, b.id]}.insert(0, "") )) %><br />
+		<%= f.collection_select :band_ids, Band.order(:name), :id, :name, {}, {multiple: true} %>
+	</p>
+	
+
+	<%= f.fields_for :event_band do |b| %>
+		<%= b.label "Bands playing" %>
+		<%= b.collection_select :band_ids, Band.order(:name), :id, :name, {}, {multiple: true} %><br />
 	<% end %>
 	<p>Additional bands can be added after the event is created</p>
 	<%= link_to "Band not listed?", nil %><br />

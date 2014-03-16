@@ -47,6 +47,9 @@ end
 gem 'devise', '~> 3.2.2'
 
 
+gem 'chosen-rails'
+
+
 # Bootstrap 3
 group :development, :test do
   gem 'rails_layout', '~> 0.5.11'  # Bootstrap 3 layout generator

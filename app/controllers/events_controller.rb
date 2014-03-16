@@ -13,9 +13,8 @@ class EventsController < ApplicationController
 	end
 
 	def create
-		@event = Event.create(event_params)
+		@event = Event.new(event_params)
 		if @event.save
-			@event.event_bands.create(event_band_params)
 			flash[:notice] = "Event Created!"
 			redirect_to event_path(@event)
 		else
@@ -55,12 +54,15 @@ class EventsController < ApplicationController
 		  	:info_kr, 
 	  		:contact, 
 	  		:price,
-	  		:info, 
+	  		:info,
+	  		:info_ko, 
 	  		:venue_id, 
-	  		:date)
+	  		:date,
+	  		bands_attributes:[ band_ids: [] ]
+	  		)
 	  end
 
 	  def event_band_params
-	  	params.require(:event_band).permit(:band_id)
+	  	params.require(:event).permit(event_bands_attributes: [band_ids: []])
 	  end
 end
