@@ -6,7 +6,10 @@
 </div>
 
 <p><%= @venue.en_bio.html_safe %></p>
-<%= image_tag @venue.small_map :medium%>
+<% unless @venue.small_map == nil %>
+	<%= image_tag @venue.small_map :medium%>
+<% end %>
+
 <% unless @venue.latitude == nil %>
 <script type="text/javascript">
 	handler = Gmaps.build('Google');
