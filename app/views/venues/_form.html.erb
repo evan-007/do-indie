@@ -16,6 +16,16 @@
 	<%= f.label :website %>
 	<%= f.text_field :website, class: "form-control half" %><br />
 	<%= f.label :photo %>
-	<%= f.file_field :avatar %>
+	<%= f.file_field :avatar %><br />
+	<% if @venue.id != nil %>
+		<p>This Venue is already linked to: <% @venue.cities.each do |city| %>
+			<%= city.en_name %> - <%= city.ko_name %></p>
+		<% end %>
+	<% end %>
+	<%= label_tag :city %>
+    <%= select_tag :city, options_for_select(@cities.collect { |city| [city.en_name, city.id] }.insert(0, '')) %><br />
+    <p>City not listed? Add it below:</p>
+    <%= label_tag :new_city %>
+    <%= text_field_tag :new_city %><br />
 	<%= f.submit %>
 <% end %>

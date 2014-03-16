@@ -1,6 +1,7 @@
 class BandsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :get_band, only: [:show, :edit, :update, :destroy]
+  before_action :all_genres, only: [:new, :edit]
   
   def index
     @bands = Band.search_and_order(params[:search], params[:page])
@@ -14,6 +15,10 @@ class BandsController < ApplicationController
   def create
     @band = Band.new(band_params)
     if @band.save
+      @genre = Genre.new(name: params[:new_genre])
+      @genre.save
+      @band.band_genres.create(genre_id: @genre.id)
+      @band.band_genres.create(genre_id: params[:genre])
       flash[:notice] = "Band created!"
       redirect_to band_path(@band)
     else
@@ -30,6 +35,10 @@ class BandsController < ApplicationController
   
   def update
     if @band.update(band_params)
+      @genre = Genre.new(name: params[:new_genre])
+      @genre.save
+      @band.band_genres.create(genre_id: @genre.id)
+      @band.band_genres.create(genre_id: params[:genre])
       flash[:notice] = "Band updated!"
       redirect_to band_path(@band)
     else
@@ -62,5 +71,10 @@ class BandsController < ApplicationController
   def get_band
     @band = Band.find(params[:id])
   end
+
+  def all_genres
+    @genres = Genre.all
+  end
+
   
 end

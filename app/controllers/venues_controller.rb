@@ -1,6 +1,7 @@
 class VenuesController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :get_venue, only: [:show, :edit, :update, :destoy]
+  before_action :get_cities, only: [:new, :edit]
   
   def index
     @venues = Venue.search_and_order(params[:search], params[:page])
@@ -21,6 +22,10 @@ class VenuesController < ApplicationController
   def create
     @venue = Venue.create(venue_params)
     if @venue.save
+      @venue.venue_cities.create(city_id: params[:city])
+      @city = City.new(en_name: params[:new_city])
+      @city.save
+      @venue.venue_cities.create(city_id: @city.id)
       flash[:notice] = "Venue Created!"
       redirect_to venue_path(@venue)
     else
@@ -34,6 +39,10 @@ class VenuesController < ApplicationController
 
   def update
     if @venue.update(venue_params)
+      @venue.venue_cities.create(city_id: params[:city])
+      @city = City.new(en_name: params[:new_city])
+      @city.save
+      @venue.venue_cities.create(city_id: @city.id)
       flash[:notice] = "Venue updated!"
       redirect_to @venue
     else
@@ -51,5 +60,9 @@ class VenuesController < ApplicationController
 
   def venue_params
     params.require(:venue).permit(:name, :phone, :address, :en_bio, :ko_bio, :facebook, :cafe, :website)
+  end
+
+  def get_cities
+    @cities = City.all
   end
 end

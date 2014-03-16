@@ -21,8 +21,17 @@
 		});
 </script>
 <% else %>
-<p>Uh-oh, we don't have the address for this venue yet!</p>
+	<p>Uh-oh, we don't have the address for this venue yet!</p>
 <% end %>
+
+<p>
+<% if @venue.venue_cities.first != nil %>
+	<%= @venue.venue_cities.first.city.en_name %>
+	<% if @venue.venue_cities.first.city.ko_name != nil %>
+		- <%= @venue.venue_cities.first.city.ko_name %>
+	<% end %>
+<% end %>
+</p>
 
 <% if current_user && current_user.venue_managers.where(venue_id: @venue.id).count == 0 %>
 	<p><%= t(:venue_request) %> <%= link_to t(:manager_request), venue_managers_path(venue_id: @venue.id), method: 'post' %>.</p>
@@ -32,4 +41,8 @@
     <p><%= t(:pending_approval) %></p>
 <% else %>
 	<p><%= t(:venue_request) %> <%= t(:login_request) %><p>
+<% end %>
+
+<% if current_user && current_user.admin == true %>
+  <%= link_to "Edit this venue", edit_venue_path(@venue) %>
 <% end %>

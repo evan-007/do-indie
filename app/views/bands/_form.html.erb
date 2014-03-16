@@ -24,10 +24,22 @@
   <%= f.label :site %>
   <%= f.text_field :site, placeholder: "band homepage or other misc site", class: "form-control half" %><br />
   <%= f.label "English Bio" %>
-  <%= f.cktext_area :en_bio, class: "form-control half" %><br />
+  <%= f.text_area :en_bio, class: "form-control half" %><br />
   <%= f.label "Korean Bio" %>
-  <%= f.cktext_area :ko_bio, class: "form-control half" %><br />
+  <%= f.text_area :ko_bio, class: "form-control half" %><br />
   <%= f.label :photo %>
   <%= f.file_field :avatar %>
+
+  <% if @band.genres != nil %><br/ ><br />
+    <p>Don't add the same genre twice. This band is already under these genres:</p>
+    <% @band.genres.each do |genre| %>
+      <%= genre.name %>,
+    <% end %><br /><br />
+  <% end %>
+  <%= label_tag :genre %>
+  <%= select_tag(:genre, options_for_select(@genres.collect { |genre| [genre.name, genre.id] }.insert(0, ''))) %><br />
+  <p>Genre not listed? Enter it's name in English below:</p>
+  <%= label_tag :new_genre %>
+  <%= text_field_tag :new_genre %><br />
   <%= f.submit %>
 <% end %>
