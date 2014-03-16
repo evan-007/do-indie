@@ -7,7 +7,7 @@
 
 <p><%= @venue.en_bio.html_safe %></p>
 <% unless @venue.small_map == nil %>
-	<%= image_tag @venue.small_map :medium%>
+	<%= image_tag @venue.small_map %>
 <% end %>
 
 <% unless @venue.latitude == nil %>
