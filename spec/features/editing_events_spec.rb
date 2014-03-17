@@ -8,7 +8,7 @@ feature "Editing venues" do
 	end
 
   scenario "authenticated users can edit events" do
-    visit edit_event_path(@event)
+    visit edit_event_en_path(@event)
     fill_in 'event[name]', with: "Huge party!"
     click_button "Update Event"
     expect(page).to have_content("Event updated!")

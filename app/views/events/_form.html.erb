@@ -5,11 +5,18 @@
 	<%= f.text_field :ko_name, class: "form-control half" %><br />
 	<%= f.label "Event Poster" %>
 	<%= f.file_field :avatar %><br />
+	<% if I18n.locale == :en %>
 	<p>
 		<%= f.label "Bands playing" %>
 		<%= f.collection_select :band_ids, Band.order(:name), :id, :name, {}, {multiple: true} %>
 	</p>
-	
+	<% elsif I18n.locale == :ko %>
+	<p>
+		<%= f.label "Bands playing" %>
+		<%= f.collection_select :band_ids, Band.order(:korean_name), :id, :korean_name, {}, {multiple: true} %>
+	</p>
+	<% end %>
+		
 
 	<p>Additional bands can be added after the event is created</p>
 	<%= link_to "Band not listed?", nil %><br />

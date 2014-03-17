@@ -9,7 +9,7 @@ feature "Creating events" do
 	end
 
 	scenario "Users can create events" do
-		visit new_event_path
+		visit new_event_en_path
 		fill_in "event[name]", with: "Best party ever"
 		fill_in "event[contact]", with: "010 -1234-1234"
 		fill_in "event[price]", with: "1million wons"

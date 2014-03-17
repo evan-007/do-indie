@@ -6,7 +6,7 @@ feature "Creating venues" do
 		sign_in @user
 	end
 	scenario "Users can create venues" do
-		visit new_venue_path
+		visit new_venue_en_path
 		fill_in "Name", with: "Avalon"
 		fill_in "Phone", with: "010-1234-1234"
 		fill_in "Address", with: "Gangnam station, exit 2"
