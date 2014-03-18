@@ -13,7 +13,7 @@
 	<% elsif I18n.locale == :ko %>
 	<p>
 		<%= f.label "Bands playing" %>
-		<%= f.collection_select :band_ids, Band.order(:korean_name), :id, :korean_name, {}, {multiple: true} %>
+		<%= f.collection_select :band_ids, Band.order(:korean_name), :id, :korean_name, {}, {multiple: true, class: "form-control half"} %>
 	</p>
 	<% end %>
 		

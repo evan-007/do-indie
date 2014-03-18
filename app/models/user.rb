@@ -37,6 +37,8 @@ class User < ActiveRecord::Base
   #removed :confirmable, db still setupfor it!
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  devise :omniauthable, :omniauth_providers => [:facebook]
          
   # Pagination
   paginates_per 100

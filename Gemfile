@@ -15,6 +15,7 @@ gem 'route_translator'
 gem 'aws-sdk'
 gem 'ckeditor'
 gem 'soundcloud'
+gem 'omniauth-facebook'
 
 group :doc do
   gem 'sdoc', require: false
