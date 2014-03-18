@@ -23,7 +23,7 @@ DoIndie::Application.routes.draw do
     resources :event_managers, only: [:create, :destroy]
   
     
-    devise_for :users
+    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
     namespace :admin do
       root "base#index"
