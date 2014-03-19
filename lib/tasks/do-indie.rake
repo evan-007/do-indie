@@ -253,6 +253,13 @@ task :photo_dump => :environment do
   end
 end
 
+task :band_approval => :environment do 
+  @bands = Band.all
+  @bands.each do |band|
+    band.update(approved: true)
+  end
+end
+
 #for heroku and ckeditor
 namespace :ckeditor do
   desc 'Create nondigest versions of some ckeditor assets (e.g. moono skin png)'
