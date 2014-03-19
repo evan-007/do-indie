@@ -9,6 +9,7 @@ class Band < ActiveRecord::Base
 	has_many :genres, through: :band_genres
 	validates :name, presence: true, uniqueness: true
 	scope :approved, -> { where(approved: true) }
+	scope :unapproved, -> { where(approved: false) }
 
 	paginates_per 50 #fix pagination
 
@@ -30,5 +31,15 @@ class Band < ActiveRecord::Base
 	    else
 			approved.order(name: :asc).page page_number
 	    end
+	end
+
+	def self.admin_search(search, page_number)
+		if search
+			where("name LIKE ?", "%#{search.downcase}%").order(
+				approved: :asc
+				).page page_number
+		else
+			order(approved: :asc).page page_number
+		end
 	end
 end

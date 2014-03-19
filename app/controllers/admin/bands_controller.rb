@@ -8,7 +8,7 @@ class Admin::BandsController < Admin::BaseController
   
 
   def index
-    @bands = Band.search_and_order(params[:search], params[:page])
+    @bands = Band.admin_search(params[:search], params[:page])
   end
   
   def show

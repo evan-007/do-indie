@@ -19,7 +19,7 @@
     <th>Band ID</th>
     <th>Name</th>
     <th>Korean Name</th>
-    <th>Contact</th>
+    <th>Approved?</th>
     <th>Facebook</th>
     <th>Twitter</th>
     <th>Site</th>
@@ -34,7 +34,7 @@
     <td><%= band.id %></td>
     <td><%= link_to band.name.capitalize, admin_band_path(band) %></td>
     <td><%= band.korean_name %></td>
-    <td><%= band.contact %></td>
+    <td><%= band.approved? %></td>
     <td><%= band.facebook %></td>
     <td><%= band.twitter %></td>
     <td><%= band.site %></td>

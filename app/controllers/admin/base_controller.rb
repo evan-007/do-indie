@@ -5,7 +5,7 @@ class Admin::BaseController < ApplicationController
     @last_signups = User.last_signups(10)
     @last_signins = User.last_signins(10)
     @count = User.users_count
-    @bands = Band.count
+    @bands = Band.unapproved.count
     @venues = Venue.count
     @events = Event.count
     @managers = BandManager.where(approved: false).count
