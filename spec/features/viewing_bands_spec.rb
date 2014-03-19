@@ -7,8 +7,14 @@ feature "Viewing bands" do
   end
   
   scenario "public users can view a list of bands" do
-    visit bands_path
+    visit bands_en_path
     click_link @band.name
     expect(page).to have_content (@band.name)
+  end
+
+  scenario "only approved bands are listed" do
+  	@band2 = create(:unapproved_band)
+  	visit bands_path
+  	expect(page).to_not have_content(@band2.name)
   end
 end

@@ -8,5 +8,11 @@ FactoryGirl.define do
     twitter "twitter.com/psy"
     site "doindie.com"
     slug ""
+    approved true
+
+    factory :unapproved_band do
+    	approved false
+    	name "evan"
+    end
   end
 end

@@ -8,6 +8,7 @@ class Band < ActiveRecord::Base
 	has_many :band_genres
 	has_many :genres, through: :band_genres
 	validates :name, presence: true, uniqueness: true
+	scope :approved, -> { where(approved: true) }
 
 	paginates_per 50 #fix pagination
 
@@ -27,7 +28,7 @@ class Band < ActiveRecord::Base
 	      	name: :asc
 		    ).page page_number
 	    else
-			order(name: :asc).page page_number
+			approved.order(name: :asc).page page_number
 	    end
 	end
 end
