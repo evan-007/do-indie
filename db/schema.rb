@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319093406) do
+ActiveRecord::Schema.define(version: 20140319100653) do
 
   create_table "band_genres", force: true do |t|
     t.integer  "band_id"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(version: 20140319093406) do
     t.string   "door_price"
     t.string   "ticket_url"
     t.text     "info_ko"
+    t.string   "slug"
   end
 
   add_index "events", ["venue_id"], name: "index_events_on_venue_id"

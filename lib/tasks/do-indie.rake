@@ -228,6 +228,7 @@ end
 task :friendly_id => :environment do
   Band.find_each(&:save)
   Venue.find_each(&:save)
+  Event.find_each(&:save)
 end
 
 #only needed to get photos from WP site

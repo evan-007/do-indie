@@ -39,6 +39,8 @@
     <td><%= event.time %></td>
     <% if event.venue != nil %>
     <td><%= event.venue.name %></td>
+    <% else %>
+    <td></td>
     <% end %>
     <td><%= time_ago_in_words(event.created_at) %></td>
   </tr>

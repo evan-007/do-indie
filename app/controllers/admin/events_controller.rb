@@ -40,7 +40,7 @@ class Admin::EventsController < Admin::BaseController
   private 
   
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.friendly.find(params[:id])
   rescue
     flash[:alert] = "The event with an id of #{params[:id]} doesn't exist."
     redirect_to admin_events_path
