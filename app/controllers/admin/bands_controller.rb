@@ -33,7 +33,7 @@ class Admin::BandsController < Admin::BaseController
   private 
   
   def set_band
-    @band = Band.find(params[:id])
+    @band = Band.friendly.find(params[:id])
   rescue
     flash[:alert] = "The band with an id of #{params[:id]} doesn't exist."
     redirect_to admin_bands_path

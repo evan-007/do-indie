@@ -12,10 +12,10 @@ class Admin::VenuesController < Admin::BaseController
   end
 
   def show
-    redirect_to edit_admin_venue_path(params[:id])
   end
 
   def edit
+    @venue = Venue.friendly.find(params[:id])
   end
 
   def update
@@ -34,7 +34,7 @@ class Admin::VenuesController < Admin::BaseController
   private
 
   def set_venue
-    @venue = Venue.find(params[:id])
+    @venue = Venue.friendly.find(params[:id])
   rescue
     flash[:alert] = "The venue with an id of #{params[:id]} doesn't exist."
     redirect_to admin_venues_path

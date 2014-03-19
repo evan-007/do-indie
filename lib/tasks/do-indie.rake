@@ -225,6 +225,11 @@ task :venue_map_dump => :environment do
   end
 end
 
+task :friendly_id => :environment do
+  Band.find_each(&:save)
+  Venue.find_each(&:save)
+end
+
 #only needed to get photos from WP site
 task :photo_dump => :environment do
   require 'open-uri'
@@ -259,3 +264,4 @@ namespace :ckeditor do
     end
   end
 end
+

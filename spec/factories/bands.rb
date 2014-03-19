@@ -7,5 +7,6 @@ FactoryGirl.define do
     facebook "facebook.com/psy"
     twitter "twitter.com/psy"
     site "doindie.com"
+    slug ""
   end
 end

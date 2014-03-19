@@ -31,7 +31,7 @@
   
   <tr>
     <td><%= venue.id %></td>
-    <td><%= link_to venue.name.capitalize, admin_venue_path(venue) %></td>
+    <td><%= link_to venue.name.capitalize, edit_admin_venue_path(venue.id) %></td>
     <td><%= venue.phone %></td>
     <td><%= venue.address %></td>
     <td><%= venue.en_bio %></td>

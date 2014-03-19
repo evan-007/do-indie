@@ -55,7 +55,7 @@ class VenuesController < ApplicationController
   private
   
   def get_venue
-    @venue = Venue.find(params[:id])
+    @venue = Venue.friendly.find(params[:id])
   end
 
   def venue_params

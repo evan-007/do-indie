@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140318115523) do
+ActiveRecord::Schema.define(version: 20140319093406) do
 
   create_table "band_genres", force: true do |t|
     t.integer  "band_id"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20140318115523) do
     t.string   "soundcloud"
     t.string   "youtube"
     t.string   "photo_url"
+    t.string   "slug"
   end
 
   create_table "cities", force: true do |t|
@@ -261,6 +262,7 @@ ActiveRecord::Schema.define(version: 20140318115523) do
     t.string   "minimap_content_type"
     t.integer  "minimap_file_size"
     t.datetime "minimap_updated_at"
+    t.string   "slug"
   end
 
 end

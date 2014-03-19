@@ -1,6 +1,6 @@
 class BandsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :destroy]
-  before_action :get_band, only: [:show, :edit, :update, :destroy]
+  before_action :find_friendly, only: [:show, :edit, :update, :destroy]
   before_action :all_genres, only: [:new, :edit]
   
   def index
@@ -74,6 +74,10 @@ class BandsController < ApplicationController
 
   def all_genres
     @genres = Genre.all
+  end
+
+  def find_friendly
+    @band = Band.friendly.find(params[:id])
   end
 
   
