@@ -54,7 +54,8 @@ class Admin::BandsController < Admin::BaseController
     :site,
     :en_bio,
     :ko_bio,
-    :avatar
+    :avatar,
+    :approved
     )
   end
   
