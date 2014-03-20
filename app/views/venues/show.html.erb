@@ -1,14 +1,46 @@
 <%= @venue.name %>
-
-<%= image_tag @venue.avatar :medium%>
-<div style='width: 600px;'>
-	<div id="map" style='width: 600px; height: 400px;'></div>
+<div class="row">
+  <div class="col-md-6">
+    <% unless @venue.twitter = nil %>
+      <p> Latest tweets:</p>
+      <ul>
+        <% twitter_client.user_timeline("#{@tweet_url}").take(3).each do |tweet| %>
+          <li><%= tweet.text.html_safe %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <% unless @venue.small_map == nil %>
+	    <%= image_tag @venue.small_map %>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <%= image_tag @venue.avatar :medium%>
+  </div>
+</div><!--row-->
+<div class="row">
+  <div class="col-md-6">
+    <p><%= @venue.en_bio.html_safe %></p>
+  </div>
+  
+  <div class="col-md-6">
+    <div style='width: 100%;'>
+	    <div id="map" style='width: 100%; height: 400px;'></div>
+    </div>
+  </div>
+</div><!--row-->
+<div class="row">
+  <div class="col-md-12">
+    <% unless Event.where(venue_id: @venue.id) == nil %>
+      <% Event.where(venue_id: @venue.id).each do |event| %>
+        <%= link_to event.name, event_path(event) %><br />
+      <% end %>
+    <% else %>
+    <h3>There are no events for this venue yet!</h3>
+    <% end %>
+  </div>
 </div>
 
-<p><%= @venue.en_bio.html_safe %></p>
-<% unless @venue.small_map == nil %>
-	<%= image_tag @venue.small_map %>
-<% end %>
+
 
 <% unless @venue.latitude == nil %>
 <script type="text/javascript">
