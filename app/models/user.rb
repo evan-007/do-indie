@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
   def event_manager?(event_id)
     self.event_managers.where(event_id: event_id).first.approved
   end
+
+  def name_with_email
+    "#{self.username}, #{self.email}"
+  end
   
   # necessary to override friendly_id reserved words
   def friendify

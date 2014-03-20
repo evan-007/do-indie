@@ -5,6 +5,22 @@ class Admin::BandManagersController < Admin::BaseController
     :update,
     :destroy
   ]
+
+  def new
+    @manager = BandManager.new
+  end
+
+  def create
+    @manager = BandManager.new(manager_params)
+    if @manager.save
+      @manager.update(approved: true)
+      flash[:notice] = "Successfully created manager!"
+      redirect_to admin_band_managers_en_path
+    else
+      flash[:notice] = "Didn't create the manager!"
+      redirect_to new_admin_band_manager_path
+    end
+  end
   
 
   def index
@@ -20,11 +36,6 @@ class Admin::BandManagersController < Admin::BaseController
   
   def update
     @manager.update(manager_params)
-
-    # if current_event.id != @event.id
-    #   @event.admin = new_params[:admin]=="0" ? false : true
-    #   @event.locked = new_params[:locked]=="0" ? false : true
-    # end
     
     if @manager.valid?
      # @event.skip_reconfirmation! only for users model
@@ -47,7 +58,7 @@ class Admin::BandManagersController < Admin::BaseController
   end
   
   def manager_params
-    params.require(:band_manager).permit(:approved)
+    params.require(:band_manager).permit(:approved, :user_id, :band_id)
   end
   
 end

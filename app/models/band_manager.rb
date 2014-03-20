@@ -1,4 +1,5 @@
 class BandManager < ActiveRecord::Base
+  validates :user_id, :band_id, presence: true
   belongs_to :user
   belongs_to :band
   scope :approved, -> { where(approved: true) }

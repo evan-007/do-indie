@@ -3,6 +3,7 @@ require "spec_helper"
 feature "Admin band managers" do
 	before do
 	@user = create(:user)
+	@user2 = create(:blogger)
 	@band = create(:band)
 	@manager = create(:band_manager, user_id: @user.id, band_id: @band.id)
 	@admin = create(:admin_user)
@@ -25,4 +26,14 @@ feature "Admin band managers" do
 	end
 
 	scenario "User gets email when approved?"
+
+	scenario "admin can create band managers using usernames" do
+		visit admin_root_en_path
+		click_link("Band Managers")
+		click_link("New band manager")
+		select(@user2.username, from: "band_manager[user_id]")
+		select(@band.name, from: "band_manager[band_id]")
+		click_button ("Create Band manager")
+		expect(page).to have_content("created manager")
+	end
 end
