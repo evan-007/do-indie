@@ -29,8 +29,10 @@ class BandsController < ApplicationController
   end
   
   def show
-    @track_url = @band.soundcloud
-    @embed_info = @client.get('/oembed', :url => @track_url )
+    unless @band.soundcloud == nil
+      @track_url = @band.soundcloud
+      @embed_info = @client.get('/oembed', :url => @track_url )
+    end
     unless @band.twitter == nil
       @tweet_url = @band.twitter.gsub(/^[^_]*twitter.com\//, '')
     end
