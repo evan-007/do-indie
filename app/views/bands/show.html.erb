@@ -6,8 +6,17 @@
 
 <iframe width="425" height="349" src="http://www.youtube.com/embed/<%= @band.youtube %>" frameborder="0" allowfullscreen></iframe>
 <%= @band.facebook %>
-<%= @band.soundcloud %>
-<%= @embed_info['html'].html_safe %>
+<% unless @band.twitter = nil %>
+<p> <%= @band.name %>'s latest tweets:</p>
+<ul>
+  <% twitter_client.user_timeline("#{@tweet_url}").take(3).each do |tweet| %>
+    <li><%= tweet.text.html_safe %></li>
+    <% end %>
+  <% end %>
+</ul>
+<% unless @band.soundcloud == nil %>
+  <%= @embed_info['html'].html_safe %>
+<% end %>
 <%= @band.contact %>
 <%= @band.site %>
 <%= @band.label %>

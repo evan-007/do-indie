@@ -16,6 +16,7 @@ gem 'aws-sdk'
 gem 'ckeditor'
 gem 'soundcloud'
 gem 'omniauth-facebook'
+gem 'twitter'
 
 group :doc do
   gem 'sdoc', require: false
