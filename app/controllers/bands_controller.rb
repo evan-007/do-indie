@@ -2,6 +2,7 @@ class BandsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :find_friendly, only: [:show, :edit, :update, :destroy]
   before_action :all_genres, only: [:new, :edit]
+  before_action :soundcloud, only: [:show]
   
   def index
     @bands = Band.search_and_order(params[:search], params[:page])
@@ -28,6 +29,9 @@ class BandsController < ApplicationController
   end
   
   def show
+    @track_url = @band.soundcloud
+    @embed_info = @client.get('/oembed', :url => @track_url)
+
   end
   
   def edit
@@ -78,6 +82,10 @@ class BandsController < ApplicationController
 
   def find_friendly
     @band = Band.friendly.find(params[:id])
+  end
+  
+  def soundcloud
+    @client = Soundcloud.new(:client_id => 'b8e640fd38bce5816e3e15ca83bc75cc')
   end
 
   
