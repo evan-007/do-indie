@@ -50,6 +50,7 @@
 <% end %>
 
 <% if current_user && current_user.admin == true %>
+    <%= link_to "Edit this event", edit_event_path(@event) %> 
 	    <p>Hi, <%= current_user.username %>! Only you can see this part. Do you need to add bands?</p>
 	    <%= form_tag(event_bands_path, method: 'post') do %>
 	    <%= label_tag(:event_band, "Add a band") %>
