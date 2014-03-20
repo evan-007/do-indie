@@ -4,7 +4,7 @@ class UserFansController < ApplicationController
 		@user_fans = current_user.user_fans.build(band_id: params[:band_id])
 		if @user_fans.save
 			flash[:notice] = "You're a fan!"
-			redirect_to bands_path
+			redirect_to(:back)
 		else
 			flash[:notice] = "You can't do that!"
 		end
@@ -13,10 +13,10 @@ class UserFansController < ApplicationController
 	def destroy
 		if @user_fan.destroy
 			flash[:notice] = "You're no longer a fan :("
-			redirect_to bands_path
+			redirect_to(:back)
 		else
 			flash[:notice] = "You can't do that"
-			redirect_to bands_path
+			redirect_to(:back)
 		end
 	end
 
@@ -26,7 +26,7 @@ class UserFansController < ApplicationController
 	  # end
 
 	  def get_user_fans
-	  	@user_fan = current_user.user_fans.where(band_id: params[:id]).first
+      @user_fan = current_user.user_fans.where(band_id: params[:band_id]).first
 	  end
 
 end

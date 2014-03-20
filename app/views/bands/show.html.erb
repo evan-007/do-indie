@@ -1,32 +1,52 @@
-<h2><%= @band.name %></h2><br/>
-<h3><%= @band.korean_name %></h3><br/>
-<%= image_tag(@band.avatar :medium) %>
-<p><%= @band.en_bio %></p>
-<%= @band.twitter %><br />
-
-<iframe width="425" height="349" src="http://www.youtube.com/embed/<%= @band.youtube %>" frameborder="0" allowfullscreen></iframe>
-<%= @band.facebook %>
-<% unless @band.twitter = nil %>
-<p> <%= @band.name %>'s latest tweets:</p>
-<ul>
-  <% twitter_client.user_timeline("#{@tweet_url}").take(3).each do |tweet| %>
-    <li><%= tweet.text.html_safe %></li>
-    <% end %>
-  <% end %>
-</ul>
-<% unless @band.soundcloud == nil %>
-  <%= @embed_info['html'].html_safe %>
+<div class="row">
+  <div class="col-md-6">
+    <%= image_tag(@band.avatar :medium) %>
+    <h2><%= @band.name %></h2>
+    <h3><%= @band.korean_name %></h3>
+    <p>Fans: <%= @band.fans %></p>
+    <% if current_user && current_user.user_fans.where(band_id: @band.id).count != 0 %>
+<%= link_to "Unlike", user_fan_path(band_id: @band.id), method: 'delete', class: "btn btn-default" %>
+<% elsif current_user %>
+	<%= link_to "Like", user_fans_path(band_id: @band.id), method: 'post', class: "btn btn-default" %>
 <% end %>
-<%= @band.contact %>
-<%= @band.site %>
-<%= @band.label %>
-<p>Genres:
-	<% @band.genres.each do |genre| %>
-		<%= link_to genre.name, genre_path(genre.name) %>
-	<% end %>
-</p>
+    
+  </div>
+  
+  <div class="col-md-6">
+    <% unless @band.soundcloud == nil %>
+      <%= @embed_info['html'].html_safe %>
+    <% end %>
+    <% unless @band.twitter = nil %>
+      <p> Latest tweets:</p>
+      <ul>
+        <% twitter_client.user_timeline("#{@tweet_url}").take(3).each do |tweet| %>
+          <li><%= tweet.text.html_safe %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div><!--row-->
 
 
+<p><%= @band.en_bio.html_safe %></p>
+<div class="row">
+  <div class="col-md-6">
+    <div class="video-container">
+      <iframe width="425" height="349" src="http://www.youtube.com/embed/<%= @band.youtube %>" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <%= @band.facebook %>
+    <%= @band.contact %>
+    <%= @band.site %>
+    <%= @band.label %>
+    <p>Genres:
+	    <% @band.genres.each do |genre| %>
+		    <%= link_to genre.name, genre_path(genre.name) %>
+	    <% end %>
+    </p>
+  </div>
+</div>
 
 
 
@@ -41,11 +61,7 @@
 	<p><%= t(:band_request) %> <%= t(:login_request) %><p>
 <% end %>
 
-<% if current_user && current_user.user_fans.where(band_id: @band.id).count != 0 %>
-<%= link_to "Unlike", user_fan_path(band_id: @band.id), method: 'delete', class: "btn btn-default" %>
-<% elsif current_user %>
-	<%= link_to "Like", user_fans_path(band_id: @band.id), method: 'post', class: "btn btn-default" %>
-<% end %>
+
 
 <% if current_user && current_user.admin == true %>
   <%= link_to "Edit this band", edit_band_path(@band) %>
