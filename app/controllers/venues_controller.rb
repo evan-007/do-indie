@@ -4,7 +4,7 @@ class VenuesController < ApplicationController
   before_action :get_cities, only: [:new, :edit]
   
   def index
-    @venues = Venue.search_and_order(params[:search], params[:page])
+    @venues = Venue.index_search(params[:query], params[:page])
     @cities = City.all
   end
   

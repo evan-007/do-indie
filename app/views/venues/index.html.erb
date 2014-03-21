@@ -1,3 +1,10 @@
+<%= form_tag venues_path, method: :get do %>
+  <p>
+    <%= text_field_tag :query, params[:query], placeholder: "Enter a venue name or city" %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+
 <div class="row">
 	<% @venues.each do |venue| %>
 		<div class="col-sm-6 col-md-4">
