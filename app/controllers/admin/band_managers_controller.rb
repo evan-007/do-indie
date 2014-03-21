@@ -8,6 +8,7 @@ class Admin::BandManagersController < Admin::BaseController
 
   def new
     @manager = BandManager.new
+    @users = User.fuzzy_search(params[:query])
   end
 
   def create

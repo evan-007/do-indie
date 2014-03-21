@@ -1,13 +1,26 @@
+<%= form_tag new_admin_band_manager_path, method: :get do %>
+  <p>
+    <%= text_field_tag :query, params[:query], placeholder: "Enter username or email" %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+
+
+
+
 <p>
 	<%= link_to "Back", admin_band_managers_path %>
 </p>
 <%= form_for [:admin, @manager] do |f| %>
 
 <p>Select a user and band. This will create and approve manager permissions for the user.</p>
-<p>
-	<%= f.label :username %>
-	<%= f.collection_select(:user_id, User.all, :id, :name_with_email) %>
-</p>
+
+<% unless @users == nil %>
+  <% @users.each do |user| %>
+    <%= f.check_box (:user_id) %>
+    <%= f.label(:user_id, user.username) %>
+  <% end %>
+<% end %>
 
 <p>
 	<%= f.label :band %>

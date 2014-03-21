@@ -18,6 +18,7 @@ gem 'soundcloud'
 gem 'omniauth-facebook'
 gem 'twitter'
 gem 'pg'
+gem 'textacular', '~> 3.0'
 
 group :doc do
   gem 'sdoc', require: false
