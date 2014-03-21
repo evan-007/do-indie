@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140319105724) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "band_genres", force: true do |t|
     t.integer  "band_id"
     t.integer  "genre_id"
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 20140319105724) do
     t.datetime "updated_at"
   end
 
-  add_index "band_genres", ["band_id"], name: "index_band_genres_on_band_id"
-  add_index "band_genres", ["genre_id"], name: "index_band_genres_on_genre_id"
+  add_index "band_genres", ["band_id"], name: "index_band_genres_on_band_id", using: :btree
+  add_index "band_genres", ["genre_id"], name: "index_band_genres_on_genre_id", using: :btree
 
   create_table "band_managers", force: true do |t|
     t.integer  "user_id"
@@ -31,8 +34,8 @@ ActiveRecord::Schema.define(version: 20140319105724) do
     t.datetime "updated_at"
   end
 
-  add_index "band_managers", ["band_id"], name: "index_band_managers_on_band_id"
-  add_index "band_managers", ["user_id"], name: "index_band_managers_on_user_id"
+  add_index "band_managers", ["band_id"], name: "index_band_managers_on_band_id", using: :btree
+  add_index "band_managers", ["user_id"], name: "index_band_managers_on_user_id", using: :btree
 
   create_table "bands", force: true do |t|
     t.string   "name"
@@ -82,8 +85,8 @@ ActiveRecord::Schema.define(version: 20140319105724) do
     t.datetime "updated_at"
   end
 
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "event_bands", force: true do |t|
     t.integer  "band_id"
@@ -92,8 +95,8 @@ ActiveRecord::Schema.define(version: 20140319105724) do
     t.datetime "updated_at"
   end
 
-  add_index "event_bands", ["band_id"], name: "index_event_bands_on_band_id"
-  add_index "event_bands", ["event_id"], name: "index_event_bands_on_event_id"
+  add_index "event_bands", ["band_id"], name: "index_event_bands_on_band_id", using: :btree
+  add_index "event_bands", ["event_id"], name: "index_event_bands_on_event_id", using: :btree
 
   create_table "event_managers", force: true do |t|
     t.integer  "user_id"
@@ -103,8 +106,8 @@ ActiveRecord::Schema.define(version: 20140319105724) do
     t.datetime "updated_at"
   end
 
-  add_index "event_managers", ["event_id"], name: "index_event_managers_on_event_id"
-  add_index "event_managers", ["user_id"], name: "index_event_managers_on_user_id"
+  add_index "event_managers", ["event_id"], name: "index_event_managers_on_event_id", using: :btree
+  add_index "event_managers", ["user_id"], name: "index_event_managers_on_user_id", using: :btree
 
   create_table "event_venues", force: true do |t|
     t.integer  "venue_id"
@@ -113,8 +116,8 @@ ActiveRecord::Schema.define(version: 20140319105724) do
     t.datetime "updated_at"
   end
 
-  add_index "event_venues", ["event_id"], name: "index_event_venues_on_event_id"
-  add_index "event_venues", ["venue_id"], name: "index_event_venues_on_venue_id"
+  add_index "event_venues", ["event_id"], name: "index_event_venues_on_event_id", using: :btree
+  add_index "event_venues", ["venue_id"], name: "index_event_venues_on_venue_id", using: :btree
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -140,7 +143,7 @@ ActiveRecord::Schema.define(version: 20140319105724) do
     t.string   "slug"
   end
 
-  add_index "events", ["venue_id"], name: "index_events_on_venue_id"
+  add_index "events", ["venue_id"], name: "index_events_on_venue_id", using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -150,10 +153,10 @@ ActiveRecord::Schema.define(version: 20140319105724) do
     t.datetime "created_at"
   end
 
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "genres", force: true do |t|
     t.string   "name"
@@ -178,8 +181,8 @@ ActiveRecord::Schema.define(version: 20140319105724) do
     t.datetime "updated_at"
   end
 
-  add_index "user_fans", ["band_id"], name: "index_user_fans_on_band_id"
-  add_index "user_fans", ["user_id"], name: "index_user_fans_on_user_id"
+  add_index "user_fans", ["band_id"], name: "index_user_fans_on_band_id", using: :btree
+  add_index "user_fans", ["user_id"], name: "index_user_fans_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username",               default: "",    null: false
@@ -207,11 +210,11 @@ ActiveRecord::Schema.define(version: 20140319105724) do
     t.string   "uid"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["slug"], name: "index_users_on_slug", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "venue_cities", force: true do |t|
     t.integer  "venue_id"
@@ -220,8 +223,8 @@ ActiveRecord::Schema.define(version: 20140319105724) do
     t.datetime "updated_at"
   end
 
-  add_index "venue_cities", ["city_id"], name: "index_venue_cities_on_city_id"
-  add_index "venue_cities", ["venue_id"], name: "index_venue_cities_on_venue_id"
+  add_index "venue_cities", ["city_id"], name: "index_venue_cities_on_city_id", using: :btree
+  add_index "venue_cities", ["venue_id"], name: "index_venue_cities_on_venue_id", using: :btree
 
   create_table "venue_managers", force: true do |t|
     t.integer  "user_id"
@@ -231,8 +234,8 @@ ActiveRecord::Schema.define(version: 20140319105724) do
     t.datetime "updated_at"
   end
 
-  add_index "venue_managers", ["user_id"], name: "index_venue_managers_on_user_id"
-  add_index "venue_managers", ["venue_id"], name: "index_venue_managers_on_venue_id"
+  add_index "venue_managers", ["user_id"], name: "index_venue_managers_on_user_id", using: :btree
+  add_index "venue_managers", ["venue_id"], name: "index_venue_managers_on_venue_id", using: :btree
 
   create_table "venues", force: true do |t|
     t.string   "name"

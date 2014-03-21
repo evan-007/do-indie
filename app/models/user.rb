@@ -69,6 +69,14 @@ class User < ActiveRecord::Base
     end
   end
   
+  def self.text_search(query)
+    if query.present?
+      where("name @@ :q or content @@ :q", q: query)
+    else
+      scoped
+    end
+  end
+  
   def self.last_signups(count)
     order(created_at: :desc).limit(count).select("id","username","slug","created_at")
   end

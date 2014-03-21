@@ -17,6 +17,7 @@ gem 'ckeditor'
 gem 'soundcloud'
 gem 'omniauth-facebook'
 gem 'twitter'
+gem 'pg'
 
 group :doc do
   gem 'sdoc', require: false
@@ -24,7 +25,6 @@ end
 
 # development gems
 group :development, :test do
-  gem 'sqlite3', '~> 1.3.8'    # dev & test database
   gem 'figaro', '~> 0.7.0'     # env variables
   gem "faker"
 end
@@ -40,7 +40,6 @@ gem 'font-awesome-sass', '~> 4.0.2'
 
 # production gems for heroku
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end
 
