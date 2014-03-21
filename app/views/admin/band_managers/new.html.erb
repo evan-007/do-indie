@@ -1,3 +1,5 @@
+<p>First, search for a user by entering their email or username, then select a user and band. This will create and approve manager permissions for the user.</p>
+
 <%= form_tag new_admin_band_manager_path, method: :get do %>
   <p>
     <%= text_field_tag :query, params[:query], placeholder: "Enter username or email" %>
@@ -5,15 +7,8 @@
   </p>
 <% end %>
 
-
-
-
-<p>
-	<%= link_to "Back", admin_band_managers_path %>
-</p>
 <%= form_for [:admin, @manager] do |f| %>
 
-<p>Select a user and band. This will create and approve manager permissions for the user.</p>
 
 <% unless @users == nil %>
   <% @users.each do |user| %>
@@ -29,3 +24,7 @@
 <%= hidden_field_tag(:approved, true) %>
 <%= f.submit %>
 <% end %>
+
+<p>
+  <%= link_to "Back", admin_band_managers_path %>
+</p>
