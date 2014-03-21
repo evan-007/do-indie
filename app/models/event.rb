@@ -8,7 +8,10 @@ class Event < ActiveRecord::Base
 	has_many :bands, through: :event_bands
 	has_many :event_managers
 	has_many :users, through: :event_managers
-	scope :upcoming, -> {where(["date > ?", Date.yesterday])}
+	scope :upcoming, -> { where(["date > ?", Date.yesterday]) }
+	scope :approved, -> { where(approved: true) }
+	scope :unapproved, -> { where(approved: false) }
+
 	# has_many :event_venues
 	# has_many :venues, through: :event_venues
 	paginates_per 100 #fix pagination
@@ -21,9 +24,9 @@ class Event < ActiveRecord::Base
 	    if search
 			where("name LIKE ?", "%#{search.downcase}%").order(
 	      	name: :asc
-		    ).page page_number
+		    ).approved.upcoming.page page_number
 	    else
-			order(name: :asc).page page_number
+			order(name: :asc).approved.upcoming.page page_number
 	    end
 	end
 end

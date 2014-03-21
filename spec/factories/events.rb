@@ -7,5 +7,11 @@ FactoryGirl.define do
     price "$1000"
     info "it's a massive party"
     date Date.tomorrow
+    approved true
+
+    factory :unapproved_event do
+    	name "evan's birthday"
+    	approved false
+    end
   end
 end

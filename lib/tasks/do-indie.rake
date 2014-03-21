@@ -262,6 +262,10 @@ task :approve_all => :environment do
   @venues.each do |venue|
     venue.update(approved: true)
   end
+  @events = Event.all
+  @events.each do |event|
+    event.update(approved: true)
+  end
 end
 
 #for heroku and ckeditor
