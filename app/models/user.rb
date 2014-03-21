@@ -71,9 +71,9 @@ class User < ActiveRecord::Base
   
   def self.text_search(query)
     if query.present?
-      where("name @@ :q or content @@ :q", q: query)
+      where("username @@ :q or email @@ :q", q: query)
     else
-      scoped
+      all
     end
   end
   
