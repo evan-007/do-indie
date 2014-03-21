@@ -31,7 +31,9 @@ feature "Admin band managers" do
 		visit admin_root_en_path
 		click_link("Band Managers")
 		click_link("New band manager")
-		select(@user2.username, from: "band_manager[user_id]")
+		fill_in ("query"), with: @user2.username
+		click_button "Search"
+		check("band_manager[user_id]")
 		select(@band.name, from: "band_manager[band_id]")
 		click_button ("Create Band manager")
 		expect(page).to have_content("created manager")

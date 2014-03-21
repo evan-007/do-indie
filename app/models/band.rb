@@ -45,9 +45,9 @@ class Band < ActiveRecord::Base
   
   def self.index_search(query, page_number)
     if query.present?
-      self.fuzzy_search(query).page page_number
+      self.approved.fuzzy_search(query).page page_number
     else
-      order(approved: :asc).page page_number
+      approved.order(approved: :asc).page page_number
     end
   end
 end
