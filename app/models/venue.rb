@@ -30,4 +30,14 @@ class Venue < ActiveRecord::Base
 			order(name: :asc).approved.page page_number
 	    end
 	end
+
+	def self.admin_search(search, page_number)
+	    if search
+			where("name LIKE ?", "%#{search.downcase}%").order(
+	      	approved: :asc
+		    ).page page_number
+	    else
+			order(approved: :asc).page page_number
+	    end
+	end
 end

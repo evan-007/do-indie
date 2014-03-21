@@ -8,7 +8,7 @@ class Admin::VenuesController < Admin::BaseController
 
 
   def index
-    @venues = Venue.search_and_order(params[:search], params[:page])
+    @venues = Venue.admin_search(params[:search], params[:page])
   end
 
   def show
@@ -49,7 +49,8 @@ class Admin::VenuesController < Admin::BaseController
     :ko_bio,
     :facebook,
     :cafe,
-    :website
+    :website,
+    :approved
     )
   end
 
