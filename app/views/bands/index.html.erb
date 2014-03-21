@@ -1,4 +1,9 @@
-
+<%= form_tag bands_path, method: :get do %>
+  <p>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
 <div class="row">
 	<% @bands.each do |band| %>
 		<div class="col-sm-6 col-md-4">
