@@ -253,10 +253,14 @@ task :photo_dump => :environment do
   end
 end
 
-task :band_approval => :environment do 
+task :approve_all => :environment do 
   @bands = Band.all
   @bands.each do |band|
     band.update(approved: true)
+  end
+  @venues = Venue.all
+  @venues.each do |venue|
+    venue.update(approved: true)
   end
 end
 

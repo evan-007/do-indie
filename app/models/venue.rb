@@ -8,6 +8,8 @@ class Venue < ActiveRecord::Base
 	has_many :users, through: :venue_managers
 	has_many :venue_cities
 	has_many :cities, through: :venue_cities
+	scope :approved, -> { where(approved: true) }
+	scope :unapproved, -> { where(approved: false) }
 
 	paginates_per 100 #fix pagination
 
@@ -23,9 +25,9 @@ class Venue < ActiveRecord::Base
 	    if search
 			where("name LIKE ?", "%#{search.downcase}%").order(
 	      	name: :asc
-		    ).page page_number
+		    ).approved.page page_number
 	    else
-			order(name: :asc).page page_number
+			order(name: :asc).approved.page page_number
 	    end
 	end
 end

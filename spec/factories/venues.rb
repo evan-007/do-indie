@@ -9,5 +9,11 @@ FactoryGirl.define do
     facebook "facebook.com/ellui"
     cafe "cafe.naver.com/ellui"
     website "ellui.com"
+    approved true
+
+    factory :unapproved_venue do
+    	name "evan's club"
+    	approved false
+    end
   end
 end

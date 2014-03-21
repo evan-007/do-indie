@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319105724) do
+ActiveRecord::Schema.define(version: 20140321111059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -269,6 +269,7 @@ ActiveRecord::Schema.define(version: 20140319105724) do
     t.integer  "minimap_file_size"
     t.datetime "minimap_updated_at"
     t.string   "slug"
+    t.boolean  "approved",             default: false
   end
 
 end
