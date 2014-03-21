@@ -23,4 +23,13 @@ feature "Admin event panel" do
 		click_button "Update event"
 		expect(page).to have_content("updated")
 	end
+
+	scenario "admin users can approve events" do
+		@event2 = create(:unapproved_event)
+		visit admin_events_en_path
+		click_link @event2.name.capitalize
+		select ('yes'), from: "event[approved]"
+		click_button "Update event"
+		expect(page).to have_content("updated")
+	end
 end

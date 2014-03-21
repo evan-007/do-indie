@@ -70,12 +70,20 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <%= f.label :approved %>    
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.select(:approved, options_for_select([["no", false], ["yes", true]] ), class: "form-control") %> 
+        </div>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-sm-6">
         <%= f.submit "Update event", class: "btn btn-danger" %>
       </div>
     </div>    
-    
     <% end %>
 
   </div>

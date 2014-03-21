@@ -8,7 +8,7 @@ class Admin::EventsController < Admin::BaseController
   
 
   def index
-    @events = Event.search_and_order(params[:search], params[:page])
+    @events = Event.admin_search(params[:search], params[:page])
   end
   
   def show
@@ -47,7 +47,7 @@ class Admin::EventsController < Admin::BaseController
   end
   
   def event_params
-    params.require(:event).permit(:name, :contact, :info, :price, :date, :time, :venue_id)
+    params.require(:event).permit(:name, :contact, :info, :price, :date, :time, :venue_id, :approved)
   end
   
 end

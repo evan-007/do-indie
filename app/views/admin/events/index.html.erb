@@ -18,10 +18,7 @@
   <tr>
     <th>Event ID</th>
     <th>Name</th>
-    <th>Contact</th>
-    <th>Price</th>
-    <th>Info</th>
-    <th>Date</th>
+    <th>Approved</th>
     <th>Time</th>
     <th>Venue</th>
     <th>Created at</th>
@@ -32,10 +29,7 @@
   <tr>
     <td><%= event.id %></td>
     <td><%= link_to event.name.capitalize, admin_event_path(event) %></td>
-    <td><%= event.contact %></td>
-    <td><%= event.price  %></td>
-    <td><%= event.info %></td>
-    <td><%= event.date %></td>
+    <td><%= event.approved %></td>
     <td><%= event.time %></td>
     <% if event.venue != nil %>
     <td><%= event.venue.name %></td>
