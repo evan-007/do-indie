@@ -26,7 +26,7 @@ ko:
   event_request: "missing"
   pending_approval: "missing"
   venue_request: "missing"
-  past_events: "missing"
+  past_events: "지난 공연"
 
   #i18n translations
   date:
