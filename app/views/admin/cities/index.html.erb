@@ -1,6 +1,8 @@
 <h1>City <small>Admin</small></h1>
 <p><%= link_to "Back to Admin", admin_root_path %></p>
 
+<p><%= link_to "New City", new_admin_city_path %></p>
+
 <div class="text-center">
   <p><%= page_entries_info @cities %></p>
   <%= paginate @cities %>

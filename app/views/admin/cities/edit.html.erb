@@ -5,33 +5,16 @@
     </h1>
     <p><%= link_to "Back to index", admin_cities_path %></p>
 
-    <%= form_for [:admin, @city], :html => { :role => "form" } do |f| %>
-    
-    <div class="form-group">
-      <%= f.label :en_name %>
-      <div class="row">
-        <div class="col-sm-6">
-          <%= f.text_field :en_name %>  
-        </div>
-      </div>
-    </div>
+    <%= render 'form' %>
 
-    <div class="form-group">
-      <%= f.label :ko_name %>
-      <div class="row">
-        <div class="col-sm-6">
-          <%= f.text_field :ko_name %>  
-        </div>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-sm-6">
-        <%= f.submit "Update city", class: "btn btn-danger" %>
-      </div>
-    </div>    
-    
-    <% end %>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <p>
+      <%= link_to "Delete this city", admin_city_path, method: 'delete', class: "btn btn-danger",  data: {confirm: "Are you sure? You can't undo this!"} %>
+    </p>
 
   </div>
 </div>
