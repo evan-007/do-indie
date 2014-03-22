@@ -511,3 +511,59 @@ body {
 .form-control.half {
   width: 50%
 }
+
+/* social icons */
+
+.socials li a {
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+    display: block;
+    height: 36px;
+    text-indent: -9999px;
+    width: 36px;
+  }
+
+.socials li {
+    display: inline;
+    float: left;
+  }
+
+.social-facebook {
+    background-image: image-url("facebook.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: black;
+  }
+
+.social-twitter:hover{
+    background-color: #198CAF;
+  }
+
+.social-facebook:hover{
+    background-color: #3B5998;
+  }
+
+.social-naver:hover{
+    background-color: #3B5998;
+  }
+  
+.social-twitter {
+    background-image: image-url("twitter.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: black;
+  }
+
+  .social-naver {
+    background-image: image-url("naver.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: black;
+  }
+.socials {
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
