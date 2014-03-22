@@ -5,7 +5,7 @@
 	<h3><%= @event.date %></h3>
 
 	<%= @event.time %>
-	<% unless @event.ticket == false %>
+	<% unless @event.ticket.blank? %>
 		<p>Tickets available</p>
 		<p>Advance ticket price <%= @event.price %></p>
 		<p>Door price: <%= @event.door_price %></p>

@@ -1,7 +1,7 @@
 <%= @venue.name %>
 <div class="row">
   <div class="col-md-6">
-    <% unless @venue.twitter = nil %>
+    <% unless @venue.twitter.blank? %>
       <p> Latest tweets:</p>
       <ul>
         <% twitter_client.user_timeline("#{@tweet_url}").take(3).each do |tweet| %>
@@ -9,7 +9,7 @@
         <% end %>
       </ul>
     <% end %>
-    <% unless @venue.small_map == nil %>
+    <% unless @venue.small_map.blank? %>
 	    <%= image_tag @venue.small_map %>
     <% end %>
   </div>
@@ -42,7 +42,7 @@
 
 
 
-<% unless @venue.latitude == nil %>
+<% unless @venue.latitude.blank? %>
 <script type="text/javascript">
 	handler = Gmaps.build('Google');
 		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
@@ -59,11 +59,13 @@
 	<p>Uh-oh, we don't have the address for this venue yet!</p>
 <% end %>
 
-<p>
-<% @venue.venue_cities.each do |venue_city| %>
-	<%= link_to venue_city.city.en_name+"-"+venue_city.city.ko_name, city_path(venue_city.city.en_name) %> 
-<% end %>
-</p>
+
+  <% @venue.venue_cities.each do |venue_city| %>
+  <p>
+  	<%= link_to "#{venue_city.city.en_name}"+"-"+"#{venue_city.city.ko_name}", city_path(venue_city.city.en_name) %> 
+  <% end %>
+  </p>
+
 
 <% if current_user && current_user.venue_managers.where(venue_id: @venue.id).count == 0 %>
 	<p><%= t(:venue_request) %> <%= link_to t(:manager_request), venue_managers_path(venue_id: @venue.id), method: 'post' %>.</p>

@@ -30,7 +30,7 @@ class BandsController < ApplicationController
   end
   
   def show
-    unless @band.soundcloud == nil
+    unless @band.soundcloud.blank?
       @track_url = @band.soundcloud
       @embed_info = @client.get('/oembed', :url => @track_url )
     end

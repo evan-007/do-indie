@@ -13,30 +13,39 @@
   </div>
   
   <div class="col-md-6">
-    <% unless @band.soundcloud == nil %>
+    <% unless @band.soundcloud.blank? %>
       <%= @embed_info['html'].html_safe %>
+    <% else %>
+      <p>Yikes! This band's soundcloud link is missing. Do you know it? Request manager status below.</p>
     <% end %>
-    <% unless @band.twitter = nil %>
+    <% unless @band.twitter.blank? %>
       <p> Latest tweets:</p>
       <ul>
         <% twitter_client.user_timeline("#{@tweet_url}").take(3).each do |tweet| %>
           <li><%= tweet.text.html_safe %></li>
         <% end %>
       </ul>
+      <% else %>
+      <p>Yikes! This band's twitter link is missing. Do you know it? Request manager status below.</p>
     <% end %>
   </div>
 </div><!--row-->
 
-<% unless @band.en_bio == nil %>
+<% unless @band.en_bio.blank? %>
   <p><%= @band.en_bio.html_safe %></p>
 <% end %>
-<div class="row">
-  <div class="col-md-6">
-    <div class="video-container">
-      <iframe width="100%" height="349" src="http://www.youtube.com/embed/<%= @band.youtube %>" frameborder="0" allowfullscreen></iframe>
+<% unless @band.youtube.blank? %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="video-container">
+        <iframe width="100%" height="349" src="http://www.youtube.com/embed/<%= @band.youtube %>" frameborder="0" allowfullscreen></iframe>
+      </div>
     </div>
-  </div>
   <div class="col-md-6">
+    <% else %>
+      <p>Yikes! This band's youtube info is missing. Do you know it? Request manager status below.</p>
+<% end %>
+
     <%= @band.facebook %>
     <%= @band.contact %>
     <%= @band.site %>
