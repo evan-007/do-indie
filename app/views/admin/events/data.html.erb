@@ -14,7 +14,7 @@
 <% end %>
 
 <% unless @start.blank? %>
-	<p>Gigs on Doindie - <%= @start %> - <% @end %></p>
+	<p>Gigs on Doindie - <%= @start %> - <%= @end %></p>
 <% end %>
 <% @events.each do |event| %>
 	<p><%= event.name %><br />
