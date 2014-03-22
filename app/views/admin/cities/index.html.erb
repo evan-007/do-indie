@@ -1,0 +1,39 @@
+<h1>City <small>Admin</small></h1>
+<p><%= link_to "Back to Admin", admin_root_path %></p>
+
+<div class="text-center">
+  <p><%= page_entries_info @cities %></p>
+  <%= paginate @cities %>
+</div>
+
+<%= form_tag admin_cities_path, method: 'get', html: {role: "form"} do %>
+  <p>
+    <%= text_field_tag :search, params[:search], placeholder: "English only :(" %>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-sm btn-primary" %>
+    <%= link_to "All", admin_cities_path, {class: "btn btn-sm btn-link"} %>
+  </p>
+<% end %>
+
+<table class="table table-striped">
+  <tr>
+    <th>City ID</th>
+    <th>English Name</th>
+    <th>Korean Name</th>
+  </tr>
+  
+  <% @cities.each do |city| %>
+  
+  <tr>
+    <td><%= city.id %></td>
+    <td><%= link_to city.en_name, admin_city_path(city) %></td>
+    <td><%= city.ko_name %></td>
+  </tr>
+  
+  <% end %>
+  
+</table>
+
+<div class="text-center">
+  <p><%= page_entries_info @cities %></p>
+  <%=  paginate @cities %>
+</div>

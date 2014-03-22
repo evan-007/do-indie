@@ -11,6 +11,6 @@ class Admin::BaseController < ApplicationController
     @managers = BandManager.where(approved: false).count
     @venue_managers = VenueManager.where(approved: false).count
     @event_managers = EventManager.where(approved: false).count
-
+    @cities = City.where(ko_name: nil).count
   end
 end
