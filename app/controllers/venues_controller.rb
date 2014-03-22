@@ -62,7 +62,9 @@ class VenuesController < ApplicationController
   end
 
   def venue_params
-    params.require(:venue).permit(:name, :phone, :address, :en_bio, :ko_bio, :facebook, :cafe, :website)
+    params.require(:venue).permit(:name, :phone, :address,
+     :en_bio, :ko_bio, :facebook, :cafe, :website,
+     :photo, :small_map)
   end
 
   def get_cities

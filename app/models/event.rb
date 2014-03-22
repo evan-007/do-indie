@@ -47,4 +47,8 @@ class Event < ActiveRecord::Base
 	      approved.upcoming.order(approved: :asc).page page_number
 	    end
 	end
+
+	def self.search_by_date(start_date, end_date)
+		Event.where(["date > ?", start_date]).where(["date < ? ", end_date])
+	end
 end

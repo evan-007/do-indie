@@ -1,6 +1,8 @@
 <h1>Events <small>Admin</small></h1>
 <p><%= link_to "Back to Admin", admin_root_path %></p>
 
+<p><%= link_to "Get raw event data", admin_events_data_path %></p>
+
 <div class="text-center">
   <p><%= page_entries_info @events %></p>
   <%= paginate @events %>

@@ -35,6 +35,16 @@ class Admin::EventsController < Admin::BaseController
       render :edit
     end
   end
+
+  def data
+    if params[:start]
+      @start = Date.parse("#{params[:start]['day']}-#{params[:start]['month']}-#{params[:start]['year']}")   
+      @end = Date.parse("#{params[:end]['day']}-#{params[:end]['month']}-#{params[:end]['year']}")
+    end
+    @events = Event.search_by_date(@start, @end)
+    @my_date = Date.today
+    @end_date = Date.tomorrow
+  end
   
   
   private 

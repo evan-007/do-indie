@@ -17,6 +17,8 @@
 	<%= f.text_field :website, class: "form-control half" %><br />
 	<%= f.label :photo %>
 	<%= f.file_field :avatar %><br />
+	<%= f.label :map %>
+	<%= f.file_field :small_map %><br />
 	<% if @venue.id != nil %>
 		<p>This Venue is already linked to: <% @venue.cities.each do |city| %>
 			<%= city.en_name %> - <%= city.ko_name %></p>

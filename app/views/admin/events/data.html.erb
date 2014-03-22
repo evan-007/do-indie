@@ -1,0 +1,28 @@
+<%= form_tag admin_events_data_path, method: 'get', html: {role: "form"} do %>
+<p>
+	<%= label_tag :start_date %>
+	<%= select_date(@my_date, prefix: 'start') %>
+
+</p>
+<p>
+	<%= label_tag :end_date %>
+	<%= select_date(@end_date, prefix: 'end') %>
+</p>
+<p>
+	<%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+</p>
+<% end %>
+
+<% unless @start.blank? %>
+	<p>Gigs on Doindie - <%= @start %> - <% @end %></p>
+<% end %>
+<% @events.each do |event| %>
+	<p><%= event.name %><br />
+	<% unless event.venue.blank? %>
+		@<%= event.venue.name %> (<%= event.time %>)<br />
+	<% end %>
+	<% event.bands.each do |band| %>
+	<%= band.name %> /
+	<% end %><br />
+	http://doindie.ko.kr<%= url_for event %></p>
+<% end %>
