@@ -1,0 +1,30 @@
+<p>First, search for a user by entering their email or username, then select a user and event. This will create and approve manager permissions for the user.</p>
+
+<%= form_tag new_admin_event_manager_path, method: :get do %>
+  <p>
+    <%= text_field_tag :query, params[:query], placeholder: "Enter username or email" %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+
+<%= form_for [:admin, @manager] do |f| %>
+
+
+<% unless @users == nil %>
+  <% @users.each do |user| %>
+    <%= f.check_box (:user_id) %>
+    <%= f.label(:user_id, user.username) %>
+  <% end %>
+<% end %>
+
+<p>
+	<%= f.label :event %>
+	<%= f.select(:event_id, options_for_select(Event.all.collect {|e| [ e.name, e.id ] }, { include_blank: true })) %>
+</p>
+<%= hidden_field_tag(:approved, true) %>
+<%= f.submit %>
+<% end %>
+
+<p>
+  <%= link_to "Back", admin_event_managers_path %>
+</p>

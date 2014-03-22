@@ -6,6 +6,22 @@ class Admin::EventManagersController < Admin::BaseController
     :destroy
   ]
   
+  def new
+    @manager = EventManager.new
+    @users = User.fuzzy_search(params[:query])
+  end
+
+  def create
+    @manager = EventManager.new(manager_params)
+    if @manager.save
+      @manager.update(approved: true)
+      flash[:notice] = "Successfully created manager!"
+      redirect_to admin_event_managers_en_path
+    else
+      flash[:notice] = "Didn't create the manager!"
+      redirect_to new_admin_event_manager_path
+    end
+  end
 
   def index
     @managers = EventManager.search_and_order(params[:search], params[:page])
@@ -42,7 +58,7 @@ class Admin::EventManagersController < Admin::BaseController
   end
   
   def manager_params
-    params.require(:event_manager).permit(:approved)
+    params.require(:event_manager).permit(:approved, :user_id, :event_id)
   end
   
 end
