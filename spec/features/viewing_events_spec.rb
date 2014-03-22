@@ -21,4 +21,10 @@ feature "Viewing events" do
 		visit events_en_path
 		expect(page).to_not have_content(@event2.name)
 	end
+
+	scenario "public users can view past events" do
+		@event.update(date: Date.yesterday)
+		visit past_events_en_path
+		expect(page).to have_content @event.name
+	end
 end

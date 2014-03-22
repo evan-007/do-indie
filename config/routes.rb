@@ -13,6 +13,7 @@ DoIndie::Application.routes.draw do
     get "/blog", to: "posts#index", as: "blog"
     get "/genres/:name", to: "genres#show", as: "genre"
     get "/cities/:en_name", to: "cities#show", as: "city"
+    get "/events/past", to: "events#past", as: "past_events"
   
     resources :bands, :venues, :events, :posts
     resources :user_fans, only: [:create, :destroy]

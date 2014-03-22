@@ -9,6 +9,7 @@ class Event < ActiveRecord::Base
 	has_many :event_managers
 	has_many :users, through: :event_managers
 	scope :upcoming, -> { where(["date > ?", Date.yesterday]) }
+	scope :past, -> { where(["date < ? ", Date.today]) }
 	scope :approved, -> { where(approved: true) }
 	scope :unapproved, -> { where(approved: false) }
 
@@ -45,6 +46,14 @@ class Event < ActiveRecord::Base
 	      self.approved.upcoming.fuzzy_search(query).page page_number
 	    else
 	      approved.upcoming.order(approved: :asc).page page_number
+	    end
+	end
+
+	def self.past_index_search(query, page_number)
+	    if query.present?
+	      self.approved.past.fuzzy_search(query).page page_number
+	    else
+	      approved.past.order(approved: :asc).page page_number
 	    end
 	end
 

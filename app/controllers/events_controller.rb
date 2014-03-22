@@ -23,19 +23,23 @@ class EventsController < ApplicationController
 		end
 	end
   
-  def edit
-  end
+	def edit
+	end
   
-  def update
-    @event.update(event_params)
-      if @event.save
-        flash[:notice] = "Event updated!"
-        redirect_to event_path(@event)
-      else
-        flash[:notice] = "Event wasn't updated!"
-        redirect_to event_edit_path(@event)
-    end
-  end
+	def update
+		@event.update(event_params)
+		if @event.save
+			flash[:notice] = "Event updated!"
+			redirect_to event_path(@event)
+		else
+			flash[:notice] = "Event wasn't updated!"
+			redirect_to event_edit_path(@event)
+		end
+	end
+
+	def past
+		@events = Event.past_index_search(params[:query], params[:page])
+	end
 
 	private
 	  def get_event
