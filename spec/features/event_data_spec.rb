@@ -10,6 +10,7 @@ feature "Event data" do
 	scenario "Admin users can access event data" do
 		visit admin_events_en_path
 		click_link "Get raw event data"
+		select "2013", from: "start[year]"
 		select "2016", from: "end[year]"
 		click_button "Search"
 		expect(page).to have_content (@event.name)

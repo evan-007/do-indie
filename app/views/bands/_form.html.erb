@@ -36,8 +36,10 @@
       <%= genre.name %>,
     <% end %><br /><br />
   <% end %>
-  <%= label_tag :genre %>
-  <%= select_tag(:genre, options_for_select(@genres.collect { |genre| [genre.name, genre.id] }.insert(0, ''))) %><br />
+  <p>
+    <%= f.label "Genres" %>
+    <%= f.collection_select :genre_ids, Genre.order(:name), :id, :name, {}, {multiple: true} %>
+  </p>
   <p>Genre not listed? Enter it's name in English below:</p>
   <%= label_tag :new_genre %>
   <%= text_field_tag :new_genre %><br />

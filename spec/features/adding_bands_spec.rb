@@ -13,7 +13,7 @@ feature "Adding bands" do
     fill_in 'Korean name', with: 'ㅁㄴㅇㄹ'
     fill_in 'Contact', with: "010-1234-5678"
     fill_in 'Soundcloud', with: "https://soundcloud.com/lukefair"
-    select @genre.name, from: "Genre"
+    select @genre.name, from: "band_genre_ids"
     click_button('Create Band')
     expect(page).to have_content("Band created!")
     expect(page).to have_content @genre.name

@@ -73,7 +73,8 @@ class BandsController < ApplicationController
     :site,
     :en_bio,
     :ko_bio,
-    :avatar
+    :avatar,
+    genre_ids: []
     )
   end
   
