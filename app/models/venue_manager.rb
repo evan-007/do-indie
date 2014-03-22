@@ -1,4 +1,5 @@
 class VenueManager < ActiveRecord::Base
+  validates :user_id, :venue_id, presence: true
   belongs_to :user
   belongs_to :venue
   scope :approved, -> { where(approved: true) }

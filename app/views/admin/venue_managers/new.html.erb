@@ -1,0 +1,30 @@
+<p>First, search for a user by entering their email or username, then select a user and venue. This will create and approve manager permissions for the user.</p>
+
+<%= form_tag new_admin_venue_manager_path, method: :get do %>
+  <p>
+    <%= text_field_tag :query, params[:query], placeholder: "Enter username or email" %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+
+<%= form_for [:admin, @manager] do |f| %>
+
+
+<% unless @users == nil %>
+  <% @users.each do |user| %>
+    <%= f.check_box (:user_id) %>
+    <%= f.label(:user_id, user.username) %>
+  <% end %>
+<% end %>
+
+<p>
+	<%= f.label :venue %>
+	<%= f.select(:venue_id, options_for_select(Venue.all.collect {|v| [ v.name, v.id ] }, { include_blank: true })) %>
+</p>
+<%= hidden_field_tag(:approved, true) %>
+<%= f.submit %>
+<% end %>
+
+<p>
+  <%= link_to "Back", admin_venue_managers_path %>
+</p>

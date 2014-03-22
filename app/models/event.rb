@@ -42,9 +42,9 @@ class Event < ActiveRecord::Base
 
 	def self.index_search(query, page_number)
 	    if query.present?
-	      self.approved.fuzzy_search(query).page page_number
+	      self.approved.upcoming.fuzzy_search(query).page page_number
 	    else
-	      approved.order(approved: :asc).page page_number
+	      approved.upcoming.order(approved: :asc).page page_number
 	    end
 	end
 end

@@ -6,6 +6,7 @@ feature "Admin venue managers" do
 	@venue = create(:venue)
 	@manager = create(:venue_manager, user_id: @user.id, venue_id: @venue.id)
 	@admin = create(:admin_user)
+	@user2 = create(:blogger)
 	sign_in @admin
 	end
 
@@ -25,4 +26,16 @@ feature "Admin venue managers" do
 	end
 
 	scenario "User gets email when approved?"
+
+	scenario "admin can create venue managers using usernames" do
+		visit admin_root_en_path
+		click_link("Venue Managers")
+		click_link("New venue manager")
+		fill_in ("query"), with: @user2.username
+		click_button "Search"
+		check("venue_manager[user_id]")
+		select(@venue.name, from: "venue_manager[venue_id]")
+		click_button ("Create Venue manager")
+		expect(page).to have_content("created manager")
+	end
 end

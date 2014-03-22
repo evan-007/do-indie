@@ -6,6 +6,22 @@ class Admin::VenueManagersController < Admin::BaseController
     :destroy
   ]
   
+  def new
+    @manager = VenueManager.new
+    @users = User.fuzzy_search(params[:query])
+  end
+
+  def create
+    @manager = VenueManager.new(manager_params)
+    if @manager.save
+      @manager.update(approved: true)
+      flash[:notice] = "Successfully created manager!"
+      redirect_to admin_venue_managers_en_path
+    else
+      flash[:notice] = "Didn't create the manager!"
+      redirect_to new_admin_venue_manager_path
+    end
+  end
 
   def index
     @managers = VenueManager.search_and_order(params[:search], params[:page])
@@ -47,7 +63,7 @@ class Admin::VenueManagersController < Admin::BaseController
   end
   
   def manager_params
-    params.require(:venue_manager).permit(:approved)
+    params.require(:venue_manager).permit(:approved, :venue_id, :user_id)
   end
   
 end
