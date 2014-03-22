@@ -547,7 +547,15 @@ body {
 .social-naver:hover{
     background-color: #3B5998;
   }
-  
+
+.en-flag:hover {
+  background-color: #3B5998
+}
+
+.ko-flag:hover {
+  background-color: #3B5998
+}
+
 .social-twitter {
     background-image: image-url("twitter.png");
     background-repeat: no-repeat;
@@ -555,7 +563,21 @@ body {
     background-color: black;
   }
 
-  .social-naver {
+.en-flag {
+    background-image: image-url("en.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: black;
+}
+
+.ko-flag {
+    background-image: image-url("ko.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: black;
+}
+
+.social-naver {
     background-image: image-url("naver.png");
     background-repeat: no-repeat;
     background-position: center center;
