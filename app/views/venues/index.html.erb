@@ -1,7 +1,7 @@
 <%= form_tag venues_path, method: :get do %>
   <p>
-    <%= text_field_tag :query, params[:query], placeholder: "Enter a venue name or city" %>
-    <%= submit_tag "Search", name: nil %>
+    <%= text_field_tag :query, params[:query], placeholder: "Enter a venue name or city", class: "form-control half" %>
+    <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
   </p>
 <% end %>
 
