@@ -12,7 +12,7 @@ class Admin::EventManagersController < Admin::BaseController
   end
 
   def create
-    @manager = EventManager.new(manager_params)
+    @manager = EventManager.new(event_id: params[:event_id], user_id: params[:user_id])
     if @manager.save
       @manager.update(approved: true)
       flash[:notice] = "Successfully created manager!"

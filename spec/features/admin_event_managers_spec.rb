@@ -36,9 +36,9 @@ feature "Admin event managers" do
 		click_link("New event manager")
 		fill_in ("query"), with: @user2.username
 		click_button "Search"
-		check("event_manager[user_id]")
-		select(@event.name, from: "event_manager[event_id]")
-		click_button ("Create Event manager")
+		check("user_id")
+		select(@event.name, from: "event_id")
+		click_button ("Save changes")
 		expect(page).to have_content("created manager")
 	end
 end
