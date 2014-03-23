@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>What's up <%= @user.username %>?</h1>
+    <p>
+      Your submission for <%= @band.name %> was approved, you can view it here:<br/>
+      http://doindie.ko.kr<%= url_for @band %>
+    </p>
+    <p>Thanks for your contribution and have a great day!</p>
+  </body>
+</html>

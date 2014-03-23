@@ -69,4 +69,5 @@ end
 # Capybara
 group :test do
   gem "capybara", '~> 2.2.1'
+  gem 'email_spec'
 end

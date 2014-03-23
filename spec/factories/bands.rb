@@ -10,6 +10,7 @@ FactoryGirl.define do
     slug ""
     approved true
     soundcloud "https://soundcloud.com/lukefair"
+    user nil
 
     factory :unapproved_band do
     	approved false

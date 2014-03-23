@@ -11,6 +11,7 @@ class Band < ActiveRecord::Base
 	validates :name, presence: true, uniqueness: true
 	scope :approved, -> { where(approved: true) }
 	scope :unapproved, -> { where(approved: false) }
+	after_save :approval_notification, if: :approved_changed?
 
 	paginates_per 50 #fix pagination
 
@@ -51,4 +52,10 @@ class Band < ActiveRecord::Base
       approved.order(approved: :asc).page page_number
     end
   end
+
+  private
+
+    def approval_notification
+    	UserMailer.band_approved_email(self).deliver
+	end
 end
