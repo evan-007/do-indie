@@ -15,7 +15,7 @@ feature "Adding bands" do
     fill_in 'Soundcloud', with: "https://soundcloud.com/lukefair"
     select @genre.name, from: "band_genre_ids"
     click_button('Create Band')
-    expect(page).to have_content("Band created!")
+    expect(page).to have_content("Band created")
     expect(page).to have_content @genre.name
   end
  
@@ -29,7 +29,7 @@ feature "Adding bands" do
     fill_in "new_genre", with: "Jazz"
     fill_in 'Soundcloud', with: "https://soundcloud.com/lukefair"
     click_button('Create Band')
-    expect(page).to have_content("Band created!")
+    expect(page).to have_content("Band created")
     expect(page).to have_content("Jazz")
   end
     

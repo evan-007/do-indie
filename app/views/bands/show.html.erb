@@ -18,16 +18,16 @@
     <% else %>
       <p>Yikes! This band's soundcloud link is missing. Do you know it? Request manager status below.</p>
     <% end %>
-    <% unless @band.twitter.blank? %>
+    <!--broken< % unless @band.twitter.blank? %>
       <p> Latest tweets:</p>
       <ul>
-        <% twitter_client.user_timeline("#{@tweet_url}").take(3).each do |tweet| %>
-          <li><%= tweet.text.html_safe %></li>
-        <% end %>
+        #< % twitter_client.user_timeline("#{@tweet_url}").take(3).each do |tweet| %>
+          <li>< %= tweet.text.html_safe %></li>
+        < % end %>
       </ul>
-      <% else %>
+      < % else %>
       <p>Yikes! This band's twitter link is missing. Do you know it? Request manager status below.</p>
-    <% end %>
+    < % end %> end-->
   </div>
 </div><!--row-->
 
