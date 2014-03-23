@@ -21,8 +21,8 @@ class BandsController < ApplicationController
       @genre.save
       @band.band_genres.create(genre_id: @genre.id)
       @band.band_genres.create(genre_id: params[:genre])
-      flash[:notice] = "Band created!"
-      redirect_to band_path(@band)
+      flash[:notice] = "Band created, we'll check it out and email you when it's approved."
+      redirect_to bands_path
     else
       flash[:notice] = "Band not created!"
       render :new
@@ -30,6 +30,10 @@ class BandsController < ApplicationController
   end
   
   def show
+    if @band.approved == false
+      flash[:notice] = "Sorry, this band hasn't been approved by Admin yet"
+      redirect_to bands_path
+    end
     unless @band.soundcloud.blank?
       @track_url = @band.soundcloud
       @embed_info = @client.get('/oembed', :url => @track_url )
@@ -94,6 +98,7 @@ class BandsController < ApplicationController
     @client = Soundcloud.new(:client_id => 'b8e640fd38bce5816e3e15ca83bc75cc')
   end
   
+
 
   
 

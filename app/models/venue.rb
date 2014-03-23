@@ -11,9 +11,10 @@ class Venue < ActiveRecord::Base
 	belongs_to :user
 	scope :approved, -> { where(approved: true) }
 	scope :unapproved, -> { where(approved: false) }
+	scope :localized, -> { where.not(latitude: nil) }
 	after_save :approval_notification, if: :approved_changed?
 
-	paginates_per 100 #fix pagination
+	paginates_per 100
 
 	has_attached_file :avatar, :styles => { :medium => "300x300#", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/

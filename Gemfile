@@ -18,7 +18,16 @@ gem 'soundcloud'
 gem 'omniauth-facebook'
 gem 'twitter'
 gem 'pg'
+gem 'unicorn'
+
+#for deploying
+gem 'capistrano','~>3.0.1'
+gem 'capistrano-rails','~>1.1.0'
+gem 'capistrano-bundler'
+gem 'capistrano-rbenv',"~>2.0"
+
 gem 'textacular', '~> 3.0'
+gem 'mail_form'
 
 group :doc do
   gem 'sdoc', require: false

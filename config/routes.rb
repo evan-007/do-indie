@@ -14,7 +14,9 @@ DoIndie::Application.routes.draw do
     get "/genres/:name", to: "genres#show", as: "genre"
     get "/cities/:en_name", to: "cities#show", as: "city"
     get "/events/past", to: "events#past", as: "past_events"
-  
+    get "contact", to: "messages#index", as: "contact"
+
+    resources :messages, only: [:index, :create]
     resources :bands, :venues, :events, :posts
     resources :user_fans, only: [:create, :destroy]
     resources :event_bands, only: [:create, :destroy]

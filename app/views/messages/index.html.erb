@@ -1,0 +1,16 @@
+<%= form_tag messages_path do %>
+
+<p>
+	<%= label_tag :name %>
+	<%= text_field_tag :name, nil, class: "form-control half" %>
+</p> 
+<p>
+	<%= label_tag :email %>
+	<%= text_field_tag :email, nil, class: "form-control half" %>
+</p> 
+<p>
+	<%= label_tag :message %>
+	<%= text_area_tag :message, nil, class: "form-control half" %>
+</p> 
+<%= submit_tag "Submit message" %>
+<% end %>
