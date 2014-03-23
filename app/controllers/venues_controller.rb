@@ -19,11 +19,11 @@ class VenuesController < ApplicationController
   end
 
   def new
-    @venue = Venue.new
+    @venue = current_user.venues.build
   end
 
   def create
-    @venue = Venue.create(venue_params)
+    @venue = current_user.venues.build(venue_params)
     if @venue.save
       @venue.venue_cities.create(city_id: params[:city])
       @city = City.new(en_name: params[:new_city])

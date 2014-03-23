@@ -19,9 +19,7 @@
     <th>Venue ID</th>
     <th>Name</th>
     <th>Approved?</th>
-    <th>Facebook</th>
-    <th>Cafe</th>
-    <th>Website</th>
+    <th>Created by</th>
     <th>Created at</th>
   </tr>
   
@@ -31,9 +29,11 @@
     <td><%= venue.id %></td>
     <td><%= link_to venue.name.capitalize, edit_admin_venue_path(venue.id) %></td>
     <td><%= venue.approved %></td>
-    <td><%= venue.facebook %></td>
-    <td><%= venue.cafe %></td>
-    <td><%= venue.website %></td>
+    <% unless venue.user_id.blank? %>
+    <td><%= "#{venue.user.username}" %></td>
+    <% else %>
+    <td></td>
+    <% end %>
     <td><%= time_ago_in_words(venue.created_at) %></td>
   </tr>
   

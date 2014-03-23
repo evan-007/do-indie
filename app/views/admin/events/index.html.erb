@@ -21,8 +21,8 @@
     <th>Event ID</th>
     <th>Name</th>
     <th>Approved</th>
-    <th>Time</th>
     <th>Venue</th>
+    <th>Created by</th>
     <th>Created at</th>
   </tr>
   
@@ -32,9 +32,13 @@
     <td><%= event.id %></td>
     <td><%= link_to event.name.capitalize, admin_event_path(event) %></td>
     <td><%= event.approved %></td>
-    <td><%= event.time %></td>
-    <% if event.venue != nil %>
+    <% unless event.venue.blank? %>
     <td><%= event.venue.name %></td>
+    <% else %>
+    <td></td>
+    <% end %>
+    <% unless event.user_id.blank? %>
+    <td><%= "#{event.user.username}" %></td>
     <% else %>
     <td></td>
     <% end %>
