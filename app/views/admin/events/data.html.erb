@@ -17,6 +17,7 @@
 	<p>Gigs on Doindie - <%= @start %> - <%= @end %></p>
 <% end %>
 <% @events.each do |event| %>
+	<p><%= event.date %><p>
 	<p><%= event.name %><br />
 	<% unless event.venue.blank? %>
 		@<%= event.venue.name %> (<%= event.time %>)<br />
