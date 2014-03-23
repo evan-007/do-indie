@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :managed_venues, :as => :venues, through: :venue_managers 
   has_many :event_managers
   has_many :managed_events, :as => :events, through: :event_managers
+  has_many :bands
   # Use friendly_id on Users
   extend FriendlyId
   friendly_id :friendify, use: :slugged

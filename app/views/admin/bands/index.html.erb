@@ -20,10 +20,6 @@
     <th>Name</th>
     <th>Korean Name</th>
     <th>Approved?</th>
-    <th>Facebook</th>
-    <th>Twitter</th>
-    <th>Site</th>
-    <th>Image</th>
     <th>Created At</th>
     <th>Created By</th>
   </tr>
@@ -35,12 +31,12 @@
     <td><%= link_to band.name.capitalize, admin_band_path(band) %></td>
     <td><%= band.korean_name %></td>
     <td><%= band.approved? %></td>
-    <td><%= band.facebook %></td>
-    <td><%= band.twitter %></td>
-    <td><%= band.site %></td>
-    <td>not done yet</td>
     <td><%= time_ago_in_words(band.created_at) %></td>
-    <td>not done yet</td>
+    <% unless band.user_id.blank? %>
+    <td><%= "#{band.user.username}" %></td>
+    <% else %>
+    <td></td>
+    <% end %>
   </tr>
   
   <% end %>

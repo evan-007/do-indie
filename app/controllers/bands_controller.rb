@@ -11,11 +11,11 @@ class BandsController < ApplicationController
   end
   
   def new
-    @band = Band.new
+    @band = current_user.bands.build
   end
   
   def create
-    @band = Band.new(band_params)
+    @band = current_user.bands.build(band_params)
     if @band.save
       @genre = Genre.new(name: params[:new_genre])
       @genre.save
@@ -74,6 +74,7 @@ class BandsController < ApplicationController
     :en_bio,
     :ko_bio,
     :avatar,
+    :user_id,
     genre_ids: []
     )
   end
