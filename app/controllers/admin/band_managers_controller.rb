@@ -12,7 +12,7 @@ class Admin::BandManagersController < Admin::BaseController
   end
 
   def create
-    @manager = BandManager.new(manager_params)
+    @manager = BandManager.new(band_id: params[:band_id], user_id: params[:user_id])
     if @manager.save
       @manager.update(approved: true)
       flash[:notice] = "Successfully created manager!"

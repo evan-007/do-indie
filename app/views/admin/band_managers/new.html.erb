@@ -7,22 +7,22 @@
   </p>
 <% end %>
 
-<%= form_for [:admin, @manager] do |f| %>
+<%= form_tag admin_band_managers_path, method: :post do %>
 
 
 <% unless @users == nil %>
   <% @users.each do |user| %>
-    <%= f.check_box (:user_id) %>
-    <%= f.label(:user_id, user.username) %>
+    <%= check_box_tag :user_id, user.id %>
+    <%= label_tag :user_id, user.username %>
   <% end %>
 <% end %>
 
 <p>
-	<%= f.label :band %>
-	<%= f.select(:band_id, options_for_select(Band.all.collect {|b| [ b.name, b.id ] }, { include_blank: true })) %>
+<%= label_tag :band %>
+  <%= select_tag(:band_id, options_for_select(Band.all.collect {|b| [ b.name, b.id ] }, { include_blank: true })) %>
 </p>
 <%= hidden_field_tag(:approved, true) %>
-<%= f.submit %>
+<%= submit_tag %>
 <% end %>
 
 <p>

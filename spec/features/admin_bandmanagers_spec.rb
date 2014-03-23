@@ -25,7 +25,10 @@ feature "Admin band managers" do
 		expect(page).to have_content("Updated permissions")
 	end
 
-	scenario "User gets email when approved?"
+	scenario "User gets email when approved?" do 
+		@manager.update(approved: true)
+		expect(open_last_email).to be_delivered_to @user.email
+	end
 
 	scenario "admin can create band managers using usernames" do
 		visit admin_root_en_path
@@ -33,9 +36,9 @@ feature "Admin band managers" do
 		click_link("New band manager")
 		fill_in ("query"), with: @user2.username
 		click_button "Search"
-		check("band_manager[user_id]")
-		select(@band.name, from: "band_manager[band_id]")
-		click_button ("Create Band manager")
+		check("user_id")
+		select(@band.name, from: "band_id")
+		click_button ("Save changes")
 		expect(page).to have_content("created manager")
 	end
 end
