@@ -11,7 +11,7 @@ class Band < ActiveRecord::Base
 	validates :name, presence: true, uniqueness: true
 	scope :approved, -> { where(approved: true) }
 	scope :unapproved, -> { where(approved: false) }
-	after_save :approval_notification, if: :approved_changed?
+	after_save :approval_notification, if: :approved_changed? && approved: true
 
 	paginates_per 50 #fix pagination
 
