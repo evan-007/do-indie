@@ -8,8 +8,10 @@ class Venue < ActiveRecord::Base
 	has_many :users, through: :venue_managers
 	has_many :venue_cities
 	has_many :cities, through: :venue_cities
+	belongs_to :user
 	scope :approved, -> { where(approved: true) }
 	scope :unapproved, -> { where(approved: false) }
+	after_save :approval_notification, if: :approved_changed?
 
 	paginates_per 100 #fix pagination
 
@@ -42,10 +44,18 @@ class Venue < ActiveRecord::Base
 	end
 
 	def self.index_search(query, page_number)
-    if query.present?
-      self.approved.fuzzy_search(query).page page_number
-    else
-      approved.order(approved: :asc).page page_number
-    end
-  end
+	    if query.present?
+	      self.approved.fuzzy_search(query).page page_number
+	    else
+	      approved.order(approved: :asc).page page_number
+	    end
+	end
+
+	private
+
+		def approval_notification
+			if self.approved == true && self.user != nil
+		    	UserMailer.venue_approved_email(self).deliver
+		    end
+		end
 end

@@ -12,6 +12,7 @@ class Event < ActiveRecord::Base
 	scope :past, -> { where(["date < ? ", Date.today]) }
 	scope :approved, -> { where(approved: true) }
 	scope :unapproved, -> { where(approved: false) }
+	after_save :approval_notification, if: :approved_changed?
 
 	# has_many :event_venues
 	# has_many :venues, through: :event_venues
@@ -60,4 +61,12 @@ class Event < ActiveRecord::Base
 	def self.search_by_date(start_date, end_date)
 		Event.where(["date > ?", start_date]).where(["date < ? ", end_date])
 	end
+
+	private
+
+	    def approval_notification
+	    	if self.approved == true && self.user != nil
+		    	UserMailer.event_approved_email(self).deliver
+		    end
+		end
 end
