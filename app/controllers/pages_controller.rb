@@ -5,7 +5,6 @@ class PagesController < ApplicationController
   ]
 
   def home
-
   end
   
   def inside
@@ -14,5 +13,7 @@ class PagesController < ApplicationController
     @managed_venues = current_user.venue_managers.approved
     @managed_events = current_user.event_managers.approved
   end 
-    
+
+  def photo
+  end
 end
