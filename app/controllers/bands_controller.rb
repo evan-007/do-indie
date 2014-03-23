@@ -74,7 +74,6 @@ class BandsController < ApplicationController
     :en_bio,
     :ko_bio,
     :avatar,
-    :user_id,
     genre_ids: []
     )
   end
