@@ -15,7 +15,7 @@ class UserMailer < ActionMailer::Base
 
   def venue_approved_email(venue)
     @venue = venue
-    @user = @event.user
+    @user = @venue.user
     mail(to: @user.email, subject: 'Your event was approved!')
   end
 
