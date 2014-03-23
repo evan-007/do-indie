@@ -1,0 +1,9 @@
+<%= form_for [:admin, @genre] do |f| %>
+<p>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control half" %>
+</p>
+<p>
+  <%= f.submit %>
+</p>
+<% end %>
