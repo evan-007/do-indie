@@ -59,7 +59,7 @@ class Event < ActiveRecord::Base
 	end
 
 	def self.search_by_date(start_date, end_date)
-		Event.where(["date > ?", start_date]).where(["date < ? ", end_date])
+		Event.where(["date > ?", start_date]).where(["date < ? ", end_date]).order(date: :asc)
 	end
 
 	private
