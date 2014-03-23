@@ -25,7 +25,7 @@ feature "Admin band managers" do
 		expect(page).to have_content("Updated permissions")
 	end
 
-	scenario "User gets email when approved?" do 
+	scenario "User gets email when approved" do 
 		@manager.update(approved: true)
 		expect(open_last_email).to be_delivered_to @user.email
 	end

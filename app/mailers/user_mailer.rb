@@ -18,4 +18,10 @@ class UserMailer < ActionMailer::Base
   	@user = band_manager.user
   	mail(to: @user.email, subject: "DoIndie: manager approval")
   end
+
+  def venue_manager_approved(venue_manager)
+  	@venue = venue_manager.venue
+  	@user = venue_manager.user
+  	mail(to: @user.email, subject: "DoIndie: manager approval")
+  end
 end

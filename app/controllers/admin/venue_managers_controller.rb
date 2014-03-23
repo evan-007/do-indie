@@ -12,7 +12,7 @@ class Admin::VenueManagersController < Admin::BaseController
   end
 
   def create
-    @manager = VenueManager.new(manager_params)
+    @manager = VenueManager.new(venue_id: params[:venue_id], user_id: params[:user_id])
     if @manager.save
       @manager.update(approved: true)
       flash[:notice] = "Successfully created manager!"

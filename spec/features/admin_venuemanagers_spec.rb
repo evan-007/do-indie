@@ -25,7 +25,10 @@ feature "Admin venue managers" do
 		expect(page).to have_content("Updated permissions")
 	end
 
-	scenario "User gets email when approved?"
+	scenario "User gets email when approved?" do
+		@manager.update(approved: true)
+		expect(open_last_email).to be_delivered_to @user.email
+	end
 
 	scenario "admin can create venue managers using usernames" do
 		visit admin_root_en_path
@@ -33,9 +36,9 @@ feature "Admin venue managers" do
 		click_link("New venue manager")
 		fill_in ("query"), with: @user2.username
 		click_button "Search"
-		check("venue_manager[user_id]")
-		select(@venue.name, from: "venue_manager[venue_id]")
-		click_button ("Create Venue manager")
+		check("user_id")
+		select(@venue.name, from: "venue_id")
+		click_button ("Save changes")
 		expect(page).to have_content("created manager")
 	end
 end
