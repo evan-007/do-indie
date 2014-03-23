@@ -8,6 +8,7 @@ FactoryGirl.define do
     info "it's a massive party"
     date Date.tomorrow
     approved true
+    user nil
 
     factory :unapproved_event do
     	name "evan's birthday"

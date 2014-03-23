@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>What's up <%= @user.username %>?</h1>
+    <p>
+      Congrats! You're approved to manage <%= @event.name %>!<br/>
+      Login and you can access the edit form from the bottom of this page:<br/>
+      http://hidden-dawn-9617.herokuapp.com<%= url_for @event %>
+    </p>
+    <p>Thanks for your contributions and have a great day!</p>
+  </body>
+</html>

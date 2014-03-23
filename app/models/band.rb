@@ -56,7 +56,7 @@ class Band < ActiveRecord::Base
   private
 
     def approval_notification
-    	if self.approved == true
+    	if self.approved == true && self.user != nil
 	    	UserMailer.band_approved_email(self).deliver
 	    end
 	end

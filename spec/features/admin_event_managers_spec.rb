@@ -25,7 +25,10 @@ feature "Admin event managers" do
 		expect(page).to have_content("Updated permissions")
 	end
 
-	scenario "User gets email when approved?"
+	scenario "User gets email when approved?" do
+		@manager.update(approved: true)
+		expect(open_last_email).to be_delivered_to @user.email
+	end
 
 	scenario "admin can create event managers using usernames" do
 		visit admin_root_en_path
