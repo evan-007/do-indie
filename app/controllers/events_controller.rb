@@ -41,6 +41,16 @@ class EventsController < ApplicationController
 		@events = Event.past_index_search(params[:query], params[:page])
 	end
 
+	def destroy
+		if @event.destroy
+			flash[:notice] = "Event deleted!"
+			redirect_to events_path
+		else
+			flash[:notice] = "Event wasn't deleted!"
+			redirect_to event_edit_path(@event)
+		end
+	end
+
 	private
 	  def get_event
 	  	@event = Event.friendly.find(params[:id])

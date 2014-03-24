@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
 	belongs_to :venue
 	has_many :event_bands
 	has_many :bands, through: :event_bands
-	has_many :event_managers
+	has_many :event_managers, dependent: :destroy
 	has_many :users, through: :event_managers
 	scope :upcoming, -> { where(["date > ?", Date.yesterday]) }
 	scope :past, -> { where(["date < ? ", Date.today]) }

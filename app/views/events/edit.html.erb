@@ -1,1 +1,5 @@
 <%= render "form" %>
+<br />
+<br />
+<br />
+<%= link_to "Delete this event", event_path(@event), method: :delete, data: {confirm: "Are you sure? You can't undo this!"} %>
