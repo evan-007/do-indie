@@ -42,6 +42,10 @@ class VenuesController < ApplicationController
   end
 
   def edit
+    if current_user.venue_managers.where(venue_id: @venue.id).first == nil
+      flash[:notice] = "Sorry, you aren't approved to edit this venue"
+      redirect_to venues_path
+    end
   end
 
   def update
