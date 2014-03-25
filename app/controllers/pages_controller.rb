@@ -16,4 +16,11 @@ class PagesController < ApplicationController
 
   def photo
   end
+
+  def signup
+    User.email_signup(current_user)
+    current_user.update(mailing_list: true)
+    flash[:notice] = "Thanks for signing up, check your email later!"
+    redirect_to inside_path
+  end
 end

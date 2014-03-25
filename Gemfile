@@ -20,6 +20,9 @@ gem 'twitter'
 gem 'pg'
 gem 'unicorn'
 
+#for mailchimp api
+gem 'gibbon'
+
 #for deploying
 gem 'capistrano','~>3.0.1'
 gem 'capistrano-rails','~>1.1.0'

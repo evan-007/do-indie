@@ -111,6 +111,13 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
       user.username = auth.info.first_name+auth.info.last_name   # assuming the user model has a name
     #  user.image = auth.info.image # assuming the user model has an image
+    end
   end
-end
+
+  def self.email_signup(user)
+    @gb = Gibbon::API.new
+    @gb.lists.subscribe({:id => '40a37c22ca', :email => {:email => "#{user.email}"},
+      :merge_vars => {:FNAME => "#{user.username}", :LNAME => nil}, 
+      :double_optin => false})
+  end
 end
