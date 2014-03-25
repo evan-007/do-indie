@@ -13,21 +13,21 @@
   </div>
   
   <div class="col-md-6">
-    <% unless @band.soundcloud.blank? %>
-      <%= @embed_info['html'].html_safe %>
-    <% else %>
+    <!--< % unless @band.soundcloud.blank? %>
+      < % = @embed_info['html'].html_safe %>
+    < % else %>
       <p>Yikes! This band's soundcloud link is missing. Do you know it? Request manager status below.</p>
-    <% end %>
-    <!--broken< % unless @band.twitter.blank? %>
+    < % end %>
+    < % unless @band.twitter.blank? %>
       <p> Latest tweets:</p>
       <ul>
-        #< % twitter_client.user_timeline("#{@tweet_url}").take(3).each do |tweet| %>
-          <li>< %= tweet.text.html_safe %></li>
+        < % twitter_client.user_timeline("#{@tweet_url}").take(3).each do |tweet| %>
+          <li>< % = tweet.text.html_safe %></li>
         < % end %>
       </ul>
       < % else %>
       <p>Yikes! This band's twitter link is missing. Do you know it? Request manager status below.</p>
-    < % end %> end-->
+    < % end %>-->
   </div>
 </div><!--row-->
 

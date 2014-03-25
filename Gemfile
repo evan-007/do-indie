@@ -21,10 +21,10 @@ gem 'pg'
 gem 'unicorn'
 
 #for deploying
-gem 'capistrano','~>3.0.1'
-gem 'capistrano-rails','~>1.1.0'
-gem 'capistrano-bundler'
-gem 'capistrano-rbenv',"~>2.0"
+# gem 'capistrano','~>3.0.1'
+# gem 'capistrano-rails','~>1.1.0'
+# gem 'capistrano-bundler'
+# gem 'capistrano-rbenv',"~>2.0"
 
 gem 'textacular', '~> 3.0'
 gem 'mail_form'
@@ -40,7 +40,7 @@ group :development, :test do
 end
 
 # Paging
-gem 'kaminari', '~> 0.15.0'
+gem 'kaminari', "~> 0.15.1"
 
 # Slugs and friendly id's
 gem 'friendly_id', '~> 5.0.2'
