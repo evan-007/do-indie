@@ -44,6 +44,12 @@ class BandsController < ApplicationController
   end
   
   def edit
+    unless current_user.admin
+      if current_user.band_managers.where(band_id: @band.id).first == nil
+        flash[:notice] = "Sorry, you aren't approved to edit this band"
+        redirect_to bands_path
+      end
+    end
   end
   
   def update

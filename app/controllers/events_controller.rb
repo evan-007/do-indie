@@ -28,9 +28,11 @@ class EventsController < ApplicationController
 	end
   
 	def edit
-    if current_user.event_managers.where(event_id: @event.id).first == nil
-      flash[:notice] = "Sorry, you aren't approved to edit this event"
-      redirect_to events_path
+    unless current_user.admin
+      if current_user.event_managers.where(event_id: @event.id).first == nil
+        flash[:notice] = "Sorry, you aren't approved to edit this event"
+        redirect_to events_path
+      end
     end
 	end
   
