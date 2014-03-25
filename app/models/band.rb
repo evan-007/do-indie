@@ -37,7 +37,7 @@ class Band < ActiveRecord::Base
 
 	def self.admin_search(search, page_number)
 		if search
-			where("name LIKE ?", "%#{search.downcase}%").order(
+			self.fuzzy_search(search).order(
 				approved: :asc
 				).page page_number
 		else

@@ -18,6 +18,7 @@
   <tr>
     <th>Venue ID</th>
     <th>Name</th>
+    <th>Korean name</th>
     <th>Approved?</th>
     <th>Created by</th>
     <th>Created at</th>
@@ -28,6 +29,7 @@
   <tr>
     <td><%= venue.id %></td>
     <td><%= link_to venue.name.capitalize, edit_admin_venue_path(venue.id) %></td>
+    <td><%= venue.korean_name %></td>
     <td><%= venue.approved %></td>
     <% unless venue.user_id.blank? %>
     <td><%= "#{venue.user.username}" %></td>
