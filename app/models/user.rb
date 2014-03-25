@@ -71,6 +71,15 @@ class User < ActiveRecord::Base
       order(admin: :desc, username: :asc).page page_number
     end
   end
+
+  def self.admin_search_and_order(search, page_number)
+    if search
+      self.fuzzy_search(search).order(admin: :desc,
+       username: :asc).page page_number
+    else
+      order(admin: :desc, username: :asc).page page_number
+    end
+  end
   
   def self.text_search(query)
     if query.present?

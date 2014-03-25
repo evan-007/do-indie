@@ -8,7 +8,7 @@ class Admin::UsersController < Admin::BaseController
   
 
   def index
-    @users = User.search_and_order(params[:search], params[:page])
+    @users = User.admin_search_and_order(params[:search], params[:page])
   end
   
   def show
