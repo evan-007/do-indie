@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "evan.u.lloyd@gmail.com"
+  default from: "somewhere@random.com"
 
   def band_approved_email(band)
   	@band = band
