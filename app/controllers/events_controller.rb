@@ -6,6 +6,10 @@ class EventsController < ApplicationController
 	end
 
 	def show
+    if @event.approved == false
+      flash[:notice] = "Sorry, this event isn't approved yet"
+      redirect_to events_path
+    end
 	end
 
 	def new
@@ -15,8 +19,8 @@ class EventsController < ApplicationController
 	def create
 		@event = current_user.events.build(event_params)
 		if @event.save
-			flash[:notice] = "Event Created!"
-			redirect_to event_path(@event)
+      flash[:notice] = "Event Created! Admin will check your event and email you when it's approved"
+			redirect_to events_path
 		else
 			flash[:notice] = "Event not created!"
 			redirect_to new_event_path

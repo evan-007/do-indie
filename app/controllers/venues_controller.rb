@@ -9,6 +9,10 @@ class VenuesController < ApplicationController
   end
   
   def show
+    if @venue.approved == false
+      flash[:notice] = "Sorry, this venue isn't approved yet"
+      redirect_to venues_path
+    end
     @hash = Gmaps4rails.build_markers(@venue) do |venue, marker|
       marker.lat venue.latitude
       marker.lng venue.longitude
@@ -29,8 +33,8 @@ class VenuesController < ApplicationController
       @city = City.new(en_name: params[:new_city])
       @city.save
       @venue.venue_cities.create(city_id: @city.id)
-      flash[:notice] = "Venue Created!"
-      redirect_to venue_path(@venue)
+      flash[:notice] = "Venue Created! Admin will check your submission and email you once it's approved."
+      redirect_to venues_path
     else
       flash[:notice] = "Not created!"
       redirect_to new_venue_path
