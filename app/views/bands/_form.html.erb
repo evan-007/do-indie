@@ -75,3 +75,8 @@
   <%= text_field_tag :new_genre %><br />
   <%= f.submit %>
 <% end %>
+
+<script>
+  $(document).ready(function() { $('#band_genre_ids').chosen({width: "50%"}); });
+  
+</script>
