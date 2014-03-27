@@ -13,7 +13,12 @@ class EventsController < ApplicationController
 	end
 
 	def new
-		@event = current_user.events.build
+		if current_user == nil
+			flash[:notice] = "Please log in to add events."
+			redirect_to new_user_session_path
+		else
+			@event = current_user.events.build
+		end
 	end
 
 	def create

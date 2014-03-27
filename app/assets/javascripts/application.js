@@ -12,11 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require chosen-jquery
 //= require ckeditor/override
 //= require ckeditor/init
 //= require underscore
 //= require gmaps/google
 //= require turbolinks
 //= require bootstrap
+//= require chosen-jquery
 //= require_tree .
