@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :venue do
     name "Ellui"
     phone "010 -2345 - 2345"
-    address "123 Plastic Surgery St, Gangnam, Korea"
+    address "Gangnam, Korea"
     en_bio "Gangnam's best nightclub"
     facebook "facebook.com/ellui"
     cafe "cafe.naver.com/ellui"

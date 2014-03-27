@@ -1,16 +1,16 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 gem 'rails', '4.0.3'
-gem 'sass-rails', '~> 4.0.1'
-gem 'uglifier', '~> 2.4.0'
-gem 'coffee-rails', '~> 4.0.1'
-gem 'jquery-rails', '~> 3.0.4'
-gem 'turbolinks', '~> 2.1.0'
-gem 'jbuilder', '~> 1.5.3'
-gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
+gem 'jquery-rails'
+gem 'turbolinks'
+gem 'jbuilder'
+gem 'bcrypt-ruby'
 gem "geocoder"
 gem 'gmaps4rails'
-gem "paperclip", "~> 4.1"
+gem "paperclip"
 gem 'route_translator'
 gem 'aws-sdk'
 gem 'ckeditor'
@@ -24,12 +24,12 @@ gem 'unicorn'
 gem 'gibbon'
 
 #for deploying
-gem 'capistrano','~>3.0.1'
-gem 'capistrano-rails','~>1.1.0'
+gem 'capistrano'
+gem 'capistrano-rails'
 gem 'capistrano-bundler'
-gem 'capistrano-rbenv',"~>2.0"
+gem 'capistrano-rbenv'
 
-gem 'textacular', '~> 3.0'
+gem 'textacular'
 gem 'mail_form'
 
 group :doc do
@@ -38,18 +38,18 @@ end
 
 # development gems
 group :development, :test do
-  gem 'figaro', '~> 0.7.0'     # env variables
+  gem 'figaro'     # env variables
   gem "faker"
 end
 
 # Paging
-gem 'kaminari', "~> 0.15.1"
+gem 'kaminari'
 
 # Slugs and friendly id's
-gem 'friendly_id', '~> 5.0.2'
+gem 'friendly_id'
 
 # font-awesome
-gem 'font-awesome-sass', '~> 4.0.2'
+gem 'font-awesome-sass'
 
 # production gems for heroku
 group :production do
@@ -58,7 +58,7 @@ end
 
 
 # Devise
-gem 'devise', '~> 3.2.2'
+gem 'devise'
 
 
 gem 'chosen-rails'
@@ -66,20 +66,20 @@ gem 'chosen-rails'
 
 # Bootstrap 3
 group :development, :test do
-  gem 'rails_layout', '~> 0.5.11'  # Bootstrap 3 layout generator
+  gem 'rails_layout'  # Bootstrap 3 layout generator
 end
 
-gem 'bootstrap-sass', '~> 3.0.3.0'
+gem 'bootstrap-sass'
 
 
 # RSpec
 group :test, :development do
-  gem "rspec-rails", '~> 2.14.1'
+  gem "rspec-rails"
   gem "factory_girl_rails"
 end
 
 # Capybara
 group :test do
-  gem "capybara", '~> 2.2.1'
+  gem "capybara"
   gem 'email_spec'
 end
