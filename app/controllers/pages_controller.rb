@@ -5,8 +5,8 @@ class PagesController < ApplicationController
   ]
 
   def home
-    @front = Slider.active.first
-    @slides = Slider.active
+    @front = Slider.front.first
+    @sliders = Slider.active
   end
   
   def inside
