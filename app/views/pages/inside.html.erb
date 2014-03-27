@@ -9,10 +9,19 @@
 </p>
 <% end %>
 
-
-<% @likes.each do |fan| %>
-	<%= link_to fan.band.name, band_path(fan.band) %>
+<% unless @likes.blank? %>
+<p>Bands you like:</p>
+	<% @likes.each do |fan| %>
+		<%= link_to fan.band.name, band_path(fan.band) %>
+	<% end %>
 <% end %>
+<% unless current_user.bands.blank? %>
+	<p>You added these bands</p>
+	<% current_user.bands.each do |band| %>
+		<%= link_to band.name, band_path(band) %>
+	<% end %>
+<% end %>
+
 
 <% if @managed_bands != nil %>
 	<p>You're the manager of these bands:</p>

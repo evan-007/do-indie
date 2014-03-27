@@ -37,4 +37,11 @@ feature "Adding bands" do
     visit new_band_en_path
     expect(page).to have_content("You need to sign in")
   end
+
+  scenario "Users can see bands they created on the signin page" do
+    @user2 = create(:user)
+    @band = create(:band, user: @user2)
+    sign_in @user2
+    expect(page).to have_content(@band.name)
+  end
 end
