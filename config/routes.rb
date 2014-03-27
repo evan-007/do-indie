@@ -16,6 +16,7 @@ DoIndie::Application.routes.draw do
     get "/events/past", to: "events#past", as: "past_events"
     get "contact", to: "messages#index", as: "contact"
     get "photo", to: "pages#photo", as: "photo"
+    get "/venues/map", to: "venues#map", as: "venues_map"
     post "email_signup", to: "pages#signup", as: "sign_up"
 
     resources :messages, only: [:index, :create]

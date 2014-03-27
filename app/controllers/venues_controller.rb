@@ -2,12 +2,12 @@ class VenuesController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :get_venue, only: [:show, :edit, :update, :destoy]
   before_action :get_cities, only: [:new, :edit]
-  
+
   def index
     @venues = Venue.index_search(params[:query], params[:page])
     @cities = City.all
   end
-  
+
   def show
     if @venue.approved == false
       flash[:notice] = "Sorry, this venue isn't approved yet"
@@ -21,6 +21,16 @@ class VenuesController < ApplicationController
       @tweet_url = @venue.twitter.gsub(/^[^_]*twitter.com\//, '')
     end
   end
+
+  def map
+    @venues = Venue.approved.localized
+      @hash = Gmaps4rails.build_markers(@venues) do |venue, marker|
+        marker.lat venue.latitude
+        marker.lng venue.longitude
+       # marker.title venue.name
+        marker.infowindow "<a href=\"http://hidden-dawn-9617.herokuapp.com/venues/#{venue.slug}\">#{venue.name}</a>"
+      end
+    end
 
   def new
     if current_user == nil
@@ -68,10 +78,10 @@ class VenuesController < ApplicationController
       redirect_to edit_venue_path(@venue)
     end
   end
-  
-  
+
+
   private
-  
+
   def get_venue
     @venue = Venue.friendly.find(params[:id])
   end
