@@ -23,7 +23,12 @@ class VenuesController < ApplicationController
   end
 
   def new
-    @venue = current_user.venues.build
+    if current_user == nil
+      flash[:alert] = "Please sign in to add a venue."
+      redirect_to new_user_session_path
+    else
+      @venue = current_user.venues.build
+    end
   end
 
   def create

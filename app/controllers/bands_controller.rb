@@ -11,7 +11,12 @@ class BandsController < ApplicationController
   end
   
   def new
-    @band = current_user.bands.build
+    if current_user == nil
+      flash[:notice] = "Please sign in to add a new band."
+      redirect_to new_user_session_path
+    else
+      @band = current_user.bands.build
+    end
   end
   
   def create
@@ -68,45 +73,39 @@ class BandsController < ApplicationController
   
   private
   
-  def band_params
-    params.require(:band).permit(:name,
-    :korean_name,
-    :contact,
-    :facebook,
-    :myspace,
-    :bandcamp,
-    :twitter,
-    :cafe,
-    :itunes,
-    :soundcloud,
-    :youtube,
-    :site,
-    :en_bio,
-    :ko_bio,
-    :avatar,
-    genre_ids: []
-    )
-  end
-  
-  def get_band
-    @band = Band.find(params[:id])
-  end
+    def band_params
+      params.require(:band).permit(:name,
+      :korean_name,
+      :contact,
+      :facebook,
+      :myspace,
+      :bandcamp,
+      :twitter,
+      :cafe,
+      :itunes,
+      :soundcloud,
+      :youtube,
+      :site,
+      :en_bio,
+      :ko_bio,
+      :avatar,
+      genre_ids: []
+      )
+    end
+    
+    def get_band
+      @band = Band.find(params[:id])
+    end
 
-  def all_genres
-    @genres = Genre.all
-  end
+    def all_genres
+      @genres = Genre.all
+    end
 
-  def find_friendly
-    @band = Band.friendly.find(params[:id])
-  end
-  
-  def soundcloud
-    @client = Soundcloud.new(:client_id => 'b8e640fd38bce5816e3e15ca83bc75cc')
-  end
-  
-
-
-  
-
-  
+    def find_friendly
+      @band = Band.friendly.find(params[:id])
+    end
+    
+    def soundcloud
+      @client = Soundcloud.new(:client_id => 'b8e640fd38bce5816e3e15ca83bc75cc')
+    end
 end
