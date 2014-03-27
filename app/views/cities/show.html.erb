@@ -6,7 +6,7 @@
   </div>
 </div>
 <div class="row">
-	<% @city.venues.each do |venue| %>
+	<% @venues.each do |venue| %>
 		<div class="col-sm-6 col-md-4">
 			<div class="thumbnail">
 				<%= image_tag venue.avatar.url(:medium) %>
@@ -30,6 +30,7 @@
 
 			handler.bounds.extendWith(markers);
 			handler.fitMapToBounds();
-			handler.getMap().setZoom(15)
+			handler.getMap().setZoom(12)
 		});
 </script>
+
