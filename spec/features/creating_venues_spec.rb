@@ -24,4 +24,9 @@ feature "Creating venues" do
 		sign_in @user
 		expect(page).to have_content(@venue.name)
 	end
+
+	scenario "Non-authenticated users cannot add venues" do
+		visit new_venue_en_path
+		expect(page).to have_content("sign in")
+	end
 end

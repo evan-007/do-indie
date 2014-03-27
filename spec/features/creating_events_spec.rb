@@ -24,4 +24,9 @@ feature "Creating events" do
 		sign_in @user
 		expect(page).to have_content(@event.name)
 	end
+
+	scenario "Non-authenticated users can't add events" do
+		visit new_event_en_path
+		expect(page).to have_content("Please log in")
+	end
 end
