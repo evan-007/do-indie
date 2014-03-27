@@ -27,6 +27,7 @@ ko:
   pending_approval: "missing"
   venue_request: "missing"
   past_events: "지난 공연"
+  map: "지도"
 
   #i18n translations
   date:
