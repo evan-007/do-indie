@@ -16,11 +16,26 @@
 	<% end %>
 <% end %>
 <% unless current_user.bands.blank? %>
-	<p>You added these bands</p>
+	<p>You added these bands:</p>
 	<% current_user.bands.each do |band| %>
 		<%= link_to band.name, band_path(band) %>
 	<% end %>
 <% end %>
+
+<% unless current_user.events.blank? %>
+	<p>You added these events:</p>
+	<% current_user.events.each do |event| %>
+		<%= link_to event.name, event_path(event) %>
+	<% end %>
+<% end %>
+
+<% unless current_user.venues.blank? %>
+	<p>You added these venues:</p>
+	<% current_user.venues.each do |venue| %>
+		<%= link_to venue.name, venue_path(venue) %>
+	<% end %>
+<% end %>
+
 
 
 <% if @managed_bands != nil %>
