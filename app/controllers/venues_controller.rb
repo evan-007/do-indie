@@ -24,13 +24,13 @@ class VenuesController < ApplicationController
 
   def map
     @venues = Venue.approved.localized
-      @hash = Gmaps4rails.build_markers(@venues) do |venue, marker|
-        marker.lat venue.latitude
-        marker.lng venue.longitude
-       # marker.title venue.name
-        marker.infowindow "<a href=\"http://hidden-dawn-9617.herokuapp.com/venues/#{venue.slug}\">#{venue.name}</a>"
-      end
+    @hash = Gmaps4rails.build_markers(@venues) do |venue, marker|
+      marker.lat venue.latitude
+      marker.lng venue.longitude
+      # marker.title venue.name
+      marker.infowindow "<a href=\"http://hidden-dawn-9617.herokuapp.com/venues/#{venue.slug}\">#{venue.name}</a>"
     end
+  end
 
   def new
     if current_user == nil
