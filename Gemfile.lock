@@ -148,6 +148,7 @@ GEM
     kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
+    libv8 (3.16.14.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -219,6 +220,7 @@ GEM
     rake (10.2.2)
     rdoc (4.1.1)
       json (~> 1.4)
+    ref (1.0.5)
     route_translator (3.2.0)
     rspec-core (2.14.8)
     rspec-expectations (2.14.5)
@@ -262,6 +264,9 @@ GEM
       tins (~> 1.0)
     textacular (3.1.0)
       activerecord (>= 3.0, < 4.1)
+    therubyracer (0.12.1)
+      libv8 (~> 3.16.14.0)
+      ref
     thor (0.19.1)
     thread_safe (0.3.1)
       atomic (>= 1.1.7, < 2)
@@ -315,6 +320,7 @@ DEPENDENCIES
   compass (= 0.12.2)
   devise
   email_spec
+  execjs
   factory_girl_rails
   faker
   figaro
@@ -340,6 +346,7 @@ DEPENDENCIES
   sdoc
   soundcloud
   textacular
+  therubyracer
   turbolinks
   twitter
   uglifier

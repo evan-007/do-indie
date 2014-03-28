@@ -56,6 +56,8 @@ gem 'font-awesome-sass', '~> 4.0.2'
 # production gems for heroku
 group :production do
   gem 'rails_12factor'
+  gem 'therubyracer'
+  gem 'execjs'
 end
 
 
