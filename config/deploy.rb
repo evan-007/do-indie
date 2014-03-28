@@ -1,4 +1,4 @@
-set :application, 'app_name'
+set :application, 'doindie'
 set :deploy_user, 'deploy'
 
 # setup repo details
@@ -7,7 +7,7 @@ set :repo_url, 'git@github.com:evan-007/do-indie.git'
 
 # setup rvm.
 set :rbenv_type, :system
-set :rbenv_ruby, '2.0.0-p0'
+set :rbenv_ruby, '2.0.0-p247'
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 
