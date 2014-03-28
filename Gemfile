@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 gem 'rails', '4.0.3'
-gem 'sass-rails'
+gem 'sass-rails', '~> 4.0.1'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
@@ -49,7 +49,7 @@ gem 'kaminari'
 gem 'friendly_id'
 
 # font-awesome
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', '~> 4.0.2'
 
 # production gems for heroku
 group :production do
@@ -69,7 +69,7 @@ group :development, :test do
   gem 'rails_layout'  # Bootstrap 3 layout generator
 end
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.0.3.0'
 
 
 # RSpec
