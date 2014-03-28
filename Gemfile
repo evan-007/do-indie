@@ -19,6 +19,8 @@ gem 'omniauth-facebook'
 gem 'twitter'
 gem 'pg'
 gem 'unicorn'
+gem 'sass'
+gem 'compass', '0.12.2'
 
 #for mailchimp api
 gem 'gibbon'
@@ -69,7 +71,7 @@ group :development, :test do
   gem 'rails_layout'  # Bootstrap 3 layout generator
 end
 
-gem 'bootstrap-sass', '~> 3.0.3.0'
+gem 'bootstrap-sass', '~> 3.0.3.0'	 
 
 
 # RSpec
