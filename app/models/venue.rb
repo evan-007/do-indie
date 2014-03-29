@@ -46,9 +46,10 @@ class Venue < ActiveRecord::Base
 
 	def self.index_search(query, page_number)
 	    if query.present?
-	      self.approved.fuzzy_search(query).page page_number
+	    	self.approved.where("name ilike :q or korean_name ilike :q", q: "%#{query}%").page page_number
+			# self.approved.fuzzy_search(query).page page_number
 	    else
-	      approved.order(approved: :asc).page page_number
+			approved.order(approved: :asc).page page_number
 	    end
 	end
 

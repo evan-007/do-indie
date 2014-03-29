@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :band do
     name "Psy"
+    korean_name "판다즈"
     contact "010 -2345 - 2345"
     facebook "facebook.com/psy"
     twitter "twitter.com/psy"
