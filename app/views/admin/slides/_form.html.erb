@@ -1,0 +1,37 @@
+<%= form_for [:admin, @slide] do |f| %>
+<p>
+	<%= f.label :ko_title %>
+	<%= f.text_field :ko_title, class: "form-control half" %>
+</p>
+<p>
+	<%= f.label :en_title %>
+	<%= f.text_field :en_title, class: "form-control half" %>
+</p>
+<p>
+	<%= f.label :ko_description %>
+	<%= f.text_area :ko_description, class: "form-control half" %>
+</p>
+<p>
+	<%= f.label :en_title %>
+	<%= f.text_field :en_description, class: "form-control half" %>
+</p>
+<p>
+	<%= f.label :anchor %>
+	<%= f.text_field :anchor, class: "form-control half" %>
+</p>
+<p>
+	<%= f.label :link %>
+	<%= f.text_field :link, class: "form-control half" %>
+</p>
+<p>
+	<%= f.label :image %>
+	<%= f.file_field :image %>
+</p>
+<p>
+	<%= f.label :active %>
+	<%= f.select(:active, options_for_select([["Yes", true], ["No", false]]), class: "form-control") %>
+</p>
+<p>
+	<%= f.submit %>
+</p>
+<% end %>
