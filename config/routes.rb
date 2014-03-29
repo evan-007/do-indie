@@ -35,7 +35,7 @@ DoIndie::Application.routes.draw do
       root "base#index"
       get "/events/data", to: "events#data", as: "events_data"
       resources :users, :bands, :venues, :events, :band_managers, :venue_managers,
-       :event_managers, :cities, :genres
+       :event_managers, :cities, :genres, :slides
     end  
   end
 end
