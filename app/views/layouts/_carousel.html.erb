@@ -22,9 +22,15 @@
             <%= image_tag slide.image.url %>
             <div class="container">
               <div class="carousel-caption">
-                <h1><%= slide.ko_title %></h1>
-                <p><%= slide.ko_description %></p>
-                <p><%= link_to slide.link, slide.anchor, class: "btn btn-lg btn-primary" %></p>
+                <% unless I18n.locale == :en %>
+                  <h1><%= slide.ko_title %></h1>
+                  <p><%= slide.ko_description %></p>
+                  <p><%= link_to slide.link, slide.anchor, class: "btn btn-lg btn-primary" %></p>
+                <% else %>
+                  <h1><%= slide.en_title %></h1>
+                  <p><%= slide.en_description %></p>
+                  <p><%= link_to slide.link, slide.anchor, class: "btn btn-lg btn-primary" %></p>
+                <% end %>
               </div>
             </div>
           </div>
