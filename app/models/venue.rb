@@ -36,7 +36,7 @@ class Venue < ActiveRecord::Base
 
 	def self.admin_search(search, page_number)
 	    if search
-			self.fuzzy_search(search).order(
+	    	self.approved.where("name ilike :q or korean_name ilike :q", q: "%#{search}%").order(
 	      	approved: :asc
 		    ).page page_number
 	    else
