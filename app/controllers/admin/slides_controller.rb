@@ -42,7 +42,7 @@ class Admin::SlidesController < ApplicationController
 
         def slide_params
         	params.require(:slide).permit(:ko_title, :en_title, :ko_description,
-        		:en_description, :anchor, :link, :image)
+        		:en_description, :anchor, :link, :image, :active)
         end
 
         def get_slide
