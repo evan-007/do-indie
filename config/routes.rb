@@ -2,13 +2,14 @@ DoIndie::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   # config/routes.rb
 
+  scope "(:locale)", locale: /en|nl/ do
   root "pages#home"
+  end
 
-  
   # get '/:locale' => 'pages#home' #this conflicts with other routes
   
   localized do
-  
+
     get "inside", to: "pages#inside", as: "inside"
     get "/blog", to: "posts#index", as: "blog"
     get "/genres/:name", to: "genres#show", as: "genre"
