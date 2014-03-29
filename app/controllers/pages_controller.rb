@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   ]
 
   def home
+    @slides = Slide.active_slides
   end
   
   def inside
