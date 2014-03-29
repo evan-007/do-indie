@@ -20,7 +20,33 @@
 </div><!--row-->
 <div class="row">
   <div class="col-md-6">
-    <p><%= @venue.en_bio.html_safe %></p>
+    <% if I18n.locale == :en %>
+      <h4>About</h4>
+      <% unless @venue.en_bio.blank? %>
+        <p><%= @venue.en_bio.html_safe %></p>
+      <% else %>
+        <p>Sorry, no bio for this venue yet</p>
+      <% end %>
+      <h4>Directions:</h4>
+      <% unless @venue.en_directions.blank? %>
+          <p><%= @venue.en_directions.html_safe %></p>
+      <% else %>
+          <p>Sorry, no directions for this venue yet</p>
+      <% end %>
+    <% else %>
+      <h4>About</h4>
+      <% unless @venue.ko_bio.blank? %>
+        <p><%= @venue.ko_bio.html_safe %></p>
+      <% else %>
+        <p>Sorry, no bio for this venue yet.</p>
+      <% end %>
+      <h4>Directions:</h4>
+      <% unless @venue.ko_directions.blank? %>
+        <p><%= @venue.ko_directions.html_safe %></p>
+      <% else %>
+        <p>Sorry, directions for this venue yet.</p>
+      <% end %>
+    <% end %>
   </div>
   
   <div class="col-md-6">
@@ -57,7 +83,7 @@
 		});
 </script>
 <% else %>
-	<p>Uh-oh, we don't have the address for this venue yet!</p>
+	<p>We don't have the address for this venue yet!</p>
 <% end %>
 
 
