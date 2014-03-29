@@ -12,19 +12,19 @@
           <div class="container">
             <div class="carousel-caption">
               <h1>t(:slide_1_header)</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, repudiandae, repellat similique assumenda voluptatibus aut reiciendis laudantium. Excepturi, maiores, repellat ullam error eveniet obcaecati molestias debitis magnam cumque consectetur tenetur.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+              <p>t(:slide_1_body)</p>
+              <p><%= link_to "Sign up today", new_user_registration_path, class: "btn btn-lg btn-primary" %></p>
             </div>
           </div>
         </div>
         <% @slides.each do |slide| %>
           <div class="item">
-            <%= image_tag 'MixTapeSlider.jpg' %>
+            <%= image_tag slide.image.url %>
             <div class="container">
               <div class="carousel-caption">
                 <h1><%= slide.ko_title %></h1>
                 <p><%= slide.ko_description %></p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                <p><%= link_to slide.anchor, slide.link %></p>
               </div>
             </div>
           </div>
