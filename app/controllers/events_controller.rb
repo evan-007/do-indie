@@ -14,7 +14,7 @@ class EventsController < ApplicationController
 
 	def new
 		if current_user == nil
-			flash[:alert] = "Please log in to add events."
+			flash[:alert] = t(:event_new_login)
 			redirect_to new_user_session_path
 		else
 			@event = current_user.events.build
@@ -24,7 +24,7 @@ class EventsController < ApplicationController
 	def create
 		@event = current_user.events.build(event_params)
 		if @event.save
-      flash[:notice] = "Event Created! Admin will check your event and email you when it's approved"
+      flash[:notice] = t(:event_submission_note)
 			redirect_to events_path
 		else
 			flash[:notice] = "Event not created!"

@@ -16,7 +16,7 @@ feature "Creating events" do
 		fill_in "event[info]", with: "Dress to impress, doors open at 9. Gangnam exit 4"
 		select @venue.name, from: "event[venue_id]"
 		click_button "Create Event"
-		expect(page).to have_content("Event Created!")
+		expect(page).to have_content("Thanks")
 	end
 
 	scenario "Users can see events they created on the sign in page" do
@@ -27,6 +27,6 @@ feature "Creating events" do
 
 	scenario "Non-authenticated users can't add events" do
 		visit new_event_en_path
-		expect(page).to have_content("Please log in")
+		expect(page).to have_content("sign up for a doindie account")
 	end
 end
