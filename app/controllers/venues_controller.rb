@@ -27,14 +27,13 @@ class VenuesController < ApplicationController
     @hash = Gmaps4rails.build_markers(@venues) do |venue, marker|
       marker.lat venue.latitude
       marker.lng venue.longitude
-      # marker.title venue.name
       marker.infowindow "<a href=\"http://hidden-dawn-9617.herokuapp.com/venues/#{venue.slug}\">#{venue.name}</a>"
     end
   end
 
   def new
     if current_user == nil
-      flash[:alert] = "Please sign in to add a venue."
+      flash[:alert] = t(:non_member_note)
       redirect_to new_user_session_path
     else
       @venue = current_user.venues.build
@@ -48,7 +47,7 @@ class VenuesController < ApplicationController
       @city = City.new(en_name: params[:new_city])
       @city.save
       @venue.venue_cities.create(city_id: @city.id)
-      flash[:notice] = "Venue Created! Admin will check your submission and email you once it's approved."
+      flash[:notice] = t(:venue_after_submit)
       redirect_to venues_path
     else
       flash[:notice] = "Not created!"
@@ -87,9 +86,9 @@ class VenuesController < ApplicationController
   end
 
   def venue_params
-    params.require(:venue).permit(:name, :phone, :address,
-     :en_bio, :ko_bio, :facebook, :cafe, :website,
-     :photo, :small_map)
+    params.require(:venue).permit(:name, :ko_name, :phone, :address,
+     :en_bio, :ko_bio, :facebook, :twitter, :cafe, :website,
+     :photo, :small_map, :email, :en_directions, :ko_directions)
   end
 
   def get_cities

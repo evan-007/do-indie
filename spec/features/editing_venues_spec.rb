@@ -10,7 +10,7 @@ feature "Editing venues" do
   scenario "approved users can edit venues" do
     @manager = create(:venue_manager, user: @user, venue: @venue)
 		visit edit_venue_en_path(@venue)
-		fill_in 'Name', with: "Eden"
+		fill_in 'venue[name]', with: "Eden"
 		click_button "Update Venue"
 		expect(page).to have_content("Venue updated!")
 	end

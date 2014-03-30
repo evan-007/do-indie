@@ -1,32 +1,71 @@
 <%= form_for @venue do |f| %>
-	<%= f.label :name %>
+	<%= f.label t(:venue_name_en) %>
 	<%= f.text_field :name, class: "form-control half" %><br />
-	<%= f.label :phone %>
-	<%= f.text_field :phone, class: "form-control half" %><br />
-	<%= f.label :address %>
-	<%= f.text_area :address, class: "form-control half" %><br />
-	<%= f.label "English bio" %>
-	<%= f.cktext_area :en_bio %><br />
-	<%= f.label "Korean bio" %>
-	<%= f.cktext_area :ko_bio %><br />
-	<%= f.label :facebook %>
-	<%= f.text_field :facebook, class: "form-control half" %><br />
-	<%= f.label :cafe %>
-	<%= f.text_field :cafe, class: "form-control half" %><br />
-	<%= f.label :website %>
+	<%= f.label t(:venue_name_ko) %>
+	<%= f.text_field :ko_name, class: "form-control half" %><br />
+	<p>
+		<%= f.label t(:venue_image) %>
+		<%= f.file_field :avatar %>
+		<%= t(:venue_image_note) %>
+	</p>
+	<p>
+		<%= f.label t(:venue_bio_en) %>
+		<%= f.text_area :en_bio, class: "form-control half" %>
+	</p>
+	<p>
+		<%= f.label t(:venue_bio_ko) %>
+		<%= f.text_area :ko_bio, class: 'form-control half' %>
+		<%= t(:venue_bio_note) %>
+	</p>
+	<%= f.label t(:website) %>
 	<%= f.text_field :website, class: "form-control half" %><br />
-	<%= f.label :photo %>
-	<%= f.file_field :avatar %><br />
-	<%= f.label :map %>
+
+	<%= f.label t(:facebook) %>
+	<%= f.text_field :facebook, class: "form-control half" %><br />
+	<%= t(:facebook_note)%><br />
+
+	<%= f.label t(:twitter) %>
+	<%= f.text_field :twitter, class: "form-control half" %><br />
+	<%= t(:twitter_note)%><br />
+	
+	<%= f.label t(:cafe) %>
+	<%= f.text_field :cafe, class: "form-control half" %><br />
+	<%= t(:cafe_note)%><br />
+
+	<%= f.label t(:email) %>
+	<%= f.text_field :email, class: "form-control half" %><br />
+
+	<%= f.label t(:venue_phone) %>
+	<%= f.text_field :phone, class: "form-control half" %><br />
+
+	<p>
+		<%= f.label t(:en_directions) %>
+		<%= f.text_area :en_directions, class: "form-control half" %>
+	</p>
+
+	<p>
+		<%= f.label t(:ko_directions) %>
+		<%= f.text_area :ko_directions, class: "form-control half" %>
+		<%= t(:written_directions_note)%>
+	</p>
+
+	<%= f.label t(:address) %>
+	<%= f.text_area :address, class: "form-control half" %><br />
+	
+	
+
+	
+	<%= f.label t(:map) %>
 	<%= f.file_field :small_map %><br />
+	<%= t(:map_note)%><br />
 	<% if @venue.id != nil %>
-		<p>This Venue is already linked to: <% @venue.cities.each do |city| %>
+		<p><%= t(:venue_cities)%> <% @venue.cities.each do |city| %>
 			<%= city.en_name %> - <%= city.ko_name %></p>
 		<% end %>
 	<% end %>
-	<%= label_tag :city %>
+	<%= label_tag t(:city) %>
     <%= select_tag :city, options_for_select(@cities.collect { |city| [city.en_name, city.id] }.insert(0, '')) %><br />
-    <p>City not listed? Add it below:</p>
+    <p>t(:unlisted_city)</p>
     <%= label_tag :new_city %>
     <%= text_field_tag :new_city %><br />
 	<%= f.submit %>
