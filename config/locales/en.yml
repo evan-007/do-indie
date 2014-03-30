@@ -77,3 +77,10 @@ en:
   twitter: "Twitter:"
   website: "Website:"
   cafe: "Cafe:"
+
+  #bands#show
+  bandcamp: "Bandcamp:" 
+  buy_download: "Buy / Download"    
+  next_events: "Next Events:"
+  lable: "Lable"
+  genres:  "Genres"

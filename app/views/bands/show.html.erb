@@ -5,28 +5,24 @@
     <h3><%= @band.korean_name %></h3>
     <p>Fans: <%= @band.fans %></p>
     <% if current_user && current_user.user_fans.where(band_id: @band.id).count != 0 %>
-<%= link_to "Unlike", user_fan_path(band_id: @band.id), method: 'delete', class: "btn btn-default" %>
-<% elsif current_user %>
-	<%= link_to "Like", user_fans_path(band_id: @band.id), method: 'post', class: "btn btn-default" %>
-<% end %>
+      <%= link_to "Unlike", user_fan_path(band_id: @band.id), method: 'delete', class: "btn btn-default" %>
+    <% elsif current_user %>
+    	<%= link_to "Like", user_fans_path(band_id: @band.id), method: 'post', class: "btn btn-default" %>
+    <% end %>
     
   </div>
   
   <div class="col-md-6">
     <% unless @band.soundcloud.blank? %>
       <%= @embed_info['html'].html_safe %>
-    <% else %>
-      <p>Yikes! This band's soundcloud link is missing. Do you know it? Request manager status below.</p>
     <% end %>
     <% unless @band.twitter.blank? %>
-      <p> Latest tweets:</p>
+      <p><%= t(:twitter_feed) %></p>
       <ul>
         <% twitter_client.user_timeline("#{@tweet_url}").take(3).each do |tweet| %>
           <li><%= tweet.text.html_safe %></li>
         <% end %>
       </ul>
-      <% else %>
-      <p>Yikes! This band's twitter link is missing. Do you know it? Request manager status below.</p>
     <% end %>
   </div>
 </div><!--row-->
@@ -42,16 +38,21 @@
       </div>
     </div>
   <div class="col-md-6">
-    <% else %>
-      <p>Yikes! This band's youtube info is missing. Do you know it? Request manager status below.</p>
 <% end %>
-
-    <%= @band.facebook %>
-    <%= @band.contact %>
-    <%= @band.site %>
-    <%= @band.label %>
-    <p>Genres:
-	    <% @band.genres.each do |genre| %>
+    <% unless @band.facebook.blank? %>
+      <p><%= t(:facebook) %> <%= link_to @band.facebook, @band.facebook %></p>
+    <% end %>
+    <% unless @band.facebook.blank? %>
+      <p><%= t(:contact) %> <%= @band.contact %></p>
+    <% end %>
+    <% unless @band.facebook.blank? %>
+      <p><%= t(:site) %> <%= link_to @band.site, @band.site %></p>
+    <% end %>
+    <% unless @band.facebook.blank? %>
+      <p><%= t(:label) %> <%= @band.label %></p>
+    <% end %>
+    <p><%= t(:genres) %>	    
+      <% @band.genres.each do |genre| %>
 		    <%= link_to genre.name, genre_path(genre.name) %>
 	    <% end %>
     </p>
@@ -59,7 +60,7 @@
 </div>
 
 <% unless @band.events.empty? %>
-  <h3>Upcoming Events:</h3>
+  <h3><%= t(:next_events)%></h3>
   <div class="row">
     <% @band.events.each do |event| %>
       <div class="col-sm-6 col-md-4">    

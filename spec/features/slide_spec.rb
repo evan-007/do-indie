@@ -7,7 +7,7 @@ feature "Homepage slides" do
 	scenario "show active slides" do
 		visit root_path
 	  	expect(page).to have_content @slide.ko_title
-	  	expect(page).to have_content @slide.anchor
+	  	expect(page).to have_content @slide.link
 	  	expect(page).to have_content @slide.ko_description
 	end
 end
