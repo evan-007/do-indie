@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-md-6">
     <% unless @venue.twitter.blank? %>
-      <p> Latest tweets:</p>
+      <p><%= t(:twitter_feed) %></p>
       <ul>
         <% twitter_client.user_timeline("#{@tweet_url}").take(3).each do |tweet| %>
           <li><%= tweet.text.html_safe %></li>
@@ -21,31 +21,56 @@
 <div class="row">
   <div class="col-md-6">
     <% if I18n.locale == :en %>
-      <h4>About</h4>
       <% unless @venue.en_bio.blank? %>
         <p><%= @venue.en_bio.html_safe %></p>
       <% else %>
         <p>Sorry, no bio for this venue yet</p>
       <% end %>
-      <h4>Directions:</h4>
+      <h4><%= t(:directions) %></h4>
       <% unless @venue.en_directions.blank? %>
           <p><%= @venue.en_directions.html_safe %></p>
       <% else %>
           <p>Sorry, no directions for this venue yet</p>
       <% end %>
     <% else %>
-      <h4>About</h4>
       <% unless @venue.ko_bio.blank? %>
         <p><%= @venue.ko_bio.html_safe %></p>
       <% else %>
         <p>Sorry, no bio for this venue yet.</p>
       <% end %>
-      <h4>Directions:</h4>
+      <h4><%= t(:directions) %></h4>
       <% unless @venue.ko_directions.blank? %>
         <p><%= @venue.ko_directions.html_safe %></p>
       <% else %>
         <p>Sorry, directions for this venue yet.</p>
       <% end %>
+    <% end %>
+    <% unless @venue.phone == nil %>
+      <p><%= t(:venue_phone) %> <%= @venue.phone %></p>
+    <% end %>
+
+    <% unless @venue.email == nil %>
+      <p><%= t(:venue_email) %> <%= @venue.email %></p>
+    <% end %>
+
+    <% unless @venue.address == nil %>
+      <p><%= t(:venue_address) %> <%= @venue.address %></p>
+    <% end %>
+
+    <% unless @venue.facebook == nil %>
+      <p><%= t(:facebook) %> <%= link_to @venue.facebook, @venue.facebook %></p>
+    <% end %>
+
+    <% unless @venue.twitter == nil %>
+      <p><%= t(:twitter) %> <%= link_to @venue.twitter, @venue.twitter %></p>
+    <% end %>
+
+    <% unless @venue.website == nil %>
+      <p><%= t(:website) %> <%= link_to @venue.website, @venue.website %></p>
+    <% end %>
+
+    <% unless @venue.cafe == nil %>
+      <p><%= t(:cafe) %> <%= link_to @venue.cafe, @venue.cafe %></p>
     <% end %>
   </div>
   
@@ -58,11 +83,10 @@
 <div class="row">
   <div class="col-md-12">
     <% unless Event.where(venue_id: @venue.id) == nil %>
+    <p><%= t(:next_events) %></p>
       <% Event.where(venue_id: @venue.id).each do |event| %>
         <%= link_to event.name, event_path(event) %><br />
       <% end %>
-    <% else %>
-    <h3>There are no events for this venue yet!</h3>
     <% end %>
   </div>
 </div>
@@ -88,8 +112,7 @@
 
 
   <% @venue.venue_cities.each do |venue_city| %>
-  <p>
-  	<%= link_to "#{venue_city.city.en_name}"+"-"+"#{venue_city.city.ko_name}", city_path(venue_city.city.en_name) %> 
+  <p><%= t(:city) %> <%= link_to "#{venue_city.city.en_name}"+"-"+"#{venue_city.city.ko_name}", city_path(venue_city.city.en_name) %> 
   <% end %>
   </p>
 

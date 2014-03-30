@@ -65,3 +65,15 @@ en:
   tickets_available: "Tickets Available"
   sold_out: "Sold Out"
   canceled: "Canceled"
+
+  #venues#show
+  venue_phone: "Venue Phone:"
+  venue_email: "Venue Email:"
+  venue_address: "Venue Address:"
+  directions: "Directions:"
+  next_events: "Next Events:"
+  twitter_feed: "Twitter Feed:"
+  facebook: "Facebook:" 
+  twitter: "Twitter:"
+  website: "Website:"
+  cafe: "Cafe:"

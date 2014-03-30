@@ -42,6 +42,18 @@ ko:
   sold_out: "매진"
   canceled: "공연 취소"
 
+  #venues#show
+  venue_phone: "공연장 전화번호:"
+  venue_email: "공연장 이메일:"
+  venue_address: "공연장 주소:"
+  directions: "오시는 길:"
+  next_events: "다음 공연:"
+  twitter_feed: "트위터 피드:"
+  facebook: "페이스북:" 
+  twitter: "트위터:"
+  website: "공식 사이트:"
+  cafe: "카페:"
+
 
   #i18n translations
   date:
