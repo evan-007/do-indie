@@ -10,7 +10,7 @@ feature "Editing bands" do
   scenario "Admin users can edit bands" do
     sign_in @admin
     visit edit_band_en_path(@band)
-    fill_in 'Name', with: "PSY"
+    fill_in 'band[name]', with: "PSY"
     click_button "Update Band"
     expect(page).to have_content('Band updated!') 
   end
@@ -19,7 +19,7 @@ feature "Editing bands" do
     @manager = create(:band_manager, user: @user, band: @band)
     sign_in @user
     visit edit_band_en_path(@band)
-    fill_in 'Name', with: "PSY"
+    fill_in 'band[name]', with: "PSY"
     click_button "Update Band"
     expect(page).to have_content('Band updated!') 
   end

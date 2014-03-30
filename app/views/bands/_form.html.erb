@@ -1,77 +1,107 @@
 <%= form_for @band do |f| %>
 <p>  
-  <%= f.label :name %>
-  <%= f.text_field :name, placeholder: "Name...", class: "form-control half" %>
+  <%= f.label t(:band_name_en) %>
+  <%= f.text_field :name, class: "form-control half" %>
 </p>
 <p>
-  <%= f.label :korean_name %>
+  <%= f.label t(:band_name_ko) %>
   <%= f.text_field :korean_name, placeholder: "사랑해...", class: "form-control half" %>
 </p>
+
 <p>
-  <%= f.label :contact %>
-  <%= f.text_field :contact, placeholder: "010-1234-1234", class: "form-control half" %>
+  <%= f.label t(:band_image) %>
+  <%= f.file_field :avatar %>
+  <% t(:band_image_note)%>
+</p>
+
+<p>
+  <%= f.label t(:band_bio_en) %>
+  <%= f.text_area :en_bio, class: "form-control half" %>
 </p>
 <p>
-  <%= f.label :facebook %>
+  <%= f.label t(:band_bio_ko) %>
+  <%= f.text_area :ko_bio, class: "form-control half" %>
+  <%= t(:band_bio_note) %>
+</p>
+
+<p>
+  <%= f.label t(:soundcloud) %>
+  <%= f.text_field :soundcloud, placeholder: "soundcloud.com/yourband", class: "form-control half" %>
+  <%= t(:soundcloud_note) %>
+</p>
+
+<p>
+  <%= f.label t(:facebook) %>
   <%= f.text_field :facebook, placeholder: "facebook.com/yourband", class: "form-control half" %>
+  <%= t(:facebook_note)%>
 </p>
+
+<p>
+  <%= f.label t(:twitter) %>
+  <%= f.text_field :twitter, placeholder: "twitter.com/yourband", class: "form-control half" %>
+  <%= t(:twitter_note) %>
+</p>
+
+<p>
+  <%= f.label t(:bandcamp) %>
+  <%= f.text_field :bandcamp, placeholder: "bandcamp.com/yourband", class: "form-control half" %>
+  <%= t(:bandcamp_note)%>
+</p>
+
+<p>
+  <%= f.label t(:purchase) %>
+  <%= f.text_field :itunes, placeholder: "iTunes or other online store that sells your music", class: "form-control half" %>
+  <%= t(:purchase_note) %>
+</p>
+
 <p>
   <%= f.label :myspace %>
   <%= f.text_field :myspace, placeholder: "myspace.com/yourband", class: "form-control half" %>
 </p>
+
 <p>
-  <%= f.label :bandcamp %>
-  <%= f.text_field :bandcamp, placeholder: "bandcamp.com/yourband", class: "form-control half" %>
+  <%= f.label t(:contact) %>
+  <%= f.text_field :contact, placeholder: "010-1234-1234", class: "form-control half" %>
 </p>
+
 <p>
-  <%= f.label :twitter %>
-  <%= f.text_field :twitter, placeholder: "twitter.com/yourband", class: "form-control half" %>
+  <%= f.label t(:label) %>
+  <%= f.text_field :label, placeholder: "010-1234-1234", class: "form-control half" %>
 </p>
+
+<p>
+  <%= f.label t(:youtube_links) %>
+  <%= f.text_field :youtube, placeholder: "Youtube video URL only", class: "form-control half" %>
+
+</p>
+
+
 <p>
   <%= f.label :cafe %>
   <%= f.text_field :cafe, placeholder: "naver or daum cafe", class: "form-control half" %>
+  <% t(:cafe_note)%>
 </p>
-<p>
-  <%= f.label :itunes %>
-  <%= f.text_field :itunes, placeholder: "iTunes or other online store that sells your music", class: "form-control half" %>
-</p>
-<p>
-  <%= f.label :soundcloud %>
-  <%= f.text_field :soundcloud, placeholder: "soundcloud.com/yourband", class: "form-control half" %>
-</p>
-<p>
-  <%= f.label :youtube %>
-  <%= f.text_field :youtube, placeholder: "Youtube video URL only", class: "form-control half" %>
-</p>
+
+
+
 <p>
   <%= f.label :site %>
   <%= f.text_field :site, placeholder: "band homepage or other misc site", class: "form-control half" %>
 </p>
-<p>
-  <%= f.label "English Bio" %>
-  <%= f.text_area :en_bio, class: "form-control half" %>
-</p>
-<p>
-  <%= f.label "Korean Bio" %>
-  <%= f.text_area :ko_bio, class: "form-control half" %>
-</p>
-<p>
-  <%= f.label :photo %>
-  <%= f.file_field :avatar %>
-</p>
 
-  <% if @band.genres != nil %><br/ ><br />
+
+  <% unless @band.genres.blank? %><br/ ><br />
     <p>Don't add the same genre twice. This band is already under these genres:</p>
     <% @band.genres.each do |genre| %>
       <%= genre.name %>,
     <% end %><br /><br />
   <% end %>
   <p>
-    <%= f.label "Genres" %>
+    <%= f.label t(:genres) %>
     <%= f.collection_select :genre_ids, Genre.order(:name), :id, :name, {}, {multiple: true} %>
   </p>
-  <p>Genre not listed? Enter it's name in English below:</p>
-  <%= label_tag :new_genre %>
+  <p><% t(:no_genre) %></p>
+  <%= label_tag t(:new_genre) %>
   <%= text_field_tag :new_genre %><br />
   <%= f.submit %>
 <% end %>

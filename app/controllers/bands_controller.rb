@@ -12,7 +12,7 @@ class BandsController < ApplicationController
   
   def new
     if current_user == nil
-      flash[:notice] = "Please sign in to add a new band."
+      flash[:notice] = t(:band_member_note)
       redirect_to new_user_session_path
     else
       @band = current_user.bands.build
@@ -26,7 +26,7 @@ class BandsController < ApplicationController
       @genre.save
       @band.band_genres.create(genre_id: @genre.id)
       @band.band_genres.create(genre_id: params[:genre])
-      flash[:notice] = "Band created, we'll check it out and email you when it's approved."
+      flash[:notice] = t(:band_after_submission)
       redirect_to bands_path
     else
       flash[:notice] = "Band not created!"
@@ -87,6 +87,7 @@ class BandsController < ApplicationController
       :youtube,
       :site,
       :en_bio,
+      :label,
       :ko_bio,
       :avatar,
       genre_ids: []

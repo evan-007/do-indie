@@ -9,13 +9,13 @@ feature "Adding bands" do
   scenario "Authorized users can add bands with existing genres" do 
     sign_in @user
     visit new_band_en_path
-    fill_in 'Name', with: "Psy"
-    fill_in 'Korean name', with: 'ㅁㄴㅇㄹ'
-    fill_in 'Contact', with: "010-1234-5678"
-    fill_in 'Soundcloud', with: "https://soundcloud.com/lukefair"
+    fill_in 'band[name]', with: "Psy"
+    fill_in 'band[korean_name]', with: 'ㅁㄴㅇㄹ'
+    fill_in 'band[contact]', with: "010-1234-5678"
+    fill_in 'band[soundcloud]', with: "https://soundcloud.com/lukefair"
     select @genre.name, from: "band_genre_ids"
     click_button('Create Band')
-    expect(page).to have_content("Band created")
+    expect(page).to have_content("Thanks")
     expect(page).to have_content @genre.name
   end
  
@@ -23,13 +23,13 @@ feature "Adding bands" do
   scenario "Authorized users can add bands with a new genre" do
     sign_in @user
     visit new_band_en_path
-    fill_in 'Name', with: "Psy"
-    fill_in 'Korean name', with: 'ㅁㄴㅇㄹ'
-    fill_in 'Contact', with: "010-1234-5678"
+    fill_in 'band[name]', with: "Psy"
+    fill_in 'band[korean_name]', with: 'ㅁㄴㅇㄹ'
+    fill_in 'band[contact]', with: "010-1234-5678"
     fill_in "new_genre", with: "Jazz"
-    fill_in 'Soundcloud', with: "https://soundcloud.com/lukefair"
+    fill_in 'band[soundcloud]', with: "https://soundcloud.com/lukefair"
     click_button('Create Band')
-    expect(page).to have_content("Band created")
+    expect(page).to have_content("Thanks")
     expect(page).to have_content("Jazz")
   end
     
