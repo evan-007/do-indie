@@ -52,3 +52,16 @@ en:
   pending_approval: "Your request for manager status is pending approval."
   past_events: "Past Events"
   map: "Map"
+
+  #for events#show
+  show_time: "Time:"
+  contact: "Contact:"
+  status: "Status:"
+  advanced_ticket: "Advanced Ticket:"
+  door_price: "Door Price:"
+  city: "City:"
+  line_up: "Line Up:"
+  location: "Location:"
+  tickets_available: "Tickets Available"
+  sold_out: "Sold Out"
+  canceled: "Canceled"

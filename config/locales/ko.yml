@@ -29,6 +29,20 @@ ko:
   past_events: "지난 공연"
   map: "지도"
 
+  #for events#show
+  show_time: "시간:"
+  contact: "연락처:"
+  status: "티켓 구매:"
+  advanced_Ticket: "예매:"
+  door_Price: "현매:"
+  city: "도시:"
+  line_up: "라인업:"
+  location: "오시는 길:"
+  tickets_available: "가능"
+  sold_out: "매진"
+  canceled: "공연 취소"
+
+
   #i18n translations
   date:
     abbr_day_names:
