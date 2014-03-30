@@ -82,7 +82,7 @@
 </div><!--row-->
 <div class="row">
   <div class="col-md-12">
-    <% unless Event.where(venue_id: @venue.id) == nil %>
+    <% unless Event.upcoming.approved.where(venue_id: @venue.id).blank? %>
     <p><%= t(:next_events) %></p>
       <% Event.where(venue_id: @venue.id).each do |event| %>
         <%= link_to event.name, event_path(event) %><br />
