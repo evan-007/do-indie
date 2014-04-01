@@ -26,6 +26,19 @@ class PostsController < ApplicationController
     @posts = Post.order(created_at: :desc)
   end
   
+  def edit
+  end
+  
+  def update
+    if @post.update(post_params)
+      flash[:notice] = "Post updated"
+      redirect to post_admin_path
+    else
+      flash[:notice] = "Post wasn't updated"
+      redirecto to edit_post_path(@post)
+    end
+  end
+  
   private
     def get_post
       @post = Post.find(params[:id]) #this needs to change when routing is changed

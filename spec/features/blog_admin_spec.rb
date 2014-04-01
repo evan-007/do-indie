@@ -14,4 +14,13 @@ feature 'Blog admin space' do
     expect(page).to have_content @post.title
     expect(page).to have_content @unpublished.title
   end
+  
+  scenario "Blogger users can edit posts" do
+    visit blog_admin_path
+    click_link @post.title
+    fill_in "post[title]", with: "Hellowhowareyou?"
+    select('yes', from: "post[published]")
+    click_button('Update Post')
+    expect(page).to have_content('Post updated')
+  end
 end
