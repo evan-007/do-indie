@@ -3,7 +3,7 @@ ko:
   slide_1_header: "Example headline."
   #_navigation.html.erb
   events: "공연"
-  add_event: "공연 소식"
+  add_event: "공연 등록"
   venues: "공연장"
   add_venue: "공연장 추가"
   bands: "밴드"
