@@ -22,6 +22,10 @@ class PostsController < ApplicationController
     end
   end
   
+  def admin
+    @posts = Post.order(created_at: :desc)
+  end
+  
   private
     def get_post
       @post = Post.find(params[:id]) #this needs to change when routing is changed

@@ -2,7 +2,7 @@ DoIndie::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   # config/routes.rb
 
-  scope "(:locale)", locale: /en|nl/ do
+  scope "(:locale)", locale: /en/ do
   root "pages#home"
   end
 
@@ -18,6 +18,7 @@ DoIndie::Application.routes.draw do
     get "contact", to: "messages#index", as: "contact"
     get "photo", to: "pages#photo", as: "photo"
     get "/venues/map", to: "venues#map", as: "venues_map"
+    get "/blog/admin", to: "posts#admin", as: "blog_admin"
     post "email_signup", to: "pages#signup", as: "sign_up"
 
     resources :messages, only: [:index, :create]

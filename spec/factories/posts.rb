@@ -7,5 +7,10 @@ FactoryGirl.define do
     ko_body "MyText"
     short_title "MyString"
     published true
+    
+    factory :unpublished_post do
+      title "bla"
+      published false
+    end
   end
 end
