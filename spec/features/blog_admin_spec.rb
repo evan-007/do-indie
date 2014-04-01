@@ -16,10 +16,10 @@ feature 'Blog admin space' do
   end
   
   scenario "Blogger users can edit posts" do
-    visit blog_admin_path
+    visit blog_admin_en_path
     click_link @post.title
     fill_in "post[title]", with: "Hellowhowareyou?"
-    select('yes', from: "post[published]")
+    check('post[published]')
     click_button('Update Post')
     expect(page).to have_content('Post updated')
   end

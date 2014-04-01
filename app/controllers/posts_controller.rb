@@ -32,10 +32,10 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       flash[:notice] = "Post updated"
-      redirect to post_admin_path
+      redirect_to blog_admin_path
     else
       flash[:notice] = "Post wasn't updated"
-      redirecto to edit_post_path(@post)
+      redirect_to edit_post_path(@post)
     end
   end
   
