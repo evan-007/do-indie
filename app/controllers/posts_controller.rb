@@ -9,6 +9,7 @@ class PostsController < ApplicationController
   
   def new
     @post = Post.new
+    @post.build_slide
   end
   
   def create
@@ -41,7 +42,7 @@ class PostsController < ApplicationController
   
   private
     def get_post
-      @post = Post.find(params[:id]) #this needs to change when routing is changed
+      @post = Post.friendly.find(params[:id]) #this needs to change when routing is changed
     end
     
     def post_params
@@ -51,6 +52,7 @@ class PostsController < ApplicationController
         :en_body,
         :ko_body,
         :short_title,
-        :published)
+        :published,
+        slide_attributes: [:en_title, :ko_title, :en_description, :ko_description, :image, :link, :anchor, :active])
     end
 end

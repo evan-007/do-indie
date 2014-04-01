@@ -9,5 +9,39 @@
 <%= f.cktext_area :ko_body, class: "form-control half" %><br />
 <%= f.label :published %>
 <%= f.check_box :published %><br />
+<%= f.fields_for :slide do |ff| %>
+	<p>
+		<%= ff.label :en_title %>
+		<%= ff.text_field :en_title %>
+	</p>
+	<p>
+		<%= ff.label :ko_title %>
+		<%= ff.text_field :ko_title %>
+	</p>
+	<p>
+		<%= ff.label :en_description %>
+		<%= ff.text_area :en_description %>
+	</p>
+	<p>
+		<%= ff.label :ko_description %>
+		<%= ff.text_area :ko_description %>
+	</p>
+	<p>
+		<%= ff.label :image %>
+		<%= ff.file_field :image %>
+	</p>
+	<p>
+		<%= ff.label "Slide active?" %>
+		<%= ff.check_box :active %>
+	<p>
+	<p>
+		<%= ff.label :link %>
+		<%= ff.text_field :link %>
+	</p>
+	<p>
+		<%= ff.label :anchor %>
+		<%= ff.text_field :anchor %>
+	</p>
+	<% end %>
 <%= f.submit %>
 <% end %>
