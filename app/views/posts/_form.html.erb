@@ -1,12 +1,12 @@
 <%= form_for @post do |f| %>
 <%= f.label :title %>
 <%= f.text_field :title, class: "form-control half" %><br />
+<%= f.label :ko_title %>
+<%= f.text_field :ko_title, class: "form-control half" %><br />
 <%= f.label :en_body %>
 <%= f.cktext_area :en_body, class: "form-control half" %><br />
 <%= f.label :ko_body %>
 <%= f.cktext_area :ko_body, class: "form-control half" %><br />
-<%= f.label "URL" %>
-<%= f.text_field :short_title, placeholder: "something-like-this", class: "form-control half" %><br />
 <%= f.label :published %>
 <%= f.check_box :published %><br />
 <%= f.submit %>
