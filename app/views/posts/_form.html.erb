@@ -26,10 +26,14 @@
 		<%= ff.label :ko_description %>
 		<%= ff.text_area :ko_description, class: "form-control half" %>
 	</p>
+	<% if @post.slide.image.exists? %>
+	  <%= image_tag @post.slide.image.url(:thumb) %><br/>
+	<% else %>
 	<p>
 		<%= ff.label :image %>
 		<%= ff.file_field :image %>
 	</p>
+	<% end %>
 	<p>
 		<%= ff.label "Slide active?" %>
 		<%= ff.check_box :active %>
