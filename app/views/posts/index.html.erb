@@ -1,4 +1,8 @@
 <h2>doindie doblog</h2>
+<% if current_user && current_user.blogger == true %>
+	<%= link_to "New Post", new_post_path, class: "btn btn-primary btn-lg" %>
+	<%= link_to "Blog Admin Page", blog_admin_path, class: "btn btn-danger btn-lg" %>
+<% end %>
 <div class="row">
 	<% @posts.each do |post| %>
 		<div class="col-sm-6 col-md-4">
@@ -15,14 +19,3 @@
 		</div>
 	<% end %>
 </div><!--row-->
-
-<% @posts.each do |post| %>
-
-  <%= link_to post.title, post_path(post) %>
-
-<% end %>
-
-<% if current_user && current_user.blogger == true %>
-<%= link_to "New Post", new_post_path %><br />
-<%= link_to "Blog Admin Page", blog_admin_path %>
-<% end %>
