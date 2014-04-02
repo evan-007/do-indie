@@ -28,6 +28,7 @@ class PostsController < ApplicationController
   end
   
   def edit
+    @post.build_slide if @post.slide.nil?
   end
   
   def update
@@ -53,6 +54,6 @@ class PostsController < ApplicationController
         :ko_body,
         :short_title,
         :published,
-        slide_attributes: [:en_title, :ko_title, :en_description, :ko_description, :image, :link, :anchor, :active])
+        slide_attributes: [:en_title, :ko_title, :en_description, :ko_description, :image, :link, :anchor, :active, :id])
     end
 end
