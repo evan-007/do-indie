@@ -22,7 +22,13 @@ feature "Creating posts" do
     sign_in @blogger
     visit new_post_en_path
     fill_in "Title", with: "Create interview"
+    fill_in "post[ko_title]", with: "korean title"
     fill_in "post[en_body]", with: "Here is my article"
+    fill_in "post[ko_body]", with: "korean body"
+    fill_in "post[slide_attributes][en_title]", with: "slide en title"
+    fill_in "post[slide_attributes][ko_title]", with: "slide ko title"
+    fill_in "post[slide_attributes][en_description]", with: "slide en_description"
+
     click_button "Create Post"
     expect(page).to have_content("Post Created!")
   end

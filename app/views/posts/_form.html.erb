@@ -12,19 +12,19 @@
 <%= f.fields_for :slide do |ff| %>
 	<p>
 		<%= ff.label :en_title %>
-		<%= ff.text_field :en_title %>
+		<%= ff.text_field :en_title, class: "form-control half" %>
 	</p>
 	<p>
 		<%= ff.label :ko_title %>
-		<%= ff.text_field :ko_title %>
+		<%= ff.text_field :ko_title, class: "form-control half" %>
 	</p>
 	<p>
 		<%= ff.label :en_description %>
-		<%= ff.text_area :en_description %>
+		<%= ff.text_area :en_description, class: "form-control half" %>
 	</p>
 	<p>
 		<%= ff.label :ko_description %>
-		<%= ff.text_area :ko_description %>
+		<%= ff.text_area :ko_description, class: "form-control half" %>
 	</p>
 	<p>
 		<%= ff.label :image %>
@@ -36,11 +36,11 @@
 	<p>
 	<p>
 		<%= ff.label :link %>
-		<%= ff.text_field :link %>
+		<%= ff.text_field :link, class: "form-control half" %>
 	</p>
 	<p>
 		<%= ff.label :anchor %>
-		<%= ff.text_field :anchor %>
+		<%= ff.text_field :anchor, class: "form-control half" %>
 	</p>
 	<% end %>
 <%= f.submit %>
