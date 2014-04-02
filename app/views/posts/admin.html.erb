@@ -1,6 +1,11 @@
 <% @posts.each do |post| %>
-<h3>Post title:<%= link_to post.title, edit_post_path(post) %></h3>
-<h4>Post id: <%= link_to post.id, edit_post_path(post) %></h4>
-<p>Published: <%= post.published %></p>
+	<h3>Post title:<%= link_to post.title, edit_post_path(post) %></h3>
+	<h4>Post id: <%= link_to post.id, edit_post_path(post) %></h4>
+	<p>Published: <%= post.published %></p>
+	<% unless post.slide.blank? %>
+		<p>Image:</p><%= image_tag post.slide.image.url(:thumb) %>
+	<% else %>
+	<p>This post has no slide!</p>
+	<% end %>
 <% end %>
   
