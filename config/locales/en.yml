@@ -136,6 +136,7 @@ en:
   written_directions_note: "NOTE: Please provide detailed written directions to help people locate your venue."
   map_note: "NOTE: Please upload a map to help people locate your venue."
   address: "Address:"
+  one_language: "Enter address information in either English or Korea, not both."
   venue_after_submit: "Thanks for submitting your venue to doindie. It is currently awaiting review by our moderators  (To avoid spam / non music related profiles appearing on doinide we check all submissions individually before publishing them to the site). Please allow up to 24 hours before your venue profile goes live on doindie."
 
   #band#new
