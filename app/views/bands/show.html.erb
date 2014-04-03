@@ -26,10 +26,26 @@
     <% end %>
   </div>
 </div><!--row-->
-
-<% unless @band.en_bio.blank? %>
-  <p><%= @band.en_bio.html_safe %></p>
+<% if I18n.locale == :en %>
+  <% unless @band.en_bio.blank? %>
+    <p><%= @band.en_bio.html_safe %></p>
+  <% else %>
+    <p><%= t(:no_en_bio) %></p>
+    <% unless @band.ko_bio.blank? %>
+      <p><%= @band.ko_bio.html_safe %></p>
+    <% end %>
+  <% end %>
+<% else %>
+  <% unless @band.ko_bio.blank? %>
+    <p><%= @band.ko_bio.html_safe %></p>
+  <% else %>
+    <p><% t(:no_ko_bio) %></p>
+    <% unless @band.en_bio.blank? %>
+      <p><%= @band.en_bio.html_safe %></p>
+    <% end %>
+  <% end %>
 <% end %>
+
 <% unless @band.youtube.blank? %>
   <div class="row">
     <div class="col-md-6">
@@ -67,6 +83,8 @@
         <%= link_to (image_tag event.avatar(:medium)), event_path(event) %>
       </div>
     <% end %>
+<% else %>
+      <h3><%= t(:no_events)%></h3>
   </div>
 <% end %>
 

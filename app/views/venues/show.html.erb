@@ -36,7 +36,10 @@
       <% unless @venue.ko_bio.blank? %>
         <p><%= @venue.ko_bio.html_safe %></p>
       <% else %>
-        <p>Sorry, no bio for this venue yet.</p>
+        <p><%= t(:no_ko_bio) %></p>
+          <% unless @venue.en_bio.blank? %>
+            <p><%= @venue.en_bio.html_safe %></p>
+          <% end %>
       <% end %>
       <h4><%= t(:directions) %></h4>
       <% unless @venue.ko_directions.blank? %>
@@ -45,6 +48,7 @@
         <p>Sorry, directions for this venue yet.</p>
       <% end %>
     <% end %>
+    
     <% unless @venue.phone == nil %>
       <p><%= t(:venue_phone) %> <%= @venue.phone %></p>
     <% end %>
