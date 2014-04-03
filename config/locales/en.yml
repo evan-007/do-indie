@@ -144,3 +144,9 @@ en:
   #signup
   pre_sign: "In order to be able to add profiles for bands & venues or to be able to submit events you must first join doindie. Please fill in your details below."
   after_sign: "Thanks for joining doinide. You are now free to login and submit bands, venues & events to our database."
+  password_confirmation: "Password Confirmation"
+  
+  #contact
+  name: "Name"
+  message: "Message"
+  phone: "Phone Number"

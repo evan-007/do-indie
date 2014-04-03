@@ -1,15 +1,19 @@
 <%= form_tag messages_path do %>
 
 <p>
-	<%= label_tag :name %>
+	<%= label_tag t(:name) %>
 	<%= text_field_tag :name, nil, class: "form-control half" %>
-</p> 
+</p>
 <p>
-	<%= label_tag :email %>
+	<%= label_tag t(:phone) %>
 	<%= text_field_tag :email, nil, class: "form-control half" %>
 </p> 
 <p>
-	<%= label_tag :message %>
+	<%= label_tag t(:email) %>
+	<%= text_field_tag :email, nil, class: "form-control half" %>
+</p> 
+<p>
+	<%= label_tag t(:message) %>
 	<%= text_area_tag :message, nil, class: "form-control half" %>
 </p> 
 <%= submit_tag "Submit message" %>
