@@ -44,6 +44,7 @@ en:
   tickets_available: "Tickets Available"
   sold_out: "Sold Out"
   canceled: "Canceled"
+  no_en_info: "English information not available."
 
   #venues#show
   venue_phone: "Venue Phone:"
@@ -56,6 +57,7 @@ en:
   twitter: "Twitter:"
   website: "Website:"
   cafe: "Cafe:"
+  no_directions: "Written directions not available, please refer to the maps above or alternatively contact the venue directly."
 
   #bands#show
   bandcamp: "Bandcamp:" 

@@ -30,7 +30,7 @@
       <% unless @venue.en_directions.blank? %>
           <p><%= @venue.en_directions.html_safe %></p>
       <% else %>
-          <p>Sorry, no directions for this venue yet</p>
+    <p><%= t(:no_directions)%></p>
       <% end %>
     <% else %>
       <% unless @venue.ko_bio.blank? %>
@@ -45,7 +45,7 @@
       <% unless @venue.ko_directions.blank? %>
         <p><%= @venue.ko_directions.html_safe %></p>
       <% else %>
-        <p>Sorry, directions for this venue yet.</p>
+    <p><%= t(:no_directions) %></p>
       <% end %>
     <% end %>
     

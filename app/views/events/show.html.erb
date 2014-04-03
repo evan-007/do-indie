@@ -1,40 +1,56 @@
 <div class="row">
   <div class="col-md-8">
 
-	<h2><%= @event.name %></h2>
-	<h3><%= @event.date %></h3>
+	  <h2><%= @event.name %></h2>
+	  <h3><%= @event.date %></h3>
+    
+    <% if I18n.locale == :en %>
+      <% unless @event.info.blank? %>
+        <p><%= @event.info %></p>
+      <% else %>
+        <p><%= t(:no_en_info) %></p>
+        <%= @event.info_ko %>
+      <% end %>
+    <% else %>
+     <% unless @event.info_ko.blank? %>
+        <p><%= @event.info_ko %></p>
+      <% else %>
+        <p><%= t(:no_ko_info) %></p>
+        <%= @event.info %>
+      <% end %>
+    <% end %>
+    
+	  <p><%= t(:show_time) %><%= @event.time %>
+	  <% unless @event.ticket.blank? %>
+		  <p><%= t(:tickets_available) %></p>
+		  <p><%= t(:advance_ticket) %> <%= @event.price %></p>
+		  <p><%= t(:door_price) %> <%= @event.door_price %></p>
+	  <% else %>
+		  <p><%= t(:sold_out) %></p>
+  	<% end %>
 
-	<p><%= t(:show_time) %><%= @event.time %>
-	<% unless @event.ticket.blank? %>
-		<p><%= t(:tickets_available) %></p>
-		<p><%= t(:advance_ticket) %> <%= @event.price %></p>
-		<p><%= t(:door_price) %> <%= @event.door_price %></p>
-	<% else %>
-		<p><%= t(:sold_out) %></p>
-	<% end %>
+  	<% if @event.venue %>
+	     <h2><%= t(:location) %></h2>
+	     <p><%= link_to @event.venue.name, venue_path(@event.venue) %> <%= t(:city) %> <%= @event.venue.city_en %></p>
+  	<% else %>
+	    <p>This event has no venue yet<p>
+  	<% end %>
 
-	<% if @event.venue %>
-	   <h2><%= t(:location) %></h2>
-	   <p><%= link_to @event.venue.name, venue_path(@event.venue) %> <%= t(:city) %> <%= @event.venue.city_en %></p>
-	<% else %>
-	  <p>This event has no venue yet<p>
-	<% end %>
-
-	<% if @event.event_bands.count != 0 %>
-		<p><%= t(:line_up) %></p>
-		<% @event.event_bands.each do |eventband| %>
-			<%= link_to eventband.band.name, band_path(eventband.band) %><br />
-		<% end %>
-	<% end %>
+  	<% if @event.event_bands.count != 0 %>
+	  	<p><%= t(:line_up) %></p>
+  		<% @event.event_bands.each do |eventband| %>
+	  		<%= link_to eventband.band.name, band_path(eventband.band) %><br />
+	  	<% end %>
+	  <% end %>
   </div><!--col-md-8-->
   <div class="col-md-4">
   	<%= image_tag @event.avatar(:medium) %>
-  	<% if @event.event_bands.count != 0 %>
+    <% if @event.event_bands.count != 0 %>
 	  	<h2><%= t(:line_up) %></h2>
-		<% @event.event_bands.each do |eventband| %>
-			<%= link_to image_tag(eventband.band.avatar(:medium)), band_path(eventband.band) %><br />
-		<% end %>
-	<% end %>
+      <% @event.event_bands.each do |eventband| %>
+		  	<%= link_to image_tag(eventband.band.avatar(:medium)), band_path(eventband.band) %><br />
+      <% end %>
+   <% end %>
   </div>
 </div><!--row-->
 
