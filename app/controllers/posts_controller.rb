@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :blogger!, only: [:admin, :edit, :update, :new, :destroy, :create]
   before_action :get_post, only: [:show, :edit, :update, :destroy]
   def index
     @posts = Post.published
@@ -55,5 +56,12 @@ class PostsController < ApplicationController
         :short_title,
         :published,
         slide_attributes: [:en_title, :ko_title, :en_description, :ko_description, :image, :link, :anchor, :active, :id])
+    end
+
+    def blogger!
+      unless current_user.present? && current_user.blogger == true
+        flash[:alert] = "Sorry, bloggers only"
+        redirect_to blog_path
+      end
     end
 end
