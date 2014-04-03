@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140401102919) do
+ActiveRecord::Schema.define(version: 20140403111608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_trgm"
 
   create_table "band_genres", force: true do |t|
     t.integer  "band_id"
@@ -68,6 +67,13 @@ ActiveRecord::Schema.define(version: 20140401102919) do
   end
 
   add_index "bands", ["user_id"], name: "index_bands_on_user_id", using: :btree
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "slug"
+  end
 
   create_table "cities", force: true do |t|
     t.string   "en_name"
@@ -171,6 +177,16 @@ ActiveRecord::Schema.define(version: 20140401102919) do
     t.datetime "updated_at"
   end
 
+  create_table "post_categories", force: true do |t|
+    t.integer  "post_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "post_categories", ["category_id"], name: "index_post_categories_on_category_id", using: :btree
+  add_index "post_categories", ["post_id"], name: "index_post_categories_on_post_id", using: :btree
+
   create_table "posts", force: true do |t|
     t.text     "title"
     t.text     "en_body"
@@ -181,21 +197,6 @@ ActiveRecord::Schema.define(version: 20140401102919) do
     t.boolean  "published"
     t.string   "slug"
     t.string   "ko_title"
-  end
-
-  create_table "sliders", force: true do |t|
-    t.text     "en_title"
-    t.text     "ko_title"
-    t.text     "en_description"
-    t.text     "ko_description"
-    t.boolean  "active",             default: true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.boolean  "first",              default: false
   end
 
   create_table "slides", force: true do |t|

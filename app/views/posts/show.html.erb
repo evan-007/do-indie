@@ -4,5 +4,9 @@
 <% else %>
 	<h2><%= @post.title %></h2>
 	<p><%= @post.ko_body.html_safe %></p>
-  <% end %>
+<% end %>
+
+<% @post.post_categories.each do |pc| %>
+	<%= link_to pc.category.name, category_path(pc.category) %>
+<% end %>  
 

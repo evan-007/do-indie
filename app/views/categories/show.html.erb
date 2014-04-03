@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Posts under: <%= @category.name %></h2>
+	<% @category.post_categories.each do |pc| %>
+		<h3><%= link_to pc.post.title, post_path(pc.post) %></h3>
+	<% end %>
+
+<% if current_user.present? && current_user.blogger == true %>
+	<p><%= link_to 'Edit', edit_category_path(@category) %> |
+	<%= link_to 'Back', categories_path %></p>
+<% end %>
