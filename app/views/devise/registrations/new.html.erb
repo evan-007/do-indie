@@ -1,3 +1,4 @@
+<p><%= t(:pre_sign)%></p>
 <div class="row">
   <div class="col-sm-6">
     <h1><%= t(:signup) %></h1>
@@ -10,7 +11,7 @@
       <%= devise_error_messages! %>
     
       <div class="form-group">
-        <%= f.label :username %>
+        <%= f.label t(:username) %>
         <div class="row">
           <div class="col-sm-6">
             <%= f.text_field :username, :autofocus => true, class: "form-control" %>  
@@ -19,7 +20,7 @@
       </div>
     
       <div class="form-group">
-        <%= f.label :email %>
+        <%= f.label t(:email) %>
         <div class="row">
           <div class="col-sm-6">      
             <%= f.email_field :email, class: "form-control" %>  
@@ -30,7 +31,7 @@
       <div class="form-group">
         <div class="row">
           <div class="col-sm-6">
-            <%= f.label :password %>
+            <%= f.label t(:password) %>
             <%= f.password_field :password, class: "form-control" %>
           </div>
         </div>
@@ -39,7 +40,7 @@
       <div class="form-group">
         <div class="row">
           <div class="col-sm-6">
-            <%= f.label :password_confirmation %>
+            <%= f.label t(:password_confirmation) %>
             <%= f.password_field :password_confirmation, class: "form-control" %>
           </div>
         </div>
