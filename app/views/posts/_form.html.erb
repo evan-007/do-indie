@@ -9,6 +9,20 @@
 <%= f.cktext_area :ko_body, class: "form-control half" %><br />
 <%= f.label :published %>
 <%= f.check_box :published %><br />
+  <% unless @post.post_categories.blank? %><br/ ><br />
+    <p>Don't add the same category twice. This post is already under these categories:</p>
+    <% @post.post_categories.each do |pc| %>
+      <%= pc.category.name %>,
+    <% end %><br /><br />
+  <% end %>
+  <p>
+    <%= f.label t(:categories) %>
+    <%= f.collection_select :category_ids, Category.order(:name), :id, :name, {}, {multiple: true} %>
+  </p>
+  <p><% t(:no_category) %></p>
+  <%= label_tag t(:new_category) %>
+  <%= text_field_tag :new_category %><br />
+
 <%= f.fields_for :slide do |ff| %>
 	<p>
 		<%= ff.label :en_title %>
@@ -49,3 +63,8 @@
 	<% end %>
 <%= f.submit %>
 <% end %>
+
+<script>
+  $(document).ready(function() { $('#post_category_ids').chosen({width: "50%"}); });
+  
+</script>

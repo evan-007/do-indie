@@ -11,11 +11,16 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @post.build_slide
+    @categories = Category.all
   end
   
   def create
     @post = Post.new(post_params)
     if @post.save
+      @category = Category.new(name: params[:new_category])
+      @category.save
+      @post.post_categories.create(category_id: @category.id)
+      # @band.band_genres.create(genre_id: params[:genre])
       flash[:notice] = "Post Created!"
       redirect_to posts_path
     else
@@ -30,6 +35,7 @@ class PostsController < ApplicationController
   
   def edit
     @post.build_slide if @post.slide.nil?
+    @categories = Category.all
   end
   
   def update
@@ -55,6 +61,7 @@ class PostsController < ApplicationController
         :ko_body,
         :short_title,
         :published,
+        genre_ids: [],
         slide_attributes: [:en_title, :ko_title, :en_description, :ko_description, :image, :link, :anchor, :active, :id])
     end
 
