@@ -22,6 +22,7 @@ feature "Admin band panel" do
 		fill_in "Facebook", with: "facebook.com/psy"
 		fill_in "Twitter", with: "twitter.com/psy"
 		fill_in "Site", with: "psy.com"
+    check "band[approved]"
 		click_button "Update band"
 		expect(page).to have_content("updated")
 	end

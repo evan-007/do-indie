@@ -31,7 +31,7 @@ feature "Admin band panel" do
 		@venue2 = create(:unapproved_venue)
 		visit admin_venues_path
 		click_link @venue2.name.capitalize
-		select ("yes"), from: "venue[approved]"
+    check "venue[approved]"
 		click_button "Update venue"
 		expect(page).to have_content("updated")
 	end
