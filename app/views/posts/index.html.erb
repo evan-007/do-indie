@@ -4,18 +4,29 @@
 	<%= link_to "Blog Admin Page", blog_admin_path, class: "btn btn-danger btn-lg" %>
 <% end %>
 <div class="row">
-	<% @posts.each do |post| %>
-		<div class="col-sm-6 col-md-4">
-			<%= div_for(post, class: "list") do %>
-			<% unless post.slide.blank? %>
-				<div class="thumbnail">
-					<%= image_tag post.slide.image.url(:medium) %>
-			<% end %>
-					<div class="caption">
-						<h3><%= link_to post.title, post_path(post) %></h3>
-					</div>
-				</div>
-			<% end %> <!--div_for-->
-		</div>
-	<% end %>
+  <div class="col-md-8">
+	  <% @posts.each do |post| %>
+		  <div class="col-sm-6 col-md-4">
+		  	<%= div_for(post, class: "list") do %>
+	  		<% unless post.slide.blank? %>
+		  		<div class="thumbnail">
+			  		<%= image_tag post.slide.image.url(:medium) %>
+  			<% end %>
+	  				<div class="caption">
+		  				<h3><%= link_to post.title, post_path(post) %></h3>
+			  		</div>
+				  </div>
+  			<% end %> <!--div_for-->
+	  	</div>
+	  <% end %>
+  </div><!--col-md-8-->
+  <div class="col-md-4">
+    <h3><%= link_to t(:categories), categories_path %></h3>
+    <% @categories.each do |c| %>
+    <%= link_to c.name, c %>: <%= c.post_categories.count %><br />
+    <% end %>
+  </div>
 </div><!--row-->
+
+<p><%= link_to t(:tags), tags_path %></p>
+<p><%= link_to t(:categories), categories_path %></p>

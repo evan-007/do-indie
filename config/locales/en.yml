@@ -154,3 +154,7 @@ en:
   name: "Name"
   message: "Message"
   phone: "Phone Number"
+  
+  #blog
+  categories: "Categories"
+  tags: "Tags"

@@ -3,4 +3,5 @@ class Tag < ActiveRecord::Base
 	friendly_id :name, use: :slugged
   has_many :post_tags
   has_many :posts, through: :post_tags
+  validates :name, presence: true
 end

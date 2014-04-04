@@ -154,6 +154,10 @@ ko:
   message: "이메일로 문의하기"
   phone: "전화번호"
   
+  
+  #blog
+  categories: "분류"
+  tags: "Tags"
   #i18n translations
   date:
     abbr_day_names:

@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :get_post, only: [:show, :edit, :update, :destroy]
   def index
     @posts = Post.published
+    @categories = Category.all
   end
   
   def show
