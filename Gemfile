@@ -21,6 +21,7 @@ gem 'pg'
 gem 'unicorn'
 gem 'sass'
 gem 'compass', '0.12.2'
+gem 'font-awesome-rails'
 
 #for mailchimp api
 gem 'gibbon'

@@ -24,6 +24,14 @@ class EventsController < ApplicationController
 	def create
 		@event = current_user.events.build(event_params)
 		if @event.save
+      if params[:new_bands].present?
+        params[:new_bands].each do |band|
+          @band = Band.new(name: band)
+          @band.save
+          @event_band = EventBand.new(event: @event, band: @band)
+          @event_band.save
+        end
+      end
       flash[:notice] = t(:event_submission_note)
 			redirect_to events_path
 		else

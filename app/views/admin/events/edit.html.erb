@@ -1,3 +1,13 @@
+<% if @event.bands.unapproved.present? %>
+  <h2>WARNING: This event has unapproved bands</h2>
+  <p>
+    Be sure to approve these bands, too:
+    <% @event.bands.unapproved.each do |band|%>
+      <%= link_to band.name, edit_admin_band_path(band) %>,
+    <% end %>
+  </p>
+<% end %>
+
 <%= form_for [:admin, @event] do |f| %>
 	<%= f.label t(:event_name_e) %>
 	<%= f.text_field :name, class: "form-control half" %><br />

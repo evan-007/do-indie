@@ -29,4 +29,11 @@ feature "Creating events" do
 		visit new_event_en_path
 		expect(page).to have_content("sign up for a doindie account")
 	end
+  
+  scenario "Multiple new bands can be added to an event"  do
+    sign_in @user
+    visit new_event_en_path
+    fill_in "event[name]", with: "partyyyyy"
+    click_link "Band not listed?"
+  end
 end

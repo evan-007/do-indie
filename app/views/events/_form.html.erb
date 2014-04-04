@@ -20,14 +20,16 @@
 	<% end %>
 		
 	<p><%= t(:band_playing_note)%></p>
-
-	<%= link_to "Band not listed?", nil %><br />
-	<p>only get new band name</p>
+  
+  <div id="new_band">
+   <p>Band not listed?</p>
+    <div id="add_band">Click here to add a band<i class="fa fa-plus"></i></div>
+  </div>
 
 	<h4><%= t(:venue) %></h4>
 	<%= f.label :venue_id %>
 	<%= f.select(:venue_id, options_for_select(Venue.order(name: :asc).collect { |v| [v.name, v.id]}.insert(0, "") )) %><br />
-	<p><%= t(:venue_note) %></p></br />
+	<p><%= t(:venue_note) %></p><br />
 
 	<%= f.label t(:start_date) %>
 	<%= f.date_select :date, start_year: 2014, class: "form-control half" %><br />
@@ -75,5 +77,15 @@
 <script>
   $(document).ready(function() { $('#event_band_ids').chosen({width: "50%"}); });
   $(document).ready(function() { $('#event_venue_id').chosen({width: "50%"}); });
+  $(document).ready(function() {
+    $('#add_band').on('click', function(){
+      $(this).closest('#new_band').append('<input class="form-control half" name="[new_bands][]" type="text">');
+      console.log('clicked');
+    });
+  
+    $('#trash').on('click', function(){
+      $(this).closest('#new_band').remove();
+    });
+  });
   
 </script>
