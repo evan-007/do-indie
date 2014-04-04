@@ -13,7 +13,9 @@
 
 <p>Categories: 
   <% @post.post_categories.each do |pc| %>
-	  <%= link_to pc.category.name, category_path(pc.category) %>,
+      <% unless pc.category.blank? %>
+		  <%= link_to pc.category.name, category_path(pc.category) %>,
+	  <% end %>
   <% end %>  
 </p>
 

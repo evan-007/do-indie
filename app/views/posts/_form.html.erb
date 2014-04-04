@@ -12,7 +12,9 @@
   <% unless @post.post_categories.blank? %><br/ ><br />
     <p>Don't add the same category twice. This post is already under these categories:</p>
     <% @post.post_categories.each do |pc| %>
-      <%= pc.category.name %>,
+      <% unless pc.category.blank? %>
+	      <%= pc.category.name %>,
+      <% end %>
     <% end %><br /><br />
   <% end %>
   <p>
@@ -45,7 +47,12 @@
 		<%= ff.text_area :ko_description, class: "form-control half" %>
 	</p>
 	<% if @post.slide.image.exists? %>
-	  <%= image_tag @post.slide.image.url(:thumb) %><br/>
+		<div id="image_area">
+			<%= image_tag @post.slide.image.url(:thumb) %><br/>
+			<%= ff.label :_destroy, "Remove image" %>
+			<%= ff.check_box :_destroy %>
+			<div id="change_image" class="btn btn-lg btn-primary">Change Image</div>
+		</div>
 	<% else %>
 	<p>
 		<%= ff.label :image %>
@@ -71,5 +78,15 @@
 <script>
   $(document).ready(function() { $('#post_category_ids').chosen({width: "50%"}); });
   $(document).ready(function() { $('#post_tag_ids').chosen({width: "50%"}); });
+
+	$(document).ready(function(){
+		$('#change_image').click(function(){
+			console.log('clicked)');
+			$(this).closest('#image_area').append('<p>'+
+				'<label for="post_slide_attributes_image">Image</label>'+
+				'<input id="post_slide_attributes_image" type="file" name="post['+'slide_attributes][image]">'+
+				'</p>');
+		});
+	});
   
 </script>

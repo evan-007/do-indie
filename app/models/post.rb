@@ -1,11 +1,11 @@
 class Post < ActiveRecord::Base
 	has_many :post_categories
 	has_many :categories, through: :post_categories
-  has_many :post_tags
-  has_many :tags, through: :post_tags
+	has_many :post_tags
+	has_many :tags, through: :post_tags
 	has_one :slide
 	scope :published, -> { where(published: true) }
 	extend FriendlyId
 	friendly_id :title, use: :slugged
-	accepts_nested_attributes_for :slide
+	accepts_nested_attributes_for :slide, allow_destroy: true
 end
