@@ -46,7 +46,7 @@
     <div class="form-group">
       <%= f.label :en_bio %>
       <div class="row">
-        <div class="col-sm-6">      
+        <div class="col-md-12">      
           <%= f.cktext_area :en_bio, class: "form-control" %>  
         </div>
       </div>
@@ -55,7 +55,7 @@
     <div class="form-group">
       <%= f.label :ko_bio %>
       <div class="row">
-        <div class="col-sm-6">      
+        <div class="col-sm-12">      
           <%= f.cktext_area :ko_bio, class: "form-control" %>  
         </div>
       </div>
@@ -64,7 +64,7 @@
     <div class="form-group">
       <%= f.label :facebook %>
       <div class="row">
-        <div class="col-sm-6">      
+        <div class="col-md-6">      
           <%= f.text_field :facebook, class: "form-control" %>  
         </div>
       </div>
@@ -92,7 +92,7 @@
       <%= f.label :approved %>
       <div class="row">
         <div class="col-sm-6">
-          <%= f.select(:approved, options_for_select([["no", false], ["yes", true]] ), class: "form-control") %>  
+          <%= f.check_box :approved %>
         </div>
       </div>
     </div>
