@@ -8,7 +8,7 @@
   </p>
 <% end %>
 
-<% if @event.venue.approved == false %>
+<% if @event.venue.present?  && @event.venue.approved == false %>
   <h2>WARNING: This event's venue is not approved yet</h2>
   <p>
     Be sure to approve this venue, too:
