@@ -18,9 +18,9 @@ feature "Admin event managers" do
 
 	scenario "admins can approve users" do
 		visit admin_root_en_path
-	    click_link("Event Managers")
+	  click_link("Event Managers")
 		click_link(@user.username.capitalize)
-	    select ("yes"), from: "event_manager[approved]"
+    check "event_manager[approved]"
 		click_button ("Update manager")
 		expect(page).to have_content("Updated permissions")
 	end

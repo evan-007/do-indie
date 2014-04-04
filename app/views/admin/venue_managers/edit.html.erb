@@ -11,7 +11,7 @@
       <%= f.label :approved %>
       <div class="row">
         <div class="col-sm-6">
-          <%= f.select(:approved, options_for_select([["no", false], ["yes", true]] ), class: "form-control") %>  
+         <%= f.check_box :approved %>   
         </div>
       </div>
     </div>
