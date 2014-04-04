@@ -21,10 +21,10 @@
 		
 	<p><%= t(:band_playing_note)%></p>
   
-  <div id="new_band">
-   <p>Band not listed?</p>
-    <div id="add_band">Click here to add a band<i class="fa fa-plus"></i></div>
-  </div>
+	<div id="new_band">
+		<h3>Band not listed?</h3>
+	    <div id="add_band" class="btn btn-warning">Click here to add a band<i class="fa fa-plus"></i></div>
+	</div>
 
 	<h4><%= t(:venue) %></h4>
 	<%= f.label :venue_id %>
@@ -33,7 +33,7 @@
 
   <div id="new_venue">
    <p>Venue not listed?</p>
-    <div id="add_venue">Click here to add your venue<i class="fa fa-plus"></i></div>
+    <div id="add_venue" class="btn btn-warning">Click here to add your venue<i class="fa fa-plus"></i></div>
   </div>
 
 	<%= f.label t(:start_date) %>
@@ -84,23 +84,29 @@
   $(document).ready(function() { $('#event_venue_id').chosen({width: "50%"}); });
   $(document).ready(function() {
     $('#add_band').on('click', function(){
-      $(this).closest('#new_band').append('<input class="form-control half" name="[new_bands][]" type="text">');
-      console.log('clicked');
+		$(this).closest('#new_band').append('<div class="new_band_name"><input class="form-control half" name="[new_bands][]" type="text"><div class="trash_band btn btn-warning">Remove<i class="fa fa-trash-o"></i></div></div>');
+		
+		$('.trash_band').on('click', function(){
+		$(this).closest('.new_band_name').remove();
+		})
     });
-  
-    $('#band_trash').on('click', function(){
-      $(this).closest('#new_band').remove();
-    });
+
+
     
-    $('#add_venue').on('click', function(){
-      $(this).closest('#new_venue').append('<input class="form-control half" name="[new_venue]" type="text">');
-      console.log('clicked');
-    });
+    $('#add_venue').on('click', function(event){
+		$(this).closest('#new_venue').append('<div class="new_venue_name"><input class="form-control half" name="[new_venue]" type="text"><div class="trash_venue btn btn-warning">Remove<i class="fa fa-trash-o"></i></div></div>');
+		$(this).off(event);
+
+	    $('.trash_venue').on('click', function(){
+			$(this).closest('.new_venue_name').remove();
+		});
+
+	});
   
-    $('#trash').on('click', function(){
-      $(this).closest('#new_venue').remove();
-    });
-    
+
+
   });
+
+
   
 </script>

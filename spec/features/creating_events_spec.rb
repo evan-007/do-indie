@@ -30,10 +30,16 @@ feature "Creating events" do
 		expect(page).to have_content("sign up for a doindie account")
 	end
   
-  scenario "Multiple new bands can be added to an event"  do
-    sign_in @user
-    visit new_event_en_path
-    fill_in "event[name]", with: "partyyyyy"
-    click_link "Band not listed?"
-  end
+	scenario "New bands can be added to an event"  do
+	    sign_in @user
+	    visit new_event_en_path
+	    fill_in "event[name]", with: "partyyyyy"
+	    find('#add_band').click
+	    sleep(5)
+	    fill_in "new_band_name", with: "my new band"
+	    click_button "Create Event"
+	    expect(page).to have_content("Thanks")
+	    expect(Band.last.name).to eq('my new band')
+	    # click "Click here to add a band"
+	end
 end
