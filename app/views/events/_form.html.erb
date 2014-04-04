@@ -31,6 +31,11 @@
 	<%= f.select(:venue_id, options_for_select(Venue.order(name: :asc).collect { |v| [v.name, v.id]}.insert(0, "") )) %><br />
 	<p><%= t(:venue_note) %></p><br />
 
+  <div id="new_venue">
+   <p>Venue not listed?</p>
+    <div id="add_venue">Click here to add your venue<i class="fa fa-plus"></i></div>
+  </div>
+
 	<%= f.label t(:start_date) %>
 	<%= f.date_select :date, start_year: 2014, class: "form-control half" %><br />
 	<%= f.label t(:show_time) %>
@@ -83,9 +88,19 @@
       console.log('clicked');
     });
   
-    $('#trash').on('click', function(){
+    $('#band_trash').on('click', function(){
       $(this).closest('#new_band').remove();
     });
+    
+    $('#add_venue').on('click', function(){
+      $(this).closest('#new_venue').append('<input class="form-control half" name="[new_venue]" type="text">');
+      console.log('clicked');
+    });
+  
+    $('#trash').on('click', function(){
+      $(this).closest('#new_venue').remove();
+    });
+    
   });
   
 </script>

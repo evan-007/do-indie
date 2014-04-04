@@ -32,6 +32,11 @@ class EventsController < ApplicationController
           @event_band.save
         end
       end
+      if params[:new_venue].present?
+        @venue = Venue.new(name: params[:new_venue])
+        @venue.save
+        @event.update(venue: @venue)
+      end
       flash[:notice] = t(:event_submission_note)
 			redirect_to events_path
 		else

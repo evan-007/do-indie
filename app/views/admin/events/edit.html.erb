@@ -8,6 +8,14 @@
   </p>
 <% end %>
 
+<% if @event.venue.approved == false %>
+  <h2>WARNING: This event's venue is not approved yet</h2>
+  <p>
+    Be sure to approve this venue, too:
+    <%= link_to @event.venue.name, edit_admin_venue_path(@event.venue) %>,
+  </p>
+<% end %>
+
 <%= form_for [:admin, @event] do |f| %>
 	<%= f.label t(:event_name_e) %>
 	<%= f.text_field :name, class: "form-control half" %><br />
