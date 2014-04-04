@@ -22,4 +22,12 @@ feature "Approval email" do
 		@venue.update(approved: true)
 		expect(open_last_email).to be_delivered_to @user.email
 	end
+  
+  scenario "users with get_email:false don't get email" do
+    @user2 = create(:admin_user)
+    @band2 = create(:unapproved_band, name: 'dif name', user: @user2)
+    @user2.update(get_email: false)
+    @band2.update(approved: true)
+    expect(open_last_email).to_not be_delivered_to @user2.email
+  end
 end

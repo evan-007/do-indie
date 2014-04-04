@@ -22,7 +22,8 @@ class ApplicationController < ActionController::Base
       :email, 
       :password, 
       :password_confirmation,
-      :current_password
+      :current_password,
+      :get_email
       ) 
     }
   end
