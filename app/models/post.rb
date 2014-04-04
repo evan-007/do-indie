@@ -3,6 +3,8 @@ class Post < ActiveRecord::Base
 	has_many :categories, through: :post_categories
 	has_many :post_tags
 	has_many :tags, through: :post_tags
+	has_many :tagged_bands
+	has_many :bands, through: :tagged_bands
 	has_one :slide
 	scope :published, -> { where(published: true) }
 	extend FriendlyId

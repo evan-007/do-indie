@@ -7,6 +7,8 @@ class Band < ActiveRecord::Base
 	has_many :events, through: :event_bands
 	has_many :band_genres
 	has_many :genres, through: :band_genres
+	has_many :tagged_bands
+	has_many :posts, through: :tagged_bands
 	belongs_to :user
 	validates :name, presence: true, uniqueness: true
 	scope :approved, -> { where(approved: true) }

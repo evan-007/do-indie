@@ -11,6 +11,13 @@
 	<p><%= @post.ko_body.html_safe %></p>
 <% end %>
 
+<% @post.tagged_bands.each do |tb| %>
+	<p><%= link_to tb.band.name, band_path(tb.band) %></p>
+	<% unless tb.band.facebook.blank? %>
+		<p><%= link_to tb.facebook, tb.facebook %></p>
+	<% end %>
+<% end %>
+
 <p>Categories: 
   <% @post.post_categories.each do |pc| %>
       <% unless pc.category.blank? %>

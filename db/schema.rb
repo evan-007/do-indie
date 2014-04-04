@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404065506) do
+ActiveRecord::Schema.define(version: 20140404234407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -228,6 +228,16 @@ ActiveRecord::Schema.define(version: 20140404065506) do
   end
 
   add_index "slides", ["post_id"], name: "index_slides_on_post_id", using: :btree
+
+  create_table "tagged_bands", force: true do |t|
+    t.integer  "band_id"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tagged_bands", ["band_id"], name: "index_tagged_bands_on_band_id", using: :btree
+  add_index "tagged_bands", ["post_id"], name: "index_tagged_bands_on_post_id", using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "name"

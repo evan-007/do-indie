@@ -22,6 +22,11 @@
     <%= f.collection_select :category_ids, Category.order(:name), :id, :name, {}, {multiple: true} %>
   </p>
   <p>
+  	Tag some bands! Only tag bands here and not in the 'tags'.
+    <%= f.label t(:bands) %>
+    <%= f.collection_select :band_ids, Band.order(:name), :id, :name, {}, {multiple: true} %>
+  </p>
+  <p>
     <%= f.label t(:tags) %>
     <%= f.collection_select :tag_ids, Tag.order(:name), :id, :name, {}, {multiple: true} %>
   </p>
@@ -79,4 +84,5 @@
 <script>
   $(document).ready(function() { $('#post_category_ids').chosen({width: "50%"}); });
   $(document).ready(function() { $('#post_tag_ids').chosen({width: "50%"}); });  
+  $(document).ready(function() { $('#post_band_ids').chosen({width: "50%"}); }); 
 </script>
