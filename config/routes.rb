@@ -1,5 +1,7 @@
 DoIndie::Application.routes.draw do
 
+
+
   # config/routes.rb
 
   scope "(:locale)", locale: /en/ do
@@ -22,7 +24,7 @@ DoIndie::Application.routes.draw do
     get "/blog/admin", to: "posts#admin", as: "blog_admin"
     post "email_signup", to: "pages#signup", as: "sign_up"
 
-    resources :bands, :venues, :events, :posts, :categories
+    resources :bands, :venues, :events, :posts, :categories, :tags
     resources :messages, only: [:index, :create]
     resources :user_fans, only: [:create, :destroy]
     resources :event_bands, only: [:create, :destroy]

@@ -1,5 +1,5 @@
 <% unless @post.slide.image.url.blank? %>
-  <%= image_tag post.slide.image.url %>
+  <%= image_tag @post.slide.image.url %>
 <% end %>
 
 
@@ -11,7 +11,14 @@
 	<p><%= @post.ko_body.html_safe %></p>
 <% end %>
 
-<% @post.post_categories.each do |pc| %>
-	<%= link_to pc.category.name, category_path(pc.category) %>
-<% end %>  
+<p>Categories: 
+  <% @post.post_categories.each do |pc| %>
+	  <%= link_to pc.category.name, category_path(pc.category) %>,
+  <% end %>  
+</p>
 
+<p>Tags:
+  <% @post.post_tags.each do |pt| %>
+	  <%= link_to pt.tag.name, tag_path(pt.tag) %>,
+  <% end %> 
+</p>

@@ -1,0 +1,13 @@
+
+
+
+<h2>Posts under: <%= @tag.name %></h2>
+<% @tag.post_tags.each do |pt| %>
+  <h3><%= link_to pt.post.title, post_path(pt.post) %></h3>
+<% end %>
+
+
+<%= link_to 'Back', tags_path %>
+<% if current_user.present? && current_user.blogger == true %>
+<p><%= link_to 'Edit', edit_tag_path(@tag) %></p>
+<% end %>

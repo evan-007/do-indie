@@ -61,7 +61,8 @@ class PostsController < ApplicationController
         :ko_body,
         :short_title,
         :published,
-        genre_ids: [],
+        category_ids: [],
+        tag_ids: [],
         slide_attributes: [:en_title, :ko_title, :en_description, :ko_description, :image, :link, :anchor, :active, :id])
     end
 

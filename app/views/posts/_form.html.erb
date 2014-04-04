@@ -19,6 +19,10 @@
     <%= f.label t(:categories) %>
     <%= f.collection_select :category_ids, Category.order(:name), :id, :name, {}, {multiple: true} %>
   </p>
+  <p>
+    <%= f.label t(:tags) %>
+    <%= f.collection_select :tag_ids, Tag.order(:name), :id, :name, {}, {multiple: true} %>
+  </p>
   <p><% t(:no_category) %></p>
   <%= label_tag t(:new_category) %>
   <%= text_field_tag :new_category %><br />
@@ -66,5 +70,6 @@
 
 <script>
   $(document).ready(function() { $('#post_category_ids').chosen({width: "50%"}); });
+  $(document).ready(function() { $('#post_tag_ids').chosen({width: "50%"}); });
   
 </script>
