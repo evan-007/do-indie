@@ -29,7 +29,7 @@
 </p>
 <p>
 	<%= f.label :active %>
-	<%= f.select(:active, options_for_select([["Yes", true], ["No", false]]), class: "form-control") %>
+	<%= f.check_box :active %>
 </p>
 <p>
 	<%= f.submit %>

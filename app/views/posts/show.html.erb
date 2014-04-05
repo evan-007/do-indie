@@ -14,7 +14,7 @@
 <% @post.tagged_bands.each do |tb| %>
 	<p><%= link_to tb.band.name, band_path(tb.band) %></p>
 	<% unless tb.band.facebook.blank? %>
-		<p><%= link_to tb.facebook, tb.facebook %></p>
+		<p><%= link_to tb.band.facebook, tb.band.facebook %></p>
 	<% end %>
 <% end %>
 

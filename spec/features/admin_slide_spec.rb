@@ -16,7 +16,7 @@ feature "Admin slide panel" do
 		fill_in "slide[en_description]", with: "delicious"
 		fill_in "slide[anchor]", with: "click here"
 		fill_in "slide[link]", with: "http://nytimes.com"
-		select 'Yes', from: 'slide[active]'
+		check 'slide[active]'
 		click_button "Create Slide"
 		expect(page).to have_content('Slide created')
 	end
@@ -25,7 +25,7 @@ feature "Admin slide panel" do
 		@slide = create(:slide, active: true)
 		visit admin_slides_en_path
 		click_link @slide.en_title
-		select 'No', from: 'slide[active]'
+		check 'slide[active]'
 		click_button "Update Slide"
 		expect(page).to have_content('Slide updated')
 	end
