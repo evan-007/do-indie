@@ -57,11 +57,28 @@ class Band < ActiveRecord::Base
     end
   end
 
+  def tweets
+  	@tweet_url = twitter.gsub(/^[^_]*twitter.com\//, '')
+  	twitter_client.user_timeline("#{@tweet_url}").take(3)
+    rescue
+  	[]
+  end
+
+  def soundcloud_stream
+    unless self.soundcloud.blank?
+      @track_url = self.soundcloud
+      @client = Soundcloud.new(:client_id => 'b8e640fd38bce5816e3e15ca83bc75cc')
+      @client.get('/oembed', :url => @track_url ).html_safe
+	end
+    rescue
+	[]
+  end
+
   private
 
     def approval_notification
-    	if self.approved == true && self.user != nil
-	    	UserMailer.band_approved_email(self).deliver
-	    end
-	end
+	  if self.approved == true && self.user != nil
+	    UserMailer.band_approved_email(self).deliver
+      end
+    end
 end

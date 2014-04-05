@@ -19,7 +19,7 @@
     <% unless @band.twitter.blank? %>
       <p><%= t(:twitter_feed) %></p>
       <ul>
-        <% twitter_client.user_timeline("#{@tweet_url}").take(3).each do |tweet| %>
+        <% @band.tweets.each do |tweet| %>
           <li><%= tweet.text.html_safe %></li>
         <% end %>
       </ul>
