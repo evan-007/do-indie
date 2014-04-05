@@ -22,9 +22,10 @@ DoIndie::Application.routes.draw do
     get "photo", to: "pages#photo", as: "photo"
     get "/venues/map", to: "venues#map", as: "venues_map"
     get "/blog/admin", to: "posts#admin", as: "blog_admin"
+    get 'tag/:tag', to: 'posts#index', as: "tags"
     post "email_signup", to: "pages#signup", as: "sign_up"
 
-    resources :bands, :venues, :events, :posts, :categories, :tags
+    resources :bands, :venues, :events, :posts, :categories
     resources :messages, only: [:index, :create]
     resources :user_fans, only: [:create, :destroy]
     resources :event_bands, only: [:create, :destroy]

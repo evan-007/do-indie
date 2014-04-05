@@ -27,8 +27,8 @@
     <%= f.collection_select :band_ids, Band.order(:name), :id, :name, {}, {multiple: true} %>
   </p>
   <p>
-    <%= f.label t(:tags) %>
-    <%= f.collection_select :tag_ids, Tag.order(:name), :id, :name, {}, {multiple: true} %>
+    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+    <%= f.text_field :tag_list %>
   </p>
   <p><% t(:no_category) %></p>
   <%= label_tag t(:new_category) %>

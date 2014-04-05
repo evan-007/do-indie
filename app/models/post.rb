@@ -10,4 +10,5 @@ class Post < ActiveRecord::Base
 	extend FriendlyId
 	friendly_id :title, use: :slugged
 	accepts_nested_attributes_for :slide, allow_destroy: true
+	acts_as_taggable
 end

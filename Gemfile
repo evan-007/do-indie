@@ -22,6 +22,7 @@ gem 'unicorn'
 gem 'sass'
 gem 'compass', '0.12.2'
 gem 'font-awesome-rails'
+gem 'acts-as-taggable-on'
 
 #for mailchimp api
 gem 'gibbon'

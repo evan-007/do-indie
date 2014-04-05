@@ -27,7 +27,5 @@
 </p>
 
 <p>Tags:
-  <% @post.post_tags.each do |pt| %>
-	  <%= link_to pt.tag.name, tag_path(pt.tag) %>,
-  <% end %> 
+  <%= raw @post.tag_list.map { |t| link_to t, tags_path(t) }.join(', ') %>
 </p>

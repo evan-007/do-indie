@@ -2,8 +2,13 @@ class PostsController < ApplicationController
   before_filter :blogger!, only: [:admin, :edit, :update, :new, :destroy, :create]
   before_action :get_post, only: [:show, :edit, :update, :destroy]
   def index
-    @posts = Post.published
-    @categories = Category.all
+    if params[:tag]
+      @posts = Post.tagged_with(params[:tag])
+      @categories = Category.all
+    else
+      @posts = Post.published
+      @categories = Category.all
+    end
   end
   
   def show
@@ -62,6 +67,7 @@ class PostsController < ApplicationController
         :ko_body,
         :short_title,
         :published,
+        :tag_list,
         category_ids: [],
         tag_ids: [],
         band_ids: [],
