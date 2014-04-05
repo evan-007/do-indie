@@ -54,6 +54,60 @@
   </div>
 </div><!--row-->
 
+
+<div id="showData" class="btn btn-lg btn-primary">Share this event</div>
+<div id="raw_data">
+  <p>Copy and paste the show data below to your blog/facebook/cafe</p>
+  <p>
+    <%= @event.name %><br />
+    * 일시: <%= @event.date %> <%= @event.time %> ← DATE & TIME<br />
+    <% unless @event.venue.blank? %>
+      * 장소: <%= @event.venue.name %> ← VENUE NAME<br />
+    <% end %>
+    <% unless @event.door_price.blank? %>
+      * 입장료: (현매) <%= @event.door_price %>원 ← DOOR PRICE<br />
+    <% end %>
+    <% unless @event.ticket_price.blank? %>
+      * 입장료: (에매) <%= @event.ticket_price %>원 ← ADV PRICE<br />
+    <% end %>
+    <% unless @event.bands.blank? %>
+      * 라인업 : <% @event.bands.each do |b| %> <%= b.name %>, <% end %> ← LIST OF ARTISTS<br /><br />
+    <% end %> 
+
+    hidden-dawn-9617.herokuapp.com<%= url_for @event %><br /><br />
+
+    * 라인업 / Lineup :<br /><br />
+    <% unless @event.bands.blank? %>
+      <% @event.bands.each do |b| %> 
+        *<%= b.name %> : <%= b.facebook %><br />
+        <% end %> <br />
+    <% end %> <br /><br />
+
+    * 오시는 길 / Directions :
+      <% unless @event.venue.blank? %>
+      <%= @event.venue.en_directions %><br />
+      <%= @event.venue.ko_directions %><br />
+      <% end %>
+
+    <% unless @event.venue.blank? %>
+    * 장소 / Venue :
+      <%= @event.venue.twitter %><br/>
+      <%= @event.venue.facebook %><br/>
+      <%= @event.venue.cafe %><br/>
+      <%= @event.venue.website %><br/>
+    <% end %>
+
+    * 2014 Apr 5 (Sat) 8pm ← DATE & TIME
+    * Space Moon ← VENUE NAME
+    * Door : 10,000w
+    * Adv : 15,000w
+    * Lineup : Angry Bear, The Kitsches, Magna Fall
+
+
+    powered by doindie (www.doindie.co.kr / www.facebook.com/doindie.kr / www.twitter.com/DoIndieKorea)
+  </p>
+</div>
+
 <% if current_user && current_user.event_managers.where(event_id: @event.id).count == 0 %>
 	<p><%= t(:event_request) %> <%= link_to t(:manager_request), event_managers_path(event_id: @event.id), method: 'post' %>.</p>
 <% elsif current_user && current_user.event_managers.where(event_id: @event.id).count != 0 && current_user.event_manager?(@event.id) == true %>
@@ -66,12 +120,15 @@
 
 <% if current_user && current_user.admin == true %>
     <%= link_to "Edit this event", edit_event_path(@event) %> 
-	    <p>Hi, <%= current_user.username %>! Only you can see this part. Do you need to add bands?</p>
-	    <%= form_tag(event_bands_path, method: 'post') do %>
-	    <%= label_tag(:event_band, "Add a band") %>
-		<%= select_tag(:band_id, options_for_select(Band.order(name: :asc).collect { |b| [b.name, b.id]} )) %>
-		<%= hidden_field_tag :event_id, @event.id%>
-		<%= submit_tag "Add Band" %>
-		<br />
-		<% end %>
-	<% end %>	
+<% end %>	
+
+<script>
+  $(document).ready(function(){
+    $('#raw_data').toggle();
+    console.log('loaded');
+
+    $('#showData').click(function(){
+      $('#raw_data').toggle();
+    });
+  });
+</script>
