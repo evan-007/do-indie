@@ -155,6 +155,15 @@ ko:
   phone: "전화번호"
   
   
+  ckeditor:
+    page_title: "CKEditor Files Manager"
+    confirm_delete: "Delete file?"
+    buttons:
+      cancel: "Cancel"
+      upload: "Upload"
+      delete: "Delete"
+      next: "Next"
+  
   #blog
   categories: "분류"
   tags: "Tags"

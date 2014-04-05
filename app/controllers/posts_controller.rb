@@ -3,10 +3,10 @@ class PostsController < ApplicationController
   before_action :get_post, only: [:show, :edit, :update, :destroy]
   def index
     if params[:tag]
-      @posts = Post.tagged_with(params[:tag])
+      @posts = Post.published.tagged_with(params[:tag]).order(created_at: :desc)
       @categories = Category.all
     else
-      @posts = Post.published
+      @posts = Post.published.order(created_at: :desc)
       @categories = Category.all
     end
   end
