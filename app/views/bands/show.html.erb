@@ -83,9 +83,9 @@
         <%= link_to (image_tag event.avatar(:medium)), event_path(event) %>
       </div>
     <% end %>
+  </div>
 <% else %>
       <h3><%= t(:no_events)%></h3>
-  </div>
 <% end %>
 
 <% unless @band.tagged_bands.blank? %>
