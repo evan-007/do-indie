@@ -9,11 +9,14 @@ class Band < ActiveRecord::Base
 	has_many :genres, through: :band_genres
 	has_many :tagged_bands
 	has_many :posts, through: :tagged_bands
+	has_many :youtubes
 	belongs_to :user
+	accepts_nested_attributes_for :youtubes, allow_destroy: true
 	validates :name, presence: true, uniqueness: true
 	scope :approved, -> { where(approved: true) }
 	scope :unapproved, -> { where(approved: false) }
 	after_save :approval_notification, if: :approved_changed?
+
 
 	paginates_per 50 #fix pagination
 

@@ -75,6 +75,13 @@
 
 </p>
 
+<p>
+  <%= f.fields_for :youtubes do |builder| %>
+    <%= builder.label :link %>
+    <%= builder.text_field :link %>
+  <% end %>
+</p>
+
 
 <p>
   <%= f.label :cafe %>

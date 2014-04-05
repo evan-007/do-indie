@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404234407) do
+ActiveRecord::Schema.define(version: 20140405011027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -348,5 +348,14 @@ ActiveRecord::Schema.define(version: 20140404234407) do
   end
 
   add_index "venues", ["user_id"], name: "index_venues_on_user_id", using: :btree
+
+  create_table "youtubes", force: true do |t|
+    t.string   "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "band_id"
+  end
+
+  add_index "youtubes", ["band_id"], name: "index_youtubes_on_band_id", using: :btree
 
 end
