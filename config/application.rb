@@ -22,6 +22,10 @@ module DoIndie
 
     #sanitize for youtube
     config.action_view.sanitized_allowed_tags = 'table', 'tr', 'iframe'
+    #more youtube iframe stuff
+    config.action_dispatch.default_headers = {
+      'X-Frame-Options' => 'ALLOWALL'
+    }
     
     #for Ckeditor/paperclip
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
