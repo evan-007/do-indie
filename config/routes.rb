@@ -1,7 +1,4 @@
 DoIndie::Application.routes.draw do
-
-
-
   # config/routes.rb
 
   scope "(:locale)", locale: /en/ do
