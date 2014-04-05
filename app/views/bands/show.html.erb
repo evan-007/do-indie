@@ -53,8 +53,8 @@
         <iframe width="100%" height="349" src="http://www.youtube.com/embed/<%= youtube_fix @band.youtube %>" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
-  <div class="col-md-6">
 <% end %>
+  <div class="col-md-6">
     <% unless @band.facebook.blank? %>
       <p><%= t(:facebook) %> <%= link_to @band.facebook, @band.facebook %></p>
     <% end %>
@@ -87,6 +87,16 @@
 <% else %>
       <h3><%= t(:no_events)%></h3>
 <% end %>
+
+  <div class="row">
+    <% @band.youtubes.each do |yt| %>
+        <div class="col-sm-6">
+          <div class="video-container">
+            <iframe width="100%" height="349" src="http://www.youtube.com/embed/<%= youtube_fix yt.link %>" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+    <% end %>
+  </div>
 
 <% unless @band.tagged_bands.blank? %>
   <p>
