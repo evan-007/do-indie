@@ -88,6 +88,16 @@
   </div>
 <% end %>
 
+<% unless @band.tagged_bands.blank? %>
+  <p>
+    DoIndie Articles About <%= @band.name %>: 
+      <% @band.tagged_bands.each do |tb| %>
+        <%= link_to tb.post.title, post_path(tb.post) %>, 
+      <% end %>
+  </p>
+<% end %>
+
+
 
 
 
