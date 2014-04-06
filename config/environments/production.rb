@@ -72,6 +72,13 @@ DoIndie::Application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
+  DoIndie::Application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[DoIndie Error Alert] ",
+    :sender_address => %{"notifier" <evan@example.com>},
+    :exception_recipients => %w{evan.u.lloyd@gmail.com}
+  }
+
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 

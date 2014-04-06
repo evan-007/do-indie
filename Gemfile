@@ -32,7 +32,7 @@ gem 'capistrano', '~> 3.0.1'
 gem 'capistrano-rails', '~> 1.1.0'
 gem 'capistrano-bundler'
 gem 'capistrano-rbenv', '~> 2.0'
-
+gem 'exception_notification'
 gem 'textacular'
 gem 'mail_form'
 
