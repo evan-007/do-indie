@@ -86,7 +86,10 @@
 	<%= f.text_area :info_ko, class: "form-control half" %><br />
 	<p><%= t(:event_details_note)%></p>
 
-  <p><%= f.check_box :approved %></p>
+  <p>
+  	<%= f.label :approved %>
+  	<%= f.check_box :approved %>
+  </p>
 	
 	<%= f.submit %>
 	

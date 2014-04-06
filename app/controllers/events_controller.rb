@@ -23,21 +23,34 @@ class EventsController < ApplicationController
 
 	def create
 		@event = current_user.events.build(event_params)
+		#oh god refactor this mess
 		if @event.save
-      if params[:new_bands].present?
-        params[:new_bands].each do |band|
-          @band = Band.new(name: band)
-          @band.save
-          @event_band = EventBand.new(event: @event, band: @band)
-          @event_band.save
-        end
-      end
-      if params[:new_venue].present?
-        @venue = Venue.new(name: params[:new_venue])
-        @venue.save
-        @event.update(venue: @venue)
-      end
-      flash[:notice] = t(:event_submission_note)
+			if params[:new_bands].present? && params[:new_venue].present?
+				params[:new_bands].each do |band|
+					@band = Band.new(name: band)
+					@band.save
+					@event_band = EventBand.new(event: @event, band: @band)
+					@event_band.save
+				end
+				@venue = Venue.new(name: params[:new_venue])
+				@venue.save
+				@event.update(venue: @venue)
+
+			elsif params[:new_bands].present?
+				params[:new_bands].each do |band|
+					@band = Band.new(name: band)
+					@band.save
+					@event_band = EventBand.new(event: @event, band: @band)
+					@event_band.save
+				end
+
+
+			elsif params[:new_venue].present?
+				@venue = Venue.new(name: params[:new_venue])
+				@venue.save
+				@event.update(venue: @venue)
+			end
+			flash[:notice] = t(:event_submission_note)
 			redirect_to events_path
 		else
 			flash[:notice] = "Event not created!"
