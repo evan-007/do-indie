@@ -60,18 +60,18 @@
   <p>Copy and paste the show data below to your blog/facebook/cafe</p>
   <p>
     <%= @event.name %><br />
-    * 일시: <%= @event.date %> <%= @event.time %> ← DATE & TIME<br />
+    * 일시: <%= @event.date %> <%= @event.time %><br />
     <% unless @event.venue.blank? %>
-      * 장소: <%= @event.venue.name %> ← VENUE NAME<br />
+      * 장소: <%= @event.venue.name %><br />
     <% end %>
     <% unless @event.door_price.blank? %>
-      * 입장료: (현매) <%= @event.door_price %>원 ← DOOR PRICE<br />
+      * 입장료: (현매) <%= @event.door_price %>원<br />
     <% end %>
     <% unless @event.ticket_price.blank? %>
-      * 입장료: (에매) <%= @event.ticket_price %>원 ← ADV PRICE<br />
+      * 입장료: (에매) <%= @event.ticket_price %>원<br />
     <% end %>
     <% unless @event.bands.blank? %>
-      * 라인업 : <% @event.bands.each do |b| %> <%= b.name %>, <% end %> ← LIST OF ARTISTS<br /><br />
+      * 라인업 : <% @event.bands.each do |b| %> <%= b.name %>, <% end %><br /><br />
     <% end %> 
 
     hidden-dawn-9617.herokuapp.com<%= url_for @event %><br /><br />
@@ -83,12 +83,6 @@
         <% end %> <br />
     <% end %> <br /><br />
 
-    * 오시는 길 / Directions :
-      <% unless @event.venue.blank? %>
-      <%= @event.venue.en_directions %><br />
-      <%= @event.venue.ko_directions %><br />
-      <% end %>
-
     <% unless @event.venue.blank? %>
     * 장소 / Venue :
       <%= @event.venue.twitter %><br/>
@@ -96,6 +90,27 @@
       <%= @event.venue.cafe %><br/>
       <%= @event.venue.website %><br/>
     <% end %><br /><br />
+
+    * 오시는 길 / Directions :
+      <% unless @event.venue.blank? %>
+      <%= @event.venue.en_directions %><br />
+      <%= @event.venue.ko_directions %><br />
+      <% end %>
+
+      * <%= @event.date %> <%= @event.time %><br />
+    <% unless @event.venue.blank? %>
+      * <%= @event.venue.name %><br />
+    <% end %>
+    <% unless @event.door_price.blank? %>
+      * Door: <%= @event.door_price %>원<br />
+    <% end %>
+    <% unless @event.ticket_price.blank? %>
+      * Adv: <%= @event.ticket_price %>원<br />
+    <% end %>
+    <% unless @event.bands.blank? %>
+      * Lineup : <% @event.bands.each do |b| %> <%= b.name %>, <% end %><br /><br />
+    <% end %>
+
     powered by doindie (www.doindie.co.kr / www.facebook.com/doindie.kr / www.twitter.com/DoIndieKorea)
   </p>
 </div>
