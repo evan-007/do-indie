@@ -1,5 +1,5 @@
 class VenuesController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :get_venue, only: [:show, :edit, :update, :destoy]
   before_action :get_cities, only: [:new, :edit]
 

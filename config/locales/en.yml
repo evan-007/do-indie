@@ -98,7 +98,7 @@ en:
   event_details_ko: "Event Details (Korean):"
   event_details_notes: "Please add any other show related information here (i.e. advanced ticket purchase instructions, extra links, extra information etc). Also, if the venue is not in our database please add the address and directions here."
   event_submission_note: "Thanks for submitting your event to doindie. It is currently awaiting review by our moderators  (To avoid spam / non music related events appearing on doinide we check all submissions individually before publishing them to the site). Please allow up to 24 hours before your event appears in the listings."
-  event_new_login: "To submit events, sign up for a doindie account. After joining, you will be able to add events. (the word sign up will be a clickable link to the form)"
+  event_new_login: "To submit events, sign up for a doindie account. After joining, you will be able to add events."
 
   #venue#new
   non_member_note: "To submit venue profiles, sign up for a free doindie account. After joining, you will be able to add venue information."

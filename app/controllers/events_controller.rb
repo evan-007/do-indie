@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
+	before_filter :authenticate_user!, only: [ :edit, :update, :destroy]
 	before_action :get_event, only: [:show, :edit, :update, :destroy]
+
 	def index
 		@events = Event.index_search(params[:query], params[:page])
 		#events are not paginated! add another view for all events?

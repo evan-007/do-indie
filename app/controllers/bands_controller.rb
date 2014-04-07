@@ -1,5 +1,5 @@
 class BandsController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :edit, :destroy]
+  before_filter :authenticate_user!, only: [ :edit, :update, :destroy]
   before_action :find_friendly, only: [:show, :edit, :update, :destroy]
   before_action :all_genres, only: [:new, :edit]
   before_action :soundcloud, only: [:show]
@@ -12,7 +12,7 @@ class BandsController < ApplicationController
   
   def new
     if current_user == nil
-      flash[:notice] = t(:band_member_note)
+      flash[:alert] = t(:member_band_note)
       redirect_to new_user_session_path
     else
       @band = current_user.bands.build

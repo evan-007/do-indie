@@ -35,7 +35,7 @@ feature "Adding bands" do
     
   scenario "Non-authenticated users can't add bands" do
     visit new_band_en_path
-    expect(page).to have_content("You need to sign in")
+    expect(page).to have_content("sign up")
   end
 
   scenario "Users can see bands they created on the signin page" do
