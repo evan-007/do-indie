@@ -66,6 +66,9 @@ en:
   genres:  "Genres"
   no_events: "No upcoming events."
   no_en_bio: "English profile not available."
+  
+  #band#form
+  new_genre: "Don't see the right genre? Add it below."
 
   #event#new
   pre_form: "Many events have already been submitted to the doindie calendar. Before entering a new event, please take some time to make sure it is not already posted. If the event has already been added, but contains errors or needs updating, please let us know using the contact form and tell us what needs to be changed."

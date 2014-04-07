@@ -107,7 +107,7 @@
     <%= f.label t(:genres) %>
     <%= f.collection_select :genre_ids, Genre.order(:name), :id, :name, {}, {multiple: true} %>
   </p>
-  <p><% t(:no_genre) %></p>
+  <p><% t(:new_genre) %></p>
   <%= label_tag t(:new_genre) %>
   <%= text_field_tag :new_genre %><br />
   <%= f.submit %>
