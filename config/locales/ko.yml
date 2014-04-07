@@ -20,12 +20,9 @@ ko:
   password: "암호"
   email: "이메일"
   remember: "기억하기"
-  band_request: "missing"
   login_request: "missing"
   manager_request: "해당 페이지의 프로필 매니저가 되고 싶다면 클릭"
-  event_request: "missing"
   pending_approval: "감사합니다. 두인디 담당자가 확인 후 이메일 드리겠습니다."
-  venue_request: "missing"
   past_events: "지난 공연"
   map: "지도"
 
@@ -42,6 +39,8 @@ ko:
   sold_out: "매진"
   canceled: "공연 취소"
   no_ko_info: "한국어 정보가 등록되어 있지 않습니다."
+  share_event: "missing"
+  share_me: "missing"
 
   #venues#show
   venue_phone: "공연장 전화번호:"

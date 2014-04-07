@@ -55,9 +55,9 @@
 </div><!--row-->
 
 
-<div id="showData" class="btn btn-lg btn-primary">Share this event</div>
+<div id="showData" class="btn btn-lg btn-primary"><%= t(:share_event)%></div>
 <div id="raw_data">
-  <p>Copy and paste the show data below to your blog/facebook/cafe</p>
+  <p><%= t(:share_me) %></p>
   <p>
     <%= @event.name %><br />
     * 일시: <%= @event.date %> <%= @event.time %><br />
@@ -116,7 +116,7 @@
 </div>
 
 <% if current_user && current_user.event_managers.where(event_id: @event.id).count == 0 %>
-	<p><%= t(:event_request) %> <%= link_to t(:manager_request), event_managers_path(event_id: @event.id), method: 'post' %>.</p>
+	<p><%= link_to t(:manager_request), event_managers_path(event_id: @event.id), method: 'post' %>.</p>
 <% elsif current_user && current_user.event_managers.where(event_id: @event.id).count != 0 && current_user.event_manager?(@event.id) == true %>
     <p>You're a manager! <%= link_to "Edit this event", edit_event_path(@event) %></p>
 <% elsif current_user && current_user.event_managers.where(event_id: @event.id).count != 0 %>

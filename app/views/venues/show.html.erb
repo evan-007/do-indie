@@ -122,7 +122,7 @@
 
 
 <% if current_user && current_user.venue_managers.where(venue_id: @venue.id).count == 0 %>
-	<p><%= t(:venue_request) %> <%= link_to t(:manager_request), venue_managers_path(venue_id: @venue.id), method: 'post' %>.</p>
+	<p><%= link_to t(:manager_request), venue_managers_path(venue_id: @venue.id), method: 'post' %>.</p>
 <% elsif current_user && current_user.venue_managers.where(venue_id: @venue.id).count != 0 && current_user.venue_manager?(@venue.id) == true %>
     <p>You're a manager! <%= link_to "Edit this band", edit_venue_path(@venue) %></p>
 <% elsif current_user && current_user.venue_managers.where(venue_id: @venue.id).count != 0 %>

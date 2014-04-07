@@ -23,11 +23,8 @@ en:
   password: "Password"
   email: "Email"
   remember: "Remember me"
-  band_request: "Related to this band?"
   login_request: "Login to request edit privileges."
   manager_request: "Request manager status"
-  venue_request: "Related to this venue?"
-  event_request: "Related to this event?"
   pending_approval: "Your request for manager status is pending approval."
   past_events: "Past Events"
   map: "Map"
@@ -45,6 +42,8 @@ en:
   sold_out: "Sold Out"
   canceled: "Canceled"
   no_en_info: "English information not available."
+  share_event: "Share this event"
+  share_me: "Copy and paste the show data below to your blog/facebook/cafe"
 
   #venues#show
   venue_phone: "Venue Phone:"
