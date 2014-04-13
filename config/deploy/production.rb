@@ -6,7 +6,7 @@ set :branch, "master"
 # at filepaths
 set :full_app_name, "#{fetch(:application)}_#{fetch(:stage)}"
 
-server '162.243.58.99', user: 'deploy', roles: %w{web app db}, primary: true
+server '211.110.184.22', user: 'deploy', roles: %w{web app db}, primary: true
 
 set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:full_app_name)}"
 
