@@ -14,13 +14,19 @@
 </head>
 <body>
   <div id="wrap">
+    <div class="toppad"></div>
     <header>
       <%= render 'layouts/navigation' %>
     </header>
 
     <%= render 'layouts/carousel' %>
     <div class="container">
-       <%= render 'layouts/social' %>
+      <div class="row">
+        <div class="col-md-3 text-center pull-right">
+          <%= render 'layouts/social' %>
+        </div>
+      </div>
+      
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3 text-center">
           <%= render 'layouts/messages' %>
@@ -35,6 +41,11 @@
       
     </div>
   </div>  
-
+<script>
+$(document).ready(function () {
+  // apply dropdownHover to all elements with the data-hover="dropdown" attribute
+  $('[data-hover="dropdown"]').dropdownHover();
+});  
+</script>
 </body>
 </html>
