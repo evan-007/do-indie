@@ -23,6 +23,7 @@ gem 'sass'
 gem 'compass', '0.12.2'
 gem 'font-awesome-rails'
 gem 'acts-as-taggable-on'
+gem 'json', '1.7.7'
 
 #for mailchimp api
 gem 'gibbon'
