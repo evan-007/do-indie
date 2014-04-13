@@ -16,6 +16,7 @@ class Admin::VenuesController < Admin::BaseController
 
   def edit
     @venue = Venue.friendly.find(params[:id])
+    @cities = City.all
   end
 
   def update

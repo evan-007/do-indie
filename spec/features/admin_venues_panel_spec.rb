@@ -14,25 +14,25 @@ feature "Admin band panel" do
 	end
 
 	scenario "admin users can edit venues" do
-		visit admin_venues_path
+		visit admin_venues_en_path
 		click_link @venue.name
-		fill_in "Name", with: "psy psy"
-		fill_in "Phone", with: "123-123-123"
-		fill_in "Address", with: "123 fake street"
+		fill_in "venue[name]", with: "psy psy"
+		fill_in "venue[phone]", with: "123-123-123"
+		fill_in "venue[address]", with: "123 fake street"
 		fill_in "venue[en_bio]", with: "best venue ever"
-		fill_in "Facebook", with: "facebook.com/psy"
-		fill_in "Cafe", with: "naver.com/psy"
-		fill_in "Website", with: "psy.com"
-		click_button "Update venue"
+		fill_in "venue[facebook]", with: "facebook.com/psy"
+		fill_in "venue[cafe]", with: "naver.com/psy"
+		fill_in "venue[website]", with: "psy.com"
+		click_button "Update Venue"
 		expect(page).to have_content("updated")
 	end
 
 	scenario "admins can approve venues" do
 		@venue2 = create(:unapproved_venue)
-		visit admin_venues_path
+		visit admin_venues_en_path
 		click_link @venue2.name.capitalize
-    check "venue[approved]"
-		click_button "Update venue"
+	    check "venue[approved]"
+		click_button "Update Venue"
 		expect(page).to have_content("updated")
 	end
 end
