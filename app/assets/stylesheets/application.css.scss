@@ -16,4 +16,55 @@
   left: 0;
   right: 0;
   bottom: 0;
+  height: 100%;
+  margin-top:0;
+}
+
+#myCarousel .carousel-inner {
+  height:100%;
+}
+
+#topnavbar {
+  top: 48px;
+  background-color: transparent;
+  padding-right: 0;
+  font-size:20px;
+  line-height: 1.3;
+}
+
+#topnavbar .nav > li > a {
+  padding: 28px 20px;
+}
+
+#topnavbar .navbar-collapse {
+  background-color: #198CAF;
+}
+
+#wrap {
+  margin-top:0;
+}
+
+@media (max-width: 749px) {
+  #topnavbar .navbar-collapse {
+    width: 100%;
+  }
+}
+
+.carousel .item {
+  height: 100%;
+}
+
+.slidefill {
+  width:100%;
+  height:100%;
+  background-position:center;
+  background-size:cover;
+}
+
+body {
+  margin:0; padding: 0;
+}
+
+.toppad {
+  height: 140px;
 }

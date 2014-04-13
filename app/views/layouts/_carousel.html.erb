@@ -8,7 +8,8 @@
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <%= image_tag 'Welcome-Slide.jpg' %>
+          <div class="slidefill" style="background-image:url(<%= image_path 'Welcome-Slide.jpg' %>)"></div>
+          
           <div class="container">
             <div class="carousel-caption">
               <h1><%= t(:slide_1_header) %></h1>
@@ -19,7 +20,7 @@
         </div>
         <% @slides.each do |slide| %>
           <div class="item">
-            <%= image_tag slide.image.url %>
+            <div class="slidefill" style="background-image:url(<%= image_path slide.image.url %>)"></div>
             <div class="container">
               <div class="carousel-caption">
                 <% unless I18n.locale == :en %>
