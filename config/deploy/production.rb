@@ -1,5 +1,6 @@
 set :stage, :production
 set :branch, "master"
+set :bundle_env_variables, { 'NOKOGIRI_USE_SYSTEM_LIBRARIES' => 1 }
 
 # used in case we're deploying multiple versions of the same
 # app side by side. Also provides quick sanity checks when looking
