@@ -329,6 +329,7 @@ DEPENDENCIES
   json (= 1.7.7)
   kaminari
   mail_form
+  nokogiri (= 1.6.1)
   omniauth-facebook
   paperclip
   pg
