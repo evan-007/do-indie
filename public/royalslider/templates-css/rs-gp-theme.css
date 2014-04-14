@@ -1,0 +1,151 @@
+  /* Arrows */
+.gp-theme .rsArrow { position: absolute; display: block; height: 60px; width: 60px; cursor: pointer; z-index: 21; }
+.gp-theme .rsArrowLeft { top: 250px; right: 61px; }
+.gp-theme .rsArrowRight { top: 250px; right: 0; }
+.gp-theme .rsArrowIcn {
+  width: 60px;
+  height: 60px;
+  position: absolute; 
+  cursor: pointer;
+  
+  background-image: url("../../images/theme/icons/controls.png");
+  
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.gp-theme .rsArrowLeft .rsArrowIcn { background-position: left top; background-repeat: no-repeat; }
+.gp-theme .rsArrowRight .rsArrowIcn { background-position: left -60px; background-repeat: no-repeat; }
+.gp-theme .rsArrowDisabled .rsArrowIcn { opacity: 0.4; }
+
+/* Play/Close Video Buttons  */
+.gp-theme .rsPlayBtn {
+  width: 100px;
+  height: 100px;
+  margin-left: -50px;
+  margin-top: -50px;
+  cursor: pointer;
+  
+  background-color: transparent;
+  
+  -webkit-tap-highlight-color: rgba(0,0,0,0.3);
+}
+.gp-theme .rsPlayBtn .rsPlayBtnIcon {
+  display: block;
+  width: 100px;
+  height: 100px;
+  
+  background-color: transparent;
+  background-image: url("../../images/theme/icons/controls.png");
+  background-position: left -240px;
+  background-repeat: no-repeat;
+  
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.gp-theme .rsBtnCenterer { position: absolute; left: 50%; top: 50%; }
+
+.gp-theme .rsCloseVideoBtn { position: absolute; right: 0; top: 20px; width: 60px; height: 60px; cursor: pointer; z-index: 99999; }
+.gp-theme .rsCloseVideoIcn { 
+  margin: 0;
+  width: 60px;
+  height: 60px;
+  
+  background-image: url('../../images/theme/icons/controls.png');
+  background-position: left -180px;
+  background-repeat: no-repeat;
+  
+  -webkit-transition: background-color 0.3s linear;
+  -moz-transition: background-color 0.3s linear;
+  -ms-transition: background-color 0.3s linear;
+  -o-transition: background-color 0.3s linear;
+  transition: background-color 0.3s linear;
+}
+
+/* Preloader */
+.gp-theme .rsPreloader {
+  width: 20px;
+  height: 20px;
+  left: 50%;
+  top: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  background-image: url("../../images/theme/loading.gif");
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Components > Slideshow */
+.gp-theme .rsArrowIcn { background-color: #cd503c; }
+.gp-theme .rsArrowIcn:hover { background-color: #198caf; }
+.gp-theme .rsPlayBtn .rsPlayBtnIcon { background-color: #282d32; }
+.gp-theme .rsPlayBtn:hover .rsPlayBtnIcon { background-color: #cd503c; }
+.gp-theme .rsCloseVideoIcn { background-color: #cd503c; }
+.gp-theme .rsCloseVideoIcn:hover { background-color: #198caf; }
+
+/*
+====================================================================================================
+12. Slideshow
+====================================================================================================
+*/
+
+.slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100% !important;
+}
+
+/* Slide Caption */
+.slide-caption {
+  display: none;
+  position: absolute;
+  top: 250px !important;
+  left: 0 !important;
+  max-width: 40%;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+.slide-caption p {
+    float: left;
+    padding: 10px 20px;
+    margin: 1px 0 0;
+    font-size: 1.6em;
+    line-height: 1.2em;
+    clear: both;
+}
+.slide-caption h2 {
+    float: left;
+    padding: 5px 20px;
+    margin: 0;
+    font-size: 3.4em;
+    line-height: normal;
+    clear: both;    
+}
+.slide-caption h2.link {
+    padding: 0;
+    background-color: transparent;
+}
+.slide-caption h2.link a {
+    float: left;
+    display: block;
+    padding: 5px 20px;
+}
+
+@media
+only screen and (min-width: 1281px) and (max-width: 1440px) {
+  
+ 
+  /* Slideshow */
+  .slideshow .slide-caption h2 { font-size: 2.6em; }
+  .slideshow .slide-caption p { font-size: 1.5em; }
+  
+}
