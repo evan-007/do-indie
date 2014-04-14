@@ -6,5 +6,74 @@
  *= require font-awesome
  */
 @import "framework_and_overrides";
+@import "darkly";
 @import "chosen";
 @import "font-awesome";
+
+#myCarousel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  margin-top:0;
+}
+
+#myCarousel .carousel-inner {
+  height:100%;
+}
+
+#topnavbar {
+  top: 48px;
+  background-color: transparent;
+  padding-right: 0;
+  line-height: 1.3;
+}
+
+#topnavbar .navbar-collapse {
+  background-color: #198CAF;
+}
+
+#wrap {
+  margin-top:0;
+}
+
+
+
+.carousel .item {
+  height: 100%;
+}
+
+.slidefill {
+  width:100%;
+  height:100%;
+  background-position:center;
+  background-size:cover;
+}
+
+body {
+  margin:0; padding: 0;
+}
+
+.toppad {
+  height: 140px;
+}
+
+@media (min-width: 768px) {
+  #topnavbar .nav > li > a {
+    padding: 28px 20px;
+    text-transform: uppercase;
+    font-size:20px;
+  }
+}
+
+@media (max-width: 767px) {
+  #topnavbar .navbar-collapse {
+    width: 100%;
+  }
+
+  #topnavbar .nav > li > a {
+    text-transform: none;
+  }
+}
