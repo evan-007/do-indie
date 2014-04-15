@@ -1,0 +1,17 @@
+<div id="home-content">
+  <div class="container-fluid">
+
+    <div class="row" id="home-events">
+      <% @events.each do |event| %>
+        <div class="col-xs-3"><%= event.name %></div>
+      <% end %>
+    </div>
+    
+    <div class="row" id="home-posts">
+      <% @posts.each do |post| %>
+        <div class="col-xs-3"><%= post.title %></div>
+      <% end %>
+    </div>
+
+  </div>
+</div>

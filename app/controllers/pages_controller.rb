@@ -6,6 +6,8 @@ class PagesController < ApplicationController
 
   def home
     @slides = Slide.active_slides
+    @events = Event.upcoming
+    @posts = Post.published
   end
   
   def inside

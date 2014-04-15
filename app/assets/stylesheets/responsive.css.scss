@@ -1,4 +1,4 @@
-@media (min-width: 768px) {
+@media (min-width: $screen-sm-min) {
   #topnavbar .nav > li > a {
     padding: 28px 20px;
     text-transform: uppercase;
@@ -6,7 +6,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: $screen-sm-max) {
   #topnavbar .navbar-collapse {
     width: 100%;
   }
