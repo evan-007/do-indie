@@ -94,6 +94,10 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    dumper (1.5.0)
+      multi_json (>= 1.0)
+      multipart-post (>= 1.1.5)
+      posix-spawn (>= 0.3.6)
     email_spec (1.5.0)
       launchy (~> 2.1)
       mail (~> 2.2)
@@ -194,6 +198,7 @@ GEM
       mime-types
     pg (0.17.1)
     polyglot (0.3.4)
+    posix-spawn (0.3.8)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -312,6 +317,7 @@ DEPENDENCIES
   coffee-rails
   compass (= 0.12.2)
   devise
+  dumper
   email_spec
   exception_notification
   execjs

@@ -36,6 +36,7 @@ gem 'capistrano-rbenv', '~> 2.0'
 gem 'exception_notification'
 gem 'textacular'
 gem 'mail_form'
+gem 'dumper'
 
 group :doc do
   gem 'sdoc', require: false
