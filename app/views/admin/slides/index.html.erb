@@ -4,6 +4,7 @@
 
 <table class="table table-striped">
   <tr>
+    <th>ID</th>
     <th>English Title</th>
     <th>Korean Title</th>
     <th>Active?</th>
@@ -13,6 +14,7 @@
   <% @slides.each do |slide| %>
   
   <tr>
+    <th><%= link_to slide.id, admin_slide_path(slide) %></td>
     <td><%= link_to slide.en_title, admin_slide_path(slide) %></td>
     <td><%= slide.ko_title %></td>
     <td><%= slide.active %></td>
