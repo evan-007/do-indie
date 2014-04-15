@@ -19,6 +19,11 @@
   background-color: transparent;
   padding-right: 0;
   line-height: 1.3;
+  pointer-events: none;
+}
+
+#topnavbar .navbar-nav, #topnavbar .navbar-header {
+  pointer-events: all;
 }
 
 #topnavbar .navbar-collapse {
