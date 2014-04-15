@@ -1,42 +1,26 @@
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <% for n in 1..(@slides.count) do %>
-        <li data-target="#myCarousel" data-slide-to="#{n}"></li>
-        <% end %>
-      </ol>
-      <div class="carousel-inner">
-        <div class="item active">
-          <div class="slidefill" style="background-image:url(<%= image_path 'Welcome-Slide.jpg' %>)"></div>
+
+<div id="myCarousel" class="royalSlider gp-theme slideshow">
+  <% @slides.each do |slide| %>
+  
+  <div class="slide-1 rsContent">
           
-          <div class="container">
-            <div class="carousel-caption">
-              <h1><%= t(:slide_1_header) %></h1>
-              <p><%= t(:slide_1_body) %></p>
-              <p><%= link_to "Sign up today", new_user_registration_path, class: "btn btn-lg btn-primary" %></p>
-            </div>
-          </div>
-        </div>
-        <% @slides.each do |slide| %>
-          <div class="item">
-            <div class="slidefill" style="background-image:url(<%= image_path slide.image.url %>)"></div>
-            <div class="container">
-              <div class="carousel-caption">
-                <% unless I18n.locale == :en %>
-                  <h1><%= slide.ko_title %></h1>
-                  <p><%= slide.ko_description %></p>
-                  <p><%= link_to slide.link, slide.anchor, class: "btn btn-lg btn-primary" %></p>
-                <% else %>
-                  <h1><%= slide.en_title %></h1>
-                  <p><%= slide.en_description %></p>
-                  <p><%= link_to slide.anchor, slide.link, class: "btn btn-lg btn-primary" %></p>
-                <% end %>
-              </div>
-            </div>
-          </div>
-          <% end %>
-      </div><!--carousel inner-->
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-    </div><!-- /.carousel -->
+    <img class="rsImg rsMainSlideImage" src="<%= image_path slide.image.url %>">
+
+    <div class="slide-caption rsABlock rsNoDrag" data-fade-effect="false" data-move-effect="left" data-move-offset="300" data-speed="500" data-delay="0" data-easing="easeOutSine">
+      <% unless I18n.locale == :en %>
+        <h2 class="link">
+          <a href="<%= slide.link %>" title="<%= slide.anchor %>"><%= slide.ko_title %></a>
+        </h2>
+        <p><%= slide.ko_description %></p>
+      <% else %>
+        <h2 class="link">
+          <a href="<%= slide.link %>" title="<%= slide.anchor %>"><%= slide.en_title %></a>
+        </h2>
+        <p><%= slide.en_description %></p>
+      <% end %> 
+    </div><!-- END // slide-caption -->
+
+  </div><!-- END // slide -->
+  <% end %>
+
+</div>

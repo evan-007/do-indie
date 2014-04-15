@@ -1,0 +1,386 @@
+.rsMainSlideImage {
+  position: absolute;
+}
+.rsWebkit3d .rsSlide,
+.rsWebkit3d .rsContainer,
+.rsWebkit3d .rsThumbs,
+.rsWebkit3d .rsPreloader,
+.rsWebkit3d img,
+.rsWebkit3d .rsOverflow,
+.rsWebkit3d .rsBtnCenterer,
+.rsWebkit3d .rsAbsoluteEl {
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0); 
+}
+.rsFade.rsWebkit3d .rsSlide,
+.rsFade.rsWebkit3d img,
+.rsFade.rsWebkit3d .rsContainer {
+  -webkit-transform: none;
+}
+.rsOverflow {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  float: left;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.rsContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.rsArrow,
+.rsThumbsArrow {
+  cursor: pointer;
+}
+
+.rsArrow,
+.rsNav,
+.rsThumbsArrow {
+  opacity: 1;
+  -webkit-transition: opacity 0.3s linear;
+  -moz-transition: opacity 0.3s linear;
+  -o-transition: opacity 0.3s linear;
+  transition: opacity 0.3s linear;
+}
+.rsHidden {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: visibility 0s linear 0.3s, opacity 0.3s linear;
+  -moz-transition: visibility 0s linear 0.3s, opacity 0.3s linear;
+  -o-transition: visibility 0s linear 0.3s, opacity 0.3s linear;
+  transition: visibility 0s linear 0.3s, opacity 0.3s linear;
+}
+
+.rsGCaption {
+  width: 100%;
+  float: left;
+  text-align: center;
+}
+
+/* Fullscreen options, very important ^^ */
+.royalSlider.rsFullscreen {
+  position: fixed !important;
+  height: auto !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 2147483647 !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  right: 0 !important;
+}
+
+.royalSlider .rsSlide.rsFakePreloader {
+  opacity: 1 !important;
+  -webkit-transition: 0s;
+  -moz-transition: 0s;
+  -o-transition:  0s;
+  transition:  0s;
+  display: none;
+}
+
+.rsSlide {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  overflow: hidden;
+  
+  height: 100%;
+  width: 100%;
+}
+
+.royalSlider.rsAutoHeight,
+.rsAutoHeight .rsSlide {
+  height: auto;
+}
+
+.rsContent {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.rsPreloader {
+  position:absolute;
+  z-index: 0; 
+}
+
+.rsNav {
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.rsNavItem {
+  -webkit-tap-highlight-color: rgba(0,0,0,0.25);
+}
+
+.rsThumbs {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  float: left;
+  z-index: 22;
+}
+.rsTabs {
+  float: left;
+}
+.rsTabs,
+.rsThumbs {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.rsVideoContainer {
+  width: auto;
+  height: auto;
+  line-height: 0;
+  position: relative;
+}
+.rsVideoFrameHolder {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #141414;
+  
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -khtml-opacity: 0;
+  -moz-opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+}
+.rsVideoFrameHolder.rsVideoActive {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -khtml-opacity: 1;
+  -moz-opacity: 1;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+}
+.rsVideoContainer iframe,
+.rsVideoContainer video,
+.rsVideoContainer embed,
+.rsVideoContainer .rsVideoObj {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+/* iOs Controls Over Video Bug, Shifting Video */
+.rsVideoContainer.rsIOSVideo iframe,
+.rsVideoContainer.rsIOSVideo video,
+.rsVideoContainer.rsIOSVideo embed {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-right: 44px;
+}
+
+.rsABlock {
+  left: 0;
+  top: 0;
+  position: absolute;
+  z-index: 15;
+  -webkit-backface-visibility: hidden;
+}
+
+.grab-cursor {
+  cursor: url("images/icons/grab.png") 8 8, move; 
+}
+
+.grabbing-cursor{ 
+  cursor: url("images/icons/grabbing.png") 8 8, move;
+}
+
+.rsNoDrag {
+  cursor: auto;
+}
+
+.rsLink {
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: block; 
+  z-index: 20;
+  background: url("images/blank.gif");
+  -webkit-backface-visibility: hidden;
+}
+
+  /* Arrows */
+.gp-theme .rsArrow { position: absolute; display: block; height: 60px; width: 60px; cursor: pointer; z-index: 21; }
+.gp-theme .rsArrowLeft { top: 250px; right: 61px; }
+.gp-theme .rsArrowRight { top: 250px; right: 0; }
+.gp-theme .rsArrowIcn {
+  width: 60px;
+  height: 60px;
+  position: absolute; 
+  cursor: pointer;
+  
+  background-image: url("../../images/theme/icons/controls.png");
+  
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.gp-theme .rsArrowLeft .rsArrowIcn { background-position: left top; background-repeat: no-repeat; }
+.gp-theme .rsArrowRight .rsArrowIcn { background-position: left -60px; background-repeat: no-repeat; }
+.gp-theme .rsArrowDisabled .rsArrowIcn { opacity: 0.4; }
+
+/* Play/Close Video Buttons  */
+.gp-theme .rsPlayBtn {
+  width: 100px;
+  height: 100px;
+  margin-left: -50px;
+  margin-top: -50px;
+  cursor: pointer;
+  
+  background-color: transparent;
+  
+  -webkit-tap-highlight-color: rgba(0,0,0,0.3);
+}
+.gp-theme .rsPlayBtn .rsPlayBtnIcon {
+  display: block;
+  width: 100px;
+  height: 100px;
+  
+  background-color: transparent;
+  background-image: url("../../images/theme/icons/controls.png");
+  background-position: left -240px;
+  background-repeat: no-repeat;
+  
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.gp-theme .rsBtnCenterer { position: absolute; left: 50%; top: 50%; }
+
+.gp-theme .rsCloseVideoBtn { position: absolute; right: 0; top: 20px; width: 60px; height: 60px; cursor: pointer; z-index: 99999; }
+.gp-theme .rsCloseVideoIcn { 
+  margin: 0;
+  width: 60px;
+  height: 60px;
+  
+  background-image: url('../../images/theme/icons/controls.png');
+  background-position: left -180px;
+  background-repeat: no-repeat;
+  
+  -webkit-transition: background-color 0.3s linear;
+  -moz-transition: background-color 0.3s linear;
+  -ms-transition: background-color 0.3s linear;
+  -o-transition: background-color 0.3s linear;
+  transition: background-color 0.3s linear;
+}
+
+/* Preloader */
+.gp-theme .rsPreloader {
+  width: 20px;
+  height: 20px;
+  left: 50%;
+  top: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  background-image: url("../../images/theme/loading.gif");
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Components > Slideshow */
+.gp-theme .rsArrowIcn { background-color: #cd503c; }
+.gp-theme .rsArrowIcn:hover { background-color: #198caf; }
+.gp-theme .rsPlayBtn .rsPlayBtnIcon { background-color: #282d32; }
+.gp-theme .rsPlayBtn:hover .rsPlayBtnIcon { background-color: #cd503c; }
+.gp-theme .rsCloseVideoIcn { background-color: #cd503c; }
+.gp-theme .rsCloseVideoIcn:hover { background-color: #198caf; }
+
+/*
+====================================================================================================
+12. Slideshow
+====================================================================================================
+*/
+
+.slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100% !important;
+}
+
+/* Slide Caption */
+.slide-caption {
+  display: none;
+  position: absolute;
+  top: 250px !important;
+  left: 0 !important;
+  max-width: 40%;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+.slide-caption p {
+    float: left;
+    padding: 10px 20px;
+    margin: 1px 0 0;
+    font-size: 1.1em;
+    line-height: 1.2em;
+    clear: both;
+}
+.slide-caption h2 {
+    float: left;
+    padding: 5px 20px;
+    margin: 0;
+    font-size: 2.05em;
+    line-height: normal;
+    clear: both;    
+}
+.slide-caption h2.link {
+    padding: 0;
+    background-color: transparent;
+}
+.slide-caption h2.link a {
+    float: left;
+    display: block;
+    padding: 5px 20px;
+    color:#fff;
+    text-decoration: none;
+}
+
+
+.slide-caption,
+.slide-caption p { font-family: "Nanum Gothic", Helvetica, Arial, sans-serif !important; }
+.slide-caption h2,
+.slide-caption h2.link a { background-color: #cd503c; }
+.slide-caption h2.link a:hover { background-color: #198caf; }
+.slide-caption p { background-color: #198caf; }
+
+
+@media
+only screen and (min-width: 1281px) and (max-width: 1440px) {
+  
+ 
+  /* Slideshow */
+  .slideshow .slide-caption h2 { font-size: 2.6em; }
+  .slideshow .slide-caption p { font-size: 1.5em; }
+  
+}
+
+
