@@ -1,1 +1,1 @@
-Dumper::Agent.start(:app_key => '')
+Dumper::Agent.start(:app_key => '76ff3V8ROgCAegoTLbO0vQ')
