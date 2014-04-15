@@ -1,0 +1,6 @@
+<p>Paste the code for the Wishbone contest in the box below</p>
+<%= form_for @page do |f| %>
+  <%= f.label :body %>
+  <%= f.text_area :body, class: "form-control half" %><br/>
+  <%= f.submit %>
+<% end %>

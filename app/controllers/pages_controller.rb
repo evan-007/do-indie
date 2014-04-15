@@ -16,6 +16,22 @@ class PagesController < ApplicationController
   end 
 
   def photo
+    @page = Page.first
+  end
+  
+  def edit
+    @page = Page.first
+  end
+  
+  def update
+    @page = Page.first
+    if @page.update(page_params)
+      flash[:notice] = "Updated the page"
+      redirect_to photo_path
+    else
+      flash[:notice] = "Couldn't update the page"
+      redirect_to photo_path
+    end
   end
 
   def signup
@@ -24,4 +40,9 @@ class PagesController < ApplicationController
     flash[:notice] = "Thanks for signing up, check your email later!"
     redirect_to inside_path
   end
+  
+  private
+    def page_params
+      params.require(:page).permit(:body)
+    end
 end

@@ -4,6 +4,8 @@ DoIndie::Application.routes.draw do
   scope "(:locale)", locale: /en/ do
   root "pages#home"
   end
+  
+
 
   # get '/:locale' => 'pages#home' #this conflicts with other routes
   
@@ -30,6 +32,7 @@ DoIndie::Application.routes.draw do
     resources :band_managers, only: [:create, :destroy]
     resources :venue_managers, only: [:create, :destroy]
     resources :event_managers, only: [:create, :destroy]
+    resources :pages, only: [:edit, :update]
   
     
     devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
@@ -38,7 +41,7 @@ DoIndie::Application.routes.draw do
       root "base#index"
       get "/events/data", to: "events#data", as: "events_data"
       resources :users, :bands, :venues, :events, :band_managers, :venue_managers,
-       :event_managers, :cities, :genres, :slides
+      :event_managers, :cities, :genres, :slides
     end  
   end
 end
