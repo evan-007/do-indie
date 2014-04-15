@@ -55,20 +55,4 @@ body {
   height: 140px;
 }
 
-@media (min-width: 768px) {
-  #topnavbar .nav > li > a {
-    padding: 28px 20px;
-    text-transform: uppercase;
-    font-size:20px;
-  }
-}
-
-@media (max-width: 767px) {
-  #topnavbar .navbar-collapse {
-    width: 100%;
-  }
-
-  #topnavbar .nav > li > a {
-    text-transform: none;
-  }
-}
+@import "responsive";
