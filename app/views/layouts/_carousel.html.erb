@@ -4,16 +4,20 @@
   
   <div class="slide-1 rsContent">
           
-    <img class="rsImg" src="<%= image_path slide.image.url %>">"
+    <img class="rsImg rsMainSlideImage" src="<%= image_path slide.image.url %>">
 
     <div class="slide-caption rsABlock rsNoDrag" data-fade-effect="false" data-move-effect="left" data-move-offset="300" data-speed="500" data-delay="0" data-easing="easeOutSine">
-                      
-      <h2 class="link">
-          <a href="http://www.doindie.co.kr/asian-chairshot-interview/" title="Asian Chairshot Interview">
-              Asian Chairshot Interview                                        </a>
-      </h2>
-      <p>싸인 CD와 공연 티켓 받기 / Win signed CDs & Concert Tickets</p>
-                    
+      <% unless I18n.locale == :en %>
+        <h2 class="link">
+          <a href="<%= slide.link %>" title="<%= slide.anchor %>"><%= slide.ko_title %></a>
+        </h2>
+        <p><%= slide.ko_description %></p>
+      <% else %>
+        <h2 class="link">
+          <a href="<%= slide.link %>" title="<%= slide.anchor %>"><%= slide.en_title %></a>
+        </h2>
+        <p><%= slide.en_description %></p>
+      <% end %> 
     </div><!-- END // slide-caption -->
 
   </div><!-- END // slide -->
