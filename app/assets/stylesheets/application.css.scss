@@ -183,4 +183,14 @@ body {
   background-color: #198CAF;  
 }
 
+#page-container {
+  margin:0;
+  padding:0;
+}
+
+#page-container > .row {
+  margin-left: 0; 
+  margin-right: 0; 
+}
+
 @import "responsive";
