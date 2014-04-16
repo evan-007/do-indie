@@ -75,7 +75,7 @@ DoIndie::Application.configure do
   DoIndie::Application.config.middleware.use ExceptionNotification::Rack,
   :email => {
     :email_prefix => "[DoIndie Error Alert] ",
-    :sender_address => %{"notifier" <evan@example.com>},
+    :sender_address => %{"notifier" <doindiekorea@gmail.com>},
     :exception_recipients => %w{evan.u.lloyd@gmail.com}
   }
 
