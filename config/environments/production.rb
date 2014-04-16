@@ -75,7 +75,7 @@ DoIndie::Application.configure do
   DoIndie::Application.config.middleware.use ExceptionNotification::Rack,
   :email => {
     :email_prefix => "[DoIndie Error Alert] ",
-    :sender_address => %{"notifier" <doindiekorea@gmail.com>},
+    :sender_address => %{"notifier" <doindie@example.com>},
     :exception_recipients => %w{evan.u.lloyd@gmail.com}
   }
 
@@ -86,12 +86,13 @@ DoIndie::Application.configure do
   config.i18n.available_locales = [:en, :ko]
 
   #paperclip S3 don't forget to config
+  
   config.paperclip_defaults = {
   :storage => :s3,
   :s3_credentials => {
-    :bucket => ['S3_BUCKET_NAME'],
-    :access_key_id => ['AWS_ACCESS_KEY_ID'],
-    :secret_access_key => ['AWS_SECRET_ACCESS_KEY']
+    :bucket => ENV['S3_BUCKET_NAME'],
+    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
 
@@ -100,16 +101,16 @@ DoIndie::Application.configure do
   
   # Mailer
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => ["DOMAIN"] }
+  config.action_mailer.default_url_options = { :host => ENV["DOMAIN"] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: ["SMTP_SERVER"],
+    address: ENV["SMTP_SERVER"],
     openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
-    port: ["SMTP_PORT"],
-    domain: ["MAILER_DOMAIN"],
+    port: ENV["SMTP_PORT"],
+    domain: ENV["MAILER_DOMAIN"],
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ["SMTP_USER"],
-    password: ["SMTP_PWD"]
+    user_name: ENV["SMTP_USER"],
+    password: ENV["SMTP_PWD"]
   }
 end
