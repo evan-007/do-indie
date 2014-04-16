@@ -85,7 +85,7 @@ DoIndie::Application.configure do
   #i18n
   config.i18n.available_locales = [:en, :ko]
 
-  #paperclip S3 don't forget to config server
+  #paperclip S3 don't forget to config
   config.paperclip_defaults = {
   :storage => :s3,
   :s3_credentials => {
