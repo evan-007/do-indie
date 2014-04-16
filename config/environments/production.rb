@@ -89,6 +89,7 @@ DoIndie::Application.configure do
   
   config.paperclip_defaults = {
   :storage => :s3,
+  :s3_host_name => 'doindielive.s3.amazonaws.com',
   :s3_credentials => {
     :bucket => ENV['S3_BUCKET_NAME'],
     :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
