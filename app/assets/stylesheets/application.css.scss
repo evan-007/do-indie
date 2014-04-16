@@ -9,6 +9,9 @@
 @import "darkly";
 @import "chosen";
 @import "font-awesome";
+@import "royalslider/royalslider";
+@import "royalslider/templates-css/rs-gp-theme";
+@import "royalslider/skins/default/rs-default";
 
 a {
   -webkit-transition: all 0.3s ease-in-out;
@@ -98,6 +101,86 @@ body {
 #home-posts > div > a:hover {
   background-color: #CD503C;
   text-decoration: underline;
+}
+
+.grid-tiles .thumbnail {
+  border: none;
+  margin-bottom: 0;
+}
+
+.grid-tiles .thumbnail .caption {
+  background-color: #282D32;
+  text-align: center;
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.grid-tiles .thumbnail .caption .fanbadge {
+  position: absolute;
+  bottom:5px;
+  left: 5px;
+  opacity: 0.3;
+  color: #aaaaaa;
+}
+
+.grid-tiles .thumbnail .caption .likebtn {
+  position: absolute;
+  bottom:3px;
+  right: 3px;
+  opacity: 0.5;
+}
+
+.grid-tiles .thumbnail .caption a {
+  font-weight: bold;
+  color: #cccccc;
+  text-decoration: none;
+}
+.grid-tiles .thumbnail .caption a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.grid-tiles .thumbnail .caption .likebtn a {
+  text-decoration: none;
+  color: #0CE3AC;
+  font-weight: normal;
+}
+
+.grid-tiles .thumbnail .caption .likebtn a:hover {
+  text-decoration: none;
+  color: #428BCA;
+}
+
+.grid-tiles .thumbnail:hover .caption .fanbadge,
+.grid-tiles .thumbnail:hover .caption .likebtn {
+  opacity: 1;
+}
+
+.socials {
+  margin-bottom: 15px;
+}
+
+.page-title {
+  font-size: 3.4em;
+  text-shadow: 2px 2px #333333;
+  color: #eeeeee;
+}
+
+.sidebar h1 {
+  font-size: 2.2em;
+  text-shadow: 2px 2px #333333;
+}
+
+.genres-tags a {
+  text-decoration: underline;
+  color: #cccccc;
+  line-height: 30px;
+}
+
+.genres-tags a:hover {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #198CAF;  
 }
 
 @import "responsive";
