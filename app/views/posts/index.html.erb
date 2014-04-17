@@ -1,10 +1,22 @@
-<h2>doindie doblog</h2>
-<% if current_user && current_user.blogger == true %>
-	<%= link_to "New Post", new_post_path, class: "btn btn-primary btn-lg" %>
-	<%= link_to "Blog Admin Page", blog_admin_path, class: "btn btn-danger btn-lg" %>
-<% end %>
+<div class="row page-header">
+  <div class="col-sm-9">
+    <h1 class="page-title">
+      doindie <%= t(:blogs) %>
+    </h1>
+  </div>
+  <div class="col-sm-3 searchform text-center">
+    <% if current_user && current_user.blogger == true %>
+    <div class="btn-group">
+      <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
+      <%= link_to "Blog Admin Page", blog_admin_path, class: "btn btn-danger" %>
+    </div>      
+    <% end %>
+  </div>
+</div>
+
+
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-sm-9">
 	  <% @posts.each do |post| %>
 		  <div class="col-sm-6 col-md-4">
 		  	<%= div_for(post, class: "list") do %>
@@ -20,11 +32,17 @@
 	  	</div>
 	  <% end %>
   </div><!--col-md-8-->
-  <div class="col-md-4">
-    <h3><%= link_to t(:categories), categories_path %></h3>
-    <% @categories.each do |c| %>
-    <%= link_to c.name, c %>: <%= c.post_categories.count %><br />
-    <% end %>
+  <div class="col-sm-3 sidebar">
+    <h1><%= link_to t(:categories), categories_path %></h1>
+    <div class="list-group">
+      <% @categories.each do |c| %>        
+        <%= link_to "<span class=\"badge\">".html_safe+c.post_categories.count.to_s+"</span>".html_safe+c.name, c, class: "list-group-item" %>
+      <% end %>
+    </div>
+
+    
+    
+    
   </div>
 </div><!--row-->
 

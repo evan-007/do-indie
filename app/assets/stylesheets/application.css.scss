@@ -104,8 +104,10 @@ body {
 }
 
 .grid-tiles .thumbnail {
-  border: none;
-  margin-bottom: 0;
+  border: 0px solid #000000;
+  margin: 3px;
+  border-radius: 0px;
+  padding: 0px;
 }
 
 .grid-tiles .thumbnail img {
@@ -175,17 +177,22 @@ body {
   font-size: 2.2em;
   text-shadow: 2px 2px #333333;
   margin-top: 0;
+  color: #ffffff;  
+}
+
+.sidebar h1 a {
+  text-decoration: none;
 }
 
 .genres-tags a,
-.sidebar .cities a {
+.sidebar a {
   text-decoration: underline;
-  color: #cccccc;
+  color: #eeeeee;
   line-height: 30px;
 }
 
 .genres-tags a:hover,
-.sidebar .cities a:hover {
+.sidebar a:hover {
   text-decoration: none;
   color: #ffffff;
   background-color: #198CAF;  
@@ -204,5 +211,20 @@ body {
 .page-header .searchform {
   margin-top: 10px;
 }
+
+.sidebar .list-group .list-group-item {
+  background-color: #198CAF;
+  font-weight: bold;
+  font-size: 1.15em;
+}
+
+.sidebar .list-group a:hover {
+  background-color: #CD503C;
+}
+
+.sidebar .list-group .list-group-item .badge {
+  margin-top: 5px;
+}
+
 
 @import "responsive";
