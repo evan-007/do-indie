@@ -94,6 +94,7 @@ body {
   color: #ffffff;
   font-size: 1.5em;
   padding: 8px;
+  padding-left: 20px;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -101,6 +102,10 @@ body {
 #home-posts > div > a:hover {
   background-color: #CD503C;
   text-decoration: underline;
+  overflow-x: visible;
+  position: fixed;
+  width: auto;
+  z-index: 99999;
 }
 
 .grid-tiles .thumbnail {
