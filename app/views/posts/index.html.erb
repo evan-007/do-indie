@@ -16,22 +16,26 @@
 
 
 <div class="row">
-  <div class="col-sm-9">
-	  <% @posts.each do |post| %>
-		  <div class="col-sm-6 col-md-4">
-		  	<%= div_for(post, class: "list") do %>
-	  		<% unless post.slide.blank? %>
-		  		<div class="thumbnail">
-			  		<%= image_tag post.slide.image.url(:medium) %>
-  			<% end %>
-	  				<div class="caption">
-		  				<h3><%= link_to post.title, post_path(post) %></h3>
-			  		</div>
-				  </div>
-  			<% end %> <!--div_for-->
-	  	</div>
-	  <% end %>
-  </div><!--col-md-8-->
+
+  <div id="posts-grid" class="col-sm-9">
+    <div class="grid-tiles-sidebar">
+      <% first_post = " width-double" %>
+  	  <% @posts.each do |post| %>
+  		  	<%= div_for(post, class: "list posts-grid-item tile"+first_post) do %>
+  		  		<div class="thumbnail">
+            <% unless post.slide.image.blank? %>
+    			  		<%= image_tag post.slide.image.url(:medium) %>
+      			<% end %>
+  	  				<div class="caption">
+  		  				<h3><%= link_to post.title, post_path(post) %></h3>
+  			  		</div>
+  				  </div>
+    			<% end %> <!--div_for-->
+          <% first_post = "" %>
+  	  <% end %>
+    </div>
+  </div><!-- col-md-9 -->
+
   <div class="col-sm-3 sidebar">
     <h1><%= link_to t(:categories), categories_path %></h1>
     <div class="list-group">
@@ -39,11 +43,16 @@
         <%= link_to "<span class=\"badge\">".html_safe+c.post_categories.count.to_s+"</span>".html_safe+c.name, c, class: "list-group-item" %>
       <% end %>
     </div>
+  </div><!--sidebar-->
 
-    
-    
-    
-  </div>
+  
+
 </div><!--row-->
 
-<p><%= link_to t(:categories), categories_path %></p>
+
+<script>
+  $(document).ready(function(){
+    init_grid_tiles();
+    $(window).trigger('resize');
+  });
+</script>

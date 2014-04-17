@@ -99,6 +99,11 @@ body {
   overflow: hidden;
 }
 
+.home-events-item,.home-posts-item {
+  display: block;
+  float: left;
+}
+
 #home-posts > div > a:hover {
   background-color: #CD503C;
   text-decoration: underline;
@@ -112,25 +117,29 @@ body {
   right: 0;
 }
 
-.grid-tiles .thumbnail {
+.grid-tiles .thumbnail,
+.grid-tiles-sidebar .thumbnail {
   border: 0px solid #000000;
   margin: 3px;
   border-radius: 0px;
   padding: 0px;
 }
 
-.grid-tiles .thumbnail img {
+.grid-tiles .thumbnail img,
+.grid-tiles-sidebar .thumbnail img {
   width: 100%;
 }
 
-.grid-tiles .thumbnail .caption {
+.grid-tiles .thumbnail .caption,
+.grid-tiles-sidebar .thumbnail .caption {
   background-color: #282D32;
   text-align: center;
   position: relative;
   padding-bottom: 30px;
 }
 
-.grid-tiles .thumbnail .caption .fanbadge {
+.grid-tiles .thumbnail .caption .fanbadge,
+.grid-tiles-sidebar .thumbnail .caption .fanbadge {
   position: absolute;
   bottom:5px;
   left: 5px;
@@ -138,36 +147,43 @@ body {
   color: #aaaaaa;
 }
 
-.grid-tiles .thumbnail .caption .likebtn {
+.grid-tiles .thumbnail .caption .likebtn,
+.grid-tiles-sidebar .thumbnail .caption .likebtn {
   position: absolute;
   bottom:3px;
   right: 3px;
   opacity: 0.5;
 }
 
-.grid-tiles .thumbnail .caption a {
+.grid-tiles .thumbnail .caption a,
+.grid-tiles-sidebar .thumbnail .caption a {
   font-weight: bold;
   color: #cccccc;
   text-decoration: none;
 }
-.grid-tiles .thumbnail .caption a:hover {
+.grid-tiles .thumbnail .caption a:hover,
+.grid-tiles-sidebar .thumbnail .caption a:hover {
   color: #ffffff;
   text-decoration: underline;
 }
 
-.grid-tiles .thumbnail .caption .likebtn a {
+.grid-tiles .thumbnail .caption .likebtn a,
+.grid-tiles-sidebar .thumbnail .caption .likebtn a {
   text-decoration: none;
   color: #0CE3AC;
   font-weight: normal;
 }
 
-.grid-tiles .thumbnail .caption .likebtn a:hover {
+.grid-tiles .thumbnail .caption .likebtn a:hover,
+.grid-tiles-sidebar .thumbnail .caption .likebtn a:hover {
   text-decoration: none;
   color: #428BCA;
 }
 
 .grid-tiles .thumbnail:hover .caption .fanbadge,
-.grid-tiles .thumbnail:hover .caption .likebtn {
+.grid-tiles .thumbnail:hover .caption .likebtn,
+.grid-tiles-sidebar .thumbnail:hover .caption .fanbadge,
+.grid-tiles-sidebar .thumbnail:hover .caption .likebtn {
   opacity: 1;
 }
 
