@@ -51,6 +51,7 @@ end
 
 # Paging
 gem 'kaminari'
+gem 'will_paginate-bootstrap', '~> 1.0.0'
 
 # Slugs and friendly id's
 gem 'friendly_id'
