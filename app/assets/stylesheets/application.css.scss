@@ -108,6 +108,10 @@ body {
   z-index: 99999;
 }
 
+#home-posts > div:last-child a:hover {
+  right: 0;
+}
+
 .grid-tiles .thumbnail {
   border: 0px solid #000000;
   margin: 3px;
@@ -237,7 +241,6 @@ body {
   border-bottom-left-radius: 0;
 }
 
-
 .sidebar .list-group a:hover {
   background-color: #CD503C;
 }
@@ -245,6 +248,5 @@ body {
 .sidebar .list-group .list-group-item .badge {
   margin-top: 5px;
 }
-
 
 @import "responsive";

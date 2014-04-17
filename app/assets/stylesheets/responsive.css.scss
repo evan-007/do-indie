@@ -1,12 +1,10 @@
-@media (min-width: $screen-sm-min) {
-  #topnavbar .nav > li > a {
-    padding: 28px 20px;
-    text-transform: uppercase;
-    font-size:20px;
-  }
+// ============ Tiny screens ============
+@media (max-width: $screen-xs-max) {
+
 }
 
-@media (max-width: $screen-sm-max) {
+// ============ Small screens ============
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
   #topnavbar .navbar-collapse {
     width: 100%;
   }
@@ -14,4 +12,29 @@
   #topnavbar .nav > li > a {
     text-transform: none;
   }
+
+  #home-posts > div > a {
+    min-width: 50%;
+  }
+
 }
+
+// ============ Medium screens ============
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+  #topnavbar .nav > li > a {
+    padding: 28px 20px;
+    text-transform: uppercase;
+    font-size:20px;
+  }
+  #home-posts > div > a {
+    min-width: 33%;
+  }
+}
+
+// ============ Large screens ============
+@media (min-width: $screen-lg-min) {
+  #home-posts > div > a {
+    min-width: 25%;
+  }
+}
+
