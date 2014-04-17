@@ -1,6 +1,23 @@
-<h1 class="page-title">
-	<%= t(:bands) %>
-</h1>
+<div class="row page-header">
+	<div class="col-sm-9">
+		<h1 class="page-title">
+			<%= t(:bands) %>
+		</h1>
+	</div>
+	<div class="col-sm-3">
+		<%= form_tag bands_path, method: :get, class: 'form-inline' do %>
+		<div>
+			<div class="input-group">
+      <%= text_field_tag :query, params[:query], placeholder: "Band name: English or Korean", class: "form-control input-sm" %>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
+      </span>
+    	</div>
+		</div>
+		<% end %>
+	</div>
+</div>
+
 
 <div class="row">
 	<div id="bands-grid" class="col-sm-9">
@@ -33,23 +50,14 @@
 		</div>
 		<div class="row" style="margin-top:15px">
 			<div class="text-center">
-				<small><%= page_entries_info @bands %></small>
+				<div class="small"><%= page_entries_info @bands %></div>
 				<%= will_paginate @bands, renderer: BootstrapPagination::Rails %>
 			</div>
 		</div>
 	</div>
 
 	<div class="col-sm-3 sidebar">		
-		<%= form_tag bands_path, method: :get, class: 'form-inline' do %>
-		<div>
-			<div class="input-group">
-      <%= text_field_tag :query, params[:query], placeholder: "Band name: English or Korean", class: "form-control input-sm" %>
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
-      </span>
-    </div>
-		<% end %>
-		</div>
+		
 
 		<div class="genres-tags">
 			<h1><%= t(:genres) %></h1>
@@ -66,6 +74,7 @@
 <script>
 	$(document).ready(function(){
 		init_grid_tiles();
+		$(window).trigger('resize');
 	});
 </script>
 

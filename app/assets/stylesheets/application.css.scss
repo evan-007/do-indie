@@ -108,6 +108,10 @@ body {
   margin-bottom: 0;
 }
 
+.grid-tiles .thumbnail img {
+  width: 100%;
+}
+
 .grid-tiles .thumbnail .caption {
   background-color: #282D32;
   text-align: center;
@@ -164,20 +168,24 @@ body {
   font-size: 3.4em;
   text-shadow: 2px 2px #333333;
   color: #eeeeee;
+  margin-top: 0;
 }
 
 .sidebar h1 {
   font-size: 2.2em;
   text-shadow: 2px 2px #333333;
+  margin-top: 0;
 }
 
-.genres-tags a {
+.genres-tags a,
+.sidebar .cities a {
   text-decoration: underline;
   color: #cccccc;
   line-height: 30px;
 }
 
-.genres-tags a:hover {
+.genres-tags a:hover,
+.sidebar .cities a:hover {
   text-decoration: none;
   color: #ffffff;
   background-color: #198CAF;  
@@ -191,6 +199,10 @@ body {
 #page-container > .row {
   margin-left: 0; 
   margin-right: 0; 
+}
+
+.page-header .searchform {
+  margin-top: 10px;
 }
 
 @import "responsive";
