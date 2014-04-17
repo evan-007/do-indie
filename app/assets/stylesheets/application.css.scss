@@ -5,13 +5,17 @@
  *= require chosen
  *= require font-awesome
  */
+ 
 @import "framework_and_overrides";
 @import "darkly";
 @import "chosen";
+@import "nprogress";
+@import "nprogress-bootstrap";
 @import "font-awesome";
 @import "royalslider/royalslider";
 @import "royalslider/templates-css/rs-gp-theme";
 @import "royalslider/skins/default/rs-default";
+
 
 a {
   -webkit-transition: all 0.3s ease-in-out;

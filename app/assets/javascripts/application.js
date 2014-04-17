@@ -19,4 +19,6 @@
 //= require turbolinks
 //= require bootstrap
 //= require chosen-jquery
+//= require nprogress
+//= require nprogress-turbolinks
 //= require_tree .

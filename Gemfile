@@ -25,6 +25,7 @@ gem 'font-awesome-rails'
 gem 'acts-as-taggable-on'
 gem 'json', '1.7.7'
 gem 'figaro'
+gem 'nprogress-rails'
 
 #for mailchimp api
 gem 'gibbon'
