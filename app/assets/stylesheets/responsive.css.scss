@@ -1,16 +1,40 @@
 // ============ Tiny screens ============
 @media (max-width: $screen-xs-max) {
+  #topnavbar .navbar-collapse {
+    width: 100%;
+  }
+  
+  #topnavbar .navbar-header img {
+    width: 70px;
+  }
+
+  .toppad {
+    height: 75px;
+  }
+  
+  #topnavbar {
+    top:0;
+    background-color: #198CAF;
+  }
 
 }
 
 // ============ Small screens ============
 @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-  #topnavbar .navbar-collapse {
-    width: 100%;
+  #topnavbar {
+    top:0;
   }
-
+  
   #topnavbar .nav > li > a {
     text-transform: none;
+  }
+
+  .toppad {
+    height: 80px;
+  }
+
+  #topnavbar .navbar-header {
+    width: 70px;
   }
 
   #home-posts > div > a {
@@ -50,6 +74,12 @@
 
 // ============ Large screens ============
 @media (min-width: $screen-lg-min) {
+  #topnavbar .nav > li > a {
+    padding: 28px 20px;
+    text-transform: uppercase;
+    font-size:20px;
+  }
+  
   #home-posts > div > a {
     min-width: 20%;
   }

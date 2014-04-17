@@ -1,10 +1,10 @@
 <div class="row page-header">
-  <div class="col-sm-9">
+  <div class="col-md-9">
     <h1 class="page-title">
       doindie <%= t(:blogs) %>
     </h1>
   </div>
-  <div class="col-sm-3 searchform text-center">
+  <div class="col-md-3 searchform text-center">
     <% if current_user && current_user.blogger == true %>
     <div class="btn-group">
       <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
