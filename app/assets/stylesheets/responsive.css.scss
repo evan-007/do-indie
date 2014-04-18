@@ -1,17 +1,95 @@
-@media (min-width: $screen-sm-min) {
+// ============ Tiny screens ============
+@media (max-width: $screen-xs-max) {
+  #topnavbar .navbar-collapse {
+    width: 100%;
+  }
+  
+  #topnavbar .navbar-header img {
+    width: 70px;
+  }
+
+  .toppad {
+    height: 75px;
+  }
+  
+  #topnavbar {
+    top:0;
+    background-color: #198CAF;
+  }
+
+}
+
+// ============ Small screens ============
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+  #topnavbar {
+    top:0;
+  }
+  
+  #topnavbar .nav > li > a {
+    text-transform: none;
+  }
+
+  .toppad {
+    height: 80px;
+  }
+
+  #topnavbar .navbar-header {
+    width: 70px;
+  }
+
+  #home-posts > div > a {
+    min-width: 33.33%;
+  }
+
+  .home-posts-item {
+    width: 33.33%;
+  }
+
+  .home-events-item {
+    width: 50%;
+  }
+
+}
+
+// ============ Medium screens ============
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
   #topnavbar .nav > li > a {
     padding: 28px 20px;
     text-transform: uppercase;
     font-size:20px;
   }
-}
 
-@media (max-width: $screen-sm-max) {
-  #topnavbar .navbar-collapse {
-    width: 100%;
+  #home-posts > div > a {
+    min-width: 25%;
   }
 
+  .home-posts-item {
+    width: 25%;
+  }
+
+  .home-events-item {
+    width: 33.33%;
+  }
+}
+
+// ============ Large screens ============
+@media (min-width: $screen-lg-min) {
   #topnavbar .nav > li > a {
-    text-transform: none;
+    padding: 28px 20px;
+    text-transform: uppercase;
+    font-size:20px;
+  }
+  
+  #home-posts > div > a {
+    min-width: 20%;
+  }
+
+  .home-posts-item {
+    width: 20%;
+  }
+
+  .home-events-item {
+    width: 25%;
   }
 }
+

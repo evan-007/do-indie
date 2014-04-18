@@ -5,13 +5,17 @@
  *= require chosen
  *= require font-awesome
  */
+ 
 @import "framework_and_overrides";
 @import "darkly";
 @import "chosen";
+@import "nprogress";
+@import "nprogress-bootstrap";
 @import "font-awesome";
 @import "royalslider/royalslider";
 @import "royalslider/templates-css/rs-gp-theme";
 @import "royalslider/skins/default/rs-default";
+
 
 a {
   -webkit-transition: all 0.3s ease-in-out;
@@ -94,28 +98,52 @@ body {
   color: #ffffff;
   font-size: 1.5em;
   padding: 8px;
+  padding-left: 20px;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.home-events-item,.home-posts-item {
+  display: block;
+  float: left;
 }
 
 #home-posts > div > a:hover {
   background-color: #CD503C;
   text-decoration: underline;
+  overflow-x: visible;
+  position: fixed;
+  width: auto;
+  z-index: 99999;
 }
 
-.grid-tiles .thumbnail {
-  border: none;
-  margin-bottom: 0;
+#home-posts > div:last-child a:hover {
+  right: 0;
 }
 
-.grid-tiles .thumbnail .caption {
+.grid-tiles .thumbnail,
+.grid-tiles-sidebar .thumbnail {
+  border: 0px solid #000000;
+  margin: 3px;
+  border-radius: 0px;
+  padding: 0px;
+}
+
+.grid-tiles .thumbnail img,
+.grid-tiles-sidebar .thumbnail img {
+  width: 100%;
+}
+
+.grid-tiles .thumbnail .caption,
+.grid-tiles-sidebar .thumbnail .caption {
   background-color: #282D32;
   text-align: center;
   position: relative;
   padding-bottom: 30px;
 }
 
-.grid-tiles .thumbnail .caption .fanbadge {
+.grid-tiles .thumbnail .caption .fanbadge,
+.grid-tiles-sidebar .thumbnail .caption .fanbadge {
   position: absolute;
   bottom:5px;
   left: 5px;
@@ -123,36 +151,43 @@ body {
   color: #aaaaaa;
 }
 
-.grid-tiles .thumbnail .caption .likebtn {
+.grid-tiles .thumbnail .caption .likebtn,
+.grid-tiles-sidebar .thumbnail .caption .likebtn {
   position: absolute;
   bottom:3px;
   right: 3px;
   opacity: 0.5;
 }
 
-.grid-tiles .thumbnail .caption a {
+.grid-tiles .thumbnail .caption a,
+.grid-tiles-sidebar .thumbnail .caption a {
   font-weight: bold;
   color: #cccccc;
   text-decoration: none;
 }
-.grid-tiles .thumbnail .caption a:hover {
+.grid-tiles .thumbnail .caption a:hover,
+.grid-tiles-sidebar .thumbnail .caption a:hover {
   color: #ffffff;
   text-decoration: underline;
 }
 
-.grid-tiles .thumbnail .caption .likebtn a {
+.grid-tiles .thumbnail .caption .likebtn a,
+.grid-tiles-sidebar .thumbnail .caption .likebtn a {
   text-decoration: none;
   color: #0CE3AC;
   font-weight: normal;
 }
 
-.grid-tiles .thumbnail .caption .likebtn a:hover {
+.grid-tiles .thumbnail .caption .likebtn a:hover,
+.grid-tiles-sidebar .thumbnail .caption .likebtn a:hover {
   text-decoration: none;
   color: #428BCA;
 }
 
 .grid-tiles .thumbnail:hover .caption .fanbadge,
-.grid-tiles .thumbnail:hover .caption .likebtn {
+.grid-tiles .thumbnail:hover .caption .likebtn,
+.grid-tiles-sidebar .thumbnail:hover .caption .fanbadge,
+.grid-tiles-sidebar .thumbnail:hover .caption .likebtn {
   opacity: 1;
 }
 
@@ -164,23 +199,74 @@ body {
   font-size: 3.4em;
   text-shadow: 2px 2px #333333;
   color: #eeeeee;
+  margin-top: 0;
 }
 
 .sidebar h1 {
   font-size: 2.2em;
   text-shadow: 2px 2px #333333;
+  margin-top: 0;
+  color: #ffffff;  
 }
 
-.genres-tags a {
+.sidebar h1 a {
+  text-decoration: none;
+}
+
+.genres-tags a,
+.sidebar a {
   text-decoration: underline;
-  color: #cccccc;
+  color: #eeeeee;
   line-height: 30px;
 }
 
-.genres-tags a:hover {
+.genres-tags a:hover,
+.sidebar a:hover {
   text-decoration: none;
   color: #ffffff;
   background-color: #198CAF;  
+}
+
+#page-container {
+  margin:0;
+  padding:0;
+}
+
+#page-container > .row {
+  margin-left: 0; 
+  margin-right: 0; 
+}
+
+.page-header .searchform {
+  margin-top: 10px;
+}
+
+.sidebar .list-group .list-group-item {
+  background-color: #198CAF;
+  font-weight: bold;
+  font-size: 1.15em;
+}
+
+.sidebar .list-group {
+  border-radius: 0;
+}
+
+.sidebar .list-group-item:first-child, {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.sidebar .list-group-item:last-child, {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.sidebar .list-group a:hover {
+  background-color: #CD503C;
+}
+
+.sidebar .list-group .list-group-item .badge {
+  margin-top: 5px;
 }
 
 @import "responsive";

@@ -1,31 +1,58 @@
-<h2>doindie doblog</h2>
-<% if current_user && current_user.blogger == true %>
-	<%= link_to "New Post", new_post_path, class: "btn btn-primary btn-lg" %>
-	<%= link_to "Blog Admin Page", blog_admin_path, class: "btn btn-danger btn-lg" %>
-<% end %>
-<div class="row">
-  <div class="col-md-8">
-	  <% @posts.each do |post| %>
-		  <div class="col-sm-6 col-md-4">
-		  	<%= div_for(post, class: "list") do %>
-	  		<% unless post.slide.blank? %>
-		  		<div class="thumbnail">
-			  		<%= image_tag post.slide.image.url(:medium) %>
-  			<% end %>
-	  				<div class="caption">
-		  				<h3><%= link_to post.title, post_path(post) %></h3>
-			  		</div>
-				  </div>
-  			<% end %> <!--div_for-->
-	  	</div>
-	  <% end %>
-  </div><!--col-md-8-->
-  <div class="col-md-4">
-    <h3><%= link_to t(:categories), categories_path %></h3>
-    <% @categories.each do |c| %>
-    <%= link_to c.name, c %>: <%= c.post_categories.count %><br />
+<div class="row page-header">
+  <div class="col-md-9">
+    <h1 class="page-title">
+      doindie <%= t(:blogs) %>
+    </h1>
+  </div>
+  <div class="col-md-3 searchform text-center">
+    <% if current_user && current_user.blogger == true %>
+    <div class="btn-group">
+      <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
+      <%= link_to "Blog Admin Page", blog_admin_path, class: "btn btn-danger" %>
+    </div>      
     <% end %>
   </div>
+</div>
+
+
+<div class="row">
+
+  <div id="posts-grid" class="col-sm-9">
+    <div class="grid-tiles-sidebar">
+      <% first_post = " width-double" %>
+  	  <% @posts.each do |post| %>
+  		  	<%= div_for(post, class: "list posts-grid-item tile"+first_post) do %>
+  		  		<div class="thumbnail">
+            <% unless post.slide.image.blank? %>
+    			  		<%= image_tag post.slide.image.url(:medium) %>
+      			<% end %>
+  	  				<div class="caption">
+  		  				<h3><%= link_to post.title, post_path(post) %></h3>
+  			  		</div>
+  				  </div>
+    			<% end %> <!--div_for-->
+          <% first_post = "" %>
+  	  <% end %>
+    </div>
+  </div><!-- col-md-9 -->
+
+  <div class="col-sm-3 sidebar">
+    <h1><%= link_to t(:categories), categories_path %></h1>
+    <div class="list-group">
+      <% @categories.each do |c| %>        
+        <%= link_to "<span class=\"badge\">".html_safe+c.post_categories.count.to_s+"</span>".html_safe+c.name, c, class: "list-group-item" %>
+      <% end %>
+    </div>
+  </div><!--sidebar-->
+
+  
+
 </div><!--row-->
 
-<p><%= link_to t(:categories), categories_path %></p>
+
+<script>
+  $(document).ready(function(){
+    init_grid_tiles();
+    $(window).trigger('resize');
+  });
+</script>

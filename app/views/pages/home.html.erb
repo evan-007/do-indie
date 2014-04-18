@@ -6,12 +6,12 @@
     <% counter = 0 %>
     <div class="row hidden-xs" id="home-events">
       <% @events.each do |event| %>
-        <div class="col-sm-6 col-md-6 col-lg-4">
+        <div class="home-events-item<% unless counter != 3 %> visible-lg<% end %><% unless counter != 2 %> visible-lg visible-md<% end %>">
           <a href=""><%= event.name %></a>
         </div>
       <% 
         counter+=1
-        break if counter == 3
+        break if counter == 4
       %>
       <% end %>
     </div>
@@ -19,12 +19,12 @@
     <% counter = 0 %>
     <div class="row hidden-xs" id="home-posts">
       <% @posts.each do |post| %>
-        <div class="col-sm-6 col-md-4 col-lg-3<% unless counter != 3 %> visible-lg<% end %><% unless counter != 2 %> visible-lg visible-md<% end %>">
+        <div class="home-posts-item<% unless counter != 4 %> visible-lg<% end %><% unless counter != 3 %> visible-lg visible-md<% end %>">
           <a href=""><%= post.title %></a>
         </div>
       <% 
         counter+=1
-        break if counter == 4
+        break if counter == 5
       %>
       <% end %>
     </div>
