@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 gem 'rails', '4.0.3'
-gem 'sass-rails', '~> 4.0.1'
+gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
@@ -20,10 +20,10 @@ gem 'twitter'
 gem 'pg'
 gem 'unicorn'
 gem 'sass'
-gem 'compass', '0.12.2'
+gem 'compass'
 gem 'font-awesome-rails'
 gem 'acts-as-taggable-on'
-gem 'json', '1.7.7'
+gem 'json'
 gem 'figaro'
 gem 'nprogress-rails'
 
@@ -52,14 +52,13 @@ end
 
 # Paging
 gem 'kaminari'
-gem 'will_paginate-bootstrap', '~> 1.0.0'
+gem 'will_paginate-bootstrap'
 
 # Slugs and friendly id's
 gem 'friendly_id'
 
 # font-awesome
-gem 'font-awesome-sass', '~> 4.0.2'
-
+gem 'font-awesome-sass'
 # production gems for heroku
 group :production do
   gem 'rails_12factor'
@@ -80,7 +79,7 @@ group :development, :test do
   gem 'rails_layout'  # Bootstrap 3 layout generator
 end
 
-gem 'bootstrap-sass', '~> 3.0.3.0'	 
+gem 'bootstrap-sass' 
 
 
 # RSpec
