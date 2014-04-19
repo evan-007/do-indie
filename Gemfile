@@ -23,7 +23,7 @@ gem 'sass'
 gem 'compass'
 gem 'font-awesome-rails'
 gem 'acts-as-taggable-on'
-gem 'json'
+gem 'json', '1.7.7'
 gem 'figaro'
 gem 'nprogress-rails'
 
