@@ -336,7 +336,7 @@ DEPENDENCIES
   gibbon
   gmaps4rails
   jbuilder
-  jplayer-rails (~> 2.5.0)
+  jplayer-rails
   jquery-rails
   json (= 1.7.7)
   kaminari
