@@ -5,8 +5,8 @@ $(window).bind('load', function() {
       $(this).jPlayer("setMedia", {
         title: "Hush Hush",
         mp3: "/mp3/Hush-Hush_Pussycat-Dolls.mp3",
-        oga: "hush_hush-pussycat_dolls.ogg",
-        m4a: "hush_hush-pussycat_dolls.m4a"
+        oga: "/mp3/hush_hush-pussycat_dolls.ogg",
+        m4a: "/mp3/sinking_man.m4a"
       });
       $(this).jPlayer('play');
     },
