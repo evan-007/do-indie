@@ -60,16 +60,9 @@
 
 
 
-
-
 <script>
-var pageReady;
-pageReady = function() {
-  init_grid_tiles();
-  $(window).trigger('resize');
-};
-
-$(document).ready(pageReady);
-$(document).on('page:load', pageReady);
+  $(document).ready(function(){
+    init_grid_tiles();
+    $(window).trigger('resize');
+  });
 </script>
-
