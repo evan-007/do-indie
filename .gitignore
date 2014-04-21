@@ -31,3 +31,6 @@ doc/
 #ignore uploaded files
 /public/system/
 /public/assets
+
+#nohup output
+nohup.out
