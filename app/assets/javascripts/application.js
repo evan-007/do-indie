@@ -21,4 +21,5 @@
 //= require chosen-jquery
 //= require nprogress
 //= require nprogress-turbolinks
+//= require 'jquery.jplayer'
 //= require_tree .

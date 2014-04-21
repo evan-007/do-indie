@@ -5,7 +5,9 @@
   }
   
   #topnavbar .navbar-header img {
-    width: 70px;
+    height: 60px;
+    width: auto;
+    background-color: #000000;
   }
 
   .toppad {
@@ -15,6 +17,10 @@
   #topnavbar {
     top:0;
     background-color: #198CAF;
+  }
+
+  #nprogress .spinner {
+    display: none;
   }
 
 }
@@ -47,6 +53,10 @@
 
   .home-events-item {
     width: 50%;
+  }
+
+  #nprogress .spinner {
+    display: none;
   }
 
 }
@@ -93,3 +103,9 @@
   }
 }
 
+/**
+ * Combos
+**/
+// ============ Tiny & Small ============
+// ============ Small & Medium ============
+// ============ Medium & Large ============

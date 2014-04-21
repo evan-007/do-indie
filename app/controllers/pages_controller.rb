@@ -42,6 +42,10 @@ class PagesController < ApplicationController
     flash[:notice] = "Thanks for signing up, check your email later!"
     redirect_to inside_path
   end
+
+  def jplayer
+    render layout: "blank"
+  end
   
   private
     def page_params
