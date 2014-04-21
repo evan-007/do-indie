@@ -55,6 +55,10 @@
     width: 50%;
   }
 
+  #home-events > div > a {
+    min-width: 50%;
+  }
+
   #nprogress .spinner {
     display: none;
   }
@@ -80,6 +84,10 @@
   .home-events-item {
     width: 33.33%;
   }
+
+  #home-events > div > a {
+    min-width: 33.33%;
+  }
 }
 
 // ============ Large screens ============
@@ -100,6 +108,10 @@
 
   .home-events-item {
     width: 25%;
+  }
+
+  #home-events > div > a {
+    min-width: 25%;
   }
 }
 
