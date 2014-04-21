@@ -63,9 +63,13 @@
 
 
 <script>
-  $(document).ready(function(){
-    init_grid_tiles();
-    $(window).trigger('resize');
-  });
+var pageReady;
+pageReady = function() {
+  init_grid_tiles();
+  $(window).trigger('resize');
+};
+
+$(document).ready(pageReady);
+$(document).on('page:load', pageReady);
 </script>
 
