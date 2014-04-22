@@ -57,7 +57,7 @@
 
 	
 	<%= f.label t(:map) %>
-	<%= f.file_field :small_map %><br />
+	<%= f.file_field :minimap %><br />
 	<%= t(:map_note)%><br />
 	<% if @venue.id != nil %>
 		<p><%= t(:venue_cities)%> <% @venue.cities.each do |city| %>
