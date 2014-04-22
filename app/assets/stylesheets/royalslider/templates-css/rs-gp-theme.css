@@ -190,7 +190,7 @@
 
 .rsABlock {
   left: 0;
-  top: 0;
+  /*top: 0;*/
   position: absolute;
   z-index: 15;
   -webkit-backface-visibility: hidden;
@@ -221,9 +221,9 @@
 }
 
   /* Arrows */
-.gp-theme .rsArrow { position: absolute; display: block; height: 60px; width: 60px; cursor: pointer; z-index: 21; }
-.gp-theme .rsArrowLeft { top: 250px; right: 61px; }
-.gp-theme .rsArrowRight { top: 250px; right: 0; }
+.gp-theme .rsArrow { position: absolute; display: block; height: 60px; width: 60px; cursor: pointer; z-index: 11; }
+.gp-theme .rsArrowLeft { top: 40%; right: 61px; }
+.gp-theme .rsArrowRight { top: 40%; right: 0; }
 .gp-theme .rsArrowIcn {
   width: 60px;
   height: 60px;
@@ -330,8 +330,9 @@
 .slide-caption {
   display: none;
   position: absolute;
-  top: 250px !important;
-  left: 0 !important;
+  bottom: 180px;
+  top: auto;
+  left: 0;
   max-width: 40%;
   padding-bottom: 0;
   overflow: hidden;

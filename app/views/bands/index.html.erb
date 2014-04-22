@@ -7,7 +7,7 @@
 	<div class="col-sm-3">
 		<%= form_tag bands_path, method: :get, class: 'form-inline' do %>
 		<div>
-			<div class="input-group">
+			<div class="input-group col-sm-12">
       <%= text_field_tag :query, params[:query], placeholder: "Band name: English or Korean", class: "form-control input-sm" %>
       <span class="input-group-btn">
         <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
@@ -34,15 +34,15 @@
 						      <span class="badge"><%= band.fans %></span>
 						    </div>
 							    
-							    <div class="likebtn">			
-							    	<% if current_user && current_user.user_fans.where(band_id: band.id).count != 0 %>
-							    		<%= link_to "<i class=\"fa fa-thumbs-up\"></i> Unlike".html_safe, user_fan_path(id: band.id), method: 'delete' %>
-										<% elsif current_user %>
-											<%= link_to "<i class=\"fa fa-thumbs-o-up\"></i> Like".html_safe, user_fans_path(band_id: band.id), method: 'post' %>
-										<% else %>
-											<%= link_to t(:signup), new_user_registration_path %> 
-										<% end %>
-								  </div>
+						    <div class="likebtn">			
+						    	<% if current_user && current_user.user_fans.where(band_id: band.id).count != 0 %>
+						    		<%= link_to "<i class=\"fa fa-thumbs-up\"></i> Unlike".html_safe, user_fan_path(id: band.id), method: 'delete' %>
+									<% elsif current_user %>
+										<%= link_to "<i class=\"fa fa-thumbs-o-up\"></i> Like".html_safe, user_fans_path(band_id: band.id), method: 'post' %>
+									<% else %>
+										<%= link_to t(:signup), new_user_registration_path %> 
+									<% end %>
+							  </div>
 							</div>
 						</div>
 					<% end %> <!--div_for-->
@@ -72,9 +72,15 @@
 
 
 <script>
-	$(document).ready(function(){
-		init_grid_tiles();
-		$(window).trigger('resize');
-	});
+  $(document).ready(function(){
+    init_grid_tiles();
+    $(window).trigger('resize');
+    //imagesLoaded
+    $('.grid-tiles').imagesLoaded(function() {
+      $(window).trigger('resize');
+    });
+  });
 </script>
+
+
 

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title><%= @title || "DoIndie" %></title>
+	<%= favicon_link_tag 'favicon.ico' %>
+	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="jquery_jplayer_1"></div>
+  <div id="jp_container_1">
+  <a href="#" class="jp-play">Play</a>
+  <a href="#" class="jp-pause">Pause</a>
+  </div>
+</body>
+</html>

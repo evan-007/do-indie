@@ -19,6 +19,7 @@ DoIndie::Application.routes.draw do
     get "/events/past", to: "events#past", as: "past_events"
     get "contact", to: "messages#index", as: "contact"
     get "photo", to: "pages#photo", as: "photo"
+    get "/pages/jplayer", to: "pages#jplayer", as: "jplayer"
     get "/venues/map", to: "venues#map", as: "venues_map"
     get "/blog/admin", to: "posts#admin", as: "blog_admin"
     get 'tag/:tag', to: 'posts#index', as: "tags"

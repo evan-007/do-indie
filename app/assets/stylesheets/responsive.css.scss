@@ -1,21 +1,44 @@
 // ============ Tiny screens ============
 @media (max-width: $screen-xs-max) {
-  #topnavbar .navbar-collapse {
-    width: 100%;
-  }
-  
-  #topnavbar .navbar-header img {
-    width: 70px;
-  }
-
   .toppad {
     height: 75px;
   }
   
-  #topnavbar {
-    top:0;
-    background-color: #198CAF;
+
+  #nprogress .spinner {
+    display: none;
   }
+
+  .slide-caption {
+    bottom: 20px;
+  }
+
+  .slide-caption h2.link{
+    font-size: 1.5em;
+  }
+
+  .slide-caption p {
+    font-size: 1.1em;
+  }
+
+  .events_selector {
+    min-width: 300px;
+  }
+
+  .events-listing .info {
+    height: auto;    
+    padding-right:0;
+    padding-bottom: 15px;
+  }
+
+  .events-listing .info .avatar {
+    width:100%; height: auto;
+  }
+
+  .events-listing .bands {
+    border-left: 0px;
+  }
+
 
 }
 
@@ -49,6 +72,30 @@
     width: 50%;
   }
 
+  #home-events > div > a {
+    min-width: 50%;
+  }
+
+  #nprogress .spinner {
+    display: none;
+  }
+
+  .slide-caption {
+    bottom: 140px;
+  }
+
+  .slide-caption h2.link{
+    font-size: 1.8em;
+  }
+
+  .slide-caption p {
+    font-size: 1.6em;
+  }
+
+  .events_selector {
+    min-width: 400px;
+  }
+
 }
 
 // ============ Medium screens ============
@@ -70,6 +117,19 @@
   .home-events-item {
     width: 33.33%;
   }
+
+  #home-events > div > a {
+    min-width: 33.33%;
+  }
+
+  .slide-caption {
+    bottom: 160px;
+  }
+
+  .events_selector {
+    min-width: 450px;
+  }
+
 }
 
 // ============ Large screens ============
@@ -91,5 +151,27 @@
   .home-events-item {
     width: 25%;
   }
+
+  #home-events > div > a {
+    min-width: 25%;
+  }
+
+  .slide-caption h2.link{
+    font-size: 2.5em;
+  }
+
+  .slide-caption p {
+    font-size: 2.4em;
+  }
+
+  .events_selector {
+    min-width: 500px;
+  }
 }
 
+/**
+ * Combos
+**/
+// ============ Tiny & Small ============
+// ============ Small & Medium ============
+// ============ Medium & Large ============

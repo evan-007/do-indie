@@ -93,3 +93,5 @@ group :test do
   gem "capybara"
   gem 'email_spec'
 end
+
+gem 'jplayer-rails'

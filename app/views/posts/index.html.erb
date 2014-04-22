@@ -54,5 +54,9 @@
   $(document).ready(function(){
     init_grid_tiles();
     $(window).trigger('resize');
+    //imagesLoaded
+    $('.grid-tiles-sidebar').imagesLoaded(function() {
+      $(window).trigger('resize');
+    });      
   });
 </script>
