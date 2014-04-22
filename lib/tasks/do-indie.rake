@@ -268,6 +268,11 @@ task :approve_all => :environment do
   end
 end
 
+task create_page: :environment do
+  a = Page.new
+  a.save
+end
+
 #for heroku and ckeditor
 namespace :ckeditor do
   desc 'Create nondigest versions of some ckeditor assets (e.g. moono skin png)'
