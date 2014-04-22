@@ -23,9 +23,11 @@
   	  <% @posts.each do |post| %>
   		  	<%= div_for(post, class: "list posts-grid-item tile"+first_post) do %>
   		  		<div class="thumbnail">
-            <% unless post.slide.image.blank? %>
-    			  		<%= image_tag post.slide.image.url(:medium) %>
-      			<% end %>
+              <% unless post.slide.blank? %>
+                <% unless post.slide.image.blank? %>
+      			  		<%= image_tag post.slide.image.url(:medium) %>
+          			<% end %>
+              <% end %>
   	  				<div class="caption">
   		  				<h3><%= link_to post.title, post_path(post) %></h3>
   			  		</div>
