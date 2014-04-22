@@ -8,8 +8,7 @@ feature "Admin event panel" do
 	end
 
 	scenario "admin users can view events" do
-		click_link "Admin"
-		find("h4", text: "Events").click_link "Events"
+		visit admin_events_en_path
 		expect(page).to have_content(@event.name)
 	end
 

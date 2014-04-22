@@ -8,8 +8,7 @@ feature "Admin band panel" do
 	end
 
 	scenario "admin users can view venues" do
-		click_link "Admin"
-		find("h4", text: "Venues").click_link "Venues"
+		visit admin_venues_en_path
 		expect(page).to have_content(@venue.name)
 	end
 
