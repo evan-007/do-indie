@@ -46,6 +46,30 @@ a {
   background-color: #198CAF;
 }
 
+#topnavbar-xs {
+  padding-right: 0;
+  padding-left: 0;
+  background-color: #198CAF;
+  margin:0 !important;
+  overflow: hidden;
+}
+
+#topnavbar-xs .navbar-header {
+  margin: 0; padding:0;
+  height: 60px;
+}
+#topnavbar-xs img {
+  background-color: #000000;
+}
+
+#topnavbar-xs .collapse {
+  background-color: transparent;
+}
+
+#topnavbar-xs a {
+  display: inline-block;
+}
+
 #wrap {
   margin-top:0;
 }
@@ -212,6 +236,7 @@ body {
   text-shadow: 2px 2px #333333;
   color: #eeeeee;
   margin-top: 0;
+  white-space: nowrap;
 }
 
 .sidebar h1 {
@@ -280,5 +305,46 @@ body {
 .sidebar .list-group .list-group-item .badge {
   margin-top: 5px;
 }
+
+.events_selector {
+  margin-bottom: 15px;
+  margin-top: 5px;
+}
+
+.events-listing .event {
+  margin-bottom: 5px;
+}
+
+.events-listing .info {
+  padding-left: 0;
+  height: 120px;
+}
+
+.events-listing .bands {
+  height: 120px;
+  border-left: 5px solid #000000;
+}
+
+.events-listing .info .avatar {
+  height: 120px;
+  width: 120px;
+  float: left;
+}
+
+.events-listing .info .avatar img {
+  width: 100%;
+  height: 100%;
+}
+
+.event-color-1 { background-color:#118BBA }
+.event-color-2 { background-color:#0A75A3 }
+.event-color-3 { background-color:#D4191F }
+.event-color-4 { background-color:#DE842B }
+.event-color-5 { background-color:#14191E }
+.event-color-6 { background-color:#1E411F }
+.event-color-7 { background-color:#BE554B }
+.event-color-8 { background-color:#2E2D69 }
+.event-color-9 { background-color:#3743AB }
+.event-color-10{ background-color:#B40478 }
 
 @import "responsive";
