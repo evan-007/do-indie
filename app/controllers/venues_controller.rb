@@ -93,7 +93,8 @@ class VenuesController < ApplicationController
         :en_bio, :ko_bio, :facebook,
         :twitter, :cafe, :website,
         :photo, :small_map, :email,
-        :en_directions, :ko_directions)
+        :en_directions, :ko_directions,
+        :minimap )
   end
 
   def get_cities
