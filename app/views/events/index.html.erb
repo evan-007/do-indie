@@ -6,7 +6,7 @@
     <div class="row events_selector pull-right">
       <div class="col-xs-12 row-fluid">
         <div class="btn-group col-xs-12 row-fluid">
-          <%= link_to "Upcoming", "javascript:void(0);", class: 'btn btn-warning active col-xs-6' %>
+          <%= link_to "Upcoming", events_path, class: 'btn btn-warning active col-xs-6' %>
           <%= link_to "Past", past_events_path, class: 'btn btn-default col-xs-6' %>
         </div>
       </div>
@@ -49,7 +49,11 @@
         <% if event.event_bands.count != 0 %>
         <p>These bands are playing:
           <% event.event_bands.each do |eventband| %>
-          <%= link_to eventband.band.name, band_path(eventband.band) %>,
+            <% if eventband.band.approved? %>
+              <%= link_to eventband.band.name, band_path(eventband.band) %>,
+            <% else %>
+              <%= eventband.band.name %>, 
+            <% end %>
           <% end %>
         </p>
         <% else %>

@@ -12,8 +12,10 @@ class UserFansController < ApplicationController
 	end
 
 	def destroy
+		@user_fan = current_user.user_fans.find_by(band_id: (params[:id]))
+		@band = @user_fan.band.name
 		if @user_fan.destroy
-			flash[:notice] = "You're no longer a fan :("
+			flash[:notice] = "You're no longer a fan of #{@band} :("
 			redirect_to(:back)
 		else
 			flash[:notice] = "You can't do that"

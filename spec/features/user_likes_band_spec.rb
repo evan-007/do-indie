@@ -10,7 +10,7 @@ feature "Liking bands" do
 	scenario "users can like bands" do
 		visit band_path(@band)
 		click_link 'Like'
-		expect(page).to have_content("You're a fan!")
+		expect(page).to have_content("You're a")
 	end
 
 	scenario "user can unlike bands" do
@@ -18,6 +18,6 @@ feature "Liking bands" do
 		click_link 'Like'
 		visit band_path(@band)
 		click_link 'Unlike'
-		expect(page).to have_content("You're no longer a fan :(")
+		expect(page).to have_content("You're no longer")
 	end
 end
