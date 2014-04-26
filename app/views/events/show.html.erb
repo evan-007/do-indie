@@ -144,6 +144,10 @@
     <%= link_to "Edit this event", edit_event_path(@event) %> 
 <% end %>	
 
+<% if current_user && @event.user == current_user %>
+    <%= link_to "Edit this event", edit_event_path(@event) %> 
+<% end %> 
+
 <script>
   $(document).ready(function(){
     $('#raw_data').toggle();

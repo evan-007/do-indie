@@ -13,6 +13,7 @@ class Venue < ActiveRecord::Base
 	scope :unapproved, -> { where(approved: false) }
 	scope :localized, -> { where.not(latitude: nil) }
 	after_save :approval_notification, if: :approved_changed?
+	after_create :make_manager
 
 	paginates_per 100
 
@@ -51,6 +52,10 @@ class Venue < ActiveRecord::Base
 	    else
 			approved.order(approved: :asc).page page_number
 	    end
+	end
+
+	def make_manager
+		VenueManager.create!(venue_id: self.id, user_id: self.user.id, approved: true)
 	end
 
 	private

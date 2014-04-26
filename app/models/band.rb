@@ -16,6 +16,7 @@ class Band < ActiveRecord::Base
 	scope :approved, -> { where(approved: true) }
 	scope :unapproved, -> { where(approved: false) }
 	after_save :approval_notification, if: :approved_changed?
+	after_create :make_manager
 
 
 	paginates_per 20 #fix pagination
@@ -72,6 +73,10 @@ class Band < ActiveRecord::Base
     rescue
 		[]
   end
+
+	def make_manager
+		BandManager.create!(band_id: self.id, user_id: self.user.id, approved: true)
+	end
 
   private
 

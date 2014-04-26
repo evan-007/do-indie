@@ -13,6 +13,7 @@ class Event < ActiveRecord::Base
 	scope :approved, -> { where(approved: true) }
 	scope :unapproved, -> { where(approved: false) }
 	after_save :approval_notification, if: :approved_changed?
+	after_create :make_manager
 
 	# has_many :event_venues
 	# has_many :venues, through: :event_venues
@@ -61,6 +62,10 @@ class Event < ActiveRecord::Base
 
 	def self.search_by_date(start_date, end_date)
 		Event.where(["date > ?", start_date]).where(["date < ? ", end_date]).order(date: :asc)
+	end
+
+	def make_manager
+		EventManager.create!(event_id: self.id, user_id: self.user.id, approved: true)
 	end
 
 	private
