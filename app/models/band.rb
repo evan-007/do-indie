@@ -51,7 +51,6 @@ class Band < ActiveRecord::Base
   def self.index_search(query, page_number)
     if query.present?
     	self.approved.where("name ilike :q or korean_name ilike :q", q: "%#{query}%").page page_number
-      #self.approved.fuzzy_search(query).page page_number
     else
 	    approved.order(approved: :asc).page page_number
     end
@@ -69,16 +68,16 @@ class Band < ActiveRecord::Base
       @track_url = self.soundcloud
       @client = Soundcloud.new(:client_id => 'b8e640fd38bce5816e3e15ca83bc75cc')
       @client.get('/oembed', :url => @track_url ).html_safe
-	end
+		end
     rescue
-	[]
+		[]
   end
 
   private
 
     def approval_notification
-	  if self.approved == true && self.user != nil
-	    UserMailer.band_approved_email(self).deliver
+		  if self.approved == true && self.user != nil
+		    UserMailer.band_approved_email(self).deliver
       end
     end
 end

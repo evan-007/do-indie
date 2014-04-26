@@ -2,8 +2,9 @@ class UserFansController < ApplicationController
 	before_action :get_user_fans, only: [:destroy]
 	def create
 		@user_fans = current_user.user_fans.build(band_id: params[:band_id])
+		@band = Band.find(params[:band_id])
 		if @user_fans.save
-			flash[:notice] = "You're a fan!"
+			flash[:notice] = "You're a fan of #{@band.name}!"
 			redirect_to(:back)
 		else
 			flash[:notice] = "You can't do that!"

@@ -9,6 +9,5 @@ feature "Homepage slides" do
 		visit root_path
 	  	expect(page).to have_content @slide.ko_title
 	  	expect(page).to have_content @slide.ko_description
-	  	expect(page).to have_content @slide.anchor
 	end
 end

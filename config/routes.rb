@@ -1,13 +1,10 @@
 DoIndie::Application.routes.draw do
-  # config/routes.rb
 
   scope "(:locale)", locale: /en/ do
-  root "pages#home"
+    root "pages#home"
   end
-  
 
-
-  # get '/:locale' => 'pages#home' #this conflicts with other routes
+  get '/ko', to: "pages#home"
   
   localized do
   
