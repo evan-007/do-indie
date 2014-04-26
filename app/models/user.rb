@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   has_many :bands
   has_many :events
   has_many :venues
-  # Use friendly_id on Users
   extend FriendlyId
   friendly_id :friendify, use: :slugged
 
@@ -30,7 +29,6 @@ class User < ActiveRecord::Base
     "#{self.username}, #{self.email}"
   end
   
-  # necessary to override friendly_id reserved words
   def friendify
     if username.downcase == "admin"
       "user-#{username}"
@@ -39,23 +37,16 @@ class User < ActiveRecord::Base
     end
   end
   
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  #removed :confirmable, db still setupfor it!
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   devise :omniauthable, :omniauth_providers => [:facebook]
          
-  # Pagination
   paginates_per 100
   
-  # Validations
-  # :username
   validates :username, uniqueness: { case_sensitive: false }
   validates_format_of :username, with: /\A[a-zA-Z0-9\s]*\z/, on: :create, message: "can only contain letters and digits"
   validates :username, length: { in: 4..20 }
-  # :email
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   
   def self.paged(page_number)

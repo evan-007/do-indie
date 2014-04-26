@@ -75,7 +75,9 @@ class Band < ActiveRecord::Base
   end
 
 	def make_manager
-		BandManager.create!(band_id: self.id, user_id: self.user.id, approved: true)
+		unless self.user.blank?
+			BandManager.create!(band_id: self.id, user_id: self.user.id, approved: true)
+		end
 	end
 
   private

@@ -65,7 +65,9 @@ class Event < ActiveRecord::Base
 	end
 
 	def make_manager
-		EventManager.create!(event_id: self.id, user_id: self.user.id, approved: true)
+		unless self.user.blank?
+			EventManager.create!(event_id: self.id, user_id: self.user.id, approved: true)
+		end
 	end
 
 	private

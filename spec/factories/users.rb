@@ -12,6 +12,7 @@ FactoryGirl.define do
       admin true
       username "something"
       email "alt@alt.com"
+      get_email false
     end
     
     factory :blogger do
