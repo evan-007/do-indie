@@ -36,10 +36,22 @@ feature "Creating events" do
 	    fill_in "event[name]", with: "partyyyyy"
 	    find('#add_band').click
 	    sleep(5)
-	    fill_in "new_band_name", with: "my new band"
+	    fill_in "event_bands_attributes_0_name", with: "my new band"
 	    click_button "Create Event"
 	    expect(page).to have_content("Thanks")
 	    expect(Band.last.name).to eq('my new band')
-	    # click "Click here to add a band"
 	end
+
+	scenario "New venues can be added to an event" do
+		sign_in @user
+		visit new_event_en_path
+		fill_in "event[name]", with: 'big party!'
+		find('#add_venue').click
+		sleep(3)
+		fill_in "event_venue_attributes_name", with: "my new venue"
+		# select 'Seoul', from: "event_venue_attributes_city"
+		click_button "Create Event"
+		expect(page).to have_content('Thanks')
+		expect(Venue.last.name).to eq('my new venue')
+	end 
 end

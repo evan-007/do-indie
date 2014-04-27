@@ -14,9 +14,9 @@ class Event < ActiveRecord::Base
 	scope :unapproved, -> { where(approved: false) }
 	after_save :approval_notification, if: :approved_changed?
 	after_create :make_manager
+	accepts_nested_attributes_for :bands
+	accepts_nested_attributes_for :venue
 
-	# has_many :event_venues
-	# has_many :venues, through: :event_venues
 	paginates_per 100 #fix pagination
 	accepts_nested_attributes_for :event_bands, :venue, :bands
 	has_attached_file :avatar, :styles => { :large => "900x900>", :medium => "300x300#", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
@@ -72,9 +72,9 @@ class Event < ActiveRecord::Base
 
 	private
 
-	    def approval_notification
-	    	if self.approved == true && self.user != nil
-		    	UserMailer.event_approved_email(self).deliver
-		    end
+    def approval_notification
+    	if self.approved == true && self.user != nil
+	    	UserMailer.event_approved_email(self).deliver
+	    end
 		end
 end

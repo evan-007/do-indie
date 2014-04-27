@@ -41,6 +41,7 @@ class VenuesController < ApplicationController
   end
 
   def create
+    #refactor to use nested params!
     @venue = current_user.venues.build(venue_params)
     if @venue.save
       @venue.venue_cities.create(city_id: params[:city])

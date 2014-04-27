@@ -20,38 +20,20 @@ class EventsController < ApplicationController
 			redirect_to new_user_session_path
 		else
 			@event = current_user.events.build
+			1.times {@event.bands.build}
+			@event.build_venue
 		end
 	end
 
 	def create
 		@event = current_user.events.build(event_params)
-		#oh god refactor this mess
-		if @event.save
-			if params[:new_bands].present? && params[:new_venue].present?
-				params[:new_bands].each do |band|
-					@band = Band.new(name: band)
-					@band.save
-					@event_band = EventBand.new(event: @event, band: @band)
-					@event_band.save
-				end
-				@venue = Venue.new(name: params[:new_venue])
-				@venue.save
-				@event.update(venue: @venue)
-
-			elsif params[:new_bands].present?
-				params[:new_bands].each do |band|
-					@band = Band.new(name: band)
-					@band.save
-					@event_band = EventBand.new(event: @event, band: @band)
-					@event_band.save
-				end
-
-
-			elsif params[:new_venue].present?
-				@venue = Venue.new(name: params[:new_venue])
-				@venue.save
-				@event.update(venue: @venue)
+		@event.bands.each do |band|
+			if band.name.blank?
+				band.destroy
 			end
+		end
+		@event.venue.destroy if @event.venue.name.blank?
+		if @event.save
 			flash[:notice] = t(:event_submission_note)
 			redirect_to events_path
 		else
@@ -115,7 +97,9 @@ class EventsController < ApplicationController
 	  		:info_ko, 
 	  		:venue_id, 
 	  		:date,
-	  		band_ids: []
+	  		band_ids: [],
+	  		bands_attributes: [:name],
+	  		venue_attributes: [:name, :city]
 	  		)
 	  end
 
