@@ -19,7 +19,7 @@ class Band < ActiveRecord::Base
 	after_create :make_manager
 
 
-	paginates_per 20 #fix pagination
+	paginates_per 20
 
 	has_attached_file :avatar, :styles => { :large => "900x900>", :medium => "300x300#", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
@@ -32,13 +32,13 @@ class Band < ActiveRecord::Base
 	
 
 	def self.search_and_order(search, page_number)
-	    if search
-			where("name LIKE ?", "%#{search.downcase}%").order(
-	      	name: :asc
-		    ).page page_number
-	    else
-			approved.order(name: :asc).page page_number
-	    end
+    if search
+		where("name LIKE ?", "%#{search.downcase}%").order(
+      	name: :asc
+	    ).page page_number
+    else
+		approved.order(name: :asc).page page_number
+    end
 	end
 
 	def self.admin_search(search, page_number)

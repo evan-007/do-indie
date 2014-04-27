@@ -44,10 +44,6 @@ class BandsController < ApplicationController
       @track_url = @band.soundcloud
       @embed_info = @client.get('/oembed', :url => @track_url )
     end
-    # unless @band.twitter == nil
-    #   @tweet_url = @band.twitter.gsub(/^[^_]*twitter.com\//, '')
-    #   @tweets = twitter_client.user_timeline("#{@tweet_url}").take(3)
-    # end
   end
   
   def edit
