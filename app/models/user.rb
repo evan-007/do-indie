@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   #validations
 
   validates :username, uniqueness: { case_sensitive: false }
-  validates_format_of :username, with: /\A[a-zA-Z0-9\s]*\z/, on: :create, message: "can only contain letters and digits"
-  validates :username, length: { in: 4..20 }
+  validates_format_of :username, with: /\A[a-zA-Z0-9\s\p{Hangul}]*\z/, on: :create, message: "can only contain letters and digits"
+  validates :username, length: { in: 3..20 }
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
   #associations
