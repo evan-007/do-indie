@@ -1,17 +1,33 @@
 class User < ActiveRecord::Base
+  #validations
+
+  validates :username, uniqueness: { case_sensitive: false }
+  validates_format_of :username, with: /\A[a-zA-Z0-9\s]*\z/, on: :create, message: "can only contain letters and digits"
+  validates :username, length: { in: 4..20 }
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+
+  #associations
   has_many :user_fans
   has_many :bands, through: :user_fans
   has_many :band_managers
-  has_many :managed_bands, :as => :bands, through: :band_managers
+  has_many :managed_bands, through: :band_managers
   has_many :venue_managers
-  has_many :managed_venues, :as => :venues, through: :venue_managers 
+  has_many :managed_venues, through: :venue_managers 
   has_many :event_managers
-  has_many :managed_events, :as => :events, through: :event_managers
+  has_many :managed_events, through: :event_managers
   has_many :bands
   has_many :events
   has_many :venues
+
   extend FriendlyId
   friendly_id :friendify, use: :slugged
+
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+  devise :omniauthable, :omniauth_providers => [:facebook]
+         
+  paginates_per 100
+  
 
   def approved_manager?(band_id)
     self.band_managers.where(band_id: band_id).first.approved
@@ -36,18 +52,6 @@ class User < ActiveRecord::Base
       "#{username}"
     end
   end
-  
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
-  devise :omniauthable, :omniauth_providers => [:facebook]
-         
-  paginates_per 100
-  
-  validates :username, uniqueness: { case_sensitive: false }
-  validates_format_of :username, with: /\A[a-zA-Z0-9\s]*\z/, on: :create, message: "can only contain letters and digits"
-  validates :username, length: { in: 4..20 }
-  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   
   def self.paged(page_number)
     order(admin: :desc, username: :asc).page page_number
@@ -100,8 +104,7 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-      user.username = auth.info.first_name+auth.info.last_name   # assuming the user model has a name
-    #  user.image = auth.info.image # assuming the user model has an image
+      user.username = "#{auth.info.first_name} #{auth.info.last_name}"
     end
   end
 
