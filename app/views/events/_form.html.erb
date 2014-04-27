@@ -1,12 +1,22 @@
+<hr>
 <%= form_for @event do |f| %>
-	<%= f.label t(:event_name_e) %>
-	<%= f.text_field :name, class: "form-control half" %><br />
-	<%= f.label t(:event_name_k) %>
-	<%= f.text_field :ko_name, class: "form-control half" %><br />
-	<p><%= t(:event_name_note) %></p>
-	<%= f.label t(:event_poster) %>
-	<%= f.file_field :avatar %><br />
+	<p>	
+		<%= f.label t(:event_name_e) %>
+		<%= f.text_field :name, class: "form-control half" %>
+	</p><br/>
+
+	<p>
+		<%= f.label t(:event_name_k) %>
+		<%= f.text_field :ko_name, class: "form-control half" %>
+		<%= t(:event_name_note) %>
+	</p><br />
+
+	<p><%= f.label t(:event_poster) %></p>
+	<p><%= f.file_field :avatar %></p>
 	<p><%= t(:event_poster_note) %></p>
+
+	<hr>
+
 	<% if I18n.locale == :en %>
 	<p>
 		<%= f.label t(:band_playing) %>
@@ -18,12 +28,13 @@
 		<%= f.collection_select :band_ids, Band.order(:korean_name), :id, :korean_name, {}, {multiple: true} %>
 	</p>
 	<% end %>
-		
-	<p><%= t(:band_playing_note)%></p>
+
+
+	<p><%= t(:band_playing_note)%></p><br>
   
 	<div id="new_band">
-		<h3>Band not listed?</h3>
-	    <div id="add_band" class="btn btn-warning">Click here to add a band<i class="fa fa-plus"></i></div>
+		<p>Band not listed?</p>
+	    <div id="add_band" class="btn btn-sm btn-warning">Click here to add a band<i class="fa fa-plus"></i></div>
 
 		<div id="new_bands">
 			<p>
@@ -34,22 +45,26 @@
 		  </p>
 		</div>
 	</div>
-	<h4><%= t(:venue) %></h4>
-	<%= f.label :venue_id %>
-	<%= f.select(:venue_id, options_for_select(Venue.order(name: :asc).collect { |v| [v.name, v.id]}.insert(0, "") )) %><br />
+
+	<hr>
+
+	<p><%= f.label t(:venue) %>
+	<%= f.select(:venue_id, options_for_select(Venue.order(name: :asc).collect { |v| [v.name, v.id]}.insert(0, "") )) %></p>
 	<p><%= t(:venue_note) %></p><br />
 
   <div id="new_venue">
    <p>Venue not listed?</p>
-    <div id="add_venue" class="btn btn-warning">Click here to add your venue<i class="fa fa-plus"></i></div>
+    <div id="add_venue" class="btn btn-sm btn-warning">Click here to add your venue<i class="fa fa-plus"></i></div>
 
     <div id="new_venue_form">
     	<%= f.fields_for :venue do |ff| %>
 	    	<%= ff.label "New Venue Name" %>
-	    	<%= ff.text_field :name %>
+	    	<%= ff.text_field :name, class: "form-control half" %>
     	<% end %>
     </div>
   </div>
+
+  <hr>
 
 	<%= f.label t(:start_date) %>
 	<%= f.date_select :date, start_year: 2014, class: "form-control half" %><br />
@@ -62,6 +77,8 @@
 	<%= f.label t(:facebook_event) %>
 	<%= f.text_field :facebook, class: "form-control half" %><br />
 	
+	<hr>
+
 	<%= f.label t(:ticket_status) %>
 	<%= f.select(:ticket, options_for_select([['Yes', true], ['No', false]], 2)) %><br />
 
@@ -83,14 +100,15 @@
 		<%= t(:buy_tickets_notes) %>
 	</p>
 
+	<hr>
 	<%= f.label t(:event_details_en) %>
 	<%= f.text_area :info, class: "form-control half" %><br />
 
 	<%= f.label t(:event_details_ko) %>
 	<%= f.text_area :info_ko, class: "form-control half" %><br />
-	<p><%= t(:event_details_note)%></p>
+	<p><%= t(:event_details_notes)%></p><br>
 	
-	<%= f.submit %>
+	<%= f.submit nil, class: "btn btn-primary" %>
 	
 <% end %>
 
