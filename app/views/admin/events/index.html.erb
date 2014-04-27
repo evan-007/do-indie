@@ -20,6 +20,7 @@
   <tr>
     <th>Event ID</th>
     <th>Name</th>
+    <th>Ko Name</th>
     <th>Approved</th>
     <th>Venue</th>
     <th>Created by</th>
@@ -31,6 +32,7 @@
   <tr>
     <td><%= event.id %></td>
     <td><%= link_to event.name.capitalize, admin_event_path(event) %></td>
+    <td><%= event.ko_name %></td>
     <td><%= event.approved %></td>
     <% unless event.venue.blank? %>
     <td><%= event.venue.name %></td>

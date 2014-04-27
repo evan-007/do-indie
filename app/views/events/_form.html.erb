@@ -67,7 +67,7 @@
   <hr>
 
 	<%= f.label t(:start_date) %>
-	<%= f.date_select :date, start_year: 2014, class: "form-control half" %><br />
+	<%= f.text_field :date, class: "form-control half date" %><br />
 	<%= f.label t(:show_time) %>
 	<%= f.text_field :time, placeholder: "7:40pm", class: "form-control half" %><br />
 
@@ -134,5 +134,9 @@
 				$(this).closest('#new_venue').find('#new_venue_form').toggle();
 		});		
 	});
+
+	$(document).ready(function() {
+		$('.date').datepicker();
+	})
   
 </script>

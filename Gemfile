@@ -27,6 +27,8 @@ gem 'json', '1.7.7'
 gem 'figaro'
 gem 'nprogress-rails'
 
+gem 'bootstrap-datepicker-rails'
+
 #for mailchimp api
 gem 'gibbon'
 

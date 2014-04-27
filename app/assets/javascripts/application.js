@@ -18,6 +18,7 @@
 //= require gmaps/google
 //= require turbolinks
 //= require bootstrap
+//= require bootstrap-datepicker
 //= require chosen-jquery
 //= require nprogress
 //= require nprogress-turbolinks
