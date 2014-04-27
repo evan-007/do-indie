@@ -19,6 +19,7 @@
   <tr>
     <th>managers ID</th>
     <th>Username</th>
+    <th>Email</th>
     <th>venuename</th>
     <th>Approved?</th>
     <th>Created at</th>
@@ -29,6 +30,7 @@
   <tr>
     <td><%= manager.id %></td>
     <td><%= link_to manager.user.username.capitalize, admin_event_manager_path(manager) %></td>
+    <td><%= manager.user.email %></td>
     <td><%= manager.event.name %></td>
     <td><%= manager.approved  %></td>
     <td><%= time_ago_in_words(manager.created_at) %></td>

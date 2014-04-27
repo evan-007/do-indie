@@ -35,12 +35,12 @@
     <td><%= event.ko_name %></td>
     <td><%= event.approved %></td>
     <% unless event.venue.blank? %>
-    <td><%= event.venue.name %></td>
+    <td><%= link_to event.venue.name, admin_venue_path(event.venue) %></td>
     <% else %>
     <td></td>
     <% end %>
     <% unless event.user_id.blank? %>
-    <td><%= "#{event.user.username}" %></td>
+    <td><%= link_to "#{event.user.username}", admin_user_path(event.user) %></td>
     <% else %>
     <td></td>
     <% end %>

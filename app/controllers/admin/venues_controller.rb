@@ -12,6 +12,7 @@ class Admin::VenuesController < Admin::BaseController
   end
 
   def show
+    redirect_to edit_admin_venue_path(params[:id])
   end
 
   def edit
