@@ -49,10 +49,10 @@ ko:
   directions: "오시는 길:"
   next_events: "다음 공연:"
   twitter_feed: "트위터 피드:"
-  facebook: "페이스북:" 
-  twitter: "트위터:"
-  website: "공식 사이트:"
-  cafe: "카페:"
+  facebook: "페이스북" 
+  twitter: "트위터"
+  website: "공식 사이트"
+  cafe: "카페"
   no_directions: "가는 방법이 등록되어 있지 않습니다. 대신 위에 있는 지도를 참고하시거나 공연장에 직접 문의바랍니다."
 
   #bands#show

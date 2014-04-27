@@ -1,136 +1,156 @@
-<h2><%= @venue.name %></h2>
-<h4><%= @venue.korean_name %></h4>
-<div class="row">
-  <div class="col-md-6">
-    <% unless @venue.twitter.blank? %>
-      <p><%= t(:twitter_feed) %></p>
-      <ul>
-        <% twitter_client.user_timeline("#{@tweet_url}").take(3).each do |tweet| %>
-          <li><%= tweet.text.html_safe %></li>
+<div class="container venue-detail">
+  <h1 class="page-title"><%= @venue.name %></h1>
+  <h2><%= @venue.korean_name %></h2>
+  <div class="row">
+    <div class="col-sm-7 vcard">
+      <table class="table table-hover">
+      <% unless @venue.phone == nil %>
+        <tr>
+          <td><%= t(:venue_phone) %></td>
+          <td><%= @venue.phone %></td>
+        </tr>
+      <% end %>
+      <% unless @venue.email == nil %>
+        <tr>
+          <td><%= t(:venue_email) %></td>
+          <td><%= @venue.email %></td>
+        </tr>
+      <% end %>
+      <% unless @venue.address == nil %>
+        <tr>
+          <td><%= t(:venue_address) %></td>
+          <td><%= @venue.address %></td>
+        </tr>
+      <% end %>
+      </table> 
+
+      <ul class="nav nav-pills venue-socials">
+        <% unless @venue.facebook.blank? %>
+        <li><%= link_to "<i class=\"fa fa-facebook\"></i> ".html_safe+t(:facebook), @venue.facebook, class: 'facebook' %></li>
         <% end %>
-      </ul>
-    <% end %>
-    <% unless @venue.small_map.blank? %>
-	    <%= image_tag @venue.small_map %>
-    <% end %>
-  </div>
-  <div class="col-md-6">
-    <%= image_tag @venue.avatar :medium%>
-  </div>
-</div><!--row-->
-<div class="row">
-  <div class="col-md-6">
-    <% if I18n.locale == :en %>
-      <% unless @venue.en_bio.blank? %>
-        <p><%= @venue.en_bio.html_safe %></p>
-      <% else %>
-        <p>Sorry, no bio for this venue yet</p>
+        <% unless @venue.twitter.blank? %>
+        <li><%= link_to "<i class=\"fa fa-twitter\"></i> ".html_safe+t(:twitter), @venue.twitter, class: 'twitter' %></li>
+        <% end %>        
+        <% unless @venue.website.blank? %>
+        <li><%= link_to "<i class=\"fa fa-globe\"></i> ".html_safe+t(:website), @venue.website, class: 'website' %></li>
+        <% end %>
+        <% unless @venue.cafe.blank? %>
+        <li><%= link_to "<i class=\"fa fa-coffee\"></i> ".html_safe+t(:cafe), @venue.cafe, class: 'cafe' %></li>
+        <% end %>
+      </ul>     
+
+      <% unless @venue.twitter.blank? %>
+        <% twitter_client.user_timeline("#{@tweet_url}").take(1).each do |tweet| %>
+          <blockquote class="blockquote-reverse">
+            <p><%= (Twitter::Autolink::auto_link tweet.text).html_safe %></p>
+            <footer><%= t(:twitter_latest_feed) %></footer>
+          </blockquote>
+        <% end %>
       <% end %>
-      <h4><%= t(:directions) %></h4>
-      <% unless @venue.en_directions.blank? %>
+      <% unless @venue.minimap.blank? %>
+      <%= image_tag @venue.minimap %>
+      <% end %>
+      
+    </div>
+    <div class="col-sm-5 avatar">
+      <%= image_tag @venue.avatar :medium%>
+    </div>
+  </div><!--row-->
+  <br>
+  <div class="row">
+    <div class="col-md-5">
+      <!-- ENGLISH -->
+      <% if I18n.locale == :en %>
+        <!-- Bio -->
+        <h4><%= t(:biographies) %></h4>
+        <% unless @venue.en_bio.blank? %>
+          <p><%= @venue.en_bio.html_safe %></p>
+        <% else %>
+          <p>Sorry, no bio for this venue yet</p>
+        <% end %>
+        
+        <!-- Direction -->
+        <h4><%= t(:directions) %></h4>
+        <% unless @venue.en_directions.blank? %>
           <p><%= @venue.en_directions.html_safe %></p>
+        <% else %>
+          <p><%= t(:no_directions)%></p>
+        <% end %>
       <% else %>
-    <p><%= t(:no_directions)%></p>
-      <% end %>
-    <% else %>
-      <% unless @venue.ko_bio.blank? %>
-        <p><%= @venue.ko_bio.html_safe %></p>
-      <% else %>
-        <p><%= t(:no_ko_bio) %></p>
+      <!-- KOREAN -->
+        <!-- Bio -->
+        <h4><%= t(:biographies) %></h4>
+        <% unless @venue.ko_bio.blank? %>
+          <p><%= @venue.ko_bio.html_safe %></p>
+        <% else %>          
           <% unless @venue.en_bio.blank? %>
             <p><%= @venue.en_bio.html_safe %></p>
+          <% else %>
+            <p><%= t(:no_ko_bio) %></p>
           <% end %>
+        <% end %>
+        <!-- Direction -->
+        <h4><%= t(:directions) %></h4>
+        <% unless @venue.ko_directions.blank? %>
+          <p><%= @venue.ko_directions.html_safe %></p>
+        <% else %>
+          <p><%= t(:no_directions) %></p>
+        <% end %>
       <% end %>
-      <h4><%= t(:directions) %></h4>
-      <% unless @venue.ko_directions.blank? %>
-        <p><%= @venue.ko_directions.html_safe %></p>
-      <% else %>
-    <p><%= t(:no_directions) %></p>
-      <% end %>
-    <% end %>
+    </div>
     
-    <% unless @venue.phone == nil %>
-      <p><%= t(:venue_phone) %> <%= @venue.phone %></p>
-    <% end %>
-
-    <% unless @venue.email == nil %>
-      <p><%= t(:venue_email) %> <%= @venue.email %></p>
-    <% end %>
-
-    <% unless @venue.address == nil %>
-      <p><%= t(:venue_address) %> <%= @venue.address %></p>
-    <% end %>
-
-    <% unless @venue.facebook == nil %>
-      <p><%= t(:facebook) %> <%= link_to @venue.facebook, @venue.facebook %></p>
-    <% end %>
-
-    <% unless @venue.twitter == nil %>
-      <p><%= t(:twitter) %> <%= link_to @venue.twitter, @venue.twitter %></p>
-    <% end %>
-
-    <% unless @venue.website == nil %>
-      <p><%= t(:website) %> <%= link_to @venue.website, @venue.website %></p>
-    <% end %>
-
-    <% unless @venue.cafe == nil %>
-      <p><%= t(:cafe) %> <%= link_to @venue.cafe, @venue.cafe %></p>
-    <% end %>
-  </div>
-  
-  <div class="col-md-6">
-    <div style='width: 100%;'>
-	    <div id="map" style='width: 100%; height: 400px;'></div>
+    <div class="col-md-7">
+      <div style='width: 100%;'>
+        <div id="map" style='width: 100%; height: 400px;'></div>
+      </div>
+    </div>
+  </div><!--row-->
+  <div class="row">
+    <div class="col-md-12">
+      <% unless Event.upcoming.approved.where(venue_id: @venue.id).blank? %>
+      <p><%= t(:next_events) %></p>
+      <% Event.where(venue_id: @venue.id).each do |event| %>
+      <%= link_to event.name, event_path(event) %><br />
+      <% end %>
+      <% end %>
     </div>
   </div>
-</div><!--row-->
-<div class="row">
-  <div class="col-md-12">
-    <% unless Event.upcoming.approved.where(venue_id: @venue.id).blank? %>
-    <p><%= t(:next_events) %></p>
-      <% Event.where(venue_id: @venue.id).each do |event| %>
-        <%= link_to event.name, event_path(event) %><br />
-      <% end %>
-    <% end %>
-  </div>
-</div>
+  
+  
+  
+  <% unless @venue.latitude.blank? %>
+  <script type="text/javascript">
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 
 
+      markers = handler.addMarkers(<%=raw @hash.to_json %>);
 
-<% unless @venue.latitude.blank? %>
-<script type="text/javascript">
-	handler = Gmaps.build('Google');
-		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-
-
-			markers = handler.addMarkers(<%=raw @hash.to_json %>);
-
-			handler.bounds.extendWith(markers);
-			handler.fitMapToBounds();
-			handler.getMap().setZoom(15)
-		});
-</script>
-<% else %>
-	<p>We don't have the address for this venue yet!</p>
-<% end %>
-
-
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(15)
+    });
+  </script>
+  <% else %>
+  <p>We don't have the address for this venue yet!</p>
+  <% end %>
+  
+  
   <% @venue.venue_cities.each do |venue_city| %>
   <p><%= t(:city) %> <%= link_to "#{venue_city.city.en_name}"+"-"+"#{venue_city.city.ko_name}", city_path(venue_city.city.en_name) %> 
-  <% end %>
+    <% end %>
   </p>
-
-
+</div>
 <% if current_user && current_user.venue_managers.where(venue_id: @venue.id).count == 0 %>
-	<p><%= link_to t(:manager_request), venue_managers_path(venue_id: @venue.id), method: 'post' %>.</p>
+<p><%= link_to t(:manager_request), venue_managers_path(venue_id: @venue.id), method: 'post' %>.</p>
 <% elsif current_user && current_user.venue_managers.where(venue_id: @venue.id).count != 0 && current_user.venue_manager?(@venue.id) == true %>
-    <p>You're a manager! <%= link_to "Edit this band", edit_venue_path(@venue) %></p>
+<p>You're a manager! <%= link_to "Edit this band", edit_venue_path(@venue) %></p>
 <% elsif current_user && current_user.venue_managers.where(venue_id: @venue.id).count != 0 %>
-    <p><%= t(:pending_approval) %></p>
+<p><%= t(:pending_approval) %></p>
 <% else %>
-	<p><%= t(:venue_request) %> <%= t(:login_request) %><p>
-<% end %>
+<p><%= t(:venue_request) %> <%= t(:login_request) %><p>
+  <% end %>
 
-<% if current_user && current_user.admin == true %>
+  <% if current_user && current_user.admin == true %>
   <%= link_to "Edit this venue", edit_venue_path(@venue) %>
-<% end %>
+  <% end %>

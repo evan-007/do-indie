@@ -53,12 +53,10 @@
 	<%= f.text_area :address, class: "form-control half" %><br />
 	<p><%= t(:one_language) %></p>
 	
-	
-
-	
 	<%= f.label t(:map) %>
-	<%= f.file_field :small_map %><br />
+	<%= f.file_field :minimap %><br />	
 	<%= t(:map_note)%><br />
+	
 	<% if @venue.id != nil %>
 		<p><%= t(:venue_cities)%> <% @venue.cities.each do |city| %>
 			<%= city.en_name %> - <%= city.ko_name %></p>
