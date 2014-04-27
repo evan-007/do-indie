@@ -52,10 +52,10 @@ en:
   directions: "Directions:"
   next_events: "Next Events:"
   twitter_feed: "Twitter Feed:"
-  facebook: "Facebook:" 
-  twitter: "Twitter:"
-  website: "Website:"
-  cafe: "Cafe:"
+  facebook: "Facebook" 
+  twitter: "Twitter"
+  website: "Website"
+  cafe: "Cafe"
   no_directions: "Written directions not available, please refer to the maps above or alternatively contact the venue directly."
 
   #bands#show

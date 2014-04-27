@@ -348,4 +348,40 @@ body {
 .event-color-9 { background-color:#3743AB }
 .event-color-10{ background-color:#B40478 }
 
+.venue-detail .avatar img {
+  width: 100%;
+  height: auto;
+}
+
+.venue-detail .vcard table {
+  background-color: #282D32;
+  border-collapse: separate;
+}
+
+.venue-detail .vcard table td {
+  border: 1px solid #000000;
+}
+
+.venue-detail .venue-socials a:hover {
+  background-color: #CD503C;
+}
+.venue-detail .venue-socials .facebook {
+  background-color: #3b5998;
+}
+
+.venue-detail .venue-socials .twitter {
+  background-color: #4099ff;
+}
+
+
+.venue-detail .venue-socials .website {
+  background-color: #044A2A;
+}
+
+.venue-detail .venue-socials .cafe {
+  background-color: #2a140e;
+}
+
+
+
 @import "responsive";
