@@ -60,6 +60,13 @@ class Venue < ActiveRecord::Base
 		end
 	end
 
+	def tweets
+  	@tweet_url = twitter.gsub(/^[^_]*twitter.com\//, '')
+  	twitter_client.user_timeline("#{@tweet_url}").take(1)
+    rescue
+    []
+	end
+
 	private
 
 		def approval_notification
