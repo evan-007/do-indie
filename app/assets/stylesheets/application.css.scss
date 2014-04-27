@@ -382,6 +382,50 @@ body {
   background-color: #2a140e;
 }
 
+#topnavbar-collapse {
+  background-color: #ffffff !important;
+}
+
+#topnavbar-collapse > .nav {
+  list-style-type: none;
+  padding-left: 15px;
+  margin-top: 0; margin-bottom: 0;
+}
+
+#topnavbar-collapse > .nav > li > a {
+  border-bottom: 1px solid #cccccc;
+}
+
+#topnavbar-collapse > .nav li,
+#topnavbar-collapse > .nav li a {
+  color: #555555;
+  font-size: 22px !important;
+  font-weight: normal !important; 
+  font-family: 'Nanum Gothic', 'Open Sans',sans-serif;
+  width: 100%;
+}
+
+#topnavbar-collapse > .nav li a:hover {
+  background-color: #198CAF;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+#topnavbar-collapse > .nav > li > ul {
+  margin-left: 0;
+  border-bottom: 1px solid #cccccc;
+  padding: 10px 0;
+}
+
+#topnavbar-collapse > .nav > li > ul > li > a {
+  padding-left: 18px;
+}
+
+#topnavbar-collapse > .nav > li > ul > li > a:first-child:before {
+  content: "→ ";
+}
+
+
 
 
 @import "responsive";
