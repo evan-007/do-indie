@@ -41,8 +41,19 @@ class BandsController < ApplicationController
       redirect_to bands_path
     end
     unless @band.soundcloud.blank?
-      @track_url = @band.soundcloud
-      @embed_info = @client.get('/oembed', :url => @track_url )
+      begin
+        @track_url = @band.soundcloud
+        @embed_info = @client.get('/oembed', 
+          {
+            :url => @track_url,
+            :maxheight => 166,
+            :show_artwork => true
+          }        
+        );
+        @embed_info['html'] = @embed_info['html'].sub( %r{visual\=true}, 'visual=false' )
+      rescue
+        @band.soundcloud = nil
+      end
     end
   end
   
@@ -106,6 +117,8 @@ class BandsController < ApplicationController
     end
     
     def soundcloud
-      @client = Soundcloud.new(:client_id => 'b8e640fd38bce5816e3e15ca83bc75cc')
+      @client = Soundcloud.new(
+        :client_id => 'b8e640fd38bce5816e3e15ca83bc75cc'        
+      )
     end
 end
