@@ -17,9 +17,6 @@ class VenuesController < ApplicationController
       marker.lat venue.latitude
       marker.lng venue.longitude
     end
-    unless @venue.twitter.blank?
-      @tweet_url = @venue.twitter.gsub(/^[^_]*twitter.com\//, '')
-    end
   end
 
   def map

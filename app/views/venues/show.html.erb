@@ -39,12 +39,13 @@
         <% end %>
       </ul>     
 
-      <% unless @venue.twitter.blank? && unless @venue.tweets.blank? %>
-        <blockquote class="blockquote-reverse">
-          <p><%= (Twitter::Autolink::auto_link @venue.tweets[0].text).html_safe %></p>
-          <footer><%= t(:twitter_latest_feed) %></footer>
-        </blockquote>
-      <% end %>
+      <% unless @venue.twitter.blank? %> 
+        <%unless @venue.tweets.blank? %>
+          <blockquote class="blockquote-reverse">
+            <p><%= (Twitter::Autolink::auto_link @venue.tweets[0].text).html_safe %></p>
+            <footer><%= t(:twitter_latest_feed) %></footer>
+          </blockquote>
+        <% end %>
       <% end %>
       <% unless @venue.minimap.blank? %>
       <%= image_tag @venue.minimap %>

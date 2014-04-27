@@ -16,13 +16,14 @@
     <% unless @band.soundcloud.blank? %>
       <%= @embed_info['html'].html_safe %>
     <% end %>
-    <% unless @band.twitter.blank? %>
-      <p><%= t(:twitter_feed) %></p>
-      <ul>
-        <% @band.tweets.each do |tweet| %>
-          <li><%= tweet.text.html_safe %></li>
-        <% end %>
-      </ul>
+
+    <% unless @band.twitter.blank? %> 
+      <% unless @band.tweets.blank? %>
+      <blockquote class="blockquote-reverse">
+        <p><%= (Twitter::Autolink::auto_link @band.tweets[0].text).html_safe %></p>
+        <footer><%= t(:twitter_latest_feed) %></footer>
+      </blockquote>
+      <% end %>
     <% end %>
   </div>
 </div><!--row-->

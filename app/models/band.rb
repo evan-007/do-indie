@@ -59,7 +59,7 @@ class Band < ActiveRecord::Base
 
   def tweets
   	@tweet_url = twitter.gsub(/^[^_]*twitter.com\//, '')
-  	twitter_client.user_timeline("#{@tweet_url}").take(3)
+  	twitter_client.user_timeline("#{@tweet_url}").take(1)
     rescue 
   	[]
   end
