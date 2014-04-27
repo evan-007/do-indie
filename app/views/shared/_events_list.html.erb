@@ -1,0 +1,38 @@
+<div class="row-fluid events-listing">
+  <% events.each do |event| %>
+  <% event_color = 1+rand(10) %>
+  <div class="col-xs-12 row-fluid event">
+    <div class="row-fluid">
+      <div class="info col-sm-6 event-color-<%= event_color %>">
+        <div class="avatar"><%= image_tag event.avatar.url(:medium) %></div>
+        <div class="">
+          <h4><%= event.date.strftime("%Y/%m/%d") %> <span class="event-time"><%= event.time %></span></h4>
+          <h4><%= link_to event.name, event_path(event) %></h4>
+          <% unless event.venue == nil %>
+          <h4><%= event.venue.name %></h4>
+          <% else %>
+          <h4>(No venue yet)</h4>
+          <% end %>  
+        </div>
+      </div>
+
+      <div class="bands col-sm-6 event-color-<%= event_color %>">
+        <% if event.event_bands.count != 0 %>
+        <p>
+          <% event.event_bands.each do |eventband| %>
+            <% if eventband.band.approved? %>
+              <%= link_to eventband.band.name, band_path(eventband.band) %>,
+            <% else %>
+              <%= eventband.band.name %>, 
+            <% end %>
+          <% end %>
+        </p>
+        <% else %>
+        <p>No bands yet!</p>
+        <% end %>
+      </div>    
+    </div>
+  </div>
+  <% end %>
+</div><!--row-->
+

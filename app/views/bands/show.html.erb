@@ -108,11 +108,7 @@
   <div class="row">
     <h3><%= t(:next_events)%></h3>
     <% unless @band.events.empty? %>
-      <% @band.events.each do |event| %>
-      <div class="col-sm-6 col-md-4">
-        <%= link_to (image_tag event.avatar(:medium)), event_path(event) %>
-      </div>
-      <% end %>
+      <%= render 'shared/events_list', :events => @band.events %>
     <% else %>
       <div class="alert alert-warning text-center"><%= t(:no_events)%></div>
     <% end %>
