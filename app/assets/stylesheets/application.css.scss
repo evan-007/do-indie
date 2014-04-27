@@ -353,34 +353,56 @@ body {
   height: auto;
 }
 
-.venue-detail .vcard table {
+.vcard .table {
   background-color: #282D32;
   border-collapse: separate;
 }
 
-.venue-detail .vcard table td {
+
+.vcard .table td {
   border: 1px solid #000000;
 }
 
-.venue-detail .venue-socials a:hover {
+.venue-detail .venue-socials a:hover,
+.band-detail .band-socials a:hover {
   background-color: #CD503C;
 }
-.venue-detail .venue-socials .facebook {
+.venue-detail .venue-socials .facebook,
+.band-detail .band-socials .facebook {
   background-color: #3b5998;
 }
 
-.venue-detail .venue-socials .twitter {
+.venue-detail .venue-socials .twitter,
+.band-detail .band-socials .twitter {
   background-color: #4099ff;
 }
 
 
-.venue-detail .venue-socials .website {
+.venue-detail .venue-socials .website,
+.band-detail .band-socials .website {
   background-color: #044A2A;
 }
 
-.venue-detail .venue-socials .cafe {
+.venue-detail .venue-socials .cafe,
+.band-detail .band-socials .cafe {
   background-color: #2a140e;
 }
+
+.venue-detail .venue-socials .myspace,
+.band-detail .band-socials .myspace {
+  background-color: #0000ff;
+}
+
+.venue-detail .venue-socials .bandcamp,
+.band-detail .band-socials .bandcamp {
+  background-color: #629AA9;
+}
+
+.venue-detail .venue-socials ,
+.band-detail .band-socials {
+  margin-bottom: 15px;
+}
+
 
 #topnavbar-collapse {
   background-color: #ffffff !important;

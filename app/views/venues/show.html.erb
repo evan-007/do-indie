@@ -53,7 +53,8 @@
       
     </div>
     <div class="col-sm-5 avatar">
-      <%= image_tag @venue.avatar :medium%>
+      
+        <%= image_tag (@venue.avatar :medium) %>
     </div>
   </div><!--row-->
   <br>
@@ -62,7 +63,7 @@
       <!-- ENGLISH -->
       <% if I18n.locale == :en %>
         <!-- Bio -->
-        <h4><%= t(:biographies) %></h4>
+        <h3><%= t(:biographies) %></h3>
         <% unless @venue.en_bio.blank? %>
           <p><%= @venue.en_bio.html_safe %></p>
         <% else %>
@@ -70,7 +71,7 @@
         <% end %>
         
         <!-- Direction -->
-        <h4><%= t(:directions) %></h4>
+        <h3><%= t(:directions) %></h3>
         <% unless @venue.en_directions.blank? %>
           <p><%= @venue.en_directions.html_safe %></p>
         <% else %>
@@ -79,7 +80,7 @@
       <% else %>
       <!-- KOREAN -->
         <!-- Bio -->
-        <h4><%= t(:biographies) %></h4>
+        <h3><%= t(:biographies) %></h3>
         <% unless @venue.ko_bio.blank? %>
           <p><%= @venue.ko_bio.html_safe %></p>
         <% else %>          
@@ -90,7 +91,7 @@
           <% end %>
         <% end %>
         <!-- Direction -->
-        <h4><%= t(:directions) %></h4>
+        <h3><%= t(:directions) %></h3>
         <% unless @venue.ko_directions.blank? %>
           <p><%= @venue.ko_directions.html_safe %></p>
         <% else %>

@@ -1,132 +1,169 @@
-<div class="row">
-  <div class="col-md-6">
-    <%= image_tag(@band.avatar :large) %>
-    <h2><%= @band.name %></h2>
-    <h3><%= @band.korean_name %></h3>
-    <p>Fans: <%= @band.fans %></p>
-    <% if current_user && current_user.user_fans.where(band_id: @band.id).count != 0 %>
-      <%= link_to "Unlike", user_fan_path(band_id: @band.id), method: 'delete', class: "btn btn-default" %>
-    <% elsif current_user %>
-    	<%= link_to "Like", user_fans_path(band_id: @band.id), method: 'post', class: "btn btn-default" %>
-    <% end %>
-    
-  </div>
-  
-  <div class="col-md-6">
-    <% unless @band.soundcloud.blank? %>
-      <%= @embed_info['html'].html_safe %>
-    <% end %>
+<div class="container band-detail">
+  <h1 class="page-title"><%= @band.name %></h1>
+  <h2><%= @band.korean_name %></h2>
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="row"><%= image_tag(@band.avatar :large) %></div>
+      <div class="row">
+        <p>Fans: <%= @band.fans %></p>
+        <% if current_user && current_user.user_fans.where(band_id: @band.id).count != 0 %>
+        <%= link_to "Unlike", user_fan_path(band_id: @band.id), method: 'delete', class: "btn btn-default" %>
+        <% elsif current_user %>
+        <%= link_to "Like", user_fans_path(band_id: @band.id), method: 'post', class: "btn btn-default" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-7 vcard">
+      <table class="table table-hover">
+      <% unless @band.name == nil %>
+        <tr>
+          <td><%= t(:artist) %></td>
+          <td><%= @band.name %></td>
+        </tr>
+      <% end %>
+      <% unless @band.label == nil %>
+        <tr>
+          <td><%= t(:band_label) %></td>
+          <td><%= @band.label %></td>
+        </tr>
+      <% end %>
+      <% unless @band.contact == nil %>
+        <tr>
+          <td><%= t(:band_contact) %></td>
+          <td><%= @band.contact %></td>
+        </tr>
+      <% end %>
+        <tr>
+          <td><%= t(:genres) %></td>
+          <td>
+            <% @band.genres.each do |genre| %>
+            <%= link_to genre.name, genre_path(genre.name) %>
+            <% end %>
+          </td>
+        </tr>
+      </table> 
 
-    <% unless @band.twitter.blank? %> 
+      <ul class="nav nav-pills band-socials">
+        <% unless @band.facebook.blank? %>
+        <li><%= link_to "<i class=\"fa fa-facebook\"></i> ".html_safe+t(:facebook), @band.facebook, class: 'facebook' %></li>
+        <% end %>
+        <% unless @band.twitter.blank? %>
+        <li><%= link_to "<i class=\"fa fa-twitter\"></i> ".html_safe+t(:twitter), @band.twitter, class: 'twitter' %></li>
+        <% end %>
+        <% unless @band.bandcamp.blank? %>
+        <li><%= link_to "<i class=\"fa fa-eraser\"></i> ".html_safe+t(:bandcamp), @band.bandcamp, class: 'bandcamp' %></li>
+        <% end %> 
+        <% unless @band.myspace.blank? %>
+        <li><%= link_to "<i class=\"fa fa-group\"></i> ".html_safe+t(:myspace), @band.myspace, class: 'myspace' %></li>
+        <% end %>      
+        <% unless @band.site.blank? %>
+        <li><%= link_to "<i class=\"fa fa-globe\"></i> ".html_safe+t(:website), @band.site, class: 'website' %></li>
+        <% end %>
+        <% unless @band.cafe.blank? %>
+        <li><%= link_to "<i class=\"fa fa-coffee\"></i> ".html_safe+t(:cafe), @band.cafe, class: 'cafe' %></li>
+        <% end %>
+      </ul>    
+      
+      <% unless @band.soundcloud.blank? %>
+      <%= @embed_info['html'].html_safe %>
+      <% end %>
+      
+      <% unless @band.twitter.blank? %>
       <% unless @band.tweets.blank? %>
       <blockquote class="blockquote-reverse">
         <p><%= (Twitter::Autolink::auto_link @band.tweets[0].text).html_safe %></p>
         <footer><%= t(:twitter_latest_feed) %></footer>
       </blockquote>
       <% end %>
+      <% end %>
+    </div>
+    
+  </div><!--row-->
+
+  <div class="row">
+    <h3><%= t(:biographies) %></h3>
+    <div class="col-xs-12">
+      <% if I18n.locale == :en %>
+      <% unless @band.en_bio.blank? %>
+      <p><%= @band.en_bio.html_safe %></p>
+      <% else %>
+      <p><%= t(:no_en_bio) %></p>
+      <% unless @band.ko_bio.blank? %>
+      <p><%= @band.ko_bio.html_safe %></p>
+      <% end %>
+      <% end %>
+      <% else %>
+      <% unless @band.ko_bio.blank? %>
+      <p><%= @band.ko_bio.html_safe %></p>
+      <% else %>
+      <p><% t(:no_ko_bio) %></p>
+      <% unless @band.en_bio.blank? %>
+      <p><%= @band.en_bio.html_safe %></p>
+      <% end %>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <h3><%= t(:next_events)%></h3>
+    <% unless @band.events.empty? %>
+      <% @band.events.each do |event| %>
+      <div class="col-sm-6 col-md-4">
+        <%= link_to (image_tag event.avatar(:medium)), event_path(event) %>
+      </div>
+      <% end %>
+    <% else %>
+      <div class="alert alert-warning text-center"><%= t(:no_events)%></div>
     <% end %>
   </div>
-</div><!--row-->
-<% if I18n.locale == :en %>
-  <% unless @band.en_bio.blank? %>
-    <p><%= @band.en_bio.html_safe %></p>
-  <% else %>
-    <p><%= t(:no_en_bio) %></p>
-    <% unless @band.ko_bio.blank? %>
-      <p><%= @band.ko_bio.html_safe %></p>
-    <% end %>
-  <% end %>
-<% else %>
-  <% unless @band.ko_bio.blank? %>
-    <p><%= @band.ko_bio.html_safe %></p>
-  <% else %>
-    <p><% t(:no_ko_bio) %></p>
-    <% unless @band.en_bio.blank? %>
-      <p><%= @band.en_bio.html_safe %></p>
-    <% end %>
-  <% end %>
-<% end %>
-
-<% unless @band.youtube.blank? %>
+  
   <div class="row">
-    <div class="col-md-6">
+    <h3><%= t(:band_videos) %></h3>
+    <% unless @band.youtube.blank? %>
+    <div class="col-sm-12 col-md-6">
       <div class="video-container">
         <iframe width="100%" height="349" src="http://www.youtube.com/embed/<%= youtube_fix @band.youtube %>" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
-<% end %>
-  <div class="col-md-6">
-    <% unless @band.facebook.blank? %>
-      <p><%= t(:facebook) %> <%= link_to @band.facebook, @band.facebook %></p>
+    <% end %>   
+    <% @band.youtubes.each do |yt| %>
+    <% unless yt.link.blank? %>
+    <div class="col-sm-6">
+      <div class="video-container">
+        <iframe width="100%" height="349" src="http://www.youtube.com/embed/<%= youtube_fix yt.link %>" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
     <% end %>
-    <% unless @band.facebook.blank? %>
-      <p><%= t(:contact) %> <%= @band.contact %></p>
-    <% end %>
-    <% unless @band.facebook.blank? %>
-      <p><%= t(:site) %> <%= link_to @band.site, @band.site %></p>
-    <% end %>
-    <% unless @band.facebook.blank? %>
-      <p><%= t(:label) %> <%= @band.label %></p>
-    <% end %>
-    <p><%= t(:genres) %>	    
-      <% @band.genres.each do |genre| %>
-		    <%= link_to genre.name, genre_path(genre.name) %>
-	    <% end %>
-    </p>
+    <% end %> 
   </div>
-</div>
-
-<% unless @band.events.empty? %>
-  <h3><%= t(:next_events)%></h3>
+  
+  
+  <% unless @band.tagged_bands.blank? %>
   <div class="row">
-    <% @band.events.each do |event| %>
-      <div class="col-sm-6 col-md-4">    
-        <%= link_to (image_tag event.avatar(:medium)), event_path(event) %>
+    <h3>DoIndie Articles About <%= @band.name %></h3>
+    <% @band.tagged_bands.each do |tb| %>
+      <div class="col-sm-12 col-md-6">
+        <%= link_to tb.post.title, post_path(tb.post) %>
       </div>
     <% end %>
   </div>
-<% else %>
-      <h3><%= t(:no_events)%></h3>
-<% end %>
-
-
-  <div class="row">
-    <% @band.youtubes.each do |yt| %>
-      <% unless yt.link.blank? %>
-          <div class="col-sm-6">
-            <div class="video-container">
-              <iframe width="100%" height="349" src="http://www.youtube.com/embed/<%= youtube_fix yt.link %>" frameborder="0" allowfullscreen></iframe>
-            </div>
-          </div>
-      <% end %>
-    <% end %>
-  </div>
-
-<% unless @band.tagged_bands.blank? %>
-  <p>
-    DoIndie Articles About <%= @band.name %>: 
-      <% @band.tagged_bands.each do |tb| %>
-        <%= link_to tb.post.title, post_path(tb.post) %>, 
-      <% end %>
-  </p>
-<% end %>
-
-
-
-
-
-<% if current_user && current_user.band_managers.where(band_id: @band.id).count == 0 %>
-	<p><%= link_to t(:manager_request), band_managers_path(band_id: @band.id), method: 'post' %>.</p>
-<% elsif current_user && current_user.band_managers.where(band_id: @band.id).count != 0 && current_user.approved_manager?(@band.id) == true %>
-    <p>You're a manager! <%= link_to "Edit this band", edit_band_path(@band) %></p>
-<% elsif current_user && current_user.band_managers.where(band_id: @band.id).count != 0 %>
-    <p><%= t(:pending_approval) %></p>
-<% else %>
-	<p><%= t(:band_request) %> <%= t(:login_request) %><p>
-<% end %>
-
-
-
-<% if current_user && current_user.admin == true %>
+  <% end %>
+  
+  
+  <% if current_user && current_user.band_managers.where(band_id: @band.id).count == 0 %>
+  <p><%= link_to t(:manager_request), band_managers_path(band_id: @band.id), method: 'post' %>.</p>
+  <% elsif current_user && current_user.band_managers.where(band_id: @band.id).count != 0 && current_user.approved_manager?(@band.id) == true %>
+  <p>You're a manager! <%= link_to "Edit this band", edit_band_path(@band) %></p>
+  <% elsif current_user && current_user.band_managers.where(band_id: @band.id).count != 0 %>
+  <p><%= t(:pending_approval) %></p>
+  <% else %>
+  <p><%= t(:band_request) %> <%= t(:login_request) %><p>
+  <% end %>
+  
+  
+  
+  <% if current_user && current_user.admin == true %>
   <%= link_to "Edit this band", edit_band_path(@band) %>
-<% end %>
+  <% end %>
+</div>
