@@ -39,7 +39,11 @@
   	<% if @event.event_bands.count != 0 %>
 	  	<p><%= t(:line_up) %></p>
   		<% @event.event_bands.each do |eventband| %>
-	  		<%= link_to eventband.band.name, band_path(eventband.band) %><br />
+        <% if eventband.band.approved? %>
+  	  		<%= link_to eventband.band.name, band_path(eventband.band) %><br />
+        <% else %>
+          <%= eventband.band.name %>
+        <% end %>
 	  	<% end %>
 	  <% end %>
   </div><!--col-md-8-->
