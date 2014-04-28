@@ -17,6 +17,12 @@ class Event < ActiveRecord::Base
 	accepts_nested_attributes_for :bands
 	accepts_nested_attributes_for :venue
 
+	attr_reader :band_tokens
+
+	def band_tokens=(tokens)
+		self.band_ids = Band.ids_from_tokens(tokens)
+	end
+
 	paginates_per 100 #fix pagination
 	accepts_nested_attributes_for :event_bands, :venue, :bands
 	has_attached_file :avatar, :styles => { :large => "900x900>", :medium => "300x300#", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"

@@ -5,9 +5,13 @@ class BandsController < ApplicationController
   before_action :soundcloud, only: [:show]
   
   def index
-    @bands = Band.index_search(params[:query], params[:page])
-      #search_and_order(params[:search], params[:page])
     @genres = Genre.all
+    @bands = Band.index_search(params[:query], params[:page])
+    @all_bands = Band.approved
+    respond_to do |format|
+      format.html
+      format.json { render json: @all_bands.tokens(params[:q]) }
+    end
   end
   
   def new

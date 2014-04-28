@@ -20,12 +20,12 @@
 	<% if I18n.locale == :en %>
 	<p>
 		<%= f.label t(:band_playing) %>
-		<%= f.collection_select :band_ids, Band.order(:name), :id, :name, {}, {multiple: true} %>
+		<%= f.text_field :band_tokens, data: {load: @event.bands} %>
 	</p>
 	<% elsif I18n.locale == :ko %>
 	<p>
 		<%= f.label t(:band_playing) %>
-		<%= f.collection_select :band_ids, Band.order(:korean_name), :id, :korean_name, {}, {multiple: true} %>
+		<%= f.text_field :band_tokens, data: {load: @event.bands} %>
 	</p>
 	<% end %>
 
@@ -138,5 +138,11 @@
 	$(document).ready(function() {
 		$('.date').datepicker();
 	})
+
+	$(document).ready(function() {
+		$('#event_band_tokens').tokenInput("/bands.json", { theme: "facebook",
+			prePopulate: $('#event_band_tokens').data('load')}
+			);
+	});
   
 </script>

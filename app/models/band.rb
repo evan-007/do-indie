@@ -24,6 +24,20 @@ class Band < ActiveRecord::Base
 	has_attached_file :avatar, :styles => { :large => "900x900>", :medium => "300x300#", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
+  def self.tokens(query)
+  	bands = where("name LIKE ?", "%#{query}%")
+  	if bands.empty?
+  		[{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
+  	else
+  		bands
+  	end
+  end
+
+  def self.ids_from_tokens(tokens)
+  	tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1).id }
+  	tokens.split(',')
+  end
+
 	def fans
 		self.user_fans.where(band_id: self.id).count
 	end 

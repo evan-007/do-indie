@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.tokeninput
 //= require ckeditor/override
 //= require ckeditor/init
 //= require underscore
