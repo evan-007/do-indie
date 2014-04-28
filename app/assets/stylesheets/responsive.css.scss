@@ -3,7 +3,6 @@
   .toppad {
     height: 75px;
   }
-  
 
   #nprogress .spinner {
     display: none;
@@ -29,6 +28,10 @@
     height: auto;    
     padding-right:0;
     padding-bottom: 15px;
+  }
+
+  .events-listing .info h4 {
+    text-align: center;
   }
 
   .events-listing .info .avatar {

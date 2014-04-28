@@ -322,14 +322,72 @@ body {
 }
 
 .events-listing .bands {
-  height: 120px;
+  height: 120px; line-height:120px;
   border-left: 5px solid #000000;
+  text-align: center;
+  position:relative;
+  overflow: hidden;
+}
+
+.events-listing .bands .float-text {
+  position: absolute;
+  font-size: 50px;
+  height: 30px;
+  line-height: 30px;
+  font-weight: bold;
+  opacity: 0.05;
+  
+  right: -7px;
+  bottom: -3px;
+
+  // width: 200px;
+  // top: 50%;
+  // left: 50%;
+  // margin-left: -100px;
+  // margin-top: -15px;
+  // text-align: center;
+  
+  pointer-events: none;
+}
+
+.events-listing .bands p {
+  display: inline-block;
+}
+
+.events-listing .bands p a {
+  color: #cdcdcd;
+  text-decoration: underline;
+}
+
+.events-listing .bands p a:hover {
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .events-listing .info .avatar {
   height: 120px;
   width: 120px;
   float: left;
+  margin-right: 15px;
+}
+
+.events-listing .info,
+.events-listing .info a {
+  color: #cdcdcd;
+  font-weight: bold;
+}
+
+.events-listing .info a:hover {
+  color: #ffffff;
+}
+
+.events-listing .info h4 {
+  line-height: 40px;
+  padding: 0; margin: 0;
+}
+
+.events-listing .info .event-time {
+  opacity: 0.5;
 }
 
 .events-listing .info .avatar img {
@@ -353,34 +411,100 @@ body {
   height: auto;
 }
 
-.venue-detail .vcard table {
+.vcard .table {
   background-color: #282D32;
   border-collapse: separate;
 }
 
-.venue-detail .vcard table td {
+
+.vcard .table td {
   border: 1px solid #000000;
 }
 
-.venue-detail .venue-socials a:hover {
+.venue-detail .venue-socials a:hover,
+.band-detail .band-socials a:hover {
   background-color: #CD503C;
 }
-.venue-detail .venue-socials .facebook {
+.venue-detail .venue-socials .facebook,
+.band-detail .band-socials .facebook {
   background-color: #3b5998;
 }
 
-.venue-detail .venue-socials .twitter {
+.venue-detail .venue-socials .twitter,
+.band-detail .band-socials .twitter {
   background-color: #4099ff;
 }
 
 
-.venue-detail .venue-socials .website {
+.venue-detail .venue-socials .website,
+.band-detail .band-socials .website {
   background-color: #044A2A;
 }
 
-.venue-detail .venue-socials .cafe {
+.venue-detail .venue-socials .cafe,
+.band-detail .band-socials .cafe {
   background-color: #2a140e;
 }
+
+.venue-detail .venue-socials .myspace,
+.band-detail .band-socials .myspace {
+  background-color: #0000ff;
+}
+
+.venue-detail .venue-socials .bandcamp,
+.band-detail .band-socials .bandcamp {
+  background-color: #629AA9;
+}
+
+.venue-detail .venue-socials ,
+.band-detail .band-socials {
+  margin-bottom: 15px;
+}
+
+
+#topnavbar-collapse {
+  background-color: #ffffff !important;
+}
+
+#topnavbar-collapse > .nav {
+  list-style-type: none;
+  padding-left: 15px;
+  margin-top: 0; margin-bottom: 0;
+}
+
+#topnavbar-collapse > .nav > li > a {
+  border-bottom: 1px solid #cccccc;
+}
+
+#topnavbar-collapse > .nav li,
+#topnavbar-collapse > .nav li a {
+  color: #555555;
+  font-size: 22px !important;
+  font-weight: normal !important; 
+  font-family: 'Nanum Gothic', 'Open Sans',sans-serif;
+  width: 100%;
+}
+
+#topnavbar-collapse > .nav li a:hover {
+  background-color: #198CAF;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+#topnavbar-collapse > .nav > li > ul {
+  margin-left: 0;
+  border-bottom: 1px solid #cccccc;
+  padding: 10px 0;
+}
+
+#topnavbar-collapse > .nav > li > ul > li > a {
+  padding-left: 18px;
+}
+
+#topnavbar-collapse > .nav > li > ul > li > a:first-child:before {
+  content: "→ ";
+}
+
 
 
 
