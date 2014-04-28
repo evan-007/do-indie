@@ -1,10 +1,9 @@
 <div class="navbar-wrapper hidden-xs">
   <div class="">
-
     <nav class="navbar navbar-default navbar-fixed-top" id="topnavbar">
       <div class="">
-        <div class="navbar-header">          
-          <%= link_to image_tag('do-indie-logo-clear.png', size: '96x80'), root_path %>
+        <div class="navbar-header">
+          <%= link_to image_tag('do-indie-logo-clear.png', size: '96x80'), root_path(I18n.locale.to_s) %>
         </div>
         <div class="collapse navbar-collapse pull-right">
           <ul class="nav navbar-nav">
@@ -38,51 +37,45 @@
         </div>
       </div>
     </nav>
-
   </div>
 </div>
-
-
 <div class="navbar-wrapper">
-    <nav class="navbar navbar-default visible-xs" id="topnavbar-xs">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topnavbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%= link_to image_tag('do-indie-logo-clear.png', size: '72x63'), root_path %>
-        </div>
-        <div id="topnavbar-collapse" class="collapse">
-          <ul class="nav navbar-nav">
-            <li>
-              <a href="#"><%= t(:events) %><b class="caret"></b></a>
-              <ul>
-                <li><%= link_to t(:events), events_path %></li>
-                <li><%= link_to t(:add_event), new_event_path %></li>
-                <li><%= link_to t(:past_events), past_events_path %></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#"><%= t(:venues) %><b class="caret"></b></a>
-              <ul>
-                <li><%= link_to t(:venues), venues_path %></li>
-                <li><%= link_to t(:add_venue), new_venue_path %></li>
-                <li><%= link_to t(:map), venues_map_path %></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#"><%= t(:bands) %><b class="caret"></b></a>
-              <ul>
-                <li><%= link_to t(:bands), bands_path %></li>
-                <li><%= link_to t(:add_band), new_band_path %></li>
-              </ul>
-            </li>
-            <li><%= link_to t(:blog), blog_path %></li>
-            <li><%= link_to t(:photos), photo_path %></li>
-            <%= render 'layouts/navigation_links_m' %>
+  <nav class="navbar navbar-default visible-xs" id="topnavbar-xs">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topnavbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+      <%= link_to image_tag('do-indie-logo-clear.png', size: '72x63'), root_path(I18n.locale.to_s) %>
+    </div>
+    <div id="topnavbar-collapse" class="collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <%= link_to t(:events), events_path %>
+          <ul>
+            <li><%= link_to t(:add_event), new_event_path %></li>
+            <li><%= link_to t(:past_events), past_events_path %></li>
           </ul>
-        </div>
-    </nav>
+        </li>
+        <li>
+          <%= link_to t(:venues), venues_path %>
+          <ul>
+            <li><%= link_to t(:add_venue), new_venue_path %></li>
+            <li><%= link_to t(:map), venues_map_path %></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <%= link_to t(:bands), bands_path %>
+          <ul>
+            <li><%= link_to t(:add_band), new_band_path %></li>
+          </ul>
+        </li>
+        <li><%= link_to t(:blog), blog_path %></li>
+        <li><%= link_to t(:photos), photo_path %></li>
+        <%= render 'layouts/navigation_links_m' %>
+      </ul>
+    </div>
+  </nav>
 </div>
