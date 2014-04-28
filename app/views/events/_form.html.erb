@@ -31,20 +31,7 @@
 
 
 	<p><%= t(:band_playing_note)%></p><br>
-  
-	<div id="new_band">
-		<p>Band not listed?</p>
-	    <div id="add_band" class="btn btn-sm btn-warning">Click here to add a band<i class="fa fa-plus"></i></div>
-
-		<div id="new_bands">
-			<p>
-				<%= f.fields_for :bands do |ff| %>
-					<%= ff.label "New Band Name" %>
-				  <%= ff.text_field :name, class: "form-control half" %>
-			  <% end %>
-		  </p>
-		</div>
-	</div>
+ 
 
 	<hr>
 
@@ -52,17 +39,6 @@
 	<%= f.select(:venue_id, options_for_select(Venue.order(name: :asc).collect { |v| [v.name, v.id]}.insert(0, "") )) %></p>
 	<p><%= t(:venue_note) %></p><br />
 
-  <div id="new_venue">
-   <p>Venue not listed?</p>
-    <div id="add_venue" class="btn btn-sm btn-warning">Click here to add your venue<i class="fa fa-plus"></i></div>
-
-    <div id="new_venue_form">
-    	<%= f.fields_for :venue do |ff| %>
-	    	<%= ff.label "New Venue Name" %>
-	    	<%= ff.text_field :name, class: "form-control half" %>
-    	<% end %>
-    </div>
-  </div>
 
   <hr>
 
