@@ -27,12 +27,6 @@ class EventsController < ApplicationController
 
 	def create
 		@event = current_user.events.build(event_params)
-		@event.bands.each do |band|
-			if band.name.blank?
-				band.destroy
-			end
-		end
-		@event.venue.destroy if @event.venue.name.blank?
 		if @event.save
 			flash[:notice] = t(:event_submission_note)
 			redirect_to events_path
