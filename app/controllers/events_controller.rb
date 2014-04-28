@@ -51,14 +51,13 @@ class EventsController < ApplicationController
     end
 	end
   
-	def update
-		@event.update(event_params)
-		if @event.save
+	def update		
+		if @event.update(event_params)
 			flash[:notice] = "Event updated!"
 			redirect_to event_path(@event)
 		else
-			flash[:notice] = "Event wasn't updated!"
-			redirect_to event_edit_path(@event)
+			flash[:warning] = "Event wasn't updated!"			
+			redirect_to edit_event_path(@event)
 		end
 	end
 
