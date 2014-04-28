@@ -106,18 +106,16 @@
       </div>
     </div>
   </div><!--row-->
+
   <div class="row">
-    <div class="col-md-12">
-      <% unless Event.upcoming.approved.where(venue_id: @venue.id).blank? %>
-      <p><%= t(:next_events) %></p>
-      <% Event.where(venue_id: @venue.id).each do |event| %>
-      <%= link_to event.name, event_path(event) %><br />
-      <% end %>
-      <% end %>
-    </div>
+    <h3><%= t(:next_events)%></h3>
+    <% events = Event.upcoming.approved.where(venue_id: @venue.id) %>
+    <% unless events.empty? %>
+      <%= render 'shared/events_list', :events => events %>
+    <% else %>
+      <div class="alert alert-warning text-center"><%= t(:no_events)%></div>
+    <% end %>
   </div>
-  
-  
   
   <% unless @venue.latitude.blank? %>
   <script type="text/javascript">
