@@ -25,7 +25,7 @@ class Band < ActiveRecord::Base
 	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def self.tokens(query)
-  	bands = where("name LIKE ?", "%#{query}%")
+  	bands = where("name ilike :q or korean_name ilike :q", q: "%#{query}%")
   	if bands.empty?
   		[{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
   	else

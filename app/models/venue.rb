@@ -26,7 +26,7 @@ class Venue < ActiveRecord::Base
 	after_validation :geocode, if: :address_changed? 
   
   def self.tokens(query)
-    venues = where("name LIKE ?", "%#{query}%")
+    venues = where("name ilike :q or korean_name ilike :q", q: "%#{query}%")
     if venues.empty?
   		[{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
   	else
