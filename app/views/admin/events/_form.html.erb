@@ -1,36 +1,57 @@
-<%= form_for [:admin, @event] do |f| %>
-	<%= f.label t(:event_name_e) %>
-	<%= f.text_field :name, class: "form-control half" %><br />
-	<%= f.label t(:event_name_k) %>
-	<%= f.text_field :ko_name, class: "form-control half" %><br />
-	<p><%= t(:event_name_note) %></p>
-	<%= f.label t(:event_poster) %>
-	<%= f.file_field :avatar %><br />
+<hr>
+<%= form_for [:admin,@event] do |f| %>
+	<p>	
+		<%= f.label t(:event_name_e) %>
+		<%= f.text_field :name, class: "form-control half" %>
+	</p><br/>
+
+	<p>
+		<%= f.label t(:event_name_k) %>
+		<%= f.text_field :ko_name, class: "form-control half" %>
+		<%= t(:event_name_note) %>
+	</p><br />
+
+	<p><%= f.label t(:event_poster) %></p>
+	<p><%= f.file_field :avatar %></p>
 	<p><%= t(:event_poster_note) %></p>
+
+	<hr>
+
 	<% if I18n.locale == :en %>
 	<p>
 		<%= f.label t(:band_playing) %>
-		<%= f.collection_select :band_ids, Band.order(:name), :id, :name, {}, {multiple: true} %>
+		<% if @event.new_record? %>
+			<%= f.text_field :band_tokens %>
+		<% else %>
+			<%= f.text_field :band_tokens, data: {load: @event.bands} %>
+		<% end %>
 	</p>
 	<% elsif I18n.locale == :ko %>
 	<p>
 		<%= f.label t(:band_playing) %>
-		<%= f.collection_select :band_ids, Band.order(:korean_name), :id, :korean_name, {}, {multiple: true} %>
+		<% if @event.new_record? %>
+			<%= f.text_field :band_tokens %>
+		<% else %>
+			<%= f.text_field :band_tokens, data: {load: @event.bands} %>
+		<% end %>
 	</p>
 	<% end %>
-		
-	<p><%= t(:band_playing_note)%></p>
 
-	<%= link_to "Band not listed?", nil %><br />
-	<p>only get new band name</p>
 
-	<h4><%= t(:venue) %></h4>
-	<%= f.label :venue_id %>
-	<%= f.select(:venue_id, options_for_select(Venue.order(name: :asc).collect { |v| [v.name, v.id]}.insert(0, "") )) %><br />
+	<p><%= t(:band_playing_note)%></p><br>
+ 
+
+	<hr>
+
+	<p><%= f.label t(:venue) %>
+	<%= f.select(:venue_id, options_for_select(Venue.order(name: :asc).collect { |v| [v.name, v.id]}.insert(0, "") )) %></p>
 	<p><%= t(:venue_note) %></p><br />
 
+
+  <hr>
+
 	<%= f.label t(:start_date) %>
-	<%= f.date_select :date, start_year: 2014, class: "form-control half" %><br />
+	<%= f.text_field :date, class: "form-control half date" %><br />
 	<%= f.label t(:show_time) %>
 	<%= f.text_field :time, placeholder: "7:40pm", class: "form-control half" %><br />
 
@@ -40,6 +61,8 @@
 	<%= f.label t(:facebook_event) %>
 	<%= f.text_field :facebook, class: "form-control half" %><br />
 	
+	<hr>
+
 	<%= f.label t(:ticket_status) %>
 	<%= f.select(:ticket, options_for_select([['Yes', true], ['No', false]], 2)) %><br />
 
@@ -61,18 +84,49 @@
 		<%= t(:buy_tickets_notes) %>
 	</p>
 
+	<hr>
 	<%= f.label t(:event_details_en) %>
 	<%= f.text_area :info, class: "form-control half" %><br />
 
 	<%= f.label t(:event_details_ko) %>
 	<%= f.text_area :info_ko, class: "form-control half" %><br />
-	<p><%= t(:event_details_note)%></p>
-
-  <p>
-  	<%= f.label :approved %>
-  	<%= f.check_box :approved %>
-  </p>
+	<p><%= t(:event_details_notes)%></p><br>
 	
-	<%= f.submit %>
+	<%= f.submit nil, class: "btn btn-primary" %>
 	
 <% end %>
+
+<script>
+  $(document).ready(function() { $('#event_band_ids').chosen({width: "50%"}); });
+  $(document).ready(function() { $('#event_venue_id').chosen({width: "50%"}); });
+  $(document).ready(function() { 
+  	$('#new_bands').hide(); 
+  });
+
+  $(document).ready(function() {
+  	$('#new_venue_form').hide();
+  });
+
+  $(document).ready(function() {
+    $('#add_band').on('click', function() {
+    	$(this).closest('#new_band').find('#new_bands').toggle();
+    });
+	});
+
+	$(document).ready(function() {
+    $('#add_venue').on('click', function(){
+				$(this).closest('#new_venue').find('#new_venue_form').toggle();
+		});		
+	});
+
+	$(document).ready(function() {
+		$('.date').datepicker();
+	})
+
+	$(document).ready(function() {
+		$('#event_band_tokens').tokenInput("/bands.json", { theme: "facebook",
+			prePopulate: $('#event_band_tokens').data('load')}
+			);
+	});
+  
+</script>
