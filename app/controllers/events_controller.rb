@@ -4,7 +4,6 @@ class EventsController < ApplicationController
 
 	def index
 		@events = Event.index_search(params[:query], params[:page])
-		#events are not paginated! add another view for all events?
 	end
 
 	def show
