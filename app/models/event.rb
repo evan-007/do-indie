@@ -17,11 +17,15 @@ class Event < ActiveRecord::Base
 	accepts_nested_attributes_for :bands
 	accepts_nested_attributes_for :venue
 
-	attr_reader :band_tokens
+  attr_reader :band_tokens, :venue_tokens
 
 	def band_tokens=(tokens)
 		self.band_ids = Band.ids_from_tokens(tokens)
 	end
+  
+  def venue_tokens=(tokens)
+    self.venue_id = Venue.ids_from_tokens(tokens)
+  end
 
 	paginates_per 100 #fix pagination
 	accepts_nested_attributes_for :event_bands, :venue, :bands

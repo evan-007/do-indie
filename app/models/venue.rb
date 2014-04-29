@@ -24,6 +24,21 @@ class Venue < ActiveRecord::Base
 
 	geocoded_by :address
 	after_validation :geocode, if: :address_changed? 
+  
+  def self.tokens(query)
+    venues = where("name LIKE ?", "%#{query}%")
+    if venues.empty?
+  		[{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
+  	else
+      venues
+  	end
+  end
+  
+  def self.ids_from_tokens(tokens)
+    tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1).id }
+  	tokens.split(',')
+    return tokens[0]
+  end
 
 	def self.search_and_order(search, page_number)
 	    if search

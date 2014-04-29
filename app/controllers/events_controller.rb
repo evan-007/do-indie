@@ -91,6 +91,7 @@ class EventsController < ApplicationController
 	  		:venue_id, 
 	  		:date,
 	  		:band_tokens,
+        :venue_tokens,
 	  		band_ids: [],
 	  		bands_attributes: [:name],
 	  		venue_attributes: [:name, :city]

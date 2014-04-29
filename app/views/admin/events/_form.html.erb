@@ -1,5 +1,5 @@
 <hr>
-<%= form_for [:admin,@event] do |f| %>
+<%= form_for [:admin, @event] do |f| %>
 	<p>	
 		<%= f.label t(:event_name_e) %>
 		<%= f.text_field :name, class: "form-control half" %>
@@ -42,11 +42,14 @@
  
 
 	<hr>
-
-	<p><%= f.label t(:venue) %>
-	<%= f.select(:venue_id, options_for_select(Venue.order(name: :asc).collect { |v| [v.name, v.id]}.insert(0, "") )) %></p>
-	<p><%= t(:venue_note) %></p><br />
-
+	<p>
+		<%= f.label t(:venue) %>
+		<% if @event.new_record? %>
+			<%= f.text_field :venue_tokens %>
+		<% else %>
+			<%= f.text_field :venue_tokens, data: {load: @event.venue} %>
+		<% end %>
+	</p>
 
   <hr>
 
@@ -91,6 +94,11 @@
 	<%= f.label t(:event_details_ko) %>
 	<%= f.text_area :info_ko, class: "form-control half" %><br />
 	<p><%= t(:event_details_notes)%></p><br>
+
+  <p>
+    <%= f.label :approved %>
+    <%= f.check_box :approved %>
+  </p>
 	
 	<%= f.submit nil, class: "btn btn-primary" %>
 	
@@ -126,6 +134,12 @@
 	$(document).ready(function() {
 		$('#event_band_tokens').tokenInput("/bands.json", { theme: "facebook",
 			prePopulate: $('#event_band_tokens').data('load')}
+			);
+	});
+  
+  $(document).ready(function() {
+		$('#event_venue_tokens').tokenInput("/venues.json", { theme: "facebook",
+			prePopulate: $('#event_venue_tokens').data('load')}
 			);
 	});
   
