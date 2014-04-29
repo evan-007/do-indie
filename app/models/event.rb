@@ -24,7 +24,7 @@ class Event < ActiveRecord::Base
 	end
   
   def venue_tokens=(tokens)
-    self.venue_id = Venue.ids_from_tokens(tokens)
+    self.venue = Venue.find((Venue.ids_from_tokens(tokens)))
   end
 
 	paginates_per 100 #fix pagination

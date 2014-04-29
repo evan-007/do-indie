@@ -37,7 +37,7 @@ class Venue < ActiveRecord::Base
   def self.ids_from_tokens(tokens)
     tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1).id }
   	tokens.split(',')
-    return tokens[0]
+    return tokens
   end
 
 	def self.search_and_order(search, page_number)

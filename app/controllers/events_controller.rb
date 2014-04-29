@@ -20,8 +20,6 @@ class EventsController < ApplicationController
 			redirect_to new_user_session_path
 		else
 			@event = current_user.events.build
-			1.times {@event.bands.build}
-			@event.build_venue
 		end
 	end
 

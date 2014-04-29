@@ -47,7 +47,7 @@
 		<% if @event.new_record? %>
 			<%= f.text_field :venue_tokens %>
 		<% else %>
-			<%= f.text_field :venue_tokens, data: {load: @event.venue} %>
+			<%= f.text_field :venue_tokens, data: {load: @event.venue.to_json } %>
 		<% end %>
 	</p>
 
@@ -134,7 +134,7 @@
   
   $(document).ready(function() {
 		$('#event_venue_tokens').tokenInput("/venues.json", { theme: "facebook",
-			prePopulate: $('#event_venue_tokens').data('load')}
+			prePopulate: [$('#event_venue_tokens').data('load')]}
 			);
 	});
   
