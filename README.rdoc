@@ -1,11 +1,24 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Setup: clone the repo and install all gems. The textacular gem has a dependency on the postgres pg_trgm module. Without it, search buttons and some forms on Events#new and Events#edit will not work.
 
-Things you may want to cover:
+Full setup requires the following API keys and variables to be set in application.yml
 
-* Ruby version
+*Email settings
+
+*Facebook API
+
+*Soundcloud API
+
+*Twitter API
+
+*MailChimp API
+
+*Amazon S3 settings for paperclip uploads
+
+Importing the old data from rake tasks: Old wp-site data is in csv files in /lib. Import with rake tasks after creating and migrating the database:
+
+* import_artists
 
 * System dependencies
 
