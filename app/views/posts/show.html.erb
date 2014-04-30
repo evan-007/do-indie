@@ -1,31 +1,84 @@
-<% unless @post.slide.image.url.blank? %>
-  <%= image_tag @post.slide.image.url %>
-<% end %>
+<div class="row page-header">
+  <div class="col-md-9">
+    <% if I18n.locale == :en %>
+      <h1 class="page-title">
+        <%= @post.title %>
+      </h1>
+    <% else %>
+      <h1 class="page-title">
+        <%= @post.ko_title %>
+      </h1>
+    <% end %>    
+  </div>
+  <div class="col-md-3 searchform text-center">
+    <% if current_user && current_user.blogger == true %>
+    <div class="btn-group">
+      <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
+      <%= link_to "Blog Admin Page", blog_admin_path, class: "btn btn-danger" %>
+    </div>      
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-9">
+    <div class="container-fluid">
+      <p>
+        <% @post.post_categories.each do |pc| %>
+            <% unless pc.category.blank? %>
+            <%= link_to pc.category.name, category_path(pc.category),:class => "dark-block-link" %>
+          <% end %>
+        <% end %>  
+      </p>
+    </div><!--meta info-->
+
+    <% unless @post.slide.image.url.blank? %>
+      <div class="container-fluid">
+          <%= image_tag @post.slide.image.url %>
+      </div>
+    <% end %><!--slideImage-->
+
+    <div class="container-fluid">
+      <% if I18n.locale == :en %>
+        <p><%=  @post.en_body.html_safe %></p>
+      <% else %>
+        <p><%= @post.ko_body.html_safe %></p>
+      <% end %>
+    </div><!--body-->
+  
+    <% unless @post.tagged_bands.blank? %>
+      <div class="container-fluid">
+        <h2><%= t(:bands) %></h2>
+        <p>
+        <% @post.tagged_bands.each do |tb| %>
+          <%= link_to tb.band.name, band_path(tb.band), :class => 'light-block-link' %>
+        <% end %>
+        </p>
+      </div>
+    <% end %> <!--bands-->
+    
+    <% unless @post.tag_list.blank? %>
+      <div class="container-fluid">
+        <h2><%= t(:tags) %></h2>
+        <p>
+          <%= raw @post.tag_list.map { |t| link_to t, tags_path(t), :class => 'light-block-link' }.join(' ') %>
+        </p>
+      </div>
+    <% end %><!--tags-->
+
+  </div><!--main column-->
+
+  <div class="col-sm-3 sidebar">
+    <%= render 'shared/categories' %>
+  </div><!--sidebar-->
+</div>
 
 
-<% if I18n.locale == :en %>
-	<h2><%= @post.title %></h2>
-	<p><%=  @post.en_body.html_safe %></p>
-<% else %>
-	<h2><%= @post.title %></h2>
-	<p><%= @post.ko_body.html_safe %></p>
-<% end %>
 
-<% @post.tagged_bands.each do |tb| %>
-	<p><%= link_to tb.band.name, band_path(tb.band) %></p>
-	<% unless tb.band.facebook.blank? %>
-		<p><%= link_to tb.band.facebook, tb.band.facebook %></p>
-	<% end %>
-<% end %>
 
-<p>Categories: 
-  <% @post.post_categories.each do |pc| %>
-      <% unless pc.category.blank? %>
-		  <%= link_to pc.category.name, category_path(pc.category) %>,
-	  <% end %>
-  <% end %>  
-</p>
 
-<p>Tags:
-  <%= raw @post.tag_list.map { |t| link_to t, tags_path(t) }.join(', ') %>
-</p>
+
+
+
+
+
