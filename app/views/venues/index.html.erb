@@ -49,7 +49,7 @@
   <div class="col-sm-3 sidebar">
     <div class="cities">
       <h1><%= t(:cities) %></h1>
-      <p class="text-center"><% @cities.each do |city| %>
+      <p><% @cities.each do |city| %>
         <%= link_to city.en_name, city_path(city.en_name) %>
         <% end %>
       </p>
