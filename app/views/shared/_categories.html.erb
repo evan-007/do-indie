@@ -1,0 +1,6 @@
+<h1><%= link_to t(:categories), categories_path %></h1>
+<div class="list-group">
+  <% @categories.each do |c| %>        
+    <%= link_to "<span class=\"badge\">".html_safe+c.post_categories.count.to_s+"</span>".html_safe+c.name, c, class: "list-group-item" %>
+  <% end %>
+</div>

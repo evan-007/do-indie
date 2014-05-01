@@ -1,164 +1,190 @@
-<div class="row">
-  <div class="col-md-8">
-
-	  <h2><%= @event.name %></h2>
-	  <h3><%= @event.date %></h3>
-    
-    <% if I18n.locale == :en %>
-      <% unless @event.info.blank? %>
-        <p><%= @event.info %></p>
-      <% else %>
-        <p><%= t(:no_en_info) %></p>
-        <%= @event.info_ko %>
-      <% end %>
-    <% else %>
-     <% unless @event.info_ko.blank? %>
-        <p><%= @event.info_ko %></p>
-      <% else %>
-        <p><%= t(:no_ko_info) %></p>
-        <%= @event.info %>
-      <% end %>
-    <% end %>
-    
-	  <p><%= t(:show_time) %><%= @event.time %>
-	  <% unless @event.ticket.blank? %>
-		  <p><%= t(:tickets_available) %></p>
-		  <p><%= t(:advance_ticket) %> <%= @event.price %></p>
-		  <p><%= t(:door_price) %> <%= @event.door_price %></p>
-	  <% else %>
-		  <p><%= t(:sold_out) %></p>
-  	<% end %>
-
-  	<% if @event.venue %>
-	     <h2><%= t(:location) %></h2>
-	     <p><%= link_to @event.venue.name, venue_path(@event.venue) %> <%= t(:city) %> <%= @event.venue.city_en %></p>
-  	<% else %>
-	    <p>This event has no venue yet<p>
-  	<% end %>
-
-  	<% if @event.event_bands.count != 0 %>
-	  	<p><%= t(:line_up) %></p>
-  		<% @event.event_bands.each do |eventband| %>
-        <% if eventband.band.approved? %>
-  	  		<%= link_to eventband.band.name, band_path(eventband.band) %><br />
+<div class="container-fluid event-detail">
+  <div class="row">
+    <h1 class="page-title"><%= @event.name %></h1>
+    <h2><%= @event.date %></h2>
+    <div class="col-sm-5 col-sm-push-7">
+      <%= image_tag @event.avatar(:large) %>
+    </div>
+    <div class="col-sm-7 col-sm-pull-5 vcard">
+      <table class="table table-hover">
+        <tr>
+          <td width="40%"><%= t(:show_time) %></td>
+          <td><%= @event.time %></td>
+        </tr>
+        <% unless @event.ticket.blank? %>
+        <tr>
+          <td><%= t(:status) %></td>
+          <td><%= t(:tickets_available) %></td>
+        </tr>
+        <tr>
+          <td><%= t(:advance_ticket) %></td>
+          <td><i class="fa fa-won"></i> <%= @event.price %></td>
+        </tr>
+        <tr>
+          <td><%= t(:door_price) %></td>
+          <td><i class="fa fa-won"></i> <%= @event.door_price %></td>
+        </tr>
         <% else %>
-          <%= eventband.band.name %>
+        <tr>
+          <td><%= t(:status) %></td>
+          <td><%= t(:sold_out) %></td>
+        </tr>
         <% end %>
-	  	<% end %>
-	  <% end %>
-  </div><!--col-md-8-->
-  <div class="col-md-4">
-  	<%= image_tag @event.avatar(:medium) %>
+        <% if @event.venue %>
+        <tr>
+          <td><%= t(:city) %></td>
+          <td><%= @event.venue.city_en %></td>
+        </tr>
+        <% end %>
+      </table>
+      
+      <h2><%= t(:venue) %></h2>
+      <% if @event.venue %> <!-- venue detail -->
+        <div class="row-fluid"><%= image_tag @event.venue.avatar(:large) %></div>
+        <h3><%= link_to @event.venue.name, venue_path(@event.venue) %></h3>
+        <div class="row-fluid vcard">
+          <table class="table table-hover">
+          <% unless @event.venue.phone == nil %>
+            <tr>
+              <td><%= t(:venue_phone) %></td>
+              <td><%= @event.venue.phone %></td>
+            </tr>
+          <% end %>
+          <% unless @event.venue.email == nil %>
+            <tr>
+              <td><%= t(:venue_email) %></td>
+              <td><%= @event.venue.email %></td>
+            </tr>
+          <% end %>
+          <% unless @event.venue.address == nil %>
+            <tr>
+              <td><%= t(:venue_address) %></td>
+              <td><%= @event.venue.address %></td>
+            </tr>
+          <% end %>
+          </table>
+        </div>
+
+
+        <h3><%= t(:directions) %></h3>  
+        <!-- Direction -->
+        <% if I18n.locale == :ko %>
+          <% unless @event.venue.ko_directions.blank? %>
+          <p><%= @event.venue.ko_directions.html_safe %></p>
+          <% end %>
+        <% else %>
+          <% unless @event.venue.en_directions.blank? %>
+            <p><%= @event.venue.en_directions.html_safe %></p>
+          <% else unless @event.venue.ko_directions.blank? %>            
+              <p><%= @event.venue.ko_directions.html_safe %></p>
+            <% else %>
+              <p><%= t(:no_directions)%></p>
+            <% end %>
+          <% end %>
+        <% end %>
+        
+      <% else %>
+      <p>This event has no venue yet<p>
+      <% end %> <!-- /venue detail -->
+      
+    </div>
+  </div> <!-- /row -->
+  
+  <div class="row">
+    <h2><%= t(:line_up) %></h2>
     <% if @event.event_bands.count != 0 %>
-	  	<h2><%= t(:line_up) %></h2>
-      <% @event.event_bands.each do |eventband| %>
-		  	<%= link_to image_tag(eventband.band.avatar(:medium)), band_path(eventband.band) %><br />
-      <% end %>
-   <% end %>
+    <div id="bands-grid" class="container-fluid">
+      <div class="grid-tiles">
+        <% @event.event_bands.each do |eventband| %>
+          <% band = eventband.band %>
+            <%= div_for(band, class: "list bands-grid-item tile") do %>
+              <div class="thumbnail">
+                <%= image_tag band.avatar.url(:medium) %>
+                <div class="caption">
+                  <h3><%= link_to band.name, band_path(band) %></h3>
+                  <h4><%= link_to band.korean_name, band_path(band) %></h4>
+                  <div class="fanbadge small">
+                    Fans
+                    <span class="badge"><%= band.fans %></span>
+                  </div>
+                    
+                  <div class="likebtn">     
+                    <% if current_user && current_user.user_fans.where(band_id: band.id).count != 0 %>
+                      <%= link_to "<i class=\"fa fa-thumbs-up\"></i> Unlike".html_safe, user_fan_path(id: band.id), method: 'delete' %>
+                    <% elsif current_user %>
+                      <%= link_to "<i class=\"fa fa-thumbs-o-up\"></i> Like".html_safe, user_fans_path(band_id: band.id), method: 'post' %>
+                    <% else %>
+                      <%= link_to t(:signup), new_user_registration_path %> 
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %> <!--div_for-->
+        <% end %>
+      </div>
+     
+    </div>
+    <% else %>
+    <% end %>
+  </div><!-- /row -->
+
+  <div class="row-fluid">
+    <h2><%= t(:event_more_info) %></h2>
+    <% if I18n.locale == :en %>
+    <% unless @event.info.blank? %>
+    <p><%= @event.info %></p>
+    <% else %>
+    <p><%= t(:no_en_info) %></p>
+    <%= @event.info_ko %>
+    <% end %>
+    <% else %>
+    <% unless @event.info_ko.blank? %>
+    <p><%= @event.info_ko %></p>
+    <% else %>
+    <p><%= t(:no_ko_info) %></p>
+    <%= @event.info %>
+    <% end %>
+    <% end %>
   </div>
-</div><!--row-->
 
-
-<div id="showData" class="btn btn-lg btn-primary"><%= t(:share_event)%></div>
-<div id="raw_data">
-  <p><%= t(:share_me) %></p>
-  <p>
-    <%= @event.ko_name %> / <%= @event.name %> [Eng below]<br />
-    * 일시: <%= @event.date %> <%= @event.time %><br />
-    <% unless @event.venue.blank? %>
-      * 장소: <%= @event.venue.ko_name %><br />
-    <% end %>
-    <% unless @event.door_price.blank? %>
-      * 입장료: (현매) <%= @event.door_price %>원<br />
-    <% end %>
-    <% unless @event.ticket_price.blank? %>
-      * 입장료: (에매) <%= @event.ticket_price %>원<br />
-    <% end %>
-    <% unless @event.bands.blank? %>
-      * 라인업 : <% @event.bands.each do |b| %> <%= b.name %>, <% end %><br /><br />
-    <% end %> 
-
-    hidden-dawn-9617.herokuapp.com<%= url_for(event_ko_path(@event)) %><br /><br />
-
-    *Date: <%= @event.date %> <%= @event.time %><br />
-    <% unless @event.venue.blank? %>
-      *Venue: <%= @event.venue.name %><br />
-    <% end %>
-    <% unless @event.ticket_price.blank? %>
-      * Adv: <%= @event.ticket_price %>원<br />
-    <% end %>
-    <% unless @event.door_price.blank? %>
-      * Door: <%= @event.door_price %>원<br />
-    <% end %>
-    <% unless @event.bands.blank? %>
-      * Lineup : <% @event.bands.each do |b| %> <%= b.name %>, <% end %><br /><br />
-    <% end %>
-
-    ----✦✦ 밴드들 (Bands) ✦✦----<br /><br />
-    <% unless @event.bands.blank? %>
-      <% @event.bands.each do |b| %> 
-        *<%= b.korean_name %> (<%= b.name %>)<br/>
-        <%= b.facebook %><br />
-        <%= b.site %><br />
-        <%= b.twitter %><br />
-        hidden-dawn-9617.herokuapp.com<%= url_for(b) %><br />
-        <% end %> <br />
-    <% end %> <br /><br />
-
-    <% unless @event.venue.blank? %>
-      ----✦✦ 장소 / Venue ✦✦----<br />
-      <%= @event.venue.ko_name%> (<%= @event.venue.name %>)
-      <%= @event.venue.facebook %><br/>
-      <%= @event.venue.twitter %><br/>
-      <%= @event.venue.website %><br/>
-      hidden-dawn-9617.herokuapp.com<%= url_for(@event) %><br />
-    <% end %><br /><br />
-
-    * 오시는 길 / Directions :
-      <% unless @event.venue.blank? %>
-      <%= @event.venue.en_directions %><br />
-      <%= @event.venue.ko_directions %><br />
-      <% end %><br />
-
-    ----✦✦ <%= @event.name %> ✦✦----
-    <p><%= @event.info%></p>
-    <p><%= @event.info_ko%></p>
-
-
-    ♪♪ powered by doindie ♪♪ doindie links<br/>
-
-    ✦ www.doindie.co.kr<br />
-    ✦ www.facebook.com/doindie.kr<br />
-    ✦ www.twitter.com/DoIndieKorea<br />
-    ✦ http://blog.naver.com/doindie<br />
-  </p>
-</div>
+</div><!-- /container-fluid -->
 
 <% if current_user && current_user.event_managers.where(event_id: @event.id).count == 0 %>
-	<p><%= link_to t(:manager_request), event_managers_path(event_id: @event.id), method: 'post' %>.</p>
+<p><%= link_to t(:manager_request), event_managers_path(event_id: @event.id), method: 'post' %>.</p>
 <% elsif current_user && current_user.event_managers.where(event_id: @event.id).count != 0 && current_user.event_manager?(@event.id) == true %>
-    <p>You're a manager! <%= link_to "Edit this event", edit_event_path(@event) %></p>
+<p>You're a manager! <%= link_to "Edit this event", edit_event_path(@event) %></p>
 <% elsif current_user && current_user.event_managers.where(event_id: @event.id).count != 0 %>
-    <p><%= t(:pending_approval) %></p>
+<p><%= t(:pending_approval) %></p>
 <% else %>
-	<p><%= t(:event_request) %> <%= t(:login_request) %><p>
+<p><%= t(:event_request) %> <%= t(:login_request) %><p>
 <% end %>
-
 <% if current_user && current_user.admin == true %>
-    <%= link_to "Edit this event", edit_event_path(@event) %> 
-<% end %>	
-
+<%= link_to "Edit this event", edit_event_path(@event) %>
+<% end %>
 <% if current_user && @event.user == current_user %>
-    <%= link_to "Edit this event", edit_event_path(@event) %> 
-<% end %> 
+<%= link_to "Edit this event", edit_event_path(@event) %>
+<% end %>
+<script>
+$(document).ready(function(){
+$('#raw_data').toggle();
+console.log('loaded');
+$('#showData').click(function(){
+$('#raw_data').toggle();
+});
+});
+</script>
+
 
 <script>
   $(document).ready(function(){
-    $('#raw_data').toggle();
-    console.log('loaded');
-
-    $('#showData').click(function(){
-      $('#raw_data').toggle();
+    init_grid_tiles();
+    $(window).trigger('resize');
+    //imagesLoaded
+    $('.grid-tiles').imagesLoaded(function() {
+      $(window).trigger('resize');
     });
   });
 </script>
+
+
+

@@ -1,3 +1,53 @@
+<div id="bottom">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 next-events">
+        <h2>Upcoming Events</h2>
+        <% @next_events.each do |event| %>
+        <div>
+          <p>
+            <%= event.date.strftime("%Y/%m/%d") %> <br>
+            <% if I18n.locale == :en %>
+              <%= link_to event.name, event_path(event) %>
+            <% else %>
+              <% unless event.ko_name.blank? %>
+                <%= link_to event.ko_name, event_path(event) %>
+              <% else %>
+                <%= link_to event.name, event_path(event) %>
+              <% end %>
+            <% end %>
+          </p>
+          
+        </div>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+        <h2>Genius - Beaches - Out Now</h2>
+      </div>
+      <div class="col-md-4">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="footer">
+  <div class="container">
+    
+    <div class="row footer-first-row">
+      
+      <div class="col-xs-12 text-center">
+        <p><small>
+          &copy; 2013-<%= Date.today.year %> - Doindie! <%= link_to t(:contact), contact_path %>	
+        <a target="_blank" title="Twitter" href="https://twitter.com/DoIndieKorea" class="social-twitter social-footer"> Twitter </a>
+		<a target="_blank" title="Facebook" href="https://www.facebook.com/doindie.kr" class="social-facebook social-footer"> Facebook </a>
+		<a target="_blank" title="Naver" href="http://blog.naver.com/doindie" class="social-naver social-footer"> Naver </a>
+        </small></p>
+      </div>
+    </div>
+    
+  </div>
+</div>
 <script>
  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

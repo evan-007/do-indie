@@ -239,7 +239,6 @@ body {
   text-shadow: 2px 2px #333333;
   color: #eeeeee;
   margin-top: 0;
-  white-space: nowrap;
 }
 
 .sidebar h1 {
@@ -508,6 +507,60 @@ body {
 }
 
 
+#bottom {
+  margin-bottom: 70px;
+  padding: 15px;
+}
+
+#bottom h2 {
+  border-bottom: 2px solid #333333;
+  padding-bottom: 7px;
+  color: #333333;
+}
+
+#bottom > .container-fluid > .row {
+  background-color: #ffffff;
+  padding: 20px;
+  color: #555555;
+}
+
+#bottom .next-events p {
+  font-size: 18px;
+}
+
+#bottom .next-events a {
+  color: #198CAF;
+  font-size: 23px;
+  border-bottom: 2px solid #198CAF;
+}
+
+#bottom .next-events a:hover {
+  background-color: #198CAF;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a.dark-block-link {
+  background-color: #CD503C;
+  color: #ffffff;
+  padding: 6px 12px;
+}
+
+a.dark-block-link:hover {
+  background-color: #198CAF;
+  text-decoration: none;
+}
+
+a.light-block-link {
+  background-color: #198CAF;
+  color: #ffffff;
+  padding: 6px 12px;
+}
+
+a.light-block-link:hover {
+  background-color: #CD503C;
+  text-decoration: none;
+}
 
 
 @import "responsive";

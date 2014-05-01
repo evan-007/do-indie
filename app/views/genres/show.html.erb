@@ -1,27 +1,78 @@
-<div class="text-center"><%= @genre.name %></div>
+<div class="row page-header">
+	<div class="col-sm-9">
+		<h1 class="page-title">
+			<%= t(:genres) %>: <%= @genre.name %>
+		</h1>
+	</div>
+	<div class="col-sm-3">
+		<%= form_tag bands_path, method: :get, class: 'form-inline' do %>
+		<div>
+			<div class="input-group col-sm-12">
+      <%= text_field_tag :query, params[:query], placeholder: "Band name: English or Korean", class: "form-control input-sm" %>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
+      </span>
+    	</div>
+		</div>
+		<% end %>
+	</div>
+</div>
+
 
 <div class="row">
-	<% @genre.bands.each do |band| %>
-		<div class="col-sm-6 col-md-4">
-			<%= div_for(band, class: "list") do %>
-				<div class="thumbnail">
-					<%= image_tag band.avatar.url(:medium) %>
-					<div class="caption">
-						<h3><%= link_to band.name, band_path(band) %></h3>
-						<h4><%= link_to band.korean_name, band_path(band) %></h4>
-					    <p>Fans: <%= band.fans %></p>
-					    <p>
-					    	<% if current_user && current_user.user_fans.where(band_id: band.id).count != 0 %>
-								<%= link_to "Unlike", user_fan_path(id: band.id), method: 'delete', class: "btn btn-primary" %>
-							<% elsif current_user %>
-								<%= link_to "Like", user_fans_path(band_id: band.id), method: 'post', class: "btn btn-primary" %>
-							<% else %>
-								<%= link_to t(:signup), new_user_registration_path %> 
-							<% end %>
-						</p>
-					</div>
-				</div>
-			<% end %> <!--div_for-->
+	<div id="bands-grid" class="col-sm-9">
+		<div class="grid-tiles">
+			<% @genre.bands.each do |band| %>
+					<%= div_for(band, class: "list bands-grid-item tile") do %>
+						<div class="thumbnail">
+							<%= image_tag band.avatar.url(:medium) %>
+							<div class="caption">
+								<h3><%= link_to band.name, band_path(band) %></h3>
+								<h4><%= link_to band.korean_name, band_path(band) %></h4>
+								<div class="fanbadge small">
+									Fans
+						      <span class="badge"><%= band.fans %></span>
+						    </div>
+							    
+						    <div class="likebtn">			
+						    	<% if current_user && current_user.user_fans.where(band_id: band.id).count != 0 %>
+						    		<%= link_to "<i class=\"fa fa-thumbs-up\"></i> Unlike".html_safe, user_fan_path(id: band.id), method: 'delete' %>
+									<% elsif current_user %>
+										<%= link_to "<i class=\"fa fa-thumbs-o-up\"></i> Like".html_safe, user_fans_path(band_id: band.id), method: 'post' %>
+									<% else %>
+										<%= link_to t(:signup), new_user_registration_path %> 
+									<% end %>
+							  </div>
+							</div>
+						</div>
+					<% end %> <!--div_for-->
+			<% end %>
 		</div>
-	<% end %>
-</div>
+	</div>
+
+	<div class="col-sm-3 sidebar">		
+		
+
+		<div class="genres-tags">
+			<h1><%= t(:genres) %></h1>
+			<p>
+				<% @genres.each do |genre| %>
+				<%= link_to genre.name, genre_path(genre.name) %> 
+				<% end %>
+			</p>
+		</div>
+	</div>
+</div><!--row-->
+
+
+<script>
+  $(document).ready(function(){
+    init_grid_tiles();
+    $(window).trigger('resize');
+    //imagesLoaded
+    $('.grid-tiles').imagesLoaded(function() {
+      $(window).trigger('resize');
+    });
+  });
+</script>
+
