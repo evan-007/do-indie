@@ -7,7 +7,7 @@
     <div class="row hidden-xs" id="home-events">
       <% @events.each do |event| %>
         <div class="home-events-item<% unless counter != 3 %> visible-lg<% end %><% unless counter != 2 %> visible-lg visible-md<% end %>">          
-          <a href=""><span><%= event.date.strftime("%Y/%m/%d") %></span> <%= event.name %></a>
+          <a href="<%= url_for event %>"><span><%= event.date.strftime("%Y/%m/%d") %></span> <%= event.name %></a>
         </div>
       <% 
         counter+=1
@@ -20,7 +20,7 @@
     <div class="row hidden-xs" id="home-posts">
       <% @posts.each do |post| %>
         <div class="home-posts-item<% unless counter != 4 %> visible-lg<% end %><% unless counter != 3 %> visible-lg visible-md<% end %>">
-          <a href=""><%= post.title %></a>
+          <a href="<%= url_for post %>"><%= post.title %></a>
         </div>
       <% 
         counter+=1
