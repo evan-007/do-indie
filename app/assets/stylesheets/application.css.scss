@@ -137,6 +137,15 @@ body {
   overflow: hidden;
 }
 
+#home-events > div > a > span {
+  text-decoration: none !important;
+  font-size: 12px;
+  display: block;
+  float: left;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
 .home-events-item,.home-posts-item {
   display: block;
   float: left;
