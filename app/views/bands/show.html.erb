@@ -1,4 +1,4 @@
-<div class="container band-detail">
+<div class="container-fluid band-detail">
   <h1 class="page-title"><%= @band.name %></h1>
   <h2><%= @band.korean_name %></h2>
   <div class="row">
@@ -145,6 +145,11 @@
     <% end %>
   </div>
   <% end %>
+
+  <div class="now">
+    <h2><% t(:share) %></h2>
+    <%= render 'shared/socialshare' %>
+  </div> <!-- social share -->
   
   
   <% if current_user && current_user.band_managers.where(band_id: @band.id).count == 0 %>

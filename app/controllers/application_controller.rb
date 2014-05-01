@@ -7,8 +7,9 @@ class ApplicationController < ActionController::Base
   
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :reject_locked!, if: :devise_controller?
-  
+  before_action :fetch_next_events
 
+  
   # Devise permitted params
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(
@@ -56,6 +57,8 @@ class ApplicationController < ActionController::Base
   end
   helper_method :require_admin!
       
-  
+  def fetch_next_events
+    @next_events = Event.index_search(nil, nil)
+  end
   
 end

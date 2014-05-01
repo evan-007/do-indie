@@ -1,31 +1,111 @@
-<% unless @post.slide.image.url.blank? %>
-  <%= image_tag @post.slide.image.url %>
-<% end %>
+<div class="row page-header">
+  <div class="col-md-9">
+    <% if I18n.locale == :en %>
+      <h1 class="page-title">
+        <%= @post.title %>
+      </h1>
+    <% else %>
+      <h1 class="page-title">
+        <%= @post.ko_title %>
+      </h1>
+    <% end %>    
+  </div>
+  <div class="col-md-3 searchform text-center">
+    <% if current_user && current_user.blogger == true %>
+    <div class="btn-group">
+      <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
+      <%= link_to "Blog Admin Page", blog_admin_path, class: "btn btn-danger" %>
+    </div>      
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-9">
+    <div class="container-fluid">
+      <p>
+        <% @post.post_categories.each do |pc| %>
+            <% unless pc.category.blank? %>
+            <%= link_to pc.category.name, category_path(pc.category),:class => "dark-block-link" %>
+          <% end %>
+        <% end %>  
+      </p>
+    </div><!--meta info-->
+
+    <% unless @post.slide.image.url.blank? %>
+      <div class="container-fluid">
+          <%= image_tag @post.slide.image.url %>
+      </div>
+    <% end %><!--slideImage-->
+
+    <div class="container-fluid">
+      <% if I18n.locale == :en %>
+        <p><%=  @post.en_body.html_safe %></p>
+      <% else %>
+        <p><%= @post.ko_body.html_safe %></p>
+      <% end %>
+    </div><!--body-->
+  
+    <% unless @post.tagged_bands.blank? %>
+      <div class="container-fluid">
+        <h2><%= t(:bands) %></h2>
+        <p>
+        <% @post.tagged_bands.each do |tb| %>
+          <%= link_to tb.band.name, band_path(tb.band), :class => 'light-block-link' %>
+        <% end %>
+        </p>
+      </div>
+    <% end %> <!--bands-->
+    
+    <% unless @post.tag_list.blank? %>
+      <div class="container-fluid">
+        <h2><%= t(:tags) %></h2>
+        <p>
+          <%= raw @post.tag_list.map { |t| link_to t, tags_path(t), :class => 'light-block-link' }.join(' ') %>
+        </p>
+      </div>
+    <% end %><!--tags-->
+
+    <div class="container-fluid">
+      <h2><%= t(:share) %></h2>
+      <%= render 'shared/socialshare' %>
+    </div> <!-- social share -->
+
+    <div class="container-fluid">
+      <h2><%= t(:comments) %></h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = 'doindie-sp'; // required: replace example with your forum shortname
+
+          var disqus_config = function () { 
+            this.language = "<%= I18n.locale.to_s %>";
+          };
+
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+  </div><!--main column-->
+
+  <div class="col-sm-3 sidebar">
+    <%= render 'shared/categories' %>
+  </div><!--sidebar-->
+</div>
 
 
-<% if I18n.locale == :en %>
-	<h2><%= @post.title %></h2>
-	<p><%=  @post.en_body.html_safe %></p>
-<% else %>
-	<h2><%= @post.title %></h2>
-	<p><%= @post.ko_body.html_safe %></p>
-<% end %>
 
-<% @post.tagged_bands.each do |tb| %>
-	<p><%= link_to tb.band.name, band_path(tb.band) %></p>
-	<% unless tb.band.facebook.blank? %>
-		<p><%= link_to tb.band.facebook, tb.band.facebook %></p>
-	<% end %>
-<% end %>
 
-<p>Categories: 
-  <% @post.post_categories.each do |pc| %>
-      <% unless pc.category.blank? %>
-		  <%= link_to pc.category.name, category_path(pc.category) %>,
-	  <% end %>
-  <% end %>  
-</p>
 
-<p>Tags:
-  <%= raw @post.tag_list.map { |t| link_to t, tags_path(t) }.join(', ') %>
-</p>
+
+
+
+
+
