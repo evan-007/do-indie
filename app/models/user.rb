@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  devise :omniauthable, :omniauth_providers => [:facebook]
+  devise :omniauthable, :omniauth_providers => [:facebook, :twitter]
          
   paginates_per 100
   
@@ -105,6 +105,27 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.username = "#{auth.info.first_name} #{auth.info.last_name}"
+    end
+  end
+  
+  def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    if user
+      return user
+    else
+      registered_user = User.where(:email => auth.uid + "@twitter.com").first
+      if registered_user
+        return registered_user
+      else
+
+        user = User.create(username:auth.name,
+                            provider:auth.provider,
+                            uid:auth.uid,
+                            email:auth.uid+"@twitter.com",
+                            password:Devise.friendly_token[0,20],
+                          )
+      end
+
     end
   end
 
