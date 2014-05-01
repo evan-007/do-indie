@@ -1,66 +1,238 @@
-<h2><%= current_user.username %>'s page</h2>
-
-<% unless current_user.mailing_list == true %>
-<p>
-	<%= form_tag sign_up_path, method: 'post', html: {role: "form"} do %>
-	<%= label_tag "Signup for the DoIndie newsletter" %>
-	<%= submit_tag "Signup" %>
-	<% end %>
-</p>
-<% end %>
-
-<% unless @likes.blank? %>
-<p>Bands you like:</p>
-	<% @likes.each do |fan| %>
-		<%= link_to fan.band.name, band_path(fan.band) %>
-	<% end %>
-<% end %>
-<% unless current_user.bands.blank? %>
-	<p>You added these bands:</p>
-	<% current_user.bands.each do |band| %>
-		<%= link_to band.name, band_path(band) %>
-	<% end %>
-<% end %>
-
-<% unless current_user.events.blank? %>
-	<p>You added these events:</p>
-	<% current_user.events.each do |event| %>
-		<%= link_to event.name, event_path(event) %>
-	<% end %>
-<% end %>
-
-<% unless current_user.venues.blank? %>
-	<p>You added these venues:</p>
-	<% current_user.venues.each do |venue| %>
-		<%= link_to venue.name, venue_path(venue) %>
-	<% end %>
-<% end %>
 
 
+<div class="row page-header">
+	<div class="col-sm-9">
+		<h1 class="page-title">
+			<%= current_user.username %>'s page
+		</h1>
+	</div>
+	<div class="col-sm-3">
+		<%= form_tag bands_path, method: :get, class: 'form-inline' do %>
+		<div>
+			<div class="input-group col-sm-12 text-center">
+      	<%= link_to "Edit account", edit_user_registration_path, :class => "btn btn-primary" %>
+    	</div>
+		</div>
+		<% end %>
+	</div>
+</div>
 
-<% if @managed_bands != nil %>
-	<p>You're the manager of these bands:</p>
-	<ul>
-	<% @managed_bands.each do |band| %>
-		<li><%= link_to band.band.name, band_path(band.band.id) %></li>
-	<% end %>
-	</ul>
-<% end %>
+<div class="row">
+	<div class="col-md-6">
+		<% unless current_user.mailing_list == true %>
+		<h2>DoIndie Newsletter</h2>
+		<div class="row-fluid">
+			<div class="col-xs-12">
+				<%= form_tag sign_up_path, method: 'post', html: {role: "form"} do %>
+				<%= label_tag "Signup for the DoIndie newsletter" %>
+				<%= submit_tag "Signup", :class => 'btn-info btn' %>
+				<% end %>
+			</div>
+		</div>
+		<% end %> <!-- newsletter -->
 
-<% if @managed_venues != nil %>
-	<p>You're the manager of these venues:</p>
-	<ul>
-	<% @managed_venues.each do |venue| %>
-		<li><%= link_to venue.venue.name, venue_path(venue.venue.id) %></li>
-	<% end %>
-	</ul>
-<% end %>
+		<h2>Submissions</h2>
+		<div class="vcard">
+			<table class="table table-hover">
+	      <% unless current_user.bands.blank? %>
+	      <tr>
+					<td rowspan="<%= current_user.bands.count %>">Bands:</td>
+					<% first = true %>
+					<% current_user.bands.each do |band| %>
+					<% unless first %><tr><% end %>
+						<td>
+								<%= link_to band.name, band_path(band) %>
+						</td>
+						<td>
+							<% if band.approved %>
+								<%= t(:approved) %>
+							<% else %>
+								<%= t(:pending) %>
+							<% end %>
+						</td>
+					<% unless first %></tr><% end %>
+					<% first = false %>
+					<% end %>
+				</tr>
+				<% end %>
 
-<% if @managed_events != nil %>
-	<p>You're the manager of these events:</p>
-	<ul>
-	<% @managed_events.each do |event| %>
-		<li><%= link_to event.event.name, event_path(event.event.id) %></li>
-	<% end %>
-	</ul>
-<% end %>
+				<% unless current_user.events.blank? %>
+				<tr>
+					<td rowspan="<%= current_user.events.count %>">Events:</td>
+					<% first = true %>
+					<% current_user.events.each do |event| %>
+					<% unless first %><tr><% end %>
+						<td>
+								<%= link_to event.name, event_path(event) %>
+						</td>
+						<td>
+							<% if event.approved %>
+								<%= t(:approved) %>
+							<% else %>
+								<%= t(:pending) %>
+							<% end %>
+						</td>
+					<% unless first %></tr><% end %>
+					<% first = false %>
+					<% end %>
+				</tr>
+				<% end %>
+
+				<% unless current_user.venues.blank? %>
+				<tr>
+					<td rowspan="<%= current_user.venues.count %>">Venues:</td>
+					<% first = true %>
+					<% current_user.venues.each do |venue| %>
+					<% unless first %><tr><% end %>
+						<td>
+								<%= link_to venue.name, venue_path(venue) %>
+						</td>
+						<td>
+							<% if venue.approved %>
+								<%= t(:approved) %>
+							<% else %>
+								<%= t(:pending) %>
+							<% end %>
+						</td>
+					<% unless first %></tr><% end %>
+					<% first = false %>
+					<% end %>
+				</tr>
+				<% end %>
+      </table> 
+		</div> <!-- submissions -->
+
+
+		<h2>Management</h2>
+		<div class="vcard">
+			<table class="table table-hover">
+	      <% unless @managed_bands.count == 0 %>
+	      <tr>
+					<td rowspan="<%= @managed_bands.count %>">Bands:</td>
+					<% first = true %>
+					<% @managed_bands.each do |m_band| %>
+					<% band = m_band.band %>
+					<% unless first %><tr><% end %>
+						<td>
+								<%= link_to band.name, band_path(band) %>
+						</td>
+						<td>
+							<% if band.approved %>
+								<%= t(:approved) %>
+							<% else %>
+								<%= t(:pending) %>
+							<% end %>
+						</td>
+					<% unless first %></tr><% end %>
+					<% first = false %>
+					<% end %>
+				</tr>
+				<% end %>
+
+				<% unless @managed_events.count == 0 %>
+				<tr>
+					<td rowspan="<%= @managed_events.count %>">Events:</td>
+					<% first = true %>
+					<% @managed_events.each do |m_event| %>
+					<% event = m_event.event %>
+					<% unless first %><tr><% end %>
+						<td>
+								<%= link_to event.name, event_path(event) %>
+						</td>
+						<td>
+							<% if event.approved %>
+								<%= t(:approved) %>
+							<% else %>
+								<%= t(:pending) %>
+							<% end %>
+						</td>
+					<% unless first %></tr><% end %>
+					<% first = false %>
+					<% end %>
+				</tr>
+				<% end %>
+
+				<% unless @managed_venues.count == 0 %>
+				<tr>
+					<td rowspan="<%= @managed_venues.count %>">Venues:</td>
+					<% first = true %>
+					<% @managed_venues.each do |m_venue| %>
+					<% venue = m_venue.venue %>
+					<% unless first %><tr><% end %>
+						<td>
+								<%= link_to venue.name, venue_path(venue) %>
+						</td>
+						<td>
+							<% if venue.approved %>
+								<%= t(:approved) %>
+							<% else %>
+								<%= t(:pending) %>
+							<% end %>
+						</td>
+					<% unless first %></tr><% end %>
+					<% first = false %>
+					<% end %>
+				</tr>
+				<% end %>
+      </table> 
+		</div> <!-- management -->
+
+	</div>
+	<div class="col-md-6">
+		<% unless @likes.blank? %>
+		<h2>Bands you like</h2>
+			<div id="bands-grid">
+				<div class="grid-tiles">
+					<% @likes.each do |fan| %>
+						<% band = fan.band %>
+							<%= div_for(band, class: "list bands-grid-item tile") do %>
+								<div class="thumbnail">
+									<%= image_tag band.avatar.url(:medium) %>
+									<div class="caption">
+										<h3><%= link_to band.name, band_path(band) %></h3>
+										<h4><%= link_to band.korean_name, band_path(band) %></h4>
+										<div class="fanbadge small">
+											Fans
+								      <span class="badge"><%= band.fans %></span>
+								    </div>
+									    
+								    <div class="likebtn">			
+								    	<% if current_user && current_user.user_fans.where(band_id: band.id).count != 0 %>
+								    		<%= link_to "<i class=\"fa fa-thumbs-up\"></i> Unlike".html_safe, user_fan_path(id: band.id), method: 'delete' %>
+											<% elsif current_user %>
+												<%= link_to "<i class=\"fa fa-thumbs-o-up\"></i> Like".html_safe, user_fans_path(band_id: band.id), method: 'post' %>
+											<% else %>
+												<%= link_to t(:signup), new_user_registration_path %> 
+											<% end %>
+									  </div>
+									</div>
+								</div>
+							<% end %> <!--div_for-->
+					<% end %>
+				</div>
+			</div>
+		<% end %><!-- bands like -->
+
+		
+	</div>
+</div>
+
+
+
+
+
+
+
+<script>
+  $(document).ready(function(){
+    init_grid_tiles();
+    $(window).trigger('resize');
+    //imagesLoaded
+    $('.grid-tiles').imagesLoaded(function() {
+      $(window).trigger('resize');
+    });
+  });
+</script>
+
+
+
