@@ -17,39 +17,33 @@
 
 	<hr>
 
-	<% if I18n.locale == :en %>
-	<p>
-		<%= f.label t(:band_playing) %>
-		<% if @event.new_record? %>
-			<%= f.text_field :band_tokens %>
-		<% else %>
-			<%= f.text_field :band_tokens, data: {load: @event.bands} %>
-		<% end %>
-	</p>
-	<% elsif I18n.locale == :ko %>
-	<p>
-		<%= f.label t(:band_playing) %>
-		<% if @event.new_record? %>
-			<%= f.text_field :band_tokens %>
-		<% else %>
-			<%= f.text_field :band_tokens, data: {load: @event.bands} %>
-		<% end %>
-	</p>
-	<% end %>
+	<div id="en_bands">
+		<p>
+			<%= f.label t(:band_playing) %>
+			<% if @event.new_record? %>
+				<%= f.text_field :band_tokens %>
+			<% else %>
+				<%= f.text_field :band_tokens, data: {load: @event.bands} %>
+			<% end %>
+		</p>
+	</div>
 
 
 	<p><%= t(:band_playing_note)%></p><br>
  
 
 	<hr>
-	<p>
-		<%= f.label t(:venue) %>
-		<% if @event.new_record? %>
-			<%= f.text_field :venue_tokens %>
-		<% else %>
-			<%= f.text_field :venue_tokens, data: {load: @event.venue} %>
-		<% end %>
-	</p>
+	<div id="en_venue">
+		<p>
+			<%= f.label t(:venue) %>
+			<% if @event.new_record? %>
+				<%= f.text_field :venue_tokens %>
+			<% else %>
+				<%= f.text_field :venue_tokens, data: {load: @event.venue.to_json } %>
+			<% end %>
+		</p>
+	</div>
+			
 
   <hr>
 
@@ -95,10 +89,10 @@
 	<%= f.text_area :info_ko, class: "form-control half" %><br />
 	<p><%= t(:event_details_notes)%></p><br>
 
-  <p>
-    <%= f.label :approved %>
-    <%= f.check_box :approved %>
-  </p>
+	<p>
+		<%= f.label :approved %>
+		<%= f.check_box :approved %>
+	</p>
 	
 	<%= f.submit nil, class: "btn btn-primary" %>
 	
@@ -132,13 +126,25 @@
 	})
 
 	$(document).ready(function() {
-		$('#event_band_tokens').tokenInput("/bands.json", { theme: "facebook",
+		$('#en_bands').find('#event_band_tokens').tokenInput("/bands.json", { theme: "facebook",
 			prePopulate: $('#event_band_tokens').data('load')}
 			);
 	});
   
   $(document).ready(function() {
-		$('#event_venue_tokens').tokenInput("/venues.json", { theme: "facebook",
+		$('#en_venue').find('#event_venue_tokens').tokenInput("/venues.json", { theme: "facebook",
+			prePopulate: [$('#event_venue_tokens').data('load')]}
+			);
+	});
+
+	$(document).ready(function() {
+		$('#korean_bands').find('#event_band_tokens').tokenInput("/bands.json", { theme: "facebook", propertyToSearch: "korean_name",
+			prePopulate: $('#event_band_tokens').data('load')}
+			);
+	});
+
+	$(document).ready(function() {
+		$('#korean_venue').find('#event_venue_tokens').tokenInput("/venues.json", { propertyToSearch: "ko_name",
 			prePopulate: $('#event_venue_tokens').data('load')}
 			);
 	});

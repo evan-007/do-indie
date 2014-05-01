@@ -75,7 +75,7 @@ DoIndie::Application.configure do
   DoIndie::Application.config.middleware.use ExceptionNotification::Rack,
   :email => {
     :email_prefix => "[DoIndie Error Alert] ",
-    :sender_address => %{"notifier" <doindie@example.com>},
+    :sender_address => %{"notifier" <evan.u.lloyd@gmail.com>},
     :exception_recipients => %w{evan.u.lloyd@gmail.com}
   }
 
@@ -102,6 +102,7 @@ DoIndie::Application.configure do
   
   # Mailer
   config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { :host => ENV["DOMAIN"] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
