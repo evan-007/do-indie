@@ -1,27 +1,40 @@
-<div class="container-fluid venue-detail">
+    <div class="container-fluid venue-detail">
   <h1 class="page-title"><%= @venue.name %></h1>
   <h2><%= @venue.korean_name %></h2>
   <div class="row">
-    <div class="col-sm-7 vcard">
+    <div class="col-sm-5 col-sm-push-7 avatar">
+        <%= image_tag (@venue.avatar :medium) %>
+    </div>
+    <div class="col-sm-7 col-sm-pull-5 vcard">
       <table class="table table-hover">
-      <% unless @venue.phone == nil %>
+        <% unless @venue.phone == nil %>
+          <tr>
+            <td><%= t(:venue_phone) %></td>
+            <td><%= @venue.phone %></td>
+          </tr>
+        <% end %>
+        <% unless @venue.email == nil %>
+          <tr>
+            <td><%= t(:venue_email) %></td>
+            <td><%= @venue.email %></td>
+          </tr>
+        <% end %>
+        <% unless @venue.address == nil %>
+          <tr>
+            <td><%= t(:venue_address) %></td>
+            <td><%= @venue.address %></td>
+          </tr>
+        <% end %>
+        <% unless @venue.venue_cities == 0 %>
         <tr>
-          <td><%= t(:venue_phone) %></td>
-          <td><%= @venue.phone %></td>
+          <td><%= t(:city) %></td>
+          <td>
+            <% @venue.venue_cities.each do |venue_city| %>
+              <%= link_to "#{venue_city.city.en_name}"+"-"+"#{venue_city.city.ko_name}", city_path(venue_city.city.en_name), :class => "link-bd-block" %> 
+            <% end %>
+          </td>
         </tr>
-      <% end %>
-      <% unless @venue.email == nil %>
-        <tr>
-          <td><%= t(:venue_email) %></td>
-          <td><%= @venue.email %></td>
-        </tr>
-      <% end %>
-      <% unless @venue.address == nil %>
-        <tr>
-          <td><%= t(:venue_address) %></td>
-          <td><%= @venue.address %></td>
-        </tr>
-      <% end %>
+        <% end %>
       </table> 
 
       <ul class="nav nav-pills venue-socials">
@@ -47,15 +60,31 @@
           </blockquote>
         <% end %>
       <% end %>
-      <% unless @venue.minimap.blank? %>
-      <%= image_tag @venue.minimap %>
-      <% end %>
+      
+
+      <!-- Direction -->
+      <div>
+        <h3><%= t(:directions) %></h3>
+        <% unless @venue.minimap.blank? %>
+        <%= image_tag @venue.minimap, :class => 'minimap' %>
+        <% end %>
+        <% if I18n.locale == :en %>
+          <% unless @venue.en_directions.blank? %>
+            <p><%= @venue.en_directions.html_safe %></p>
+          <% else %>
+            <p><%= t(:no_directions)%></p>
+          <% end %>
+        <% else %>
+          <% unless @venue.ko_directions.blank? %>
+            <p><%= @venue.ko_directions.html_safe %></p>
+          <% else %>
+            <p><%= t(:no_directions) %></p>
+          <% end %>
+        <% end %>
+      </div>
       
     </div>
-    <div class="col-sm-5 avatar">
-      
-        <%= image_tag (@venue.avatar :medium) %>
-    </div>
+    
   </div><!--row-->
   <br>
   <div class="row">
@@ -70,13 +99,7 @@
           <p>Sorry, no bio for this venue yet</p>
         <% end %>
         
-        <!-- Direction -->
-        <h3><%= t(:directions) %></h3>
-        <% unless @venue.en_directions.blank? %>
-          <p><%= @venue.en_directions.html_safe %></p>
-        <% else %>
-          <p><%= t(:no_directions)%></p>
-        <% end %>
+        
       <% else %>
       <!-- KOREAN -->
         <!-- Bio -->
@@ -90,13 +113,7 @@
             <p><%= t(:no_ko_bio) %></p>
           <% end %>
         <% end %>
-        <!-- Direction -->
-        <h3><%= t(:directions) %></h3>
-        <% unless @venue.ko_directions.blank? %>
-          <p><%= @venue.ko_directions.html_safe %></p>
-        <% else %>
-          <p><%= t(:no_directions) %></p>
-        <% end %>
+        
       <% end %>
     </div>
     
@@ -118,8 +135,9 @@
   </div>
 
   <div class="row">
-      <%= render 'shared/socialshare' %>
-    </div> <!-- social share -->
+    <h3><%= t(:share) %></h3>
+    <%= render 'shared/socialshare' %>
+  </div> <!-- social share -->
   
   <% unless @venue.latitude.blank? %>
   <script type="text/javascript">
@@ -138,11 +156,6 @@
   <p>We don't have the address for this venue yet!</p>
   <% end %>
   
-  
-  <% @venue.venue_cities.each do |venue_city| %>
-  <p><%= t(:city) %> <%= link_to "#{venue_city.city.en_name}"+"-"+"#{venue_city.city.ko_name}", city_path(venue_city.city.en_name) %> 
-    <% end %>
-  </p>
 </div>
 <% if current_user && current_user.venue_managers.where(venue_id: @venue.id).count == 0 %>
 <p><%= link_to t(:manager_request), venue_managers_path(venue_id: @venue.id), method: 'post' %>.</p>
