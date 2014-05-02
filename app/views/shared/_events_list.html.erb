@@ -5,8 +5,10 @@
     <div class="row-fluid">
       <div class="info col-sm-6 event-color-<%= event_color %>">
         <div class="avatar"><%= image_tag event.avatar.url(:medium) %></div>
-        <div class="">
-          <h4><%= event.date.strftime("%Y/%m/%d") %> <span class="event-time"><%= event.time %></span></h4>
+        <% unless event.date.blank? %>
+          <div class="">
+            <h4><%= event.date.strftime("%Y/%m/%d") %> <span class="event-time"><%= event.time %></span></h4>
+          <% end %>
           <h4><%= link_to event.name, event_path(event) %></h4>
           <% unless event.venue == nil %>
           <h4><%= event.venue.name %></h4>
