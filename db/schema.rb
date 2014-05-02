@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415053900) do
+ActiveRecord::Schema.define(version: 20140502042827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_trgm"
 
   create_table "band_genres", force: true do |t|
     t.integer  "band_id"
@@ -317,6 +316,16 @@ ActiveRecord::Schema.define(version: 20140415053900) do
 
   add_index "venue_cities", ["city_id"], name: "index_venue_cities_on_city_id", using: :btree
   add_index "venue_cities", ["venue_id"], name: "index_venue_cities_on_venue_id", using: :btree
+
+  create_table "venue_fans", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "venue_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "venue_fans", ["user_id"], name: "index_venue_fans_on_user_id", using: :btree
+  add_index "venue_fans", ["venue_id"], name: "index_venue_fans_on_venue_id", using: :btree
 
   create_table "venue_managers", force: true do |t|
     t.integer  "user_id"

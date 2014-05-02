@@ -25,6 +25,7 @@ DoIndie::Application.routes.draw do
     resources :bands, :venues, :events, :posts, :categories
     resources :messages, only: [:index, :create]
     resources :user_fans, only: [:create, :destroy]
+    resources :venue_fans, only: [:create, :destroy]
     resources :event_bands, only: [:create, :destroy]
     resources :event_venues, only: [:create, :destroy]
     resources :band_managers, only: [:create, :destroy]

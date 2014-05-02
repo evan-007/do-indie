@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   has_many :bands
   has_many :events
   has_many :venues
+  has_many :venue_fans, dependent: :destroy
+  has_many :liked_venues, through: :venue_fans, source: :venue
 
   extend FriendlyId
   friendly_id :friendify, use: :slugged
