@@ -11,6 +11,13 @@
 		<%= t(:event_name_note) %>
 	</p><br />
 
+	<% unless @event.avatar.blank? %>
+		<p>
+			Current image:<br/>
+			<%= image_tag(@event.avatar :medium) %>
+		</p>
+	<% end %>
+
 	<p><%= f.label t(:event_poster) %></p>
 	<p><%= f.file_field :avatar %></p>
 	<p><%= t(:event_poster_note) %></p>

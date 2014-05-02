@@ -9,6 +9,13 @@
 </p>
 
 <p>
+  <% unless @band.avatar.blank? %>
+  Current image:<br/>
+  <%= image_tag(@band.avatar :medium) %>
+  <% end %>
+</p>
+
+<p>
   <%= f.label t(:band_image) %>
   <%= f.file_field :avatar %>
   <% t(:band_image_note)%>

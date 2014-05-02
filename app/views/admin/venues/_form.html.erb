@@ -3,6 +3,13 @@
 	<%= f.text_field :name, class: "form-control half" %><br />
 	<%= f.label t(:venue_name_ko) %>
 	<%= f.text_field :ko_name, class: "form-control half" %><br />
+
+		<% unless @venue.avatar.blank? %>
+		<p>
+			Current image:<br/>
+			<%= image_tag(@venue.avatar :medium) %>
+		</p>
+	<% end %>
 	<p>
 		<%= f.label t(:venue_image) %>
 		<%= f.file_field :avatar %>
@@ -53,11 +60,18 @@
 	<%= f.text_area :address, class: "form-control half" %><br />
 	<p><%= t(:one_language) %></p>
 	
+
+	<% unless @venue.minimap.blank? %>
+		<p>
+			Current image:<br/>
+			<%= image_tag(@venue.minimap :medium) %>
+		</p>
+	<% end %>
 	
 
 	
 	<%= f.label t(:map) %>
-	<%= f.file_field :small_map %><br />
+	<%= f.file_field :minimap %><br />
 	<%= t(:map_note)%><br />
 	<% if @venue.id != nil %>
 		<p><%= t(:venue_cities)%> <% @venue.cities.each do |city| %>
