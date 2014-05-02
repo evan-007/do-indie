@@ -216,6 +216,45 @@
 		
 	</div>
 </div>
+<div class="row">
+		<div class="col-md-4">
+		<% unless current_user.liked_venues.blank? %>
+		<h2>Venues you like</h2>
+			<div id="bands-grid">
+				<div class="grid-tiles">
+					<% current_user.liked_venues.each do |fan| %>
+						<% venue = fan %>
+							<%= div_for(venue, class: "list bands-grid-item tile") do %>
+								<div class="thumbnail">
+									<%= image_tag venue.avatar.url(:medium) %>
+									<div class="caption">
+										<h3><%= link_to venue.name, venue_path(venue) %></h3>
+										<h4><%= link_to venue.korean_name, venue_path(venue) %></h4>
+										<div class="fanbadge small">
+											Fans
+								      <span class="badge"><%= venue.fans.count %></span>
+								    </div>
+									    
+									  <div class="likebtn">			
+									  	<% if current_user && current_user.venue_fans.where(venue_id: venue.id).count != 0 %>
+									  		<%= link_to "<i class=\"fa fa-thumbs-up\"></i> Unlike".html_safe, venue_fan_path(id: venue.id), method: 'delete' %>
+										  <% elsif current_user %>
+									  		<%= link_to "<i class=\"fa fa-thumbs-o-up\"></i> Like".html_safe, venue_fans_path(id: venue.id), method: 'post' %>
+											<% else %>
+												<%= link_to t(:signup), new_user_registration_path %> 
+											<% end %>
+										</div>
+									</div>
+								</div>
+							<% end %> <!--div_for-->
+					<% end %>
+				</div>
+			</div>
+		<% end %><!-- bands like -->
+
+		
+	</div>
+</div>
 
 
 
