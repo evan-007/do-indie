@@ -2,16 +2,18 @@
   <h1 class="page-title"><%= @venue.name %></h1>
   <h2><%= @venue.korean_name %></h2>
   <div class="row">
-    <p>Fans: <%= @venue.fans %></p>
-    <div class="likebtn">			
-	   	<% if current_user && current_user.liked_venues.where(id: @venue.id).count != 0 %>
-		    <%= link_to "<i class=\"fa fa-thumbs-up\"></i> Unlike".html_safe, venue_fan_path(id: @venue.id), method: 'delete' %>
-			<% elsif current_user %>
-      <%= link_to "<i class=\"fa fa-thumbs-o-up\"></i> Like".html_safe, venue_fans_path(id: @venue.id), method: 'post' %>
-			<% else %>
-				<%= link_to t(:signup), new_user_registration_path %> 
-			<% end %>
-		</div>
+    <div class="col-sm-1">
+      <p>Fans: <%= @venue.fans.count %></p>
+      <div class="likebtn">			
+  	   	<% if current_user && current_user.liked_venues.where(id: @venue.id).count != 0 %>
+  		    <%= link_to "<i class=\"fa fa-thumbs-up\"></i> Unlike".html_safe, venue_fan_path(id: @venue.id), method: 'delete' %>
+  			<% elsif current_user %>
+        <%= link_to "<i class=\"fa fa-thumbs-o-up\"></i> Like".html_safe, venue_fans_path(id: @venue.id), method: 'post' %>
+  			<% else %>
+  				<%= link_to t(:signup), new_user_registration_path %> 
+  			<% end %>
+  		</div>
+    </div>
     <div class="col-sm-7 vcard">
       <table class="table table-hover">
       <% unless @venue.phone == nil %>
