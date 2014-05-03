@@ -37,6 +37,10 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def start_time
+  	self.date
+  end
+
 	paginates_per 100 #fix pagination
 	accepts_nested_attributes_for :event_bands, :venue, :bands
 	has_attached_file :avatar, :styles => { :large => "900x900>", :medium => "300x300#", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"

@@ -14,6 +14,7 @@ DoIndie::Application.routes.draw do
     get "/genres/:name", to: "genres#show", as: "genre"
     get "/cities/:en_name", to: "cities#show", as: "city"
     get "/events/past", to: "events#past", as: "past_events"
+    get '/events/calendar', to: 'events#calendar', as: "calendar"
     get "contact", to: "messages#index", as: "contact"
     get "photo", to: "pages#photo", as: "photo"
     get "/pages/jplayer", to: "pages#jplayer", as: "jplayer"

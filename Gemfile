@@ -34,6 +34,8 @@ gem 'nprogress-rails'
 
 gem 'bootstrap-datepicker-rails'
 
+gem "simple_calendar", "~> 0.1.10"
+
 #for mailchimp api
 gem 'gibbon'
 

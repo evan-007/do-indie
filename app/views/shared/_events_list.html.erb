@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <div class="bands col-sm-6 event-color-<%= event_color %>">
+      <div class="bands col-sm-4 event-color-<%= event_color %>">
         <% if event.event_bands.count != 0 %>
         <p>
           <% event.event_bands.each do |eventband| %>
@@ -37,4 +37,3 @@
   </div>
   <% end %>
 </div><!--row-->
-
