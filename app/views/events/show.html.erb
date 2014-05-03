@@ -30,12 +30,14 @@
           <td><%= t(:sold_out) %></td>
         </tr>
         <% end %>
-        <% if @event.venue %>
-        <tr>
-          <td><%= t(:city) %></td>
-          <td><%= @event.venue.city_en %></td>
-        </tr>
+        <% unless @event.city.blank? %>
+          <tr>
+            <td><%= t(:city) %></td>
+            <td><%= @event.city.en_name %> | <%= @event.city.ko_name %></td>
+          </tr>
         <% end %>
+ 
+
       </table>
       
       <h2><%= t(:venue) %></h2>
