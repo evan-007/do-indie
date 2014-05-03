@@ -39,6 +39,9 @@ gem "simple_calendar", "~> 0.1.10"
 #for mailchimp api
 gem 'gibbon'
 
+#nested forms
+gem 'cocoon'
+
 #for deploying
 gem 'capistrano', '~> 3.0.1'
 gem 'capistrano-rails', '~> 1.1.0'

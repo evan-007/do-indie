@@ -76,14 +76,14 @@
 </p>
 
 <p>
-  <%= f.fields_for :youtubes do |builder| %>
+  <%= f.fields_for :youtubes do |youtube| %>
     <fieldset>
-      <%= builder.label :link %><br />
-      <%= builder.text_field :link %>
-      <%= builder.check_box :_destroy %>
-      <%= builder.label :_destroy, "Remove video" %>
+      <%= render 'youtube_fields', :f => youtube %>
     </fieldset>
   <% end %>
+  <div class="links">
+    <%= link_to_add_association 'Add video', f, :youtubes, class: "btn btn-sm btn-primary" %>
+  </div>
 </p>
 
 
