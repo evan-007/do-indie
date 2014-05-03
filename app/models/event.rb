@@ -59,7 +59,7 @@ class Event < ActiveRecord::Base
 
 	def self.admin_search(search, page_number)
 	    if search
-				    	self.approved.where("name ilike :q or ko_name ilike :q", q: "%#{search}%").order(
+				    	self.approved.where("date ilike :q", q: "%#{search}%").order(
 	      	approved: :asc
 		    ).page page_number
 	    else
