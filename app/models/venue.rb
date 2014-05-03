@@ -6,11 +6,10 @@ class Venue < ActiveRecord::Base
 	has_many :events, through: :event_venues
 	has_many :venue_managers
 	has_many :users, through: :venue_managers
-	has_many :venue_cities
-	has_many :cities, through: :venue_cities
   has_many :venue_fans, dependent: :destroy
   has_many :fans, through: :venue_fans, source: :user 
 	belongs_to :user
+	belongs_to :city
 	scope :approved, -> { where(approved: true) }
 	scope :unapproved, -> { where(approved: false) }
 	scope :localized, -> { where.not(latitude: nil) }

@@ -43,13 +43,8 @@ class VenuesController < ApplicationController
   end
 
   def create
-    #refactor to use nested params!
     @venue = current_user.venues.build(venue_params)
     if @venue.save
-      @venue.venue_cities.create(city_id: params[:city])
-      @city = City.new(en_name: params[:new_city])
-      @city.save
-      @venue.venue_cities.create(city_id: @city.id)
       flash[:notice] = t(:venue_after_submit)
       redirect_to venues_path
     else
@@ -69,10 +64,6 @@ class VenuesController < ApplicationController
 
   def update
     if @venue.update(venue_params)
-      @venue.venue_cities.create(city_id: params[:city])
-      @city = City.new(en_name: params[:new_city])
-      @city.save
-      @venue.venue_cities.create(city_id: @city.id)
       flash[:notice] = "Venue updated!"
       redirect_to @venue
     else
@@ -96,7 +87,7 @@ class VenuesController < ApplicationController
         :twitter, :cafe, :website,
         :photo, :small_map, :email,
         :en_directions, :ko_directions,
-        :minimap )
+        :minimap, :city_id )
   end
 
   def get_cities

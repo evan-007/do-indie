@@ -50,7 +50,7 @@ class Admin::VenuesController < Admin::BaseController
     :twitter, :cafe, :website,
     :photo, :minimap, :email,
     :en_directions, :ko_directions,
-    :approved
+    :approved, :city_id
     )
   end
 

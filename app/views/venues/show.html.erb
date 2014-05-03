@@ -151,10 +151,13 @@
   <% end %>
   
   
-  <% @venue.venue_cities.each do |venue_city| %>
-  <p><%= t(:city) %> <%= link_to "#{venue_city.city.en_name}"+"-"+"#{venue_city.city.ko_name}", city_path(venue_city.city.en_name) %> 
-    <% end %>
-  </p>
+  <% unless @venue.city.blank? %>
+    <p>
+      <%= t(:city) %> <%= link_to "#{venue.city.en_name}"+"-"+"#{venue.city.ko_name}", city_path(venue_city.city.en_name) %> 
+    </p>
+  <% end %>
+
+
 </div>
 <% if current_user && current_user.venue_managers.where(venue_id: @venue.id).count == 0 %>
 <p><%= link_to t(:manager_request), venue_managers_path(venue_id: @venue.id), method: 'post' %>.</p>

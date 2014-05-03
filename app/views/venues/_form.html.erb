@@ -57,21 +57,23 @@
 	<%= f.file_field :minimap %><br />	
 	<%= t(:map_note)%><br />
 	
-	<% if @venue.id != nil %>
-		<p><%= t(:venue_cities)%> <% @venue.cities.each do |city| %>
-			<%= city.en_name %> - <%= city.ko_name %></p>
-		<% end %>
-	<% end %>
-	<%= label_tag t(:city) %>
-    <%= select_tag :city, options_for_select(@cities.collect { |city| [city.en_name, city.id] }.insert(0, '')) %><br />
-    <p>t(:unlisted_city)</p>
-    <%= label_tag :new_city %>
-    <%= text_field_tag :new_city %><br />
+	<% if I18n.locale == :en %>
+	  <p>
+	    <%= f.label t(:city) %>
+	    <%= f.collection_select :city_id, City.order(:en_name), :id, :en_name %>
+	  </p>
+  <% else %>
+		<p>
+			<%= f.label t(:city) %>
+			<%= f.collection_select :city_id, City.order(:ko_name), :id, :ko_name %>
+		</p>
+  <% end %>
 	<%= f.submit %>
 <% end %>
 
 
 <script>
-  $(document).ready(function() { $('#city').chosen({width: "50%"}); });
+  $(document).ready(function() { $('#venue_city_id').chosen({width: "50%"}); });
+
   
 </script>
