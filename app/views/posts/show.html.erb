@@ -32,11 +32,13 @@
       </p>
     </div><!--meta info-->
 
-    <% unless @post.slide.image.url.blank? %>
-      <div class="container-fluid">
-          <%= image_tag @post.slide.image.url %>
-      </div>
-    <% end %><!--slideImage-->
+    <% unless @post.slide.blank? %>
+      <% unless @post.slide.image.url.blank? %>
+        <div class="container-fluid">
+            <%= image_tag @post.slide.image.url %>
+        </div>
+      <% end %><!--slideImage-->
+    <% end %>
 
     <div class="container-fluid">
       <% if I18n.locale == :en %>
@@ -97,10 +99,12 @@
 
   <div class="col-sm-3 sidebar">
     <%= render 'shared/categories' %>
+    <% @ads.each do |ad| %>
+      <%= div_for(ad, class: 'ad') %>
+      <%= link_to(image_tag(ad.image.url(:medium)), ad.link) %>
+    <% end %>
   </div><!--sidebar-->
 </div>
-
-
 
 
 

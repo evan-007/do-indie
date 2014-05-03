@@ -1,0 +1,19 @@
+<%= form_for [:admin, @ad] do |f| %>
+<p>
+	Note: use a full url like http://doindie.co.kr/some-event-name
+	<%= f.label :link %>
+	<%= f.text_field :link %>
+</p>
+
+<% unless @ad.image.blank? %>
+	<p>
+		Current image:
+		<%= image_tag @ad.image.url(:thumb) %>
+	</p>
+<% end %>
+<p>
+	<%= f.label :image %>
+	<%= f.file_field :image %>
+</p>
+	<%= f.submit %>
+<% end %>

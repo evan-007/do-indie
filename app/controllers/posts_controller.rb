@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_filter :blogger!, only: [:admin, :edit, :update, :new, :destroy, :create]
   before_action :get_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_ads, only: [:show, :index]
   def index
     if params[:tag]
       @posts = Post.published.tagged_with(params[:tag]).order(created_at: :desc)
@@ -80,5 +81,9 @@ class PostsController < ApplicationController
         flash[:alert] = "Sorry, bloggers only"
         redirect_to blog_path
       end
+    end
+
+    def set_ads
+      @ads = Ad.all
     end
 end
