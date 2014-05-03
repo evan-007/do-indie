@@ -83,10 +83,10 @@
 
 	<hr>
 	<%= f.label t(:event_details_en) %>
-	<%= f.text_area :info, class: "form-control half" %><br />
+	<%= f.text_area :info, rows: 10, class: "form-control mid" %><br />
 
 	<%= f.label t(:event_details_ko) %>
-	<%= f.text_area :info_ko, class: "form-control half" %><br />
+	<%= f.text_area :info_ko, rows: 10, class: "form-control mid" %><br />
 	<p><%= t(:event_details_notes)%></p><br>
 	
 	<%= f.submit nil, class: "btn btn-primary" %>
