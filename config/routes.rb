@@ -34,7 +34,7 @@ DoIndie::Application.routes.draw do
     resources :pages, only: [:edit, :update]
   
     
-    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }
 
     namespace :admin do
       root "base#index"
