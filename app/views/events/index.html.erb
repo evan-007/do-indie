@@ -17,7 +17,7 @@
     <%= form_tag events_path, method: :get, class: 'form-inline' do %>
     <div>
       <div class="input-group col-xs-12">
-      	<%= text_field_tag :query, params[:query], placeholder: "Enter an event", class: "form-control date input-sm" %>
+      	<%= text_field_tag :query, params[:query], placeholder: "Search", class: "form-control date input-sm" %>
       <span class="input-group-btn">
         <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
       </span>
