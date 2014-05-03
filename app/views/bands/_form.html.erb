@@ -77,8 +77,12 @@
 
 <p>
   <%= f.fields_for :youtubes do |builder| %>
-    <%= builder.label :link %>
-    <%= builder.text_field :link %>
+    <fieldset>
+      <%= builder.label :link %><br />
+      <%= builder.text_field :link %>
+      <%= builder.check_box :_destroy %>
+      <%= builder.label :_destroy, "Remove video" %>
+    </fieldset>
   <% end %>
 </p>
 

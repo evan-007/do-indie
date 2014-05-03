@@ -20,7 +20,7 @@ class BandsController < ApplicationController
       redirect_to new_user_session_path
     else
       @band = current_user.bands.build
-      4.times { @band.youtubes.build }
+      # 4.times { @band.youtubes.build }
     end
   end
   
@@ -104,7 +104,7 @@ class BandsController < ApplicationController
       :ko_bio,
       :avatar,
       genre_ids: [],
-      youtubes_attributes: [:link]
+      youtubes_attributes: [:link, :_destroy, :id]
       )
     end
     
