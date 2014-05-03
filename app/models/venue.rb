@@ -32,7 +32,7 @@ class Venue < ActiveRecord::Base
     if venues.empty?
   		[{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
   	else
-      venues
+      venues << {id: "<<<#{query}>>>", name: "New: \"#{query}\""}
   	end
   end
   
