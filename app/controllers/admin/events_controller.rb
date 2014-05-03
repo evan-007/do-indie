@@ -70,7 +70,8 @@ class Admin::EventsController < Admin::BaseController
 	  		:contact, 
 	  		:price,
 	  		:info,
-	  		:info_ko, 
+	  		:info_ko,
+        :city_id, 
 	  		:venue_id, 
 	  		:date,
 	  		band_ids: []

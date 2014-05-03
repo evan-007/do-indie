@@ -11,6 +11,18 @@
 		<%= t(:event_name_note) %>
 	</p><br />
 
+	<% if I18n.locale == :en %>
+	  <p>
+	    <%= f.label t(:city) %>
+	    <%= f.collection_select :city_id, City.order(:en_name), :id, :en_name %>
+	  </p>
+  <% else %>
+		<p>
+			<%= f.label t(:city) %>
+			<%= f.collection_select :city_id, City.order(:ko_name), :id, :ko_name %>
+		</p>
+  <% end %>
+<hr>
 	<% unless @event.avatar.blank? %>
 		<p>
 			Current image:<br/>
@@ -108,6 +120,7 @@
 <script>
   $(document).ready(function() { $('#event_band_ids').chosen({width: "50%"}); });
   $(document).ready(function() { $('#event_venue_id').chosen({width: "50%"}); });
+  $(document).ready(function() { $('#event_city_id').chosen({width: "50%"}); });
   $(document).ready(function() { 
   	$('#new_bands').hide(); 
   });
