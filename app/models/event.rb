@@ -1,21 +1,27 @@
 class Event < ActiveRecord::Base
 	validates :name, presence: true
-	extend FriendlyId
-	friendly_id :name, use: :slugged
+	
 	belongs_to :user
 	belongs_to :venue
+	belongs_to :city
+
 	has_many :event_bands
 	has_many :bands, through: :event_bands
 	has_many :event_managers, dependent: :destroy
 	has_many :users, through: :event_managers
+
 	scope :upcoming, -> { where(["date > ?", Date.yesterday]) }
 	scope :past, -> { where(["date < ? ", Date.today]) }
 	scope :approved, -> { where(approved: true) }
 	scope :unapproved, -> { where(approved: false) }
+
 	after_save :approval_notification, if: :approved_changed?
 	after_create :make_manager
+	
 	accepts_nested_attributes_for :bands
 	accepts_nested_attributes_for :venue
+	extend FriendlyId
+	friendly_id :name, use: :slugged
 
   attr_reader :band_tokens, :venue_tokens
 

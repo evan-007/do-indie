@@ -15,6 +15,18 @@
 	<p><%= f.file_field :avatar %></p>
 	<p><%= t(:event_poster_note) %></p>
 
+	<% if I18n.locale == :en %>
+	  <p>
+	    <%= f.label t(:city) %>
+	    <%= f.collection_select :city_id, City.order(:en_name), :id, :en_name %>
+	  </p>
+  <% else %>
+		<p>
+			<%= f.label t(:city) %>
+			<%= f.collection_select :city_id, City.order(:ko_name), :id, :ko_name %>
+		</p>
+  <% end %>
+
 	<hr>
 
 	<div id="en_bands">
@@ -96,6 +108,7 @@
 <script>
   $(document).ready(function() { $('#event_band_ids').chosen({width: "50%"}); });
   $(document).ready(function() { $('#event_venue_id').chosen({width: "50%"}); });
+  $(document).ready(function() { $('#event_city_id').chosen({width: "50%"}); });
   $(document).ready(function() { 
   	$('#new_bands').hide(); 
   });
