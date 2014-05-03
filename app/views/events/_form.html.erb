@@ -141,7 +141,7 @@
   
   $(document).ready(function() {
 		$('#en_venue').find('#event_venue_tokens').tokenInput("/venues.json", { theme: "facebook",
-			prePopulate: [$('#event_venue_tokens').data('load')]}
+			tokenLimit: 1, prePopulate: [$('#event_venue_tokens').data('load')]}
 			);
 	});
 
