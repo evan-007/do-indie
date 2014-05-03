@@ -6,7 +6,10 @@ class Post < ActiveRecord::Base
 	has_many :tagged_bands
 	has_many :bands, through: :tagged_bands
 	has_one :slide
+
 	scope :published, -> { where(published: true) }
+	scope :unpublished, -> { where(published: false) }
+	
 	extend FriendlyId
 	friendly_id :title, use: :slugged
 	accepts_nested_attributes_for :slide, allow_destroy: true
