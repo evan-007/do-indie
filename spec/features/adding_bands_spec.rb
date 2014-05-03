@@ -13,25 +13,14 @@ feature "Adding bands" do
     fill_in 'band[korean_name]', with: 'ㅁㄴㅇㄹ'
     fill_in 'band[contact]', with: "010-1234-5678"
     fill_in 'band[soundcloud]', with: "https://soundcloud.com/lukefair"
-    select @genre.name, from: "band_genre_ids"
+    fill_in "band_genre_tokens", with: @genre.id
     click_button('Create Band')
     expect(page).to have_content("Thanks")
     expect(page).to have_content @genre.name
   end
  
 
-  scenario "Authorized users can add bands with a new genre" do
-    sign_in @user
-    visit new_band_en_path
-    fill_in 'band[name]', with: "Psy"
-    fill_in 'band[korean_name]', with: 'ㅁㄴㅇㄹ'
-    fill_in 'band[contact]', with: "010-1234-5678"
-    fill_in "new_genre", with: "Jazz"
-    fill_in 'band[soundcloud]', with: "https://soundcloud.com/lukefair"
-    click_button('Create Band')
-    expect(page).to have_content("Thanks")
-    expect(page).to have_content("Jazz")
-  end
+  scenario "Authorized users can add bands with a new genre"
     
   scenario "Non-authenticated users can't add bands" do
     visit new_band_en_path

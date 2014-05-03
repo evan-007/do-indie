@@ -196,7 +196,7 @@ task :venue_cities => :environment do
   @venues = Venue.all
   @venues.each do |venue|
     unless venue.city_en == nil && venue.city_ko == nil
-      venue.venue_cities.create(city_id: City.find_by(en_name: venue.city_en).id)
+      venue.update(city: City.find_by(en_name: venue.city_en).id)
     end
   end
 end

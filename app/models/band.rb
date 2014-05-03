@@ -12,11 +12,14 @@ class Band < ActiveRecord::Base
 	has_many :youtubes
 	belongs_to :user
 	accepts_nested_attributes_for :youtubes, allow_destroy: true
+	accepts_nested_attributes_for :genres
 	validates :name, presence: true, uniqueness: true
 	scope :approved, -> { where(approved: true) }
 	scope :unapproved, -> { where(approved: false) }
 	after_save :approval_notification, if: :approved_changed?
 	after_create :make_manager
+
+	attr_reader :genre_tokens
 
 
 	paginates_per 20
@@ -41,6 +44,10 @@ class Band < ActiveRecord::Base
 	def fans
 		self.user_fans.where(band_id: self.id).count
 	end 
+
+	def genre_tokens=(tokens)
+		self.genre_ids = Genre.ids_from_tokens(tokens)
+	end
 
 
 	
