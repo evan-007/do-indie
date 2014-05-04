@@ -164,7 +164,7 @@
     <% elsif current_user && current_user.event_managers.where(event_id: @event.id).count != 0 %>
     <p><%= t(:pending_approval) %></p>
     <% else %>
-    <p><%= t(:event_request) %> <%= t(:login_request) %><p>
+    <p><%= t(:login_request) %><p>
     <% end %>
     <% if current_user && current_user.admin == true %>
     <%= link_to t(:event_edit), edit_event_path(@event) %>
