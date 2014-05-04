@@ -130,7 +130,7 @@ en:
 
   #venue#new
   non_member_note: "To submit venue profiles, sign up for a free doindie account. After joining, you will be able to add venue information."
-  venue_pre_form: "Many venues have been pre added to the doindie database. Before entering a new venue profile, please take some time to make sure it does not already exist. If your venue has already been added, and you wish to claim control of the profile (and thus be able to edit it), please follow these steps: 1) Sign up with DoIndie. 2) Contact us with your DoIndie username(s) & venue name. 3) We will notify you once your profile has been activated. If you want to add multiple users to a profile, simply send all the DoIndie user names you want added."
+  venue_pre_form: "Many venues have already been pre added to the doindie database. Before entering a new venue profile, please take some time to make sure it does not already exist. If your venue has already been added, and you wish to claim control of the profile, please go to the venue’s profile page and at the bottom of the page click ‘Request manager status’.  Alternatively, simply create a new profile and we will delete the old one."
   venue_name_en: "Venue Name (English):"
   venue_name_ko: "Venue Name (Korean):"
   venue_image: "Venue Image:"
@@ -149,8 +149,10 @@ en:
   written_directions_note: "NOTE: Please provide detailed written directions to help people locate your venue."
   map_note: "NOTE: Please upload a map to help people locate your venue."
   address: "Address:"
+  new_city_note: "If the city is not listed, please note it in the form above"
   one_language: "Enter address information in either English or Korea, not both."
   venue_after_submit: "Thanks for submitting your venue to doindie. It is currently awaiting review by our moderators  (To avoid spam / non music related profiles appearing on doinide we check all submissions individually before publishing them to the site). Please allow up to 24 hours before your venue profile goes live on doindie."
+  full_link: "Please enter the full url: i.e http://www.facebook.com/doindie.kr"
 
   #band#new
 

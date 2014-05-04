@@ -17,26 +17,36 @@
 		<%= f.text_area :ko_bio, class: 'form-control half' %>
 		<%= t(:venue_bio_note) %>
 	</p>
-	<%= f.label t(:website) %>
-	<%= f.text_field :website, class: "form-control half" %><br />
+	<p>
+		<%= f.label t(:website) %>
+		<%= f.text_field :website, class: "form-control half" %>
+		<%= t(:full_link) %>
+	</p>
 
-	<%= f.label t(:facebook) %>
-	<%= f.text_field :facebook, class: "form-control half" %><br />
-	<%= t(:facebook_note)%><br />
+	<p>
+		<%= f.label t(:facebook) %>
+		<%= f.text_field :facebook, class: "form-control half" %>
+		<%= t(:facebook_note)%>
+	</p>
+	<p>
+		<%= f.label t(:twitter) %>
+		<%= f.text_field :twitter, class: "form-control half" %>
+		<%= t(:twitter_note)%>
+	</p>
+	<p>
+		<%= f.label t(:cafe) %>
+		<%= f.text_field :cafe, class: "form-control half" %>
+		<%= t(:cafe_note)%>
+	</p>
 
-	<%= f.label t(:twitter) %>
-	<%= f.text_field :twitter, class: "form-control half" %><br />
-	<%= t(:twitter_note)%><br />
-	
-	<%= f.label t(:cafe) %>
-	<%= f.text_field :cafe, class: "form-control half" %><br />
-	<%= t(:cafe_note)%><br />
-
-	<%= f.label t(:email) %>
-	<%= f.text_field :email, class: "form-control half" %><br />
-
-	<%= f.label t(:venue_phone) %>
-	<%= f.text_field :phone, class: "form-control half" %><br />
+	<p>
+		<%= f.label t(:email) %>
+		<%= f.text_field :email, class: "form-control half" %>
+	</p>
+	<p>
+		<%= f.label t(:venue_phone) %>
+		<%= f.text_field :phone, class: "form-control half" %>
+	</p>
 
 	<p>
 		<%= f.label t(:en_directions) %>
@@ -48,14 +58,16 @@
 		<%= f.text_area :ko_directions, class: "form-control half" %>
 		<%= t(:written_directions_note)%>
 	</p>
-
-	<%= f.label t(:address) %>
-	<%= f.text_area :address, class: "form-control half" %><br />
-	<p><%= t(:one_language) %></p>
-	
-	<%= f.label t(:map) %>
-	<%= f.file_field :minimap %><br />	
-	<%= t(:map_note)%><br />
+	<p>
+		<%= f.label t(:address) %>
+		<%= f.text_area :address, class: "form-control half" %>
+		<%= t(:one_language) %>
+	</p>
+	<p>
+		<%= f.label t(:map) %>
+		<%= f.file_field :minimap %>
+		<%= t(:map_note)%>
+	</p>
 	
 	<% if I18n.locale == :en %>
 	  <p>
@@ -68,6 +80,7 @@
 			<%= f.collection_select :city_id, City.order(:ko_name), :id, :ko_name %>
 		</p>
   <% end %>
+  <p><%= t(:new_city_note) %></p>
 	<%= f.submit %>
 <% end %>
 
