@@ -131,7 +131,6 @@
   </div><!-- /row -->
 
   <div class="row-fluid">
-    <h2><%= t(:event_more_info) %></h2>
     <% if I18n.locale == :en %>
     <% unless @event.info.blank? %>
     <p><%= @event.info %></p>
@@ -150,7 +149,6 @@
   </div>
 
   <div class="row-fluid">
-    <h2><%= t(:share) %></h2>
     <%= render 'shared/socialshare' %>
   </div>
 
@@ -162,17 +160,14 @@
     <% if current_user && current_user.event_managers.where(event_id: @event.id).count == 0 %>
     <p><%= link_to t(:manager_request), event_managers_path(event_id: @event.id), method: 'post' %>.</p>
     <% elsif current_user && current_user.event_managers.where(event_id: @event.id).count != 0 && current_user.event_manager?(@event.id) == true %>
-    <p>You're a manager! <%= link_to "Edit this event", edit_event_path(@event) %></p>
+    <p><%= link_to t(:event_edit), edit_event_path(@event) %></p>
     <% elsif current_user && current_user.event_managers.where(event_id: @event.id).count != 0 %>
     <p><%= t(:pending_approval) %></p>
     <% else %>
     <p><%= t(:event_request) %> <%= t(:login_request) %><p>
     <% end %>
     <% if current_user && current_user.admin == true %>
-    <%= link_to "Edit this event", edit_event_path(@event) %>
-    <% end %>
-    <% if current_user && @event.user == current_user %>
-    <%= link_to "Edit this event", edit_event_path(@event) %>
+    <%= link_to t(:event_edit), edit_event_path(@event) %>
     <% end %>
   </div>
 

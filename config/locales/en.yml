@@ -70,8 +70,9 @@ en:
   sold_out: "Sold Out"
   canceled: "Canceled"
   no_en_info: "English information not available."
-  share_event: "Share this event"
+  share_event: "Create Text Version"
   share_me: "Copy and paste the show data below to your blog/facebook/cafe"
+  event_edit: "Edit this event"
 
   #venues#show
   venue_phone: "Venue Phone:"
