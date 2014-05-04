@@ -85,6 +85,7 @@ en:
   website: "Website"
   cafe: "Cafe"
   no_directions: "Written directions not available, please refer to the maps above or alternatively contact the venue directly."
+  venue_edit: "Edit this venue"
 
   #bands#show
   bandcamp: "Bandcamp" 
