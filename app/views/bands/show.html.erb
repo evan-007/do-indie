@@ -155,16 +155,16 @@
   <% if current_user && current_user.band_managers.where(band_id: @band.id).count == 0 %>
   <p><%= link_to t(:manager_request), band_managers_path(band_id: @band.id), method: 'post' %>.</p>
   <% elsif current_user && current_user.band_managers.where(band_id: @band.id).count != 0 && current_user.approved_manager?(@band.id) == true %>
-  <p>You're a manager! <%= link_to "Edit this band", edit_band_path(@band) %></p>
+  <p><%= link_to t(:band_edit), edit_band_path(@band) %></p>
   <% elsif current_user && current_user.band_managers.where(band_id: @band.id).count != 0 %>
   <p><%= t(:pending_approval) %></p>
   <% else %>
-  <p><%= t(:band_request) %> <%= t(:login_request) %><p>
+  <p><%= t(:manager_request) %> <%= t(:login_request) %><p>
   <% end %>
   
   
   
   <% if current_user && current_user.admin == true %>
-  <%= link_to "Edit this band", edit_band_path(@band) %>
+  <%= link_to t(:band_edit), edit_band_path(@band) %>
   <% end %>
 </div>

@@ -94,6 +94,7 @@ en:
   genres:  "Genres"
   no_events: "No upcoming events."
   no_en_bio: "English profile not available."
+  band_edit: "Edit this band"
   
   #band#form
   new_genre: "Don't see the right genre? Add it below."
