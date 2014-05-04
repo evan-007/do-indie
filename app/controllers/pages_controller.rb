@@ -21,13 +21,17 @@ class PagesController < ApplicationController
   def photo
     @page = Page.first
   end
+
+  def winner
+    @page = Page.last
+  end
   
   def edit
-    @page = Page.first
+    @page = Page.find(params[:id])
   end
   
   def update
-    @page = Page.first
+    @page = Page.find(params[:id])
     if @page.update(page_params)
       flash[:notice] = "Updated the page"
       redirect_to photo_path

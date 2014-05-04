@@ -2,6 +2,5 @@
   <%= link_to "Update Contest", edit_page_path(@page), class: 'btn btn-lg btn-primary' %>
 <% end %>
 
-<% unless @page.body.blank? %>
-  <%= @page.body.html_safe %>
-<% end %>
+
+	<%= raw "#{@page.body}" %>

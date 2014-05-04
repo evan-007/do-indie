@@ -18,6 +18,7 @@ DoIndie::Application.routes.draw do
     get '/events/calendar', to: 'events#calendar', as: "calendar"
     get "contact", to: "messages#index", as: "contact"
     get "photo", to: "pages#photo", as: "photo"
+    get "winner", to: "pages#winner", as: "winner"
     get "/pages/jplayer", to: "pages#jplayer", as: "jplayer"
     get "/venues/map", to: "venues#map", as: "venues_map"
     get "/blog/admin", to: "posts#admin", as: "blog_admin"

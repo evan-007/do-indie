@@ -269,8 +269,10 @@ task :approve_all => :environment do
 end
 
 task create_page: :environment do
-  a = Page.new
-  a.save
+  2.times do
+    a = Page.new
+    a.save
+  end
 end
 
 #for heroku and ckeditor
