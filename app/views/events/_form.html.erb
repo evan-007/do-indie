@@ -54,6 +54,7 @@
 				<%= f.text_field :venue_tokens, data: {load: @event.venue.to_json } %>
 			<% end %>
 		</p>
+		<p><%= t(:venue_note) %></p>
 	</div>
 			
 
@@ -62,13 +63,14 @@
 	<%= f.label t(:start_date) %>
 	<%= f.text_field :date, class: "form-control half date" %><br />
 	<%= f.label t(:show_time) %>
-	<%= f.text_field :time, placeholder: "7:40pm", class: "form-control half" %><br />
+	<%= f.text_field :time, placeholder: "e.g. 7:40pm", class: "form-control half" %><br />
 
 	<%= f.label t(:event_contact) %>
 	<%= f.text_field :contact, class: "form-control half" %><br />
 
 	<%= f.label t(:facebook_event) %>
-	<%= f.text_field :facebook, class: "form-control half" %><br />
+	<%= f.text_field :facebook, class: "form-control half", placeholder: "e.g. https://www.facebook.com/events/1412674345611085" %><br />
+	<p><%= t(:facebook_event_note)%></p>
 	
 	<hr>
 
