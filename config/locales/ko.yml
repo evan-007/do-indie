@@ -10,7 +10,7 @@ ko:
   add_band: "밴드 추가"
   blog: "블로그"
   photos: "사진"
-  contact: "연락처"
+  footer_contact: "연락처"
   account: "회원가입"
   band_manager: "밴드 매니저"
   #_navigation_links.html.erb

@@ -528,17 +528,6 @@ body {
     width: 36px;
   }
 
-.social-footer a {
-    background-position: center center;
-    background-repeat: no-repeat;
-    color: #FFFFFF;
-    display: inline-block;
-    height: 36px;
-    text-indent: -9999px;
-    width: 36px;
-  }
-
-
 .socials li {
     display: inline;
     float: left;
@@ -604,6 +593,19 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.social-footer {
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+    display: inline-block;
+    height: 36px;
+    text-indent: -9999px;
+    width: 36px;
+    text-align: center;
+    background-color: #222222;
+    line-height: 3;
+  }
 
 /* gmaps zoom fix */
 .gmnoprint img { 
