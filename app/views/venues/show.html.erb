@@ -153,7 +153,7 @@
   
   <% unless @venue.city.blank? %>
     <p>
-      <%= t(:city) %> <%= link_to "#{venue.city.en_name}"+"-"+"#{venue.city.ko_name}", city_path(venue_city.city.en_name) %> 
+      <%= t(:city) %> <%= link_to "#{@venue.city.en_name}"+"-"+"#{@venue.city.ko_name}", city_path(@venue.city.en_name) %> 
     </p>
   <% end %>
 
