@@ -24,7 +24,7 @@
   		  	<%= div_for(post, class: "list posts-grid-item tile"+first_post) do %>
   		  		<div class="thumbnail">
               <% unless post.image.blank? %>
-      			  		<%= image_tag post.image.url(:medium) %>
+      			  		<%= link_to (image_tag post.image.url(:medium)), post_path(post) %>
               <% end %>
   	  				<div class="caption">
   		  				<h3><%= link_to post.title, post_path(post) %></h3>

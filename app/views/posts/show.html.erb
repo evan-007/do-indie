@@ -32,13 +32,11 @@
       </p>
     </div><!--meta info-->
 
-    <% unless @post.slide.blank? %>
-      <% unless @post.slide.image.url.blank? %>
-        <div class="container-fluid">
-            <%= image_tag @post.slide.image.url %>
-        </div>
-      <% end %><!--slideImage-->
-    <% end %>
+    <% unless @post.image.blank? %>
+      <div class="container-fluid">
+          <%= image_tag @post.image.url %>
+      </div>
+    <% end %><!--slideImage-->
 
     <div class="container-fluid">
       <% if I18n.locale == :en %>
