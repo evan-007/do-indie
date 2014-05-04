@@ -5,14 +5,14 @@
 </p>
 <p>
   <%= f.label t(:band_name_ko) %>
-  <%= f.text_field :korean_name, placeholder: "사랑해...", class: "form-control half" %>
+  <%= f.text_field :korean_name, class: "form-control half" %>
 </p>
 
 <p>
   <%= f.label t(:band_image) %>
   <%= f.file_field :avatar %>
   <% t(:band_image_note)%>
-</p>
+</p><br/>
 
 <p>
   <%= f.label t(:band_bio_en) %>
@@ -22,41 +22,42 @@
   <%= f.label t(:band_bio_ko) %>
   <%= f.text_area :ko_bio, class: "form-control half" %>
   <%= t(:band_bio_note) %>
-</p>
+</p><br/>
 
 <p>
   <%= f.label t(:soundcloud) %>
   <%= f.text_field :soundcloud, placeholder: "soundcloud.com/yourband", class: "form-control half" %>
   <%= t(:soundcloud_note) %>
-</p>
+</p><br/>
 
 <p>
   <%= f.label t(:facebook) %>
   <%= f.text_field :facebook, placeholder: "facebook.com/yourband", class: "form-control half" %>
   <%= t(:facebook_note)%>
-</p>
+</p><br/>
 
 <p>
   <%= f.label t(:twitter) %>
   <%= f.text_field :twitter, placeholder: "twitter.com/yourband", class: "form-control half" %>
   <%= t(:twitter_note) %>
-</p>
+</p><br/>
 
 <p>
   <%= f.label t(:bandcamp) %>
   <%= f.text_field :bandcamp, placeholder: "bandcamp.com/yourband", class: "form-control half" %>
   <%= t(:bandcamp_note)%>
-</p>
+</p><br/>
 
 <p>
   <%= f.label t(:purchase) %>
   <%= f.text_field :itunes, placeholder: "iTunes or other online store that sells your music", class: "form-control half" %>
   <%= t(:purchase_note) %>
-</p>
+</p><br/>
 
 <p>
   <%= f.label :myspace %>
   <%= f.text_field :myspace, placeholder: "myspace.com/yourband", class: "form-control half" %>
+  <%= t(:facebook_note) %>
 </p>
 
 <p>
@@ -90,16 +91,14 @@
 <p>
   <%= f.label :cafe %>
   <%= f.text_field :cafe, placeholder: "naver or daum cafe", class: "form-control half" %>
-  <% t(:cafe_note)%>
-</p>
-
-
+  <%= t(:cafe_note)%>
+</p><br/>
 
 <p>
   <%= f.label :site %>
   <%= f.text_field :site, placeholder: "band homepage or other misc site", class: "form-control half" %>
+  <%= t(:facebook_note) %>
 </p>
-
 
 <div id="b_genres">
   <p>
