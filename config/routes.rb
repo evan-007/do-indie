@@ -24,7 +24,7 @@ DoIndie::Application.routes.draw do
     get 'tag/:tag', to: 'posts#index', as: "tags"
     post "email_signup", to: "pages#signup", as: "sign_up"
 
-    resources :bands, :venues, :events, :posts, :categories
+    resources :bands, :venues, :events, :posts, :categories, :slides
     resources :messages, only: [:index, :create]
     resources :user_fans, only: [:create, :destroy]
     resources :venue_fans, only: [:create, :destroy]

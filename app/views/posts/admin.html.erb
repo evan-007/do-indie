@@ -1,11 +1,29 @@
-<% @posts.each do |post| %>
-	<h3>Post title:<%= link_to post.title, edit_post_path(post) %></h3>
-	<h4>Post id: <%= link_to post.id, edit_post_path(post) %></h4>
-	<p>Published: <%= post.published %></p>
-	<% unless post.slide.blank? %>
-		<p>Image:</p><%= image_tag post.slide.image.url(:thumb) %>
-	<% else %>
-	<p>This post has no slide!</p>
+<h2>Blog Admin</h2>
+
+<table class="table table-striped">
+	<tr>
+		<th>Title</th>
+		<th>ID</th>
+		<th>Published?</th>
+		<th>Image?</th>
+		<th>Slide?</th>
+	</tr>
+
+	<% @posts.each do |post| %>
+		<tr>
+			<td><%= link_to post.title, edit_post_path(post) %></td>
+			<td><%= link_to post.id, edit_post_path(post) %></td>
+			<td><%= post.published %></td>
+			<% unless post.image.blank? %>
+				<td><%= image_tag post.image.url(:thumb) %></td>
+			<% else %>
+				<td>no image</td>
+			<% end %>
+			<% unless post.slide.blank? %>
+				<td><%= link_to "edit slide", edit_slide_path(post.slide) %></td>
+			<% else %>
+				<td>No slide</td>
+			<% end %>
+		</tr>
 	<% end %>
-<% end %>
-  
+</table>

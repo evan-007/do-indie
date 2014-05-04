@@ -38,7 +38,7 @@ class PostsController < ApplicationController
   end
   
   def admin
-    @posts = Post.order(created_at: :desc)
+    @posts = Post.admin_search(params[:search], params[:page])
   end
   
   def edit
@@ -70,6 +70,7 @@ class PostsController < ApplicationController
         :short_title,
         :published,
         :tag_list,
+        :image,
         category_ids: [],
         tag_ids: [],
         band_ids: [],
