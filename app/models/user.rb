@@ -30,6 +30,15 @@ class User < ActiveRecord::Base
          
   paginates_per 100
   
+  def liked_band_events
+    event_ids = []
+    self.user_fans.each do |f|
+      f.band.events.upcoming.each do |e|
+        event_ids << e
+      end
+    end
+    return event_ids
+  end
 
   def approved_manager?(band_id)
     self.band_managers.where(band_id: band_id).first.approved

@@ -6,6 +6,8 @@ class Post < ActiveRecord::Base
 	has_many :tagged_bands
 	has_many :bands, through: :tagged_bands
 
+	paginates_per 20
+
 	scope :published, -> { where(published: true) }
 	scope :unpublished, -> { where(published: false) }
 
