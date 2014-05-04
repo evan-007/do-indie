@@ -10,14 +10,14 @@ feature "Event Manager" do
 	scenario "Users can request edit access" do
     visit event_en_path(@event)
 		click_link "Request manager status"
-		expect(page).to have_content("Thanks, admin will check and approve your request shortly.")
+		expect(page).to have_content('pending approval')
 	end
 
   scenario "Approved users can edit the event" do 
     @manager = create(:event_manager, user_id: @user.id, event_id: @event.id)
 		@manager.update(approved: true)
     visit event_en_path(@event)
-		expect(page).to have_content("You're a manager")
+		expect(page).to have_content("Edit this")
 	end
 
 	scenario "Unapproved users cannot edit" do
