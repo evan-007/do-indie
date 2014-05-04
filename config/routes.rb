@@ -24,7 +24,7 @@ DoIndie::Application.routes.draw do
     get 'tag/:tag', to: 'posts#index', as: "tags"
     post "email_signup", to: "pages#signup", as: "sign_up"
 
-    resources :bands, :venues, :events, :posts, :categories, :slides
+    resources :bands, :venues, :events, :posts, :categories
     resources :messages, only: [:index, :create]
     resources :user_fans, only: [:create, :destroy]
     resources :venue_fans, only: [:create, :destroy]
@@ -34,6 +34,7 @@ DoIndie::Application.routes.draw do
     resources :venue_managers, only: [:create, :destroy]
     resources :event_managers, only: [:create, :destroy]
     resources :pages, only: [:edit, :update]
+    resources :slides, except: [:show]
   
     
     devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }

@@ -1,4 +1,5 @@
-<h2>Blog Admin</h2>
+<h2>Posts</h2>
+<%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
 
 <table class="table table-striped">
 	<tr>
@@ -25,5 +26,30 @@
 				<td>No slide</td>
 			<% end %>
 		</tr>
+	<% end %>
+</table>
+
+<h2>Slides</h2>
+<%= link_to "New Slide", new_slide_path, class: "btn btn-primary" %>
+
+<table class="table table-striped">
+	<tr>
+		<th>ID</th>
+		<th>link</th>
+		<th>active?</th>
+		<th>Image?</th>
+	</tr>
+
+	<% @slides.each do |slide| %>
+	<tr>
+		<td><%= link_to slide.id, edit_slide_path(slide) %></td>
+		<td><%= link_to slide.link, edit_slide_path(slide) %></td>
+		<td><%= slide.active %></td>
+		<% unless slide.image.blank? %>
+			<td><%= image_tag(slide.image.url :thumb) %></td>
+		<% else %>
+			<td>No image</td>
+		<% end %>
+	</tr>
 	<% end %>
 </table>

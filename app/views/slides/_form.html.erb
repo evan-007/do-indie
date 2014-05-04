@@ -1,0 +1,37 @@
+<%= form_for @slide do |f| %>
+	<p>
+		<%= f.label :en_title %>
+		<%= f.text_field :en_title, class: "form-control half", placeholder: "title for English homepage" %>
+	</p>
+	<p>
+		<%= f.label :ko_title %>
+		<%= f.text_field :ko_title, class: "form-control half", placeholder: "title for Korean homepage" %>
+	</p>
+	<p>
+		<%= f.label :en_description %>
+		<%= f.text_field :en_description, class: "form-control half", placeholder: "short phrase used on slide" %>
+	</p>
+	<p>
+		<%= f.label :ko_description %>
+		<%= f.text_field :ko_description, class: "form-control half", placeholder: "short Korean phrase used on slide" %>
+	</p>
+	<p>
+		<%= f.label :image %>
+		<%= f.file_field :image %>
+	</p>
+	<p>
+		<%= f.label :link %>
+		<%= f.text_field :link, class: "form-control half", placeholder: "Full url: http://www.doindie.co.kr/something" %>
+	</p>
+	<p>
+		<%= f.label :active %>
+		<%= f.check_box :active %>
+	</p>
+	<%= f.submit %>
+<% end %>
+<br/><br/><br/>
+<p>
+<% unless @slide.new_record? %>
+	<%= link_to "Delete slide", slide_path(@slide), method: "DELETE", class: "btn btn-danger", data: {confirm: "Are you sure?"} %>
+<% end %>
+</p>

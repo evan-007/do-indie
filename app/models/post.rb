@@ -5,7 +5,6 @@ class Post < ActiveRecord::Base
 	has_many :tags, through: :post_tags
 	has_many :tagged_bands
 	has_many :bands, through: :tagged_bands
-	has_one :slide
 
 	scope :published, -> { where(published: true) }
 	scope :unpublished, -> { where(published: false) }
@@ -15,7 +14,6 @@ class Post < ActiveRecord::Base
 	
 	extend FriendlyId
 	friendly_id :title, use: :slugged
-	accepts_nested_attributes_for :slide, allow_destroy: true
 	acts_as_taggable
 
 	def self.admin_search(search, page_number)

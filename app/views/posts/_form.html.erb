@@ -1,14 +1,14 @@
 <%= form_for @post do |f| %>
-<%= f.label :title %>
-<%= f.text_field :title, class: "form-control half" %><br />
-<%= f.label :ko_title %>
-<%= f.text_field :ko_title, class: "form-control half" %><br />
-<%= f.label :en_body %>
-<%= f.cktext_area :en_body, class: "form-control half" %><br />
-<%= f.label :ko_body %>
-<%= f.cktext_area :ko_body, class: "form-control half" %><br />
-<%= f.label :published %>
-<%= f.check_box :published %><br />
+	<%= f.label :title %>
+	<%= f.text_field :title, class: "form-control half" %><br />
+	<%= f.label :ko_title %>
+	<%= f.text_field :ko_title, class: "form-control half" %><br />
+	<%= f.label :en_body %>
+	<%= f.cktext_area :en_body, class: "form-control half" %><br />
+	<%= f.label :ko_body %>
+	<%= f.cktext_area :ko_body, class: "form-control half" %><br />
+	<%= f.label :published %>
+	<%= f.check_box :published %><br />
   <% unless @post.post_categories.blank? %><br/ ><br />
     <p>Don't add the same category twice. This post is already under these categories:</p>
     <% @post.post_categories.each do |pc| %>
@@ -34,50 +34,16 @@
   <%= label_tag t(:new_category) %>
   <%= text_field_tag :new_category %><br />
 
-<%= f.fields_for :slide do |ff| %>
-	<p>
-		<%= ff.label :en_title %>
-		<%= ff.text_field :en_title, class: "form-control half" %>
-	</p>
-	<p>
-		<%= ff.label :ko_title %>
-		<%= ff.text_field :ko_title, class: "form-control half" %>
-	</p>
-	<p>
-		<%= ff.label :en_description %>
-		<%= ff.text_area :en_description, class: "form-control half" %>
-	</p>
-	<p>
-		<%= ff.label :ko_description %>
-		<%= ff.text_area :ko_description, class: "form-control half" %>
-	</p>
-	<% if @post.slide.image.exists? %>
-		<div id="image_area">
-			<%= image_tag @post.slide.image.url(:thumb) %><br/>
-			<%= ff.label :_destroy, "Remove image" %>
-			<%= ff.check_box :_destroy %><br />
-			<%= ff.label "Change image?" %>
-			<%= ff.file_field :image %>
-		</div>
-	<% else %>
-	<p>
-		<%= ff.label :image %>
-		<%= ff.file_field :image %>
-	</p>
-	<% end %>
-	<p>
-		<%= ff.label "Slide active?" %>
-		<%= ff.check_box :active %>
-	<p>
-	<p>
-		<%= ff.label :link %>
-		<%= ff.text_field :link, class: "form-control half" %>
-	</p>
-	<p>
-		<%= ff.label :anchor %>
-		<%= ff.text_field :anchor, class: "form-control half" %>
-	</p>
-	<% end %>
+  <% unless @post.image.blank? %>
+  <p>
+  	Current image:
+  	<%= image_tag(@post.image.url :thumb) %>
+  </p>
+  <% end %>
+  <p>
+  	<%= f.label :featured_image %>
+  	<%= f.file_field :image %>
+  </p>
 <%= f.submit %>
 <% end %>
 

@@ -39,6 +39,7 @@ class PostsController < ApplicationController
   
   def admin
     @posts = Post.admin_search(params[:search], params[:page])
+    @slides = Slide.all
   end
   
   def edit
