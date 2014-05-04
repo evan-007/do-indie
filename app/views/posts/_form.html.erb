@@ -1,38 +1,48 @@
 <%= form_for @post do |f| %>
+<p>
 	<%= f.label :title %>
-	<%= f.text_field :title, class: "form-control half" %><br />
+	<%= f.text_field :title, class: "form-control half" %>
+</p><br />
+<p>
 	<%= f.label :ko_title %>
-	<%= f.text_field :ko_title, class: "form-control half" %><br />
+	<%= f.text_field :ko_title, class: "form-control half" %>
+</p><br />
+<p>
 	<%= f.label :en_body %>
-	<%= f.cktext_area :en_body, class: "form-control half" %><br />
+	<%= f.cktext_area :en_body, class: "form-control half" %>
+</p><br />
+<p>
 	<%= f.label :ko_body %>
-	<%= f.cktext_area :ko_body, class: "form-control half" %><br />
+	<%= f.cktext_area :ko_body, class: "form-control half" %>
+</p><br />
+<p>
 	<%= f.label :published %>
 	<%= f.check_box :published %><br />
   <% unless @post.post_categories.blank? %><br/ ><br />
-    <p>Don't add the same category twice. This post is already under these categories:</p>
+    Don't add the same category twice. This post is already under these categories:
     <% @post.post_categories.each do |pc| %>
       <% unless pc.category.blank? %>
 	      <%= pc.category.name %>,
       <% end %>
     <% end %><br /><br />
   <% end %>
-  <p>
-    <%= f.label t(:categories) %>
-    <%= f.collection_select :category_ids, Category.order(:name), :id, :name, {}, {multiple: true} %>
-  </p>
-  <p>
-  	Tag some bands! Only tag bands here and not in the 'tags'.
-    <%= f.label t(:bands) %>
-    <%= f.collection_select :band_ids, Band.order(:name), :id, :name, {}, {multiple: true} %>
-  </p>
-  <p>
-    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
-    <%= f.text_field :tag_list %>
-  </p>
+</p>
+<p>
+  <%= f.label t(:categories) %><br/>
+  <%= f.collection_select :category_ids, Category.order(:name), :id, :name, {}, {multiple: true} %>
+</p><br/>
+<p>
+  <%= f.label t(:bands) %><br/>
+  <%= f.collection_select :band_ids, Band.order(:name), :id, :name, {}, {multiple: true} %>
+  <br/>Tag some bands! Only tag bands here and not in the 'tags'.
+</p></br>
+<p>
+  <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+  <%= f.text_field :tag_list %>
+</p>
   <p><% t(:no_category) %></p>
-  <%= label_tag t(:new_category) %>
-  <%= text_field_tag :new_category %><br />
+  <%= label_tag "New category" %><br/>
+  <%= text_field_tag :new_category %><br /><br/>
 
   <% unless @post.image.blank? %>
   <p>
@@ -43,7 +53,7 @@
   <p>
   	<%= f.label :featured_image %>
   	<%= f.file_field :image %>
-  </p>
+  </p><br/>
 <%= f.submit %>
 <% end %>
 
