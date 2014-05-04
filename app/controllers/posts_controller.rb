@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_filter :blogger!, only: [:admin, :edit, :update, :new, :destroy, :create]
   before_action :get_post, only: [:show, :edit, :update, :destroy]
   before_action :set_ads, only: [:show, :index]
+
   def index
     if params[:tag]
       @posts = Post.published.tagged_with(params[:tag]).order(created_at: :desc)
@@ -18,7 +19,6 @@ class PostsController < ApplicationController
   
   def new
     @post = Post.new
-    @post.build_slide
     @categories = Category.all
   end
   
@@ -28,7 +28,6 @@ class PostsController < ApplicationController
       @category = Category.new(name: params[:new_category])
       @category.save
       @post.post_categories.create(category_id: @category.id)
-      # @band.band_genres.create(genre_id: params[:genre])
       flash[:notice] = "Post Created!"
       redirect_to posts_path
     else
@@ -43,7 +42,6 @@ class PostsController < ApplicationController
   end
   
   def edit
-    @post.build_slide if @post.slide.nil?
     @categories = Category.all
   end
   

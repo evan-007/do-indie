@@ -7,7 +7,6 @@
 		<th>ID</th>
 		<th>Published?</th>
 		<th>Image?</th>
-		<th>Slide?</th>
 	</tr>
 
 	<% @posts.each do |post| %>
@@ -19,11 +18,6 @@
 				<td><%= image_tag post.image.url(:thumb) %></td>
 			<% else %>
 				<td>no image</td>
-			<% end %>
-			<% unless post.slide.blank? %>
-				<td><%= link_to "edit slide", edit_slide_path(post.slide) %></td>
-			<% else %>
-				<td>No slide</td>
 			<% end %>
 		</tr>
 	<% end %>
