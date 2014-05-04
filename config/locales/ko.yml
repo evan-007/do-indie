@@ -29,6 +29,9 @@ ko:
   account_edit: "프로필 수정하기"
   sign_out: "로그아웃"
 
+  #manager
+  manager_approval: "감사합니다. 확인 후 즉시 이메일 드리겠습니다."
+
   #login page
   pw_reset: "비밀번호를 잊으셨나요?"
 
