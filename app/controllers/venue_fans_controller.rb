@@ -6,7 +6,7 @@ class VenueFansController < ApplicationController
     else
       @fan = current_user.venue_fans.build(venue_id: (params[:id]))
       if @fan.save
-        flash[:notice] = "You're a fan of #{@fan.venue.name}!"
+        flash[:notice] = t(:new_fan, thing: @fan.venue.name)
         redirect_to venues_path
       else
         flash[:notice] = "You can't do that, sorry"
@@ -18,7 +18,7 @@ class VenueFansController < ApplicationController
   def destroy
     @fan = current_user.venue_fans.where(venue_id: params[:id]).first
     if @fan.destroy
-      flash[:notice] = "You don't like #{@fan.venue.name} anymore."
+      flash[:notice]= t(:not_fan, thing: @fan.venue.name)
       redirect_to venues_path
     else
       flash[:notice] = "You can't do that!"
