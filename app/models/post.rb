@@ -18,7 +18,7 @@ class Post < ActiveRecord::Base
 
 	def self.admin_search(search, page_number)
 		if search
-			self.where("name ilike :q or korean_name ilike :q", q: "%#{search}%").order(created_at: :desc).page page_number
+			self.where("title ilike :q or ko_title ilike :q", q: "%#{search}%").order(created_at: :desc).page page_number
 		else
 			order(created_at: :desc).page page_number
 		end

@@ -1,9 +1,32 @@
+<div class="row page-header">
+	<div class="col-sm-9">
+		<h1 class="page-title">
+			Blog Admin
+		</h1>
+	</div>
+	<div class="col-sm-3">
+		<%= form_tag blog_admin_path, method: :get, class: 'form-inline' do %>
+		<div>
+			<div class="input-group col-sm-12">
+      <%= text_field_tag :query, params[:query], placeholder: "Search: English or Korean title", class: "form-control input-sm" %>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
+      </span>
+    	</div>
+		</div>
+		<% end %>
+	</div>
+</div>
+
+
+
 <h2>Posts</h2>
 <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
 
 <table class="table table-striped">
 	<tr>
 		<th>Title</th>
+		<th>Korean Title</th>
 		<th>ID</th>
 		<th>Published?</th>
 		<th>Image?</th>
@@ -12,6 +35,7 @@
 	<% @posts.each do |post| %>
 		<tr>
 			<td><%= link_to post.title, edit_post_path(post) %></td>
+			<td><%= link_to post.ko_title, edit_post_path(post) %></td>
 			<td><%= link_to post.id, edit_post_path(post) %></td>
 			<td><%= post.published %></td>
 			<% unless post.image.blank? %>
