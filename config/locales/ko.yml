@@ -66,13 +66,15 @@ ko:
   city: "도시:"
   line_up: "라인업:"
   location: "오시는 길:"
-  tickets_available: "가능"
-  sold_out: "매진"
+  tickets_available: "구매 가능"
+  sold_out: "구매 불가(매진)"
   canceled: "공연 취소"
   no_ko_info: "한국어 정보가 등록되어 있지 않습니다."
   share_event: "SNS 홍보용 텍스트 자료(복사 후 붙여넣기해서 사용하세요)"
   share_me: "SNS 홍보용 텍스트 자료(복사 후 붙여넣기해서 사용하세요)"
   event_edit: "공연 프로필 수정하기"
+  upcoming: "다가오는 공연"
+  past: "지나간 공연"
 
   #venues#show
   venue_phone: "공연장 전화번호:"
@@ -202,6 +204,7 @@ ko:
   #blog
   categories: "분류"
   tags: "Tags"
+  blog_title: "두인디 블로그"
   #i18n translations
   date:
     abbr_day_names:

@@ -76,6 +76,8 @@ en:
   share_event: "Create Text Version"
   share_me: "Copy and paste the show data below to your blog/facebook/cafe"
   event_edit: "Edit this event"
+  upcoming: "Upcoming shows"
+  past: "Past shows"
 
   #venues#show
   venue_phone: "Venue Phone:"
@@ -196,3 +198,4 @@ en:
   #blog
   categories: "Categories"
   tags: "Tags"
+  blog_title: "DoIndie Blog"
