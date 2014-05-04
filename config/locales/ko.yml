@@ -25,6 +25,24 @@ ko:
   pending_approval: "감사합니다. 두인디 담당자가 확인 후 이메일 드리겠습니다."
   past_events: "지난 공연"
   map: "지도"
+  user_page: "마이 페이지"
+  account_edit: "프로필 수정하기"
+  sign_out: "로그아웃"
+
+  #login page
+  pw_reset: "비밀번호를 잊으셨나요?"
+
+  #signup page
+  register: "등록하기"
+
+  #innerpage
+  inner_page: "의 페이지"
+  liked_bands: "좋아하는 밴드 :"
+  liked_venues: "좋아하는 공연장 :"
+  newsletter: "두인디 뉴스레터 :"
+  newsletter_signup: "두인디 뉴스레터"
+  signup_button: "구독 신청"
+  edit_account: "프로필 수정하기"
 
   #for events#show
   show_time: "시간:"

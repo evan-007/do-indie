@@ -28,6 +28,25 @@ en:
   pending_approval: "Your request for manager status is pending approval."
   past_events: "Past Events"
   map: "Map"
+  user_page: "Your Page"
+  account_edit: "Edit Your Account"
+  sign_out: "Sign Out"
+
+  #login page
+  pw_reset: "Forgot your password?"
+
+  #signup page
+  register: "Submit"
+
+  #innerpage
+  inner_page: "'s page"
+  liked_bands: "Bands you like :"
+  liked_venues: "Venues you like :"
+  newsletter: "Doindie Newsletter :"
+  newsletter_signup: "Sign up for the doindie newsletter : "
+  signup_button: "Sign Up"
+  edit_account: "Edit your account"
+
 
   #for events#show
   show_time: "Time:"

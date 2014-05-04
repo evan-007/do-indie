@@ -1,5 +1,5 @@
 <% unless current_user.liked_venues.blank? %>
-		<h2>Venues you like</h2>
+		<h2><%= t(:liked_venues)%></h2>
 			<div id="bands-grid">
 				<div class="grid-tiles">
 					<% current_user.liked_venues.each do |fan| %>
