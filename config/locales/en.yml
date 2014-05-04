@@ -47,6 +47,11 @@ en:
   signup_button: "Sign Up"
   edit_account: "Edit your account"
 
+  #registration edit
+  edit_profile: "Edit your profile"
+  blank_password: "(leave blank if you don't want to change it)"
+  stop_mailer: "Uncheck this box to stop receiving emails when an event, band or venue you submit is approved. This will also stop notifications when your manager status for an event, band or venue is updated."
+  get_email: "Receive system emails?"
 
   #for events#show
   show_time: "Time:"

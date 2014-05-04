@@ -44,6 +44,10 @@ ko:
   signup_button: "구독 신청"
   edit_account: "프로필 수정하기"
 
+  #registration edit
+  edit_profile: "프로필 수정하기"
+  blank_password: "(바꾸고 싶지 않으면 비워 두세요)"
+
   #for events#show
   show_time: "시간:"
   contact: "연락처:"
@@ -165,8 +169,10 @@ ko:
   pre_sign: "밴드와 공연장 또는 공연의 프로필을 등록하기 위해서는 먼저 두인디에 가입해야합니다. 아래의 양식을 작성해주세요."
   after_sign: "두인디에 가입해주셔서 감사합니다. 로그인 하시면 두인디의 데이터베이스에 밴드, 공연장과 공연을 추가하실 수 있습니다."
   password: "비밀번호"
-  password_confirmation: "비밀번호 재확인"
-  
+  password_confirmation: "비밀번호 재입력"
+  stop_mailer: "등록하신 공연, 밴드, 공연장에 관한 두인디의 정보 메일(승인 확인 이메일과 업데이트 이메일)을 받고 싶지 않다면, 아래 확인 상자의 선택을 취소해주세요."
+  get_email: "두인디 정보 메일 받기"
+
   #contact
   name: "이름"
   message: "이메일로 문의하기"
