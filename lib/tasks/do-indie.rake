@@ -93,6 +93,8 @@ task :heroku_import_photos => :environment do
   #URI errors: assassination squad, eunsu lee, Say Sue Me.png, Kuang Program, Dead Buttons, Angry Bear
   # So Long, Buffalo | Jake & the Slut | PLASTIC HEART | Morrison Hotel | Yamagata Tweakster
   #this will work until the CSV used to import is changed.
+  require 'uri'
+  require 'net/https'
   @bands = Band.all
   @bands.each do |band|
     puts band.id #use to debug in case of url errors
