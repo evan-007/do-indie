@@ -183,9 +183,10 @@ task :import_venue_maps => :environment do
   @venues = Venue.all
   @venues.each do |venue|
     unless venue.small_map == nil
-      url = "http://do-indie.s3.amazonaws.com/venues/map_raw/#{venue.id}.png"
+      url = "http://doindielive2.s3.amazonaws.com/venues/map_raw/#{venue.id}.png"
       venue.minimap = url
       venue.save!
+      puts venue.id
     end
   end
 end
