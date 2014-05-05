@@ -95,9 +95,10 @@ task :heroku_import_photos => :environment do
   #this will work until the CSV used to import is changed.
   @bands = Band.all
   @bands.each do |band|
+    puts band.id #use to debug in case of url errors
     band.avatar = "http://doindielive2.s3.amazonaws.com/bands/raw/#{band.id}.png"
     band.save!
-    puts band.id
+    puts "#{band.id} ok!"
   end
 end
 

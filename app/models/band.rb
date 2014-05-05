@@ -64,7 +64,7 @@ class Band < ActiveRecord::Base
 
 	def self.admin_search(search, page_number)
 		if search
-			self.approved.where("name ilike :q or korean_name ilike :q", q: "%#{search}%").order(approved: :asc).page page_number
+			self.where("name ilike :q or korean_name ilike :q", q: "%#{search}%").order(approved: :asc).page page_number
 		else
 			order(approved: :asc).page page_number
 		end
