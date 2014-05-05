@@ -70,10 +70,11 @@ class PostsController < ApplicationController
         :published,
         :tag_list,
         :image,
+        :category_tokens,
         category_ids: [],
         tag_ids: [],
         band_ids: [],
-        slide_attributes: [:en_title, :ko_title, :en_description, :ko_description, :image, :link, :anchor, :active, :id, :_destroy])
+        category_attributes: [:id, :name])
     end
 
     def blogger!

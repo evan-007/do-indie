@@ -27,10 +27,18 @@
     <% end %><br /><br />
   <% end %>
 </p>
-<p>
-  <%= f.label t(:categories) %><br/>
-  <%= f.collection_select :category_ids, Category.order(:name), :id, :name, {}, {multiple: true} %>
-</p><br/>
+
+  <div id="categories">
+    <p>
+      <%= f.label t(:categories) %>
+      <% if @post.new_record? %>
+        <%= f.text_field :category_tokens %>
+      <% else %>
+        <%= f.text_field :category_tokens, data: {load: @post.categories} %>
+      <% end %>
+    </p>
+  </div>
+
 <p>
   <%= f.label t(:bands) %><br/>
   <%= f.collection_select :band_ids, Band.order(:name), :id, :name, {}, {multiple: true} %>
@@ -40,9 +48,6 @@
   <%= f.label :tag_list, "Tags (separated by commas)" %><br />
   <%= f.text_field :tag_list %>
 </p>
-  <p><% t(:no_category) %></p>
-  <%= label_tag "New category" %><br/>
-  <%= text_field_tag :new_category %><br /><br/>
 
   <% unless @post.image.blank? %>
   <p>
@@ -61,4 +66,8 @@
   $(document).ready(function() { $('#post_category_ids').chosen({width: "50%"}); });
   $(document).ready(function() { $('#post_tag_ids').chosen({width: "50%"}); });  
   $(document).ready(function() { $('#post_band_ids').chosen({width: "50%"}); }); 
+  $(document).ready(function() {
+    $('#categories').find('#post_category_tokens').tokenInput("/categories.json", { theme: "facebook",prePopulate: $('#post_category_tokens').data('load')}
+      );
+  });
 </script>
