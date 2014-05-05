@@ -15,8 +15,9 @@ task :import_artists => :environment do
   @twitter = 16
   @youtube = 18
   @bio = 1
- 
-  CSV.foreach("#{Rails.root}"+"/lib/bands-raw-2.csv", headers: true) do |row|
+  #old data /lib/bands-raw-2.csv
+  #new data /lib/raw-bands-5-5.csv
+  CSV.foreach("#{Rails.root}"+"/lib/raw-bands-5-5.csv", headers: true) do |row|
       @ko = row[0].gsub(/[^\p{Hangul}]/, '')
       unless row[@bio] == nil
         @en_bio = row[@bio].gsub(/^[^_]*<!--:en-->|<!--:-->/, '')
