@@ -97,7 +97,6 @@ task :heroku_import_photos => :environment do
   require 'net/https'
   @bands = Band.all
   @bands.each do |band|
-    begin
     puts band.id #use to debug in case of url errors
     raw_url = "http://doindielive2.s3.amazonaws.com/bands/raw/#{band.id}.png"
     escape_url = URI.escape raw_url
