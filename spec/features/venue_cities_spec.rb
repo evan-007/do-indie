@@ -2,9 +2,8 @@ require "spec_helper"
 
 feature "Venue cities" do
 	before do
-		@venue = create(:venue)
 		@city = create(:city)
-		@venue_city = create(:venue_city, venue_id: @venue.id, city_id: @city.id)
+		@venue = create(:venue, city: @city)
 	end
 
 	scenario "public users can view venues by city" do

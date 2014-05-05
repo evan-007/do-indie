@@ -1,0 +1,18 @@
+<h1>Ads <small>Admin</small></h1>
+<p><%= link_to "Back to Admin", admin_root_path %></p>
+
+<p><%= link_to "New Ad", new_admin_ad_path %></p>
+
+<table class="table table-striped">
+	<tr>
+		<th>Id</th>
+		<th>Link</th>
+	</tr>
+
+	<% @ads.each do |ad| %>
+	<tr>
+		<td><%= link_to ad.id, edit_admin_ad_path(ad) %></td>
+		<td><%= link_to ad.link, edit_admin_ad_path(ad) %></td>
+	</tr>
+	<% end %>
+</table>

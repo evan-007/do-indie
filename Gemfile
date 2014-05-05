@@ -15,7 +15,11 @@ gem 'route_translator'
 gem 'aws-sdk'
 gem 'ckeditor'
 gem 'soundcloud'
+
+#auth
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+
 gem 'twitter', '~> 5.8.0'
 gem 'twitter-text', '~> 1.9.0'
 gem 'pg'
@@ -30,8 +34,13 @@ gem 'nprogress-rails'
 
 gem 'bootstrap-datepicker-rails'
 
+gem "simple_calendar", "~> 0.1.10"
+
 #for mailchimp api
 gem 'gibbon'
+
+#nested forms
+gem 'cocoon'
 
 #for deploying
 gem 'capistrano', '~> 3.0.1'

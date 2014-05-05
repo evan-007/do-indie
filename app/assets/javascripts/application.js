@@ -24,4 +24,5 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require 'jquery.jplayer'
+//= require cocoon
 //= require_tree .

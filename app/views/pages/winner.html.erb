@@ -1,0 +1,7 @@
+<% if current_user && current_user.admin == true %>
+  <%= link_to "Update Winners", edit_page_path(@page), class: 'btn btn-lg btn-primary' %>
+<% end %>
+
+<div id="some-div" data-no-turbolink>
+<%= raw "#{@page.body}" %>
+</div>

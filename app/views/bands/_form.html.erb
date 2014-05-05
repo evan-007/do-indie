@@ -5,14 +5,14 @@
 </p>
 <p>
   <%= f.label t(:band_name_ko) %>
-  <%= f.text_field :korean_name, placeholder: "사랑해...", class: "form-control half" %>
+  <%= f.text_field :korean_name, class: "form-control half" %>
 </p>
 
 <p>
   <%= f.label t(:band_image) %>
   <%= f.file_field :avatar %>
   <% t(:band_image_note)%>
-</p>
+</p><br/>
 
 <p>
   <%= f.label t(:band_bio_en) %>
@@ -22,41 +22,42 @@
   <%= f.label t(:band_bio_ko) %>
   <%= f.text_area :ko_bio, class: "form-control half" %>
   <%= t(:band_bio_note) %>
-</p>
+</p><br/>
 
 <p>
   <%= f.label t(:soundcloud) %>
   <%= f.text_field :soundcloud, placeholder: "soundcloud.com/yourband", class: "form-control half" %>
   <%= t(:soundcloud_note) %>
-</p>
+</p><br/>
 
 <p>
   <%= f.label t(:facebook) %>
   <%= f.text_field :facebook, placeholder: "facebook.com/yourband", class: "form-control half" %>
   <%= t(:facebook_note)%>
-</p>
+</p><br/>
 
 <p>
   <%= f.label t(:twitter) %>
   <%= f.text_field :twitter, placeholder: "twitter.com/yourband", class: "form-control half" %>
   <%= t(:twitter_note) %>
-</p>
+</p><br/>
 
 <p>
   <%= f.label t(:bandcamp) %>
   <%= f.text_field :bandcamp, placeholder: "bandcamp.com/yourband", class: "form-control half" %>
   <%= t(:bandcamp_note)%>
-</p>
+</p><br/>
 
 <p>
   <%= f.label t(:purchase) %>
   <%= f.text_field :itunes, placeholder: "iTunes or other online store that sells your music", class: "form-control half" %>
   <%= t(:purchase_note) %>
-</p>
+</p><br/>
 
 <p>
   <%= f.label :myspace %>
   <%= f.text_field :myspace, placeholder: "myspace.com/yourband", class: "form-control half" %>
+  <%= t(:facebook_note) %>
 </p>
 
 <p>
@@ -76,44 +77,50 @@
 </p>
 
 <p>
-  <%= f.fields_for :youtubes do |builder| %>
-    <%= builder.label :link %>
-    <%= builder.text_field :link %>
+  <%= f.fields_for :youtubes do |youtube| %>
+    <fieldset>
+      <%= render 'youtube_fields', :f => youtube %>
+    </fieldset>
   <% end %>
+  <div class="links">
+    <%= link_to_add_association 'Add video', f, :youtubes, class: "btn btn-sm btn-primary" %>
+  </div>
 </p>
 
 
 <p>
   <%= f.label :cafe %>
   <%= f.text_field :cafe, placeholder: "naver or daum cafe", class: "form-control half" %>
-  <% t(:cafe_note)%>
-</p>
-
-
+  <%= t(:cafe_note)%>
+</p><br/>
 
 <p>
   <%= f.label :site %>
   <%= f.text_field :site, placeholder: "band homepage or other misc site", class: "form-control half" %>
+  <%= t(:facebook_note) %>
 </p>
 
-
-  <% unless @band.genres.blank? %><br/ ><br />
-    <p>Don't add the same genre twice. This band is already under these genres:</p>
-    <% @band.genres.each do |genre| %>
-      <%= genre.name %>,
-    <% end %><br /><br />
-  <% end %>
+<div id="b_genres">
   <p>
     <%= f.label t(:genres) %>
-    <%= f.collection_select :genre_ids, Genre.order(:name), :id, :name, {}, {multiple: true} %>
+    <% if @band.new_record? %>
+      <%= f.text_field :genre_tokens %>
+    <% else %>
+      <%= f.text_field :genre_tokens, data: {load: @band.genres.to_json} %>
+    <% end %>
   </p>
-  <p><% t(:new_genre) %></p>
-  <%= label_tag t(:new_genre) %>
-  <%= text_field_tag :new_genre %><br />
-  <%= f.submit %>
+</div>
+
+<%= f.submit %>
 <% end %>
 
 <script>
   $(document).ready(function() { $('#band_genre_ids').chosen({width: "50%"}); });
+
+  $(document).ready(function() {
+    $('#b_genres').find("#band_genre_tokens").tokenInput("/genres.json", { theme: "facebook",
+      prePopulate: $('#band_genre_tokens').data('load')}
+      );
+  });
   
 </script>

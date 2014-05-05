@@ -1,83 +1,64 @@
 <%= form_for @post do |f| %>
-<%= f.label :title %>
-<%= f.text_field :title, class: "form-control half" %><br />
-<%= f.label :ko_title %>
-<%= f.text_field :ko_title, class: "form-control half" %><br />
-<%= f.label :en_body %>
-<%= f.cktext_area :en_body, class: "form-control half" %><br />
-<%= f.label :ko_body %>
-<%= f.cktext_area :ko_body, class: "form-control half" %><br />
-<%= f.label :published %>
-<%= f.check_box :published %><br />
+<p>
+	<%= f.label :title %>
+	<%= f.text_field :title, class: "form-control half" %>
+</p><br />
+<p>
+	<%= f.label :ko_title %>
+	<%= f.text_field :ko_title, class: "form-control half" %>
+</p><br />
+<p>
+	<%= f.label :en_body %>
+	<%= f.cktext_area :en_body, class: "form-control half" %>
+</p><br />
+<p>
+	<%= f.label :ko_body %>
+	<%= f.cktext_area :ko_body, class: "form-control half" %>
+</p><br />
+<p>
+	<%= f.label :published %>
+	<%= f.check_box :published %><br />
   <% unless @post.post_categories.blank? %><br/ ><br />
-    <p>Don't add the same category twice. This post is already under these categories:</p>
+    Don't add the same category twice. This post is already under these categories:
     <% @post.post_categories.each do |pc| %>
       <% unless pc.category.blank? %>
 	      <%= pc.category.name %>,
       <% end %>
     <% end %><br /><br />
   <% end %>
-  <p>
-    <%= f.label t(:categories) %>
-    <%= f.collection_select :category_ids, Category.order(:name), :id, :name, {}, {multiple: true} %>
-  </p>
-  <p>
-  	Tag some bands! Only tag bands here and not in the 'tags'.
-    <%= f.label t(:bands) %>
-    <%= f.collection_select :band_ids, Band.order(:name), :id, :name, {}, {multiple: true} %>
-  </p>
-  <p>
-    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
-    <%= f.text_field :tag_list %>
-  </p>
-  <p><% t(:no_category) %></p>
-  <%= label_tag t(:new_category) %>
-  <%= text_field_tag :new_category %><br />
+</p>
 
-<%= f.fields_for :slide do |ff| %>
-	<p>
-		<%= ff.label :en_title %>
-		<%= ff.text_field :en_title, class: "form-control half" %>
-	</p>
-	<p>
-		<%= ff.label :ko_title %>
-		<%= ff.text_field :ko_title, class: "form-control half" %>
-	</p>
-	<p>
-		<%= ff.label :en_description %>
-		<%= ff.text_area :en_description, class: "form-control half" %>
-	</p>
-	<p>
-		<%= ff.label :ko_description %>
-		<%= ff.text_area :ko_description, class: "form-control half" %>
-	</p>
-	<% if @post.slide.image.exists? %>
-		<div id="image_area">
-			<%= image_tag @post.slide.image.url(:thumb) %><br/>
-			<%= ff.label :_destroy, "Remove image" %>
-			<%= ff.check_box :_destroy %><br />
-			<%= ff.label "Change image?" %>
-			<%= ff.file_field :image %>
-		</div>
-	<% else %>
-	<p>
-		<%= ff.label :image %>
-		<%= ff.file_field :image %>
-	</p>
-	<% end %>
-	<p>
-		<%= ff.label "Slide active?" %>
-		<%= ff.check_box :active %>
-	<p>
-	<p>
-		<%= ff.label :link %>
-		<%= ff.text_field :link, class: "form-control half" %>
-	</p>
-	<p>
-		<%= ff.label :anchor %>
-		<%= ff.text_field :anchor, class: "form-control half" %>
-	</p>
-	<% end %>
+  <div id="categories">
+    <p>
+      <%= f.label t(:categories) %>
+      <% if @post.new_record? %>
+        <%= f.text_field :category_tokens %>
+      <% else %>
+        <%= f.text_field :category_tokens, data: {load: @post.categories} %>
+      <% end %>
+    </p>
+  </div>
+
+<p>
+  <%= f.label t(:bands) %><br/>
+  <%= f.collection_select :band_ids, Band.order(:name), :id, :name, {}, {multiple: true} %>
+  <br/>Tag some bands! Only tag bands here and not in the 'tags'.
+</p></br>
+<p>
+  <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+  <%= f.text_field :tag_list %>
+</p>
+
+  <% unless @post.image.blank? %>
+  <p>
+  	Current image:
+  	<%= image_tag(@post.image.url :thumb) %>
+  </p>
+  <% end %>
+  <p>
+  	<%= f.label :featured_image %>
+  	<%= f.file_field :image %>
+  </p><br/>
 <%= f.submit %>
 <% end %>
 
@@ -85,4 +66,8 @@
   $(document).ready(function() { $('#post_category_ids').chosen({width: "50%"}); });
   $(document).ready(function() { $('#post_tag_ids').chosen({width: "50%"}); });  
   $(document).ready(function() { $('#post_band_ids').chosen({width: "50%"}); }); 
+  $(document).ready(function() {
+    $('#categories').find('#post_category_tokens').tokenInput("/categories.json", { theme: "facebook",prePopulate: $('#post_category_tokens').data('load')}
+      );
+  });
 </script>

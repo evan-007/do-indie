@@ -6,6 +6,10 @@ class EventsController < ApplicationController
 		@events = Event.index_search(params[:query], params[:page])
 	end
 
+	def calendar
+		@events = Event.index_search(params[:query], params[:page])
+	end
+
 	def show
     if @event.approved == false
       flash[:notice] = "Sorry, this event isn't approved yet"
@@ -89,6 +93,7 @@ class EventsController < ApplicationController
 	  		:date,
 	  		:band_tokens,
         :venue_tokens,
+        :city_id,
 	  		band_ids: [],
 	  		bands_attributes: [:name],
 	  		venue_attributes: [:name, :city]

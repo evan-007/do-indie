@@ -32,6 +32,15 @@
               <h3><%= link_to venue.name, venue_path(venue) %></h3>
               <h4><%= venue.korean_name %></h4>
               <p><%= venue.area%></p>
+						  <div class="likebtn">			
+						  	<% if current_user && current_user.venue_fans.where(venue_id: venue.id).count != 0 %>
+						  		<%= link_to "<i class=\"fa fa-thumbs-up\"></i> Unlike".html_safe, venue_fan_path(id: venue.id), method: 'delete' %>
+							  <% elsif current_user %>
+						  		<%= link_to "<i class=\"fa fa-thumbs-o-up\"></i> Like".html_safe, venue_fans_path(id: venue.id), method: 'post' %>
+								<% else %>
+									<%= link_to t(:signup), new_user_registration_path %> 
+								<% end %>
+							</div>
                 
             </div>
           </div>

@@ -12,10 +12,10 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><%= t(:account) %> <b class="caret"></b></a>
 	<ul class="dropdown-menu pull-right">
-		<li><%= link_to "Your Page", inside_path %></li>
-		<li><%= link_to "Edit your account", edit_user_registration_path %></li>
+		<li><%= link_to t(:user_page), inside_path %></li>
+		<li><%= link_to t(:account_edit), edit_user_registration_path %></li>
 		<li class="divider"></li>
-		<li><%= link_to "Sign out", destroy_user_session_path, data:{method: :delete} %></li>
+		<li><%= link_to t(:sign_out), destroy_user_session_path, data:{method: :delete} %></li>
 	</ul>
 </li>
 

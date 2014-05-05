@@ -17,7 +17,7 @@ feature "Venue Manager" do
     @manager = create(:venue_manager, user_id: @user.id, venue_id: @venue.id)
 		@manager.update(approved: true)
     visit venue_en_path(@venue)
-		expect(page).to have_content("You're a manager")
+		expect(page).to have_content("Edit this")
 	end
 
 	scenario "Unapproved users cannot edit" do

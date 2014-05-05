@@ -20,17 +20,12 @@ class BandsController < ApplicationController
       redirect_to new_user_session_path
     else
       @band = current_user.bands.build
-      4.times { @band.youtubes.build }
     end
   end
   
   def create
     @band = current_user.bands.build(band_params)
     if @band.save
-      @genre = Genre.new(name: params[:new_genre])
-      @genre.save
-      @band.band_genres.create(genre_id: @genre.id)
-      @band.band_genres.create(genre_id: params[:genre])
       flash[:notice] = t(:band_after_submission)
       redirect_to bands_path
     else
@@ -72,10 +67,6 @@ class BandsController < ApplicationController
   
   def update
     if @band.update(band_params)
-      @genre = Genre.new(name: params[:new_genre])
-      @genre.save
-      @band.band_genres.create(genre_id: @genre.id)
-      @band.band_genres.create(genre_id: params[:genre])
       flash[:notice] = "Band updated!"
       redirect_to band_path(@band)
     else
@@ -103,8 +94,8 @@ class BandsController < ApplicationController
       :label,
       :ko_bio,
       :avatar,
-      genre_ids: [],
-      youtubes_attributes: [:link]
+      :genre_tokens,
+      youtubes_attributes: [:link, :_destroy, :id],
       )
     end
     

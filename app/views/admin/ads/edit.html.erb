@@ -1,0 +1,3 @@
+<h2>Editing <%= @ad.id %></h2>
+<%= link_to "Delete", admin_ad_path(@ad), method: "DELETE", data: {confirm: "Are you sure?"} %>
+<%= render 'form' %>

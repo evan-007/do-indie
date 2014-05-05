@@ -15,8 +15,9 @@ task :import_artists => :environment do
   @twitter = 16
   @youtube = 18
   @bio = 1
- 
-  CSV.foreach("#{Rails.root}"+"/lib/bands-raw-2.csv", headers: true) do |row|
+  #old data /lib/bands-raw-2.csv
+  #new data /lib/raw-bands-5-5.csv
+  CSV.foreach("#{Rails.root}"+"/lib/raw-bands-5-5.csv", headers: true) do |row|
       @ko = row[0].gsub(/[^\p{Hangul}]/, '')
       unless row[@bio] == nil
         @en_bio = row[@bio].gsub(/^[^_]*<!--:en-->|<!--:-->/, '')
@@ -92,10 +93,16 @@ task :heroku_import_photos => :environment do
   #URI errors: assassination squad, eunsu lee, Say Sue Me.png, Kuang Program, Dead Buttons, Angry Bear
   # So Long, Buffalo | Jake & the Slut | PLASTIC HEART | Morrison Hotel | Yamagata Tweakster
   #this will work until the CSV used to import is changed.
+  require 'uri'
+  require 'net/https'
   @bands = Band.all
   @bands.each do |band|
-    band.avatar = "http://do-indie.s3.amazonaws.com/bands/raw/#{band.id}.png"
+    puts band.id #use to debug in case of url errors
+    raw_url = "http://doindielive2.s3.amazonaws.com/bands/raw/#{band.id}.png"
+    escape_url = URI.escape raw_url
+    band.avatar = escape_url
     band.save!
+    puts "#{band.id} ok!"
   end
 end
 
@@ -113,9 +120,9 @@ task :import_venues => :environment do
   @map = 6
 	
   
-  
-
-	CSV.foreach("#{Rails.root}"+"/lib/venue-data.csv", headers: true) do |row|
+  #old data /lib/venue-data.csv
+  #new data /lib/raw-venues-5-5.csv
+	CSV.foreach("#{Rails.root}"+"/lib/raw-venues-5-5.csv", headers: true) do |row|
     @name = row[0].gsub(/[^\p{Hangul}]/, '')
     @en_name = row[0].gsub(/<!--:ko-->(.*?)<!--:-->|<!--:en-->|<!--:-->/, '')
     unless row[4] == nil
@@ -141,7 +148,7 @@ end
 
 task :import_venue_data => :environment do
   #be sure CSV fields all have data!
-  CSV.foreach("#{Rails.root}"+"/lib/venue-data.csv", headers: true) do |row|
+  CSV.foreach("#{Rails.root}"+"/lib/raw-venues-5-5.csv", headers: true) do |row|
     @ko_text = row[1].match(/^[^_]*<!--:en-->|<!--:-->/).to_s.gsub(/<!--:ko-->|<!--:-->|<!--:en-->/, '')
     @name = row[0].gsub(/<!--:ko-->(.*?)<!--:-->|<!--:en-->|<!--:-->/, '')
     @en_text = row[1].gsub(/^[^_]*<!--:en-->|<!--:-->/, '')
@@ -196,7 +203,7 @@ task :venue_cities => :environment do
   @venues = Venue.all
   @venues.each do |venue|
     unless venue.city_en == nil && venue.city_ko == nil
-      venue.venue_cities.create(city_id: City.find_by(en_name: venue.city_en).id)
+      venue.update(city: City.find_by(en_name: venue.city_en).id)
     end
   end
 end
@@ -269,8 +276,10 @@ task :approve_all => :environment do
 end
 
 task create_page: :environment do
-  a = Page.new
-  a.save
+  2.times do
+    a = Page.new
+    a.save
+  end
 end
 
 #for heroku and ckeditor

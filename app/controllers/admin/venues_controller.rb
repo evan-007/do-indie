@@ -44,13 +44,13 @@ class Admin::VenuesController < Admin::BaseController
 
   def venue_params
     params.require(:venue).permit(
-    :name, :ko_name,
+    :name, :korean_name,
     :avatar, :phone, :address,
     :en_bio, :ko_bio, :facebook,
     :twitter, :cafe, :website,
-    :photo, :small_map, :email,
+    :photo, :minimap, :email,
     :en_directions, :ko_directions,
-    :approved
+    :approved, :city_id
     )
   end
 

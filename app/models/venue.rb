@@ -6,9 +6,10 @@ class Venue < ActiveRecord::Base
 	has_many :events, through: :event_venues
 	has_many :venue_managers
 	has_many :users, through: :venue_managers
-	has_many :venue_cities
-	has_many :cities, through: :venue_cities
+  has_many :venue_fans, dependent: :destroy
+  has_many :fans, through: :venue_fans, source: :user 
 	belongs_to :user
+	belongs_to :city
 	scope :approved, -> { where(approved: true) }
 	scope :unapproved, -> { where(approved: false) }
 	scope :localized, -> { where.not(latitude: nil) }
@@ -30,7 +31,7 @@ class Venue < ActiveRecord::Base
     if venues.empty?
   		[{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
   	else
-      venues
+      venues << {id: "<<<#{query}>>>", name: "New: \"#{query}\""}
   	end
   end
   
@@ -39,7 +40,12 @@ class Venue < ActiveRecord::Base
   	tokens.split(',')
     return tokens
   end
+  
+  def self.fans
+    self.user_fans.count
+  end
 
+  
 	def self.search_and_order(search, page_number)
 	    if search
 			where("name LIKE ?", "%#{search.downcase}%").order(

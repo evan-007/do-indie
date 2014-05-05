@@ -11,6 +11,25 @@
 		<%= t(:event_name_note) %>
 	</p><br />
 
+	<% if I18n.locale == :en %>
+	  <p>
+	    <%= f.label t(:city) %>
+	    <%= f.collection_select :city_id, City.order(:en_name), :id, :en_name %>
+	  </p>
+  <% else %>
+		<p>
+			<%= f.label t(:city) %>
+			<%= f.collection_select :city_id, City.order(:ko_name), :id, :ko_name %>
+		</p>
+  <% end %>
+<hr>
+	<% unless @event.avatar.blank? %>
+		<p>
+			Current image:<br/>
+			<%= image_tag(@event.avatar :medium) %>
+		</p>
+	<% end %>
+
 	<p><%= f.label t(:event_poster) %></p>
 	<p><%= f.file_field :avatar %></p>
 	<p><%= t(:event_poster_note) %></p>
@@ -83,10 +102,10 @@
 
 	<hr>
 	<%= f.label t(:event_details_en) %>
-	<%= f.text_area :info, class: "form-control half" %><br />
+	<%= f.text_area :info, rows: 10, class: "form-control mid" %><br />
 
 	<%= f.label t(:event_details_ko) %>
-	<%= f.text_area :info_ko, class: "form-control half" %><br />
+	<%= f.text_area :info_ko, rows: 10, class: "form-control mid" %><br />
 	<p><%= t(:event_details_notes)%></p><br>
 
 	<p>
@@ -101,6 +120,7 @@
 <script>
   $(document).ready(function() { $('#event_band_ids').chosen({width: "50%"}); });
   $(document).ready(function() { $('#event_venue_id').chosen({width: "50%"}); });
+  $(document).ready(function() { $('#event_city_id').chosen({width: "50%"}); });
   $(document).ready(function() { 
   	$('#new_bands').hide(); 
   });
@@ -122,7 +142,7 @@
 	});
 
 	$(document).ready(function() {
-		$('.date').datepicker();
+		$('.date').datepicker({format: 'yyyy/mm/dd'});
 	})
 
 	$(document).ready(function() {

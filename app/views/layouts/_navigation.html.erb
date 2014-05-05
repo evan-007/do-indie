@@ -13,6 +13,7 @@
                 <li><%= link_to t(:events), events_path %></li>
                 <li><%= link_to t(:add_event), new_event_path %></li>
                 <li><%= link_to t(:past_events), past_events_path %></li>
+                <li><%= link_to "Calendar", calendar_path %></li>
               </ul>
             </li>
             <li class="dropdown">
@@ -31,7 +32,13 @@
               </ul>
             </li>
             <li><%= link_to t(:blog), blog_path %></li>
-            <li><%= link_to t(:photos), photo_path %></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><%= t(:photos) %><b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li data-no-turbolink><%= link_to t(:month_photo), photo_path %></li>                
+                <li><%= link_to t(:winners), winner_path %></li>
+              </ul>
+            </li>
             <%= render 'layouts/navigation_links' %>
           </ul>
         </div>

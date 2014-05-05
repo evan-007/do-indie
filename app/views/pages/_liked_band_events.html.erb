@@ -1,0 +1,4 @@
+<h2><%= t(:my_events)%></h2>
+<% current_user.liked_band_events.each do |e| %>
+	<%= link_to e.name, event_path(e) %>
+<% end %>

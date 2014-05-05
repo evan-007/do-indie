@@ -2,10 +2,19 @@
   <h1 class="page-title"><%= @venue.name %></h1>
   <h2><%= @venue.korean_name %></h2>
   <div class="row">
-    <div class="col-sm-5 col-sm-push-7 avatar">
-        <%= image_tag (@venue.avatar :medium) %>
+    <div class="col-sm-1">
+      <p>Fans: <%= @venue.fans.count %></p>
+      <div class="likebtn">			
+  	   	<% if current_user && current_user.liked_venues.where(id: @venue.id).count != 0 %>
+  		    <%= link_to "<i class=\"fa fa-thumbs-up\"></i> Unlike".html_safe, venue_fan_path(id: @venue.id), method: 'delete' %>
+  			<% elsif current_user %>
+        <%= link_to "<i class=\"fa fa-thumbs-o-up\"></i> Like".html_safe, venue_fans_path(id: @venue.id), method: 'post' %>
+  			<% else %>
+  				<%= link_to t(:signup), new_user_registration_path %> 
+  			<% end %>
+  		</div>
     </div>
-    <div class="col-sm-7 col-sm-pull-5 vcard">
+    <div class="col-sm-7 vcard">
       <table class="table table-hover">
         <% unless @venue.phone == nil %>
           <tr>
@@ -160,7 +169,7 @@
 <% if current_user && current_user.venue_managers.where(venue_id: @venue.id).count == 0 %>
 <p><%= link_to t(:manager_request), venue_managers_path(venue_id: @venue.id), method: 'post' %>.</p>
 <% elsif current_user && current_user.venue_managers.where(venue_id: @venue.id).count != 0 && current_user.venue_manager?(@venue.id) == true %>
-<p>You're a manager! <%= link_to "Edit this band", edit_venue_path(@venue) %></p>
+<p><%= link_to t(:venue_edit), edit_venue_path(@venue) %></p>
 <% elsif current_user && current_user.venue_managers.where(venue_id: @venue.id).count != 0 %>
 <p><%= t(:pending_approval) %></p>
 <% else %>
@@ -168,5 +177,5 @@
   <% end %>
 
   <% if current_user && current_user.admin == true %>
-  <%= link_to "Edit this venue", edit_venue_path(@venue) %>
+  <%= link_to t(:venue_edit), edit_venue_path(@venue) %>
   <% end %>

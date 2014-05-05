@@ -12,11 +12,14 @@ class Band < ActiveRecord::Base
 	has_many :youtubes
 	belongs_to :user
 	accepts_nested_attributes_for :youtubes, allow_destroy: true
+	accepts_nested_attributes_for :genres
 	validates :name, presence: true, uniqueness: true
 	scope :approved, -> { where(approved: true) }
 	scope :unapproved, -> { where(approved: false) }
 	after_save :approval_notification, if: :approved_changed?
 	after_create :make_manager
+
+	attr_reader :genre_tokens
 
 
 	paginates_per 20
@@ -25,11 +28,11 @@ class Band < ActiveRecord::Base
 	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def self.tokens(query)
-  	bands = where("name ilike :q or korean_name ilike :q", q: "%#{query}%")
+  	bands = self.where("name ilike :q or korean_name ilike :q", q: "%#{query}%")
   	if bands.empty?
   		[{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
   	else
-  		bands
+  		bands << {id: "<<<#{query}>>>", name: "New: \"#{query}\""}
   	end
   end
 
@@ -41,6 +44,10 @@ class Band < ActiveRecord::Base
 	def fans
 		self.user_fans.where(band_id: self.id).count
 	end 
+
+	def genre_tokens=(tokens)
+		self.genre_ids = Genre.ids_from_tokens(tokens)
+	end
 
 
 	
@@ -57,7 +64,7 @@ class Band < ActiveRecord::Base
 
 	def self.admin_search(search, page_number)
 		if search
-			self.approved.where("name ilike :q or korean_name ilike :q", q: "%#{search}%").order(approved: :asc).page page_number
+			self.where("name ilike :q or korean_name ilike :q", q: "%#{search}%").order(approved: :asc).page page_number
 		else
 			order(approved: :asc).page page_number
 		end
@@ -67,7 +74,7 @@ class Band < ActiveRecord::Base
     if query.present?
     	self.approved.where("name ilike :q or korean_name ilike :q", q: "%#{query}%").page page_number
     else
-	    approved.order(approved: :asc).page page_number
+	    approved.page page_number
     end
   end
 

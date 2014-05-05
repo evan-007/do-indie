@@ -8,16 +8,16 @@ feature "Liking bands" do
 	end
 
 	scenario "users can like bands" do
-		visit band_path(@band)
+		visit band_en_path(@band)
 		click_link 'Like'
-		expect(page).to have_content("You're a")
+		expect(page).to have_content("You are a")
 	end
 
 	scenario "user can unlike bands" do
-		visit band_path(@band)
+		visit band_en_path(@band)
 		click_link 'Like'
-		visit band_path(@band)
+		visit band_en_path(@band)
 		click_link 'Unlike'
-		expect(page).to have_content("You're no longer")
+		expect(page).to have_content("You are no longer")
 	end
 end

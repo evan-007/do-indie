@@ -1,16 +1,14 @@
-
-
 <div class="row page-header">
 	<div class="col-sm-9">
 		<h1 class="page-title">
-			<%= current_user.username %>'s page
+			<%= current_user.username %><%= t(:inner_page)%>
 		</h1>
 	</div>
 	<div class="col-sm-3">
 		<%= form_tag bands_path, method: :get, class: 'form-inline' do %>
 		<div>
 			<div class="input-group col-sm-12 text-center">
-      	<%= link_to "Edit account", edit_user_registration_path, :class => "btn btn-primary" %>
+      	<%= link_to t(:edit_account), edit_user_registration_path, :class => "btn btn-primary" %>
     	</div>
 		</div>
 		<% end %>
@@ -20,12 +18,12 @@
 <div class="row">
 	<div class="col-md-6">
 		<% unless current_user.mailing_list == true %>
-		<h2>DoIndie Newsletter</h2>
+		<h2><%= t(:newsletter)%></h2>
 		<div class="row-fluid">
 			<div class="col-xs-12">
 				<%= form_tag sign_up_path, method: 'post', html: {role: "form"} do %>
-				<%= label_tag "Signup for the DoIndie newsletter" %>
-				<%= submit_tag "Signup", :class => 'btn-info btn' %>
+				<%= label_tag t(:newsletter_signup) %>
+				<%= submit_tag t(:signup_button), :class => 'btn-info btn' %>
 				<% end %>
 			</div>
 		</div>
@@ -179,41 +177,15 @@
 
 	</div>
 	<div class="col-md-6">
-		<% unless @likes.blank? %>
-		<h2>Bands you like</h2>
-			<div id="bands-grid">
-				<div class="grid-tiles">
-					<% @likes.each do |fan| %>
-						<% band = fan.band %>
-							<%= div_for(band, class: "list bands-grid-item tile") do %>
-								<div class="thumbnail">
-									<%= image_tag band.avatar.url(:medium) %>
-									<div class="caption">
-										<h3><%= link_to band.name, band_path(band) %></h3>
-										<h4><%= link_to band.korean_name, band_path(band) %></h4>
-										<div class="fanbadge small">
-											Fans
-								      <span class="badge"><%= band.fans %></span>
-								    </div>
-									    
-								    <div class="likebtn">			
-								    	<% if current_user && current_user.user_fans.where(band_id: band.id).count != 0 %>
-								    		<%= link_to "<i class=\"fa fa-thumbs-up\"></i> Unlike".html_safe, user_fan_path(id: band.id), method: 'delete' %>
-											<% elsif current_user %>
-												<%= link_to "<i class=\"fa fa-thumbs-o-up\"></i> Like".html_safe, user_fans_path(band_id: band.id), method: 'post' %>
-											<% else %>
-												<%= link_to t(:signup), new_user_registration_path %> 
-											<% end %>
-									  </div>
-									</div>
-								</div>
-							<% end %> <!--div_for-->
-					<% end %>
-				</div>
-			</div>
-		<% end %><!-- bands like -->
-
-		
+		<%= render 'liked_bands' %>		
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-4">
+		<%= render 'liked_venues' %>
+	</div>
+	<div class='col-md-4'>
+		<%= render 'liked_band_events' %>
 	</div>
 </div>
 

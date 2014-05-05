@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   before_filter :blogger!, only: [:admin, :edit, :update, :new, :destroy, :create]
   before_action :get_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_ads, only: [:show, :index]
+
   def index
     if params[:tag]
       @posts = Post.published.tagged_with(params[:tag]).order(created_at: :desc)
@@ -17,7 +19,6 @@ class PostsController < ApplicationController
   
   def new
     @post = Post.new
-    @post.build_slide
     @categories = Category.all
   end
   
@@ -27,7 +28,6 @@ class PostsController < ApplicationController
       @category = Category.new(name: params[:new_category])
       @category.save
       @post.post_categories.create(category_id: @category.id)
-      # @band.band_genres.create(genre_id: params[:genre])
       flash[:notice] = "Post Created!"
       redirect_to posts_path
     else
@@ -37,11 +37,11 @@ class PostsController < ApplicationController
   end
   
   def admin
-    @posts = Post.order(created_at: :desc)
+    @posts = Post.admin_search(params[:query], params[:page])
+    @slides = Slide.all
   end
   
   def edit
-    @post.build_slide if @post.slide.nil?
     @categories = Category.all
   end
   
@@ -69,10 +69,12 @@ class PostsController < ApplicationController
         :short_title,
         :published,
         :tag_list,
+        :image,
+        :category_tokens,
         category_ids: [],
         tag_ids: [],
         band_ids: [],
-        slide_attributes: [:en_title, :ko_title, :en_description, :ko_description, :image, :link, :anchor, :active, :id, :_destroy])
+        category_attributes: [:id, :name])
     end
 
     def blogger!
@@ -80,5 +82,9 @@ class PostsController < ApplicationController
         flash[:alert] = "Sorry, bloggers only"
         redirect_to blog_path
       end
+    end
+
+    def set_ads
+      @ads = Ad.all
     end
 end

@@ -12,10 +12,13 @@ DoIndie::Application.routes.draw do
     get "inside", to: "pages#inside", as: "inside"
     get "/blog", to: "posts#index", as: "blog"
     get "/genres/:name", to: "genres#show", as: "genre"
+    get "/genres", to: "genres#index", as: "genres"
     get "/cities/:en_name", to: "cities#show", as: "city"
     get "/events/past", to: "events#past", as: "past_events"
+    get '/events/calendar', to: 'events#calendar', as: "calendar"
     get "contact", to: "messages#index", as: "contact"
     get "photo", to: "pages#photo", as: "photo"
+    get "winner", to: "pages#winner", as: "winner"
     get "/pages/jplayer", to: "pages#jplayer", as: "jplayer"
     get "/venues/map", to: "venues#map", as: "venues_map"
     get "/blog/admin", to: "posts#admin", as: "blog_admin"
@@ -25,21 +28,23 @@ DoIndie::Application.routes.draw do
     resources :bands, :venues, :events, :posts, :categories
     resources :messages, only: [:index, :create]
     resources :user_fans, only: [:create, :destroy]
+    resources :venue_fans, only: [:create, :destroy]
     resources :event_bands, only: [:create, :destroy]
     resources :event_venues, only: [:create, :destroy]
     resources :band_managers, only: [:create, :destroy]
     resources :venue_managers, only: [:create, :destroy]
     resources :event_managers, only: [:create, :destroy]
     resources :pages, only: [:edit, :update]
+    resources :slides, except: [:show]
   
     
-    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }
 
     namespace :admin do
       root "base#index"
       get "/events/data", to: "events#data", as: "events_data"
       resources :users, :bands, :venues, :events, :band_managers, :venue_managers,
-      :event_managers, :cities, :genres, :slides
+      :event_managers, :cities, :genres, :slides, :ads
     end  
   end
 end

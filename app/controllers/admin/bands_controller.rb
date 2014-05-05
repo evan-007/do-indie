@@ -57,8 +57,10 @@ class Admin::BandsController < Admin::BaseController
     :ko_bio,
     :avatar,
     :approved,
+    :genre_tokens,
     genre_ids: [],
-    youtube_attributes: [:link]
+    youtube_attributes: [:link],
+    genres_attributes: [:name]
     )
   end
   

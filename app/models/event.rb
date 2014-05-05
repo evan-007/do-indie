@@ -1,21 +1,27 @@
 class Event < ActiveRecord::Base
 	validates :name, presence: true
-	extend FriendlyId
-	friendly_id :name, use: :slugged
+	
 	belongs_to :user
 	belongs_to :venue
+	belongs_to :city
+
 	has_many :event_bands
 	has_many :bands, through: :event_bands
 	has_many :event_managers, dependent: :destroy
 	has_many :users, through: :event_managers
+
 	scope :upcoming, -> { where(["date > ?", Date.yesterday]) }
 	scope :past, -> { where(["date < ? ", Date.today]) }
 	scope :approved, -> { where(approved: true) }
 	scope :unapproved, -> { where(approved: false) }
+
 	after_save :approval_notification, if: :approved_changed?
 	after_create :make_manager
+	
 	accepts_nested_attributes_for :bands
 	accepts_nested_attributes_for :venue
+	extend FriendlyId
+	friendly_id :name, use: :slugged
 
   attr_reader :band_tokens, :venue_tokens
 
@@ -29,6 +35,10 @@ class Event < ActiveRecord::Base
     else
       self.venue = nil
     end
+  end
+
+  def start_time
+  	self.date
   end
 
 	paginates_per 100 #fix pagination
@@ -59,7 +69,7 @@ class Event < ActiveRecord::Base
 
 	def self.index_search(query, page_number)
 	    if query.present?
-	    	self.approved.where("name ilike :q or ko_name ilike :q", q: "%#{query}%").page page_number
+	    	self.approved.where(date: query).page page_number
 	    else
 	      approved.upcoming.order(approved: :asc).page page_number
 	    end

@@ -1,11 +1,73 @@
-<% @posts.each do |post| %>
-	<h3>Post title:<%= link_to post.title, edit_post_path(post) %></h3>
-	<h4>Post id: <%= link_to post.id, edit_post_path(post) %></h4>
-	<p>Published: <%= post.published %></p>
-	<% unless post.slide.blank? %>
-		<p>Image:</p><%= image_tag post.slide.image.url(:thumb) %>
-	<% else %>
-	<p>This post has no slide!</p>
+<div class="row page-header">
+	<div class="col-sm-9">
+		<h1 class="page-title">
+			Blog Admin
+		</h1>
+	</div>
+	<div class="col-sm-3">
+		<%= form_tag blog_admin_path, method: :get, class: 'form-inline' do %>
+		<div>
+			<div class="input-group col-sm-12">
+      <%= text_field_tag :query, params[:query], placeholder: "Search: English or Korean title", class: "form-control input-sm" %>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
+      </span>
+    	</div>
+		</div>
+		<% end %>
+	</div>
+</div>
+
+
+
+<h2>Posts</h2>
+<%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
+
+<table class="table table-striped">
+	<tr>
+		<th>Title</th>
+		<th>Korean Title</th>
+		<th>ID</th>
+		<th>Published?</th>
+		<th>Image?</th>
+	</tr>
+
+	<% @posts.each do |post| %>
+		<tr>
+			<td><%= link_to post.title, edit_post_path(post) %></td>
+			<td><%= link_to post.ko_title, edit_post_path(post) %></td>
+			<td><%= link_to post.id, edit_post_path(post) %></td>
+			<td><%= post.published %></td>
+			<% unless post.image.blank? %>
+				<td><%= image_tag post.image.url(:thumb) %></td>
+			<% else %>
+				<td>no image</td>
+			<% end %>
+		</tr>
 	<% end %>
-<% end %>
-  
+</table>
+
+<h2>Slides</h2>
+<%= link_to "New Slide", new_slide_path, class: "btn btn-primary" %>
+
+<table class="table table-striped">
+	<tr>
+		<th>ID</th>
+		<th>link</th>
+		<th>active?</th>
+		<th>Image?</th>
+	</tr>
+
+	<% @slides.each do |slide| %>
+	<tr>
+		<td><%= link_to slide.id, edit_slide_path(slide) %></td>
+		<td><%= link_to slide.link, edit_slide_path(slide) %></td>
+		<td><%= slide.active %></td>
+		<% unless slide.image.blank? %>
+			<td><%= image_tag(slide.image.url :thumb) %></td>
+		<% else %>
+			<td>No image</td>
+		<% end %>
+	</tr>
+	<% end %>
+</table>

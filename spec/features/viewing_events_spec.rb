@@ -6,7 +6,7 @@ feature "Viewing events" do
 	end
 	scenario "public users can view approved events" do
 		visit events_path
-		click_link @event.name
+		first(:link, @event.name).click
 		expect(page).to have_content(@event.name)
 	end
 

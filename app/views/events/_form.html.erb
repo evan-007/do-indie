@@ -15,6 +15,18 @@
 	<p><%= f.file_field :avatar %></p>
 	<p><%= t(:event_poster_note) %></p>
 
+	<% if I18n.locale == :en %>
+	  <p>
+	    <%= f.label t(:city) %>
+	    <%= f.collection_select :city_id, City.order(:en_name), :id, :en_name %>
+	  </p>
+  <% else %>
+		<p>
+			<%= f.label t(:city) %>
+			<%= f.collection_select :city_id, City.order(:ko_name), :id, :ko_name %>
+		</p>
+  <% end %>
+
 	<hr>
 
 	<div id="en_bands">
@@ -42,6 +54,7 @@
 				<%= f.text_field :venue_tokens, data: {load: @event.venue.to_json } %>
 			<% end %>
 		</p>
+		<p><%= t(:venue_note) %></p>
 	</div>
 			
 
@@ -50,13 +63,14 @@
 	<%= f.label t(:start_date) %>
 	<%= f.text_field :date, class: "form-control half date" %><br />
 	<%= f.label t(:show_time) %>
-	<%= f.text_field :time, placeholder: "7:40pm", class: "form-control half" %><br />
+	<%= f.text_field :time, placeholder: "e.g. 7:40pm", class: "form-control half" %><br />
 
 	<%= f.label t(:event_contact) %>
 	<%= f.text_field :contact, class: "form-control half" %><br />
 
 	<%= f.label t(:facebook_event) %>
-	<%= f.text_field :facebook, class: "form-control half" %><br />
+	<%= f.text_field :facebook, class: "form-control half", placeholder: "e.g. https://www.facebook.com/events/1412674345611085" %><br />
+	<p><%= t(:facebook_event_note)%></p>
 	
 	<hr>
 
@@ -83,10 +97,10 @@
 
 	<hr>
 	<%= f.label t(:event_details_en) %>
-	<%= f.text_area :info, class: "form-control half" %><br />
+	<%= f.text_area :info, rows: 10, class: "form-control mid" %><br />
 
 	<%= f.label t(:event_details_ko) %>
-	<%= f.text_area :info_ko, class: "form-control half" %><br />
+	<%= f.text_area :info_ko, rows: 10, class: "form-control mid" %><br />
 	<p><%= t(:event_details_notes)%></p><br>
 	
 	<%= f.submit nil, class: "btn btn-primary" %>
@@ -96,52 +110,26 @@
 <script>
   $(document).ready(function() { $('#event_band_ids').chosen({width: "50%"}); });
   $(document).ready(function() { $('#event_venue_id').chosen({width: "50%"}); });
-  $(document).ready(function() { 
-  	$('#new_bands').hide(); 
-  });
-
-  $(document).ready(function() {
-  	$('#new_venue_form').hide();
-  });
-
-  $(document).ready(function() {
-    $('#add_band').on('click', function() {
-    	$(this).closest('#new_band').find('#new_bands').toggle();
-    });
-	});
-
+  $(document).ready(function() { $('#event_city_id').chosen({width: "50%"}); });
+  
+ 
 	$(document).ready(function() {
-    $('#add_venue').on('click', function(){
-				$(this).closest('#new_venue').find('#new_venue_form').toggle();
-		});		
-	});
-
-	$(document).ready(function() {
-		$('.date').datepicker();
+		$('.date').datepicker({format: 'yyyy/mm/dd'});
 	})
 
 	$(document).ready(function() {
 		$('#en_bands').find('#event_band_tokens').tokenInput("/bands.json", { theme: "facebook",
+			resultsFormatter: function(item){ return '<li>' + item.name +' '+ item.korean_name+'</li>'},
 			prePopulate: $('#event_band_tokens').data('load')}
 			);
 	});
   
   $(document).ready(function() {
 		$('#en_venue').find('#event_venue_tokens').tokenInput("/venues.json", { theme: "facebook",
-			prePopulate: [$('#event_venue_tokens').data('load')]}
+			resultsFormatter: function(item){ return '<li>' + item.name +' '+ item.korean_name+'</li>'},
+			tokenLimit: 1, prePopulate: [$('#event_venue_tokens').data('load')]}
 			);
 	});
 
-	$(document).ready(function() {
-		$('#korean_bands').find('#event_band_tokens').tokenInput("/bands.json", { theme: "facebook", propertyToSearch: "korean_name",
-			prePopulate: $('#event_band_tokens').data('load')}
-			);
-	});
-
-	$(document).ready(function() {
-		$('#korean_venue').find('#event_venue_tokens').tokenInput("/venues.json", { propertyToSearch: "ko_name",
-			prePopulate: $('#event_venue_tokens').data('load')}
-			);
-	});
   
 </script>

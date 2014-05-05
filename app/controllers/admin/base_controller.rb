@@ -12,5 +12,6 @@ class Admin::BaseController < ApplicationController
     @venue_managers = VenueManager.where(approved: false).count
     @event_managers = EventManager.where(approved: false).count
     @cities = City.where(ko_name: nil).count
+    @posts = Post.unpublished.count
   end
 end

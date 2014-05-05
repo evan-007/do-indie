@@ -18,16 +18,27 @@ class User < ActiveRecord::Base
   has_many :bands
   has_many :events
   has_many :venues
+  has_many :venue_fans, dependent: :destroy
+  has_many :liked_venues, through: :venue_fans, source: :venue
 
   extend FriendlyId
   friendly_id :friendify, use: :slugged
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  devise :omniauthable, :omniauth_providers => [:facebook]
+  devise :omniauthable, :omniauth_providers => [:facebook, :twitter]
          
   paginates_per 100
   
+  def liked_band_events
+    event_ids = []
+    self.user_fans.each do |f|
+      f.band.events.upcoming.each do |e|
+        event_ids << e
+      end
+    end
+    return event_ids
+  end
 
   def approved_manager?(band_id)
     self.band_managers.where(band_id: band_id).first.approved
@@ -105,6 +116,27 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.username = "#{auth.info.first_name} #{auth.info.last_name}"
+    end
+  end
+  
+  def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    if user
+      return user
+    else
+      registered_user = User.where(:email => auth.uid + "@twitter.com").first
+      if registered_user
+        return registered_user
+      else
+
+        user = User.create(username:auth.info.nickname,
+                            provider:auth.provider,
+                            uid:auth.uid,
+                            email:auth.uid+"@twitter.com",
+                            password:Devise.friendly_token[0,20],
+                          )
+      end
+
     end
   end
 

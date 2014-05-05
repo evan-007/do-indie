@@ -11,11 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415053900) do
+ActiveRecord::Schema.define(version: 20140504003702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_trgm"
+
+  create_table "ads", force: true do |t|
+    t.string   "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
   create_table "band_genres", force: true do |t|
     t.integer  "band_id"
@@ -154,8 +163,10 @@ ActiveRecord::Schema.define(version: 20140415053900) do
     t.string   "slug"
     t.boolean  "approved",            default: false
     t.integer  "user_id"
+    t.integer  "city_id"
   end
 
+  add_index "events", ["city_id"], name: "index_events_on_city_id", using: :btree
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
   add_index "events", ["venue_id"], name: "index_events_on_venue_id", using: :btree
 
@@ -214,6 +225,10 @@ ActiveRecord::Schema.define(version: 20140415053900) do
     t.boolean  "published"
     t.string   "slug"
     t.string   "ko_title"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "slides", force: true do |t|
@@ -318,6 +333,16 @@ ActiveRecord::Schema.define(version: 20140415053900) do
   add_index "venue_cities", ["city_id"], name: "index_venue_cities_on_city_id", using: :btree
   add_index "venue_cities", ["venue_id"], name: "index_venue_cities_on_venue_id", using: :btree
 
+  create_table "venue_fans", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "venue_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "venue_fans", ["user_id"], name: "index_venue_fans_on_user_id", using: :btree
+  add_index "venue_fans", ["venue_id"], name: "index_venue_fans_on_venue_id", using: :btree
+
   create_table "venue_managers", force: true do |t|
     t.integer  "user_id"
     t.integer  "venue_id"
@@ -363,8 +388,10 @@ ActiveRecord::Schema.define(version: 20140415053900) do
     t.boolean  "approved",             default: false
     t.integer  "user_id"
     t.string   "ko_name"
+    t.integer  "city_id"
   end
 
+  add_index "venues", ["city_id"], name: "index_venues_on_city_id", using: :btree
   add_index "venues", ["user_id"], name: "index_venues_on_user_id", using: :btree
 
   create_table "youtubes", force: true do |t|

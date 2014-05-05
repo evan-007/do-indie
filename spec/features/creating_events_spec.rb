@@ -5,6 +5,7 @@ feature "Creating events" do
 		@user = create(:admin_user)
 		@band = create(:band)
 		@venue = create(:venue)
+		@city = create(:city)
 	end
 
 	scenario "Users can create events" do
@@ -15,6 +16,7 @@ feature "Creating events" do
 		fill_in "event[price]", with: "1million wons"
 		fill_in "event[info]", with: "Dress to impress, doors open at 9. Gangnam exit 4"
 		fill_in "event[venue_tokens]", with: @venue.id
+		select @city.en_name, from: "event[city_id]"
 		click_button "Create Event"
 		expect(page).to have_content("Thanks")
 	end

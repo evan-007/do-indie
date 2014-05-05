@@ -14,7 +14,7 @@ en:
       last_attempt: "You have one more attempt before your account will be locked."
       not_found_in_database: "Invalid email or password."
       timeout: "Your session expired. Please sign in again to continue."
-      unauthenticated: "You need to sign in or sign up before continuing."
+      unauthenticated: "To submit events or venue / band profiles, please sign up for a free doindie account. After joining, you will be able to submit content to the site."
       unconfirmed: "You have to confirm your account before continuing."
     mailer:
       confirmation_instructions:

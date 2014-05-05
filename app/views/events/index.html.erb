@@ -6,8 +6,8 @@
     <div class="row events_selector pull-right">
       <div class="col-xs-12 row-fluid">
         <div class="btn-group col-xs-12 row-fluid">
-          <%= link_to "Upcoming", events_path, class: 'btn btn-warning active col-xs-6' %>
-          <%= link_to "Past", past_events_path, class: 'btn btn-default col-xs-6' %>
+          <%= link_to t(:upcoming), events_path, class: 'btn btn-warning active col-xs-6' %>
+          <%= link_to t(:past), past_events_path, class: 'btn btn-default col-xs-6' %>
         </div>
       </div>
     </div>
@@ -17,7 +17,7 @@
     <%= form_tag events_path, method: :get, class: 'form-inline' do %>
     <div>
       <div class="input-group col-xs-12">
-      	<%= text_field_tag :query, params[:query], placeholder: "Enter an event", class: "form-control  input-sm" %>
+      	<%= text_field_tag :query, params[:query], placeholder: "Search", class: "form-control date input-sm" %>
       <span class="input-group-btn">
         <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
       </span>
@@ -29,4 +29,9 @@
 
 <%= render 'shared/events_list', :events => @events %>
 
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('.date').datepicker();
+  })
+</script>
 

@@ -9,6 +9,13 @@
 </p>
 
 <p>
+  <% unless @band.avatar.blank? %>
+  Current image:<br/>
+  <%= image_tag(@band.avatar :medium) %>
+  <% end %>
+</p>
+
+<p>
   <%= f.label t(:band_image) %>
   <%= f.file_field :avatar %>
   <% t(:band_image_note)%>
@@ -101,23 +108,26 @@
   <%= f.check_box :approved %>
 </p>
 
-  <% unless @band.genres.blank? %><br/ ><br />
-    <p>Don't add the same genre twice. This band is already under these genres:</p>
-    <% @band.genres.each do |genre| %>
-      <%= genre.name %>,
-    <% end %><br /><br />
-  <% end %>
+<div id="b_genres">
   <p>
     <%= f.label t(:genres) %>
-    <%= f.collection_select :genre_ids, Genre.order(:name), :id, :name, {}, {multiple: true} %>
+    <% if @band.new_record? %>
+      <%= f.text_field :genre_tokens %>
+    <% else %>
+      <%= f.text_field :genre_tokens, data: {load: @band.genres} %>
+    <% end %>
   </p>
-  <p><% t(:new_genre) %></p>
-  <%= label_tag t(:new_genre) %>
-  <%= text_field_tag :new_genre %><br />
+</div>
   <%= f.submit %>
 <% end %>
 
 <script>
   $(document).ready(function() { $('#band_genre_ids').chosen({width: "50%"}); });
+
+  $(document).ready(function() {
+    $('#b_genres').find("#band_genre_tokens").tokenInput("/genres.json", { theme: "facebook",
+      prePopulate: $('#band_genre_tokens').data('load')}
+      );
+  });
   
 </script>

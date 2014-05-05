@@ -2,6 +2,7 @@
   <div class="col-sm-6 ">
     <h1><%= t(:signin) %></h1>
     <%= link_to image_tag('fb-login-button.png'), user_omniauth_authorize_path(:facebook) %>
+    <%= link_to image_tag('twitter_signin.png'), user_omniauth_authorize_path(:twitter) %>
     <%= form_for(resource, :as => resource_name, 
     :url => session_path(resource_name),
     role: "form") do |f| %>

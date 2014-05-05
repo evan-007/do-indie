@@ -1,7 +1,7 @@
 <div class="row page-header">
   <div class="col-md-9">
     <h1 class="page-title">
-      doindie <%= t(:blogs) %>
+      doindie <%= t(:blog_title) %>
     </h1>
   </div>
   <div class="col-md-3 searchform text-center">
@@ -23,10 +23,8 @@
   	  <% @posts.each do |post| %>
   		  	<%= div_for(post, class: "list posts-grid-item tile"+first_post) do %>
   		  		<div class="thumbnail">
-              <% unless post.slide.blank? %>
-                <% unless post.slide.image.blank? %>
-      			  		<%= image_tag post.slide.image.url(:medium) %>
-          			<% end %>
+              <% unless post.image.blank? %>
+      			  		<%= link_to (image_tag post.image.url(:medium)), post_path(post) %>
               <% end %>
   	  				<div class="caption">
   		  				<h3><%= link_to post.title, post_path(post) %></h3>
@@ -45,6 +43,10 @@
         <%= link_to "<span class=\"badge\">".html_safe+c.post_categories.count.to_s+"</span>".html_safe+c.name, c, class: "list-group-item" %>
       <% end %>
     </div>
+    <% @ads.each do |ad| %>
+      <%= div_for(ad, class: 'ad') %>
+      <%= link_to(image_tag(ad.image.url(:medium)), ad.link) %>
+    <% end %>
   </div><!--sidebar-->
 
   

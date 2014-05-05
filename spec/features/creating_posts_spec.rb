@@ -17,6 +17,11 @@ feature "Creating posts" do
     visit blog_en_path
     expect(page).to_not have_content("New Post")
   end
+
+  scenario "Public users cannot create new posts" do
+    visit blog_en_path
+    expect(page).to_not have_content("New Post")
+  end
   
   scenario "Blogger users can create posts" do
     sign_in @blogger
@@ -25,10 +30,6 @@ feature "Creating posts" do
     fill_in "post[ko_title]", with: "korean title"
     fill_in "post[en_body]", with: "Here is my article"
     fill_in "post[ko_body]", with: "korean body"
-    fill_in "post[slide_attributes][en_title]", with: "slide en title"
-    fill_in "post[slide_attributes][ko_title]", with: "slide ko title"
-    fill_in "post[slide_attributes][en_description]", with: "slide en_description"
-
     click_button "Create Post"
     expect(page).to have_content("Post Created!")
   end
