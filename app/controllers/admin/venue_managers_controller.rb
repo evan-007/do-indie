@@ -8,7 +8,7 @@ class Admin::VenueManagersController < Admin::BaseController
   
   def new
     @manager = VenueManager.new
-    @users = User.fuzzy_search(params[:query])
+    @users = User.text_search(params[:query])
   end
 
   def create

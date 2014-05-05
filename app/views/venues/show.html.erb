@@ -34,13 +34,11 @@
             <td><%= @venue.address %></td>
           </tr>
         <% end %>
-        <% unless @venue.venue_cities == 0 %>
+        <% unless @venue.city.blank? %>
         <tr>
           <td><%= t(:city) %></td>
           <td>
-            <% @venue.venue_cities.each do |venue_city| %>
-              <%= link_to "#{venue_city.city.en_name}"+"-"+"#{venue_city.city.ko_name}", city_path(venue_city.city.en_name), :class => "link-bd-block" %> 
-            <% end %>
+              <%= link_to "#{@venue.city.en_name}"+"-"+"#{@venue.city.ko_name}", city_path(@venue.city.en_name), :class => "link-bd-block" %> 
           </td>
         </tr>
         <% end %>

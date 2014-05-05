@@ -92,7 +92,7 @@ class User < ActiveRecord::Base
       where("username @@ :q or email @@ :q", q: query).order(
         admin: :desc, username: :asc)
     else
-      #order(admin: :desc, username: :asc)
+      order(admin: :desc, username: :asc)
     end
   end
   

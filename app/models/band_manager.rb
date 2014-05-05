@@ -8,7 +8,7 @@ class BandManager < ActiveRecord::Base
 
   def self.search_and_order(search, page_number)
     if search
-      where("username LIKE ?", "%#{search.downcase}%").order(
+      where("user.username LIKE ?", "%#{search.downcase}%").order(
       admin: :desc, username: :asc
       ).page page_number
     else

@@ -8,7 +8,7 @@ class Admin::EventManagersController < Admin::BaseController
   
   def new
     @manager = EventManager.new
-    @users = User.fuzzy_search(params[:query])
+    @users = User.text_search(params[:query])
   end
 
   def create
