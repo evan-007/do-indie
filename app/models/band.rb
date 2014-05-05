@@ -74,7 +74,7 @@ class Band < ActiveRecord::Base
     if query.present?
     	self.approved.where("name ilike :q or korean_name ilike :q", q: "%#{query}%").page page_number
     else
-	    approved.order(approved: :asc).page page_number
+	    approved.page page_number
     end
   end
 
