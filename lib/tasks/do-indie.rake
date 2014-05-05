@@ -114,9 +114,9 @@ task :import_venues => :environment do
   @map = 6
 	
   
-  
-
-	CSV.foreach("#{Rails.root}"+"/lib/venue-data.csv", headers: true) do |row|
+  #old data /lib/venue-data.csv
+  #new data /lib/raw-venues-5-5.csv
+	CSV.foreach("#{Rails.root}"+"/lib/raw-venues-5-5.csv", headers: true) do |row|
     @name = row[0].gsub(/[^\p{Hangul}]/, '')
     @en_name = row[0].gsub(/<!--:ko-->(.*?)<!--:-->|<!--:en-->|<!--:-->/, '')
     unless row[4] == nil
