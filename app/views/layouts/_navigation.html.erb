@@ -35,7 +35,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><%= t(:photos) %><b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><%= link_to t(:photos), photo_path %></li>
+                <li data-no-turbolink><%= link_to t(:photos), photo_path %></li>                
                 <li><%= link_to t(:winners), winner_path %></li>
               </ul>
             </li>
