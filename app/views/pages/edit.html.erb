@@ -1,6 +1,6 @@
 <p>Edit your page, html OK.</p>
 <%= form_for @page do |f| %>
   <%= f.label :body %>
-  <%= f.text_area :body, class: "form-control half" %><br/>
+  <%= f.cktext_area :body, class: "form-control half" %><br/>
   <%= f.submit %>
 <% end %>
