@@ -329,7 +329,7 @@ ko:
       not_an_integer: 에 정수를 입력해 주세요
       odd: 에 홀수를 입력해 주세요
       record_invalid: 데이터 검증에 실패하였습니다. %{errors}
-      taken: 은(는) 이미 존재합니다.
+      taken: 이미 존재합니다.
       too_long: 은(는) %{count}자를 넘을 수 없습니다
       too_short: 은(는) 적어도 %{count}자를 넘어야 합니다
       wrong_length: 은(는) %{count}자여야 합니다
@@ -405,8 +405,8 @@ ko:
   activerecord:
     attributes:
       user:
-        email: "이메일"
-        username: "사용자명"
+        email: "이메일은"
+        username: "사용자명은"
         password: "암호"
     errors:
       models:
