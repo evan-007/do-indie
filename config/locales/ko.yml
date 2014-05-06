@@ -29,6 +29,7 @@ ko:
   user_page: "마이 페이지"
   account_edit: "프로필 수정하기"
   sign_out: "로그아웃"
+  winners: "2014 우승자"
 
   #manager
   manager_approval: "감사합니다. 확인 후 즉시 이메일 드리겠습니다."
