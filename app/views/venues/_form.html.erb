@@ -72,12 +72,12 @@
 	<% if I18n.locale == :en %>
 	  <p>
 	    <%= f.label t(:city) %>
-	    <%= f.collection_select :city_id, City.order(:en_name), :id, :en_name %>
+	    <%= f.collection_select :city_id, City.order(created_at: :asc), :id, :en_name %>
 	  </p>
   <% else %>
 		<p>
 			<%= f.label t(:city) %>
-			<%= f.collection_select :city_id, City.order(:ko_name), :id, :ko_name %>
+			<%= f.collection_select :city_id, City.order(created_at: :asc), :id, :ko_name %>
 		</p>
   <% end %>
   <p><%= t(:new_city_note) %></p>
