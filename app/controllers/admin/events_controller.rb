@@ -8,7 +8,7 @@ class Admin::EventsController < Admin::BaseController
   
 
   def index
-    @events = Event.admin_search(params[:search], params[:page])
+    @events = Event.order(params[:sort]).admin_search(params[:search], params[:page])
   end
   
   def show
