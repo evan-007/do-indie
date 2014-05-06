@@ -13,7 +13,7 @@
 
 <p>
 	<% unless @event.avatar.blank? %>
-		Current image: <%= image_tag @event.avatar.url :thumb %>
+		Current image: <%= image_tag @event.avatar.url :medium %>
 	<% end %>
 </p>
 	<p><%= f.label t(:event_poster) %></p>

@@ -6,7 +6,7 @@
 
 	<p>
 		<% unless @venue.avatar.blank? %>
-			Current image: <%= image_tag @venue.avatar.url :thumb %>
+			Current image: <%= image_tag @venue.avatar.url :medium %>
 		<% end %>
 	</p>
 
