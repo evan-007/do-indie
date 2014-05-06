@@ -12,4 +12,19 @@ class City < ActiveRecord::Base
 			order(ko_name: :desc).page page_number
 		end
 	end
+
+  def self.tokens(query)
+    cities = where("en_name ilike :q or ko_name ilike :q", q: "%#{query}%")
+    if cities.empty?
+  		[{id: "<<<#{query}>>>", en_name: "New: \"#{query}\""}]
+  	else
+      cities << {id: "<<<#{query}>>>", en_name: "New: \"#{query}\""}
+  	end
+  end
+  
+  def self.ids_from_tokens(tokens)
+    tokens.gsub!(/<<<(.+?)>>>/) { create!(en_name: $1).id }
+  	tokens.split(',')
+    return tokens
+  end
 end

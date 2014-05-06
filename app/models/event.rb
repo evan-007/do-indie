@@ -20,10 +20,11 @@ class Event < ActiveRecord::Base
 	
 	accepts_nested_attributes_for :bands
 	accepts_nested_attributes_for :venue
+	accepts_nested_attributes_for :city
 	extend FriendlyId
 	friendly_id :name, use: :slugged
 
-  attr_reader :band_tokens, :venue_tokens
+  attr_reader :band_tokens, :venue_tokens, :city_tokens
 
 	def band_tokens=(tokens)
 		self.band_ids = Band.ids_from_tokens(tokens)
@@ -34,6 +35,14 @@ class Event < ActiveRecord::Base
       self.venue = Venue.find((Venue.ids_from_tokens(tokens)))
     else
       self.venue = nil
+    end
+  end
+
+  def city_tokens=(tokens)
+    unless City.ids_from_tokens(tokens).blank?
+      self.city = City.find((City.ids_from_tokens(tokens)))
+    else
+      self.city = nil
     end
   end
 

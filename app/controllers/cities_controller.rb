@@ -10,4 +10,9 @@ class CitiesController < ApplicationController
     end
     @cities = City.all
 	end
+
+	def index
+    @cities = City.all
+	  render json: @cities.tokens(params[:q])
+	end
 end
