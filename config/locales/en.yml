@@ -202,3 +202,12 @@ en:
   categories: "Categories"
   tags: "Tags"
   blog_title: "DoIndie Blog"
+
+  #validations
+  active_record:
+    errors:
+      models:
+        user:
+          attributes:
+            username:
+              length: "can only contain letters and digits"

@@ -209,6 +209,9 @@ ko:
   tags: "Tags"
   blog_title: "두인디 블로그"
 
+  #validations
+  user_valid: "특수문자를 제외한 글자와 숫자만 가능합니다"
+
   #i18n translations
   date:
     abbr_day_names:
@@ -405,3 +408,9 @@ ko:
         email: "이메일"
         username: "사용자명"
         password: "암호"
+    errors:
+      models:
+        user:
+          attributes:
+            username:
+              length: "특수문자를 제외한 글자와 숫자만 가능합니다."
