@@ -11,6 +11,11 @@
 		<%= t(:event_name_note) %>
 	</p><br />
 
+<p>
+	<% unless @event.avatar.blank? %>
+		Current image: <%= image_tag @event.avatar.url :thumb %>
+	<% end %>
+</p>
 	<p><%= f.label t(:event_poster) %></p>
 	<p><%= f.file_field :avatar %></p>
 	<p><%= t(:event_poster_note) %></p>
