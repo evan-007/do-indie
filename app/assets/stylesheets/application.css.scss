@@ -440,6 +440,10 @@ body {
   border: 1px solid #000000;
 }
 
+.band-socials, .venue-socials {
+  margin: 3px;
+}
+
 .venue-detail .venue-socials a:hover,
 .band-detail .band-socials a:hover {
   background-color: #CD503C;

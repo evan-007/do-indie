@@ -3,15 +3,7 @@
   <h2><%= @band.korean_name %></h2>
   <div class="row">
     <div class="col-sm-5">
-      <div class="row"><%= image_tag(@band.avatar :large) %></div>
-      <div class="row">
-        <p>Fans: <%= @band.fans %></p>
-        <% if current_user && current_user.user_fans.where(band_id: @band.id).count != 0 %>
-        <%= link_to "Unlike", user_fan_path(band_id: @band.id), method: 'delete', class: "btn btn-default" %>
-        <% elsif current_user %>
-        <%= link_to "Like", user_fans_path(band_id: @band.id), method: 'post', class: "btn btn-default" %>
-        <% end %>
-      </div>
+      <div class="row"><%= image_tag(@band.avatar :large) %></div>      
     </div>
     <div class="col-sm-7 vcard">
       <table class="table table-hover">
@@ -43,7 +35,18 @@
         </tr>
       </table> 
 
-      <ul class="nav nav-pills band-socials">
+      <div class="pull-right">
+        <% fans_count = "<span class=\"badge\">" + @band.fans.to_s + "</span> " + t(:fans) %>
+        <% if current_user && current_user.user_fans.where(band_id: @band.id).count != 0 %>
+          <%= link_to "#{fans_count} <i class=\"fa fa-thumbs-up\"></i>".html_safe, user_fan_path(band_id: @band.id), method: 'delete', :class => 'btn btn-success active', 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"Unlike" %>
+        <% elsif current_user %>
+        <%= link_to "#{fans_count} <i class=\"fa fa-thumbs-o-up\"></i>".html_safe, user_fans_path(band_id: @band.id), method: 'post', :class => 'btn btn-success', 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"Like" %>
+        <% else %>
+          <%= link_to "#{fans_count} <i class=\"fa fa-thumbs-o-up\"></i>".html_safe, new_user_registration_path, :class => 'btn btn-success', 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>t(:signup) %> 
+        <% end %>
+      </div>
+
+      <ul class="nav nav-pills band-socials pull-left">
         <% unless @band.facebook.blank? %>
         <li><%= link_to "<i class=\"fa fa-facebook\"></i> ".html_safe+t(:facebook), @band.facebook, class: 'facebook' %></li>
         <% end %>
@@ -63,6 +66,8 @@
         <li><%= link_to "<i class=\"fa fa-coffee\"></i> ".html_safe+t(:cafe), @band.cafe, class: 'cafe' %></li>
         <% end %>
       </ul>    
+
+      <div class="clearfix"></div>
       
       <% unless @band.soundcloud.blank? %>
       <%= @embed_info['html'].html_safe %>
