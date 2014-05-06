@@ -9,6 +9,12 @@
 </p>
 
 <p>
+  <% unless @band.avatar.blank? %>
+    Current image: <%= image_tag @band.avatar.url :thumb %>
+  <% end %>
+</p>
+
+<p>
   <%= f.label t(:band_image) %>
   <%= f.file_field :avatar %>
   <% t(:band_image_note)%>
