@@ -40,8 +40,8 @@
 <%= render 'shared/events_list', :events => @events %>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-    $('.date').datepicker();
-  })
+	$(document).ready(function() {
+		$('.date').datepicker({format: 'yyyy/mm/dd'});
+	})
 </script>
 

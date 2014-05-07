@@ -57,7 +57,7 @@ class Event < ActiveRecord::Base
 
 	def self.date_search(date)
     if date 
-      where(date: Date.parse(date))
+      events = where(date: Date.parse(date))
 		end
 	end
 
