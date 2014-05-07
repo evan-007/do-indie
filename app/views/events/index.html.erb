@@ -4,6 +4,12 @@
       <%= t(:events) %>
     </h1>
 
+    <div class="row events_selector pull-right cities">
+      <% @cities.each do |city| %>
+        <%= link_to "#{city.en_name} #{city.ko_name}", city_event_path(city.en_name), class: 'btn btn-default col-xs-6' %>
+      <% end %>
+    </div>
+
     <div class="row events_selector pull-right">
       <div class="col-xs-12 row-fluid">
         <div class="btn-group col-xs-12 row-fluid">
@@ -13,11 +19,6 @@
       </div>
     </div>
 
-    <div class="row events_selector pull-right cities">
-      <% @cities.each do |city| %>
-        <%= link_to "#{city.en_name} #{city.ko_name}", city_event_path(city.en_name), class: 'btn btn-default col-xs-6' %>
-      <% end %>
-    </div>
     <div class="clearfix"></div>
   </div>
 
