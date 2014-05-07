@@ -8,14 +8,14 @@ feature "Event date search" do
   scenario "returns events that match the date" do
     visit events_en_path
     fill_in "date_search", with: "2014/05/06"
-    click_button "Search"
+    find(:css, "#date-search").click
     expect(page).to have_content(@event.name)
   end
   
   scenario "doesn't return events that don't match query" do
     visit events_en_path
     fill_in "date_search", with: "2014/04/04"
-    click_button "Search"
+    find(:css, "#date-search").click
     expect(page).to have_content("Sorry, no matches")
   end
 end
