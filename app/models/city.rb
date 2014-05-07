@@ -13,6 +13,10 @@ class City < ActiveRecord::Base
 		end
 	end
 
+  def self.has_upcoming_events
+    joins(:events).where("date > ?" > Date.today.to_s)
+  end
+
   def self.tokens(query)
     cities = where("en_name ilike :q or ko_name ilike :q", q: "%#{query}%")
     if cities.empty?

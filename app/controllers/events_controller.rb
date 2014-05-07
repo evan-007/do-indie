@@ -4,6 +4,7 @@ class EventsController < ApplicationController
 
 	def index
 		@events = Event.index_search(params[:query], params[:page])
+		@cities = City.has_upcoming_events
 	end
 
 	def calendar

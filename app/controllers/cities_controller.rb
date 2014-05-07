@@ -11,6 +11,10 @@ class CitiesController < ApplicationController
     @cities = City.all
 	end
 
+	def events
+		@city = City.find_by(en_name: params[:en_name])
+	end
+
 	def index
     @cities = City.all
 	  render json: @cities.tokens(params[:q])
