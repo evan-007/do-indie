@@ -39,8 +39,11 @@
     <% end %>
   </div>
 </div>
-
-<%= render 'shared/events_list', :events => @events %>
+<% unless @events.blank? %>
+  <%= render 'shared/events_list', :events => @events %>
+<% else %>
+  <h2>Sorry, no results</h2>
+<% end %>
 
 <script type="text/javascript">
 	$(document).ready(function() {
