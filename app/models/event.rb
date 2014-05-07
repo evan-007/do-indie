@@ -56,8 +56,10 @@ class Event < ActiveRecord::Base
 	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
 	def self.date_search(date)
-    if date 
+    unless date.blank?
       events = where(date: Date.parse(date))
+    else
+    	events = []
 		end
 	end
 

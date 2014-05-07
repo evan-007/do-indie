@@ -18,4 +18,10 @@ feature "Event date search" do
     find(:css, "#date-search").click
     expect(page).to have_content("Sorry, no matches")
   end
+
+  scenario "returns nothing if blank form" do
+    visit events_en_path
+    find(:css, "#date-search").click
+    expect(page).to have_content("Sorry, no matches")
+  end
 end
