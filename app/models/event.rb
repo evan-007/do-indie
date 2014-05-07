@@ -56,8 +56,8 @@ class Event < ActiveRecord::Base
 	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
 	def self.date_search(date)
-		if search 
-			where("date ilike :q?", q: "%#{date}%")
+    if date 
+      where(date: Date.parse(date))
 		end
 	end
 

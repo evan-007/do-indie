@@ -7,7 +7,7 @@ class EventsController < ApplicationController
 	end
 
 	def calendar
-		@events = Event.date_search(params[:date])
+    @events = Event.date_search(params[:date_search])
 	end
 
 	def show

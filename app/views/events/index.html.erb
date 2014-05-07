@@ -16,9 +16,9 @@
 
   <%= form_tag calendar_path, method: 'get', html: {role: "form"} do %>
     <p>
-      <%= text_field_tag :date_search, params[:date], placeholder: "Date search", class: "form-control half date" %>
+      <%= text_field_tag :date_search, params[:date_search], placeholder: "Date search", class: "form-control half date" %>
       <%= submit_tag "Search", :name => nil, class: "btn btn-sm btn-primary" %>
-      <%= link_to "All", admin_bands_path, {class: "btn btn-sm btn-link"} %>
+      <%= link_to "All", events_path, {class: "btn btn-sm btn-link"} %>
     </p>
   <% end %>
 
