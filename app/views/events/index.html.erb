@@ -14,16 +14,19 @@
     <div class="clearfix"></div>
   </div>
 
-  <%= form_tag calendar_path, method: 'get', html: {role: "form"} do %>
-    <p>
-      <%= text_field_tag :date_search, params[:date_search], placeholder: "Date search", class: "form-control half date" %>
-      <%= submit_tag "Search", :name => nil, class: "btn btn-sm btn-primary" %>
-      <%= link_to "All", events_path, {class: "btn btn-sm btn-link"} %>
-    </p>
-  <% end %>
+  <div class="col-sm-2">
+    <%= form_tag calendar_path, method: 'get', html: {role: "form"} do %>
+      <div class="input-group col-xs-12">
+        <%= text_field_tag :date_search, params[:date_search], placeholder: "Date search", class: "form-control date input-sm" %>
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-calendar"></i></button>
+        </span>
+      </div>
+    <% end %>
+  </div>
 
 
-  <div class="col-sm-3 searchform">
+  <div class="col-sm-2 searchform">
     <%= form_tag events_path, method: :get, class: 'form-inline' do %>
     <div>
       <div class="input-group col-xs-12">
