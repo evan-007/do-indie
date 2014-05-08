@@ -27,3 +27,15 @@
 //= require 'jquery.jplayer'
 //= require cocoon
 //= require_tree .
+
+$(document).ready(function () {
+  // apply dropdownHover to all elements with the data-hover="dropdown" attribute
+  $('[data-hover="dropdown"]').dropdownHover();
+});
+
+// workaround of jQuery tokeninput for Korean characters
+setTimeout(function() {
+  $('input[id^="token-input"]').bind('input.autocomplete',function (){
+    $(this).trigger('keydown');
+  });
+},500);
