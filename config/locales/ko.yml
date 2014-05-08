@@ -21,7 +21,7 @@ ko:
   password: "암호"
   email: "이메일"
   remember: "기억하기"
-  login_request: "missing"
+  login_request: "수정 권한을 가지시려면 로그인이 필요합니다."
   manager_request: "해당 페이지의 관리자가 되고 싶다면 클릭"
   pending_approval: "감사합니다. 두인디 담당자가 확인 후 이메일 드리겠습니다."
   past_events: "지난 공연"
