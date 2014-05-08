@@ -133,7 +133,7 @@ class User < ActiveRecord::Base
         user = User.create(username:auth.info.nickname,
                             provider:auth.provider,
                             uid:auth.uid,
-                            email:auth.uid+"@twitter.com",
+                            email:auth.info.nickname+"@twitter.com",
                             password:Devise.friendly_token[0,20],
                           )
       end
