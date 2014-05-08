@@ -60,6 +60,9 @@ ko:
   new_fan: "%{thing}의 팬이 되었습니다."
   not_fan: "%{thing}의 팬이 취소되었습니다."
 
+  #events_index
+  no_results: "죄송합니다. 검색어와 일치하는 정보를 찾을 수 없습니다."
+
   #for events#show
   show_time: "시간:"
   contact: "연락처:"

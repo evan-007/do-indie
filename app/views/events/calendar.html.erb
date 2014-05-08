@@ -4,7 +4,7 @@
     <h2>Events for <%= @events.first.date %></h2>
       <%= render 'shared/events_list', events: @events %>
     <% else %>
-      <h2> Sorry, no matches</h2>
+      <h2><%= t(:no_results) %></h2>
     <% end %>
 	</div>
 </div>

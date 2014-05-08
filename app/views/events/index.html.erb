@@ -50,5 +50,5 @@
 <% unless @events.blank? %>
   <%= render 'shared/events_list', :events => @events %>
 <% else %>
-  <h2>Sorry, no results</h2>
+  <h2><%= t(:no_results) %></h2>
 <% end %>

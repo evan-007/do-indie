@@ -16,6 +16,7 @@ en:
   band_manager: "Band Managers"
   venue_manager: "Venue Managers"
   event_manager: "Event Managers"
+
   #_navigation_links.html.erb
   account: "Account"
   signin: "Sign in"
@@ -62,6 +63,9 @@ en:
   #fan alert
   new_fan: "You are a fan of %{thing}"
   not_fan: "You are no longer a fan of %{thing}"
+
+  #events_index
+  no_results: "Sorry, no results match your search criteria."
 
   #for events#show
   show_time: "Time:"
