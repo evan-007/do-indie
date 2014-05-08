@@ -194,9 +194,12 @@ end
 task :seed_cities => :environment do
   require 'csv'
   CSV.foreach("#{Rails.root}"+"/lib/cities-in-korea.csv") do |row|
-    @en = 0
-    @ko = 1
-    City.create(en_name: row[@en], ko_name: row[@ko])
+    #because already seeded + have relations in production, yikes
+    unless City.where(en_name: row[@en]).exists?
+      @en = 0
+      @ko = 1
+      City.create(en_name: row[@en], ko_name: row[@ko])
+    end
   end
 end
 
