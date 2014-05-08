@@ -1,6 +1,7 @@
 <div class="row">
 	<div class="col-md-12">
     <% unless @events.blank? %>
+    <h2>Events for <%= @events.first.date %></h2>
       <%= render 'shared/events_list', events: @events %>
     <% else %>
       <h2> Sorry, no matches</h2>
