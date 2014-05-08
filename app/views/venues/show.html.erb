@@ -171,7 +171,7 @@
 <% elsif current_user && current_user.venue_managers.where(venue_id: @venue.id).count != 0 %>
 <p><%= t(:pending_approval) %></p>
 <% else %>
-<p><%= t(:venue_request) %> <%= t(:login_request) %><p>
+<p><%= link_to t(:login_request), new_user_session_path %><p>
   <% end %>
 
   <% if current_user && current_user.admin == true %>

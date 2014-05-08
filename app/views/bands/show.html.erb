@@ -159,7 +159,7 @@
   <% elsif current_user && current_user.band_managers.where(band_id: @band.id).count != 0 %>
   <p><%= t(:pending_approval) %></p>
   <% else %>
-  <p><%= t(:manager_request) %> <%= t(:login_request) %><p>
+  <p><%= link_to t(:login_request), new_user_session_path %><p>
   <% end %>
   
   
