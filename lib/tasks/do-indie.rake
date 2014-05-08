@@ -192,11 +192,11 @@ task :import_venue_maps => :environment do
 end
 
 task :seed_cities => :environment do
-  @venues = Venue.all
-  @venues.each do |venue|
-    unless venue.city_en == nil && venue.city_ko == nil
-      City.create(en_name: venue.city_en, ko_name: venue.city_ko)
-    end
+  require 'csv'
+  CSV.foreach("#{Rails.root}"+"/lib/cities-in-korea.csv") do |row|
+    @en = 0
+    @ko = 1
+    City.create(en_name: row[@en], ko_name: row[@ko])
   end
 end
 
