@@ -20,35 +20,41 @@
 
 
 <div class="row">
-	<div id="bands-grid" class="col-sm-9">
-		<div class="grid-tiles">
-			<% @genre.bands.each do |band| %>
-					<%= div_for(band, class: "list bands-grid-item tile") do %>
-						<div class="thumbnail">
-							<%= image_tag band.avatar.url(:medium) %>
-							<div class="caption">
-								<h3><%= link_to band.name, band_path(band) %></h3>
-								<h4><%= link_to band.korean_name, band_path(band) %></h4>
-								<div class="fanbadge small">
-									Fans
-						      <span class="badge"><%= band.fans %></span>
-						    </div>
-							    
-						    <div class="likebtn">			
-						    	<% if current_user && current_user.user_fans.where(band_id: band.id).count != 0 %>
-						    		<%= link_to "<i class=\"fa fa-thumbs-up\"></i> Unlike".html_safe, user_fan_path(id: band.id), method: 'delete' %>
-									<% elsif current_user %>
-										<%= link_to "<i class=\"fa fa-thumbs-o-up\"></i> Like".html_safe, user_fans_path(band_id: band.id), method: 'post' %>
-									<% else %>
-										<%= link_to t(:signup), new_user_registration_path %> 
-									<% end %>
-							  </div>
+	<% unless @genre.bands.blank? %>
+		<div id="bands-grid" class="col-sm-9">
+			<div class="grid-tiles">
+				<% @genre.bands.each do |band| %>
+						<%= div_for(band, class: "list bands-grid-item tile") do %>
+							<div class="thumbnail">
+								<%= image_tag band.avatar.url(:medium) %>
+								<div class="caption">
+									<h3><%= link_to band.name, band_path(band) %></h3>
+									<h4><%= link_to band.korean_name, band_path(band) %></h4>
+									<div class="fanbadge small">
+										Fans
+							      <span class="badge"><%= band.fans %></span>
+							    </div>
+								    
+							    <div class="likebtn">			
+							    	<% if current_user && current_user.user_fans.where(band_id: band.id).count != 0 %>
+							    		<%= link_to "<i class=\"fa fa-thumbs-up\"></i> Unlike".html_safe, user_fan_path(id: band.id), method: 'delete' %>
+										<% elsif current_user %>
+											<%= link_to "<i class=\"fa fa-thumbs-o-up\"></i> Like".html_safe, user_fans_path(band_id: band.id), method: 'post' %>
+										<% else %>
+											<%= link_to t(:signup), new_user_registration_path %> 
+										<% end %>
+								  </div>
+								</div>
 							</div>
-						</div>
-					<% end %> <!--div_for-->
-			<% end %>
+						<% end %> <!--div_for-->
+				<% end %>
+			</div>
 		</div>
-	</div>
+	<% else %>
+		<div class="col-sm-9">
+			<h2><%= t(:no_results) %></h2>
+		</div>
+	<% end %>
 
 	<div class="col-sm-3 sidebar">		
 		
