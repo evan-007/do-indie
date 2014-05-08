@@ -25,33 +25,46 @@
       * 라인업 : <% @event.bands.each do |b| %> <%= b.name %>, <% end %>
     </p>
   <% end %>
-
-    hidden-dawn-9617.herokuapp.com<%= url_for(event_ko_path(@event)) %><br /><br />
-
-    *Date: <%= @event.date %> <%= @event.time %><br />
-    <% unless @event.venue.blank? %>
-      *Venue: <%= @event.venue.name %><br />
-    <% end %>
-    <% unless @event.ticket_price.blank? %>
-      * Adv: <%= @event.ticket_price %>원<br />
-    <% end %>
-    <% unless @event.door_price.blank? %>
-      * Door: <%= @event.door_price %>원<br />
-    <% end %>
-    <% unless @event.bands.blank? %>
-      * Lineup : <% @event.bands.each do |b| %> <%= b.name %>, <% end %><br /><br />
-    <% end %>
-
-    ----✦✦ 밴드들 (Bands) ✦✦----<br /><br />
+  <p>
+    hidden-dawn-9617.herokuapp.com<%= url_for(event_ko_path(@event)) %>
+  </p>
+  <p>
+    *Date: <%= @event.date %> <%= @event.time %>
+  </p>
+  <% unless @event.venue.blank? %>
+    <p>
+      *Venue: <%= @event.venue.name %>
+    </p>
+  <% end %>
+  <% unless @event.ticket_price.blank? %>
+    <p>
+      * Adv: <%= @event.ticket_price %>원
+    </p>
+  <% end %>
+  <% unless @event.door_price.blank? %>
+    <p>
+      * Door: <%= @event.door_price %>원
+    </p>
+  <% end %>
+  <% unless @event.bands.blank? %>
+    <p>
+      * Lineup : <% @event.bands.each do |b| %> <%= b.name %>, <% end %>
+    </p>
+  <% end %>
+  <p>
+    ----✦✦ 밴드들 (Bands) ✦✦----
+  </p>
     <% unless @event.bands.blank? %>
       <% @event.bands.each do |b| %>
-        *<%= b.korean_name %> (<%= b.name %>)<br/>
-        <%= b.facebook %><br />
-        <%= b.site %><br />
-        <%= b.twitter %><br />
-        hidden-dawn-9617.herokuapp.com<%= url_for(b) %><br />
-        <% end %> <br />
-    <% end %> <br /><br />
+        <p>
+          *<%= b.korean_name %> (<%= b.name %>)<br/>
+          <%= b.facebook %><br />
+          <%= b.site %><br />
+          <%= b.twitter %><br />
+          hidden-dawn-9617.herokuapp.com<%= url_for(b) %>
+        </p>
+      <% end %> 
+    <% end %>
 
     <% unless @event.venue.blank? %>
       ----✦✦ 장소 / Venue ✦✦----<br />
@@ -59,7 +72,7 @@
       <%= @event.venue.facebook %><br/>
       <%= @event.venue.twitter %><br/>
       <%= @event.venue.website %><br/>
-      hidden-dawn-9617.herokuapp.com<%= url_for(@event) %><br />
+      hidden-dawn-9617.herokuapp.com<%= url_for(event_en_path(@event)) %><br />
     <% end %><br /><br />
 
     * 오시는 길 / Directions :
