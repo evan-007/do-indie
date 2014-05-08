@@ -46,16 +46,16 @@
 
       <ul class="nav nav-pills venue-socials">
         <% unless @venue.facebook.blank? %>
-        <li><%= link_to "<i class=\"fa fa-facebook\"></i> ".html_safe+t(:facebook), @venue.facebook, class: 'facebook' %></li>
+        <li><%= link_to "<i class=\"fa fa-facebook\"></i> ".html_safe+t(:facebook), @venue.facebook, class: 'facebook', target: "_blank" %></li>
         <% end %>
         <% unless @venue.twitter.blank? %>
-        <li><%= link_to "<i class=\"fa fa-twitter\"></i> ".html_safe+t(:twitter), @venue.twitter, class: 'twitter' %></li>
+        <li><%= link_to "<i class=\"fa fa-twitter\"></i> ".html_safe+t(:twitter), @venue.twitter, class: 'twitter', target: "_blank" %></li>
         <% end %>        
         <% unless @venue.website.blank? %>
-        <li><%= link_to "<i class=\"fa fa-globe\"></i> ".html_safe+t(:website), @venue.website, class: 'website' %></li>
+        <li><%= link_to "<i class=\"fa fa-globe\"></i> ".html_safe+t(:website), @venue.website, class: 'website', target: "_blank" %></li>
         <% end %>
         <% unless @venue.cafe.blank? %>
-        <li><%= link_to "<i class=\"fa fa-coffee\"></i> ".html_safe+t(:cafe), @venue.cafe, class: 'cafe' %></li>
+        <li><%= link_to "<i class=\"fa fa-coffee\"></i> ".html_safe+t(:cafe), @venue.cafe, class: 'cafe', target: "_blank" %></li>
         <% end %>
       </ul>     
 

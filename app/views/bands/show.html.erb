@@ -45,22 +45,22 @@
 
       <ul class="nav nav-pills band-socials">
         <% unless @band.facebook.blank? %>
-        <li><%= link_to "<i class=\"fa fa-facebook\"></i> ".html_safe+t(:facebook), @band.facebook, class: 'facebook' %></li>
+        <li><%= link_to "<i class=\"fa fa-facebook\"></i> ".html_safe+t(:facebook), @band.facebook, class: 'facebook', target: "_blank" %></li>
         <% end %>
         <% unless @band.twitter.blank? %>
-        <li><%= link_to "<i class=\"fa fa-twitter\"></i> ".html_safe+t(:twitter), @band.twitter, class: 'twitter' %></li>
+        <li><%= link_to "<i class=\"fa fa-twitter\"></i> ".html_safe+t(:twitter), @band.twitter, class: 'twitter', target: "_blank" %></li>
         <% end %>
         <% unless @band.bandcamp.blank? %>
-        <li><%= link_to "<i class=\"fa fa-eraser\"></i> ".html_safe+t(:bandcamp), @band.bandcamp, class: 'bandcamp' %></li>
+        <li><%= link_to "<i class=\"fa fa-eraser\"></i> ".html_safe+t(:bandcamp), @band.bandcamp, class: 'bandcamp', target: "_blank" %></li>
         <% end %> 
         <% unless @band.myspace.blank? %>
-        <li><%= link_to "<i class=\"fa fa-group\"></i> ".html_safe+t(:myspace), @band.myspace, class: 'myspace' %></li>
+        <li><%= link_to "<i class=\"fa fa-group\"></i> ".html_safe+t(:myspace), @band.myspace, class: 'myspace', target: "_blank" %></li>
         <% end %>      
         <% unless @band.site.blank? %>
-        <li><%= link_to "<i class=\"fa fa-globe\"></i> ".html_safe+t(:website), @band.site, class: 'website' %></li>
+        <li><%= link_to "<i class=\"fa fa-globe\"></i> ".html_safe+t(:website), @band.site, class: 'website', target: "_blank" %></li>
         <% end %>
         <% unless @band.cafe.blank? %>
-        <li><%= link_to "<i class=\"fa fa-coffee\"></i> ".html_safe+t(:cafe), @band.cafe, class: 'cafe' %></li>
+        <li><%= link_to "<i class=\"fa fa-coffee\"></i> ".html_safe+t(:cafe), @band.cafe, class: 'cafe', target: "_blank" %></li>
         <% end %>
       </ul>    
       
