@@ -1,12 +1,3 @@
-$(document).ready(function(){
-  init_grid_tiles();
-  $(window).trigger('resize');
-  //imagesLoaded
-  $('.grid-tiles').imagesLoaded(function() {
-    $(window).trigger('resize');
-  });
-});
-
 $(document).ready(function() { $('#band_genre_ids').chosen({width: "50%"}); });
 
 $(document).ready(function() {

@@ -38,13 +38,3 @@ $(document).ready(function(){
     $('#raw_data').toggle();
   });
 });
-
-
-$(document).ready(function(){
-  init_grid_tiles();
-  $(window).trigger('resize');
-  //imagesLoaded
-  $('.grid-tiles').imagesLoaded(function() {
-    $(window).trigger('resize');
-  });
-});

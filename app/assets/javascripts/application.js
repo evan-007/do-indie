@@ -28,6 +28,15 @@
 //= require cocoon
 //= require_tree .
 
+$(document).ready(function(){
+  init_grid_tiles();
+  $(window).trigger('resize');
+  //imagesLoaded
+  $('.grid-tiles').imagesLoaded(function() {
+    $(window).trigger('resize');
+  });
+});
+
 $(document).ready(function () {
   // apply dropdownHover to all elements with the data-hover="dropdown" attribute
   $('[data-hover="dropdown"]').dropdownHover();
