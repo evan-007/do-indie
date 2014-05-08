@@ -24,5 +24,5 @@
 	<% event.bands.each do |band| %>
 	<%= band.name %> | <%= band.korean_name %>
 	<% end %><br />
-	http://doindie.ko.kr<%= url_for event %></p>
+	http://doindie.co.kr<%= url_for(event_ko_path(event)) %></p>
 <% end %>

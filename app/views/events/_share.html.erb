@@ -1,20 +1,30 @@
 <div id="raw_data">
-
   <p>
-    <%= @event.ko_name %> / <%= @event.name %> [Eng below]<br />
-    * 일시: <%= @event.date %> <%= @event.time %><br />
-    <% unless @event.venue.blank? %>
-      * 장소: <%= @event.venue.ko_name %><br />
-    <% end %>
-    <% unless @event.door_price.blank? %>
-      * 입장료: (현매) <%= @event.door_price %>원<br />
-    <% end %>
-    <% unless @event.ticket_price.blank? %>
-      * 입장료: (에매) <%= @event.ticket_price %>원<br />
-    <% end %>
-    <% unless @event.bands.blank? %>
-      * 라인업 : <% @event.bands.each do |b| %> <%= b.name %>, <% end %><br /><br />
-    <% end %>
+    ✦✦✦✦ <%= @event.ko_name %> / <%= @event.name %> [Eng below] ✦✦✦✦
+  </p>
+  <p>
+    * 일시: <%= @event.date %> <%= @event.time %>
+  </p>
+  <% unless @event.venue.blank? %>
+    <p>
+      * 장소: <%= @event.venue.ko_name %>
+    </p>
+  <% end %>
+  <% unless @event.door_price.blank? %>
+    <p>
+      * 입장료: (현매) <%= @event.door_price %>원
+    </p>
+  <% end %>
+  <% unless @event.ticket_price.blank? %>
+    <p>
+      * 입장료: (에매) <%= @event.ticket_price %>원
+    </p>
+  <% end %>
+  <% unless @event.bands.blank? %>
+    <p>
+      * 라인업 : <% @event.bands.each do |b| %> <%= b.name %>, <% end %>
+    </p>
+  <% end %>
 
     hidden-dawn-9617.herokuapp.com<%= url_for(event_ko_path(@event)) %><br /><br />
 
