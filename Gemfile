@@ -5,7 +5,11 @@ gem 'sass-rails', '~> 4.0.1'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
+
+
 gem 'turbolinks'
+gem 'jquery-turbolinks'
+
 gem 'jbuilder'
 gem 'bcrypt-ruby'
 gem "geocoder"

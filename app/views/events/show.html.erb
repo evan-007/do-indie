@@ -172,30 +172,3 @@
   </div>
 
 </div><!-- /container-fluid -->
-
-
-
-<script>
-  $(document).ready(function(){
-    $('#raw_data').toggle();
-    console.log('loaded');
-    $('#showData').click(function(){
-      $('#raw_data').toggle();
-    });
-  });
-</script>
-
-
-<script>
-  $(document).ready(function(){
-    init_grid_tiles();
-    $(window).trigger('resize');
-    //imagesLoaded
-    $('.grid-tiles').imagesLoaded(function() {
-      $(window).trigger('resize');
-    });
-  });
-</script>
-
-
-
