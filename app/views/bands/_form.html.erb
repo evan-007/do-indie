@@ -106,7 +106,16 @@
   <%= t(:facebook_note) %>
 </p>
 
-
+<div id="b_genres">
+  <p>
+    <%= f.label t(:genres) %>
+    <% if @band.new_record? %>
+      <%= f.text_field :genre_tokens %>
+    <% else %>
+      <%= f.text_field :genre_tokens, data: {load: @band.genres.to_json} %>
+    <% end %>
+  </p>
+</div>
 
 <%= f.submit %>
 <% end %>
