@@ -17,6 +17,8 @@
 <% end %>
 
 <%= render 'form' %>
+<br/>
+<%= link_to "Delete", admin_event_path, method: "DELETE", data: {confirm: "Are you sure?"} %>
 
 <script>
   $(document).ready(function() { $('#event_band_ids').chosen({width: "50%"}); });

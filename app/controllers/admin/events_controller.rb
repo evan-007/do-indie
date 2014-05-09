@@ -36,6 +36,16 @@ class Admin::EventsController < Admin::BaseController
     end
   end
 
+  def destroy
+    if @event.destroy
+      flash[:notice] = "Event Deleted"
+      redirect_to admin_events_path
+    else 
+      flash[:notice] = "Event wasn't deleted"
+      redirect_to admin_events_path
+    end
+  end
+
   def data
     if params[:start]
       @start = Date.parse("#{params[:start]['day']}-#{params[:start]['month']}-#{params[:start]['year']}")   

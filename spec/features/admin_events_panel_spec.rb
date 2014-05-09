@@ -31,4 +31,11 @@ feature "Admin event panel" do
 		click_button "Update Event"
 		expect(page).to have_content("updated")
 	end
+
+	scenario "admin users can delete events" do
+		visit admin_events_en_path
+		first(:link, @event.name).click
+		click_link "Delete"
+		expect(page).to have_content("Event Deleted")
+	end
 end
