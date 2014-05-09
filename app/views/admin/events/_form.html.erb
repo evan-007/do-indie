@@ -11,28 +11,27 @@
 		<%= t(:event_name_note) %>
 	</p><br />
 
-	<% if I18n.locale == :en %>
-	  <p>
-	    <%= f.label t(:city) %>
-	    <%= f.collection_select :city_id, City.order(:en_name), :id, :en_name %>
-	  </p>
-  <% else %>
-		<p>
-			<%= f.label t(:city) %>
-			<%= f.collection_select :city_id, City.order(:ko_name), :id, :ko_name %>
-		</p>
-  <% end %>
-<hr>
-	<% unless @event.avatar.blank? %>
-		<p>
-			Current image:<br/>
-			<%= image_tag(@event.avatar :medium) %>
-		</p>
-	<% end %>
-
+	<p>
+		<% unless @event.avatar.blank? %>
+			Current image: <%= image_tag @event.avatar.url :medium %>
+		<% end %>
+	</p>
+	
 	<p><%= f.label t(:event_poster) %></p>
 	<p><%= f.file_field :avatar %></p>
 	<p><%= t(:event_poster_note) %></p>
+
+	<div id="city">
+		<p>
+			<%= f.label t(:city) %>
+			<% if @event.new_record? %>
+				<%= f.text_field :city_tokens %>
+			<% else %>
+				<%= f.text_field :city_tokens, data: {load: [@event.city] } %>
+			<% end %>
+		</p>
+		<p><%= t(:city_note) %></p>
+	</div>
 
 	<hr>
 
@@ -61,6 +60,7 @@
 				<%= f.text_field :venue_tokens, data: {load: [@event.venue] } %>
 			<% end %>
 		</p>
+		<p><%= t(:venue_note) %></p>
 	</div>
 			
 
@@ -69,18 +69,19 @@
 	<%= f.label t(:start_date) %>
 	<%= f.text_field :date, class: "form-control half date" %><br />
 	<%= f.label t(:show_time) %>
-	<%= f.text_field :time, placeholder: "7:40pm", class: "form-control half" %><br />
+	<%= f.text_field :time, placeholder: "e.g. 7:40pm", class: "form-control half" %><br />
 
 	<%= f.label t(:event_contact) %>
 	<%= f.text_field :contact, class: "form-control half" %><br />
 
 	<%= f.label t(:facebook_event) %>
-	<%= f.text_field :facebook, class: "form-control half" %><br />
+	<%= f.text_field :facebook, class: "form-control half", placeholder: "e.g. https://www.facebook.com/events/1412674345611085" %><br />
+	<p><%= t(:facebook_event_note)%></p>
 	
 	<hr>
 
 	<%= f.label t(:ticket_status) %>
-	<%= f.select(:ticket, options_for_select([['Yes', true], ['No', false]], 2)) %><br />
+	<%= f.select(:ticket, options_for_select([["#{t(:tickets_available)}", true], ["#{t(:sold_out)}", false]], 2)) %><br />
 
 	<p><%= f.label t(:advanced_ticket_price) %>
 		<%= f.text_field :price, placeholder: "e.g. 10,000 (Do not enter the currency sign)", class: "form-control half" %>
@@ -107,8 +108,8 @@
 	<%= f.label t(:event_details_ko) %>
 	<%= f.text_area :info_ko, rows: 10, class: "form-control mid" %><br />
 	<p><%= t(:event_details_notes)%></p><br>
+	
 
-	<p>
 		<%= f.label :approved %>
 		<%= f.check_box :approved %>
 	</p>
