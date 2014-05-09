@@ -1,5 +1,6 @@
 ko:
-  hello: "Hello world"
+  facebook_login: "페이스북으로 로그인하기"
+  twitter_login: "트위터로 로그인하기"
   slide_1_header: "Example headline."
   #_navigation.html.erb
   events: "공연"

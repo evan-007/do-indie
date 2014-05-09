@@ -1,5 +1,6 @@
 en:
-  hello: "Hello world"
+  facebook_login: "Sign in with Facebook"
+  twitter_login: "Sign in with Twitter"
   sign-up: "Sign up to like your fav bands!"
   slide_1_header: "Example headline."
   #_navigavtion.html.erb
