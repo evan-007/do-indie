@@ -68,7 +68,7 @@
 
 <p>
   <%= f.label t(:contact) %>
-  <%= f.text_field :contact, placeholder: "010-1234-1234", class: "form-control half" %>
+  <%= f.text_field :contact, placeholder: "your label or 'unsigned'", class: "form-control half" %>
 </p>
 
 <p>
@@ -106,16 +106,7 @@
   <%= t(:facebook_note) %>
 </p>
 
-<div id="b_genres">
-  <p>
-    <%= f.label t(:genres) %>
-    <% if @band.new_record? %>
-      <%= f.text_field :genre_tokens %>
-    <% else %>
-      <%= f.text_field :genre_tokens, data: {load: @band.genres.to_json} %>
-    <% end %>
-  </p>
-</div>
+
 
 <%= f.submit %>
 <% end %>
