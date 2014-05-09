@@ -58,7 +58,7 @@
 			<% if @event.new_record? %>
 				<%= f.text_field :venue_tokens %>
 			<% else %>
-				<%= f.text_field :venue_tokens, data: {load: @event.venue.to_json } %>
+				<%= f.text_field :venue_tokens, data: {load: [@event.venue.to_json] } %>
 			<% end %>
 		</p>
 	</div>
