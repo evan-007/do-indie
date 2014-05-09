@@ -8,7 +8,7 @@ class Admin::VenuesController < Admin::BaseController
 
 
   def index
-    @venues = Venue.admin_search(params[:search], params[:page])
+    @venues = Venue.order(params[:sort]).admin_search(params[:search], params[:page])
   end
 
   def show

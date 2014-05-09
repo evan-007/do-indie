@@ -14,7 +14,8 @@ class City < ActiveRecord::Base
 	end
 
   def self.has_upcoming_events
-    joins(:events).where("date > ?" > Date.today.to_s)
+    ids = joins(:events).where("date > ?" > Date.today.to_s)
+    return ids.uniq
   end
   
   def self.has_venues

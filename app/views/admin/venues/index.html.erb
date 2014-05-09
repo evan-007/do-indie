@@ -16,12 +16,12 @@
 
 <table class="table table-striped">
   <tr>
-    <th>Venue ID</th>
+    <th><%= link_to "Venue ID", sort: "id" %></th>
     <th>Name</th>
     <th>Korean name</th>
     <th>Approved?</th>
-    <th>Created by</th>
-    <th>Created at</th>
+    <th><%= link_to "Created by", sort: "user_id" %></th>
+    <th><%= link_to "Created at", sort: "created_at" %></th>
   </tr>
   
   <% @venues.each do |venue| %>
