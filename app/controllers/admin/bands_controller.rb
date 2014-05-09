@@ -69,7 +69,7 @@ class Admin::BandsController < Admin::BaseController
     :approved,
     :genre_tokens,
     genre_ids: [],
-    youtube_attributes: [:link],
+    youtubes_attributes: [:link, :_destroy, :id],
     genres_attributes: [:name]
     )
   end
