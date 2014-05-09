@@ -28,6 +28,16 @@ class Admin::BandsController < Admin::BaseController
       render :edit
     end
   end
+
+  def destroy
+    if @band.destroy
+      flash[:notice] = "Band Deleted"
+      redirect_to admin_bands_path
+    else
+      flash[:notice] = "Couldn't be deleted"
+      redirect_to admin_bands_path
+    end
+  end
   
   
   private 

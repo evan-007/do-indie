@@ -1,1 +1,3 @@
-<%= render 'form' %>
+<%= render 'form' %><br/>
+
+<%= link_to "Delete", admin_band_path(@band), method: "DELETE", data: {confirm: "Are you sure?"} %>
