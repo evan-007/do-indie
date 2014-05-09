@@ -141,14 +141,23 @@
   
   
   <% unless @band.tagged_bands.blank? %>
-  <div class="row">
-    <h3>DoIndie Articles About <%= @band.name %></h3>
-    <% @band.tagged_bands.each do |tb| %>
-      <div class="col-sm-12 col-md-6">
-        <%= link_to tb.post.title, post_path(tb.post) %>
-      </div>
-    <% end %>
-  </div>
+    <div class="row">
+      <% if I18n.locale == :en %>
+        <h3><%= "#{t(:band_posts)} #{@band.name}" %></h3>
+        <% @band.tagged_bands.take(3).each do |tb| %>
+          <div class="col-sm-12 col-md-6">
+            <%= link_to tb.post.title, post_path(tb.post) %>
+          </div>
+        <% end %>
+      <% else %>
+        <h3><%= "#{@band.korean_name} #{t(:band_posts)}" %></h3>
+        <% @band.tagged_bands.take(3).each do |tb| %>
+          <div class="col-sm-12 col-md-6">
+            <%= link_to tb.post.ko_title, post_path(tb.post) %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
 
   <div class="now">

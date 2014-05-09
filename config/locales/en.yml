@@ -192,7 +192,8 @@ en:
   mp3_upload: "MP3 Uploads:"
   mp3_note: "NOTE:  You can enter up to 10 tracks to be streamed on your profile, they will not be available for users to download."
   band_after_submission: "Thanks for submitting your band to doindie, it is currently awaiting review by our moderators  (To avoid spam / non music related profiles appearing on doindie we check all submissions individually before publishing them to the site). Please allow up to 24 hours before your band profile goes live on doindie."
-  
+  band_posts: "Related posts to"
+
   #signup
   pre_sign: "In order to be able to add profiles for bands & venues or to be able to submit events you must first join doindie. Please fill in your details below."
   after_sign: "Thanks for joining doinide. You are now free to login and submit bands, venues & events to our database."
