@@ -49,5 +49,7 @@ feature "Viewing events" do
 			visit city_event_en_path(@city.en_name)
 			expect(page).to have_content("Sorry, no")
 		end
+    
+    scenario "#index only shows cities with upcoming events"
 	end
 end

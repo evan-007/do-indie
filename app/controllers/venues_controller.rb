@@ -6,7 +6,7 @@ class VenuesController < ApplicationController
   def index
     @venues = Venue.index_search(params[:query], params[:page])
     @all_venues = Venue.all
-    @cities = City.all
+    @cities = City.find_by_ids(City.unique_has_venues)
     respond_to do |format|
       format.html
       format.json { render json: @all_venues.tokens(params[:q]) }

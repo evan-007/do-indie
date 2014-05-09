@@ -49,6 +49,10 @@ class Event < ActiveRecord::Base
   def start_time
   	self.date
   end
+  
+  def upcoming_has_city
+    where.not(city_id: nil)
+  end
 
 	paginates_per 100 #fix pagination
 	accepts_nested_attributes_for :event_bands, :venue, :bands

@@ -16,6 +16,23 @@ class City < ActiveRecord::Base
   def self.has_upcoming_events
     joins(:events).where("date > ?" > Date.today.to_s)
   end
+  
+  def self.has_venues
+    joins(:venues).where.not(venues: {city_id: nil})
+  end
+  
+  def self.unique_has_venues
+    ids = self.has_venues.map { |city| city.id}
+    return ids.uniq
+  end
+  
+  def self.find_by_ids(ids)
+    list = []
+    ids.each do |id|
+      list << self.find(id)
+    end
+    return list
+  end
 
   def self.tokens(query)
     cities = where("en_name ilike :q or ko_name ilike :q", q: "%#{query}%")
