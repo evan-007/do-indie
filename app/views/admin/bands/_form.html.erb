@@ -103,11 +103,6 @@
   <%= f.text_field :site, placeholder: "band homepage or other misc site", class: "form-control half" %>
 </p>
 
-<p>
-  <%= f.label :approved %>
-  <%= f.check_box :approved %>
-</p>
-
 <div id="b_genres">
   <p>
     <%= f.label t(:genres) %>
@@ -118,5 +113,11 @@
     <% end %>
   </p>
 </div>
+
+<p>
+  <%= f.label :approved %>
+  <%= f.check_box :approved %>
+</p>
+
   <%= f.submit %>
 <% end %>
