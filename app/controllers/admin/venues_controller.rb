@@ -32,6 +32,16 @@ class Admin::VenuesController < Admin::BaseController
     end
   end
 
+  def destroy
+    if @venue.destroy
+      flash[:notice] = "Venue Deleted"
+      redirect_to admin_venues_path
+    else
+      flash[:notice] = "Venue wasn't deleted"
+      redirect_to admin_venues_path
+    end
+  end
+
 
   private
 

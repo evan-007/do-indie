@@ -8,13 +8,13 @@ class User < ActiveRecord::Base
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
   #associations
-  has_many :user_fans
+  has_many :user_fans, dependent: :destroy
   has_many :bands, through: :user_fans
-  has_many :band_managers
+  has_many :band_managers, dependent: :destroy
   has_many :managed_bands, through: :band_managers
-  has_many :venue_managers
+  has_many :venue_managers, dependent: :destroy
   has_many :managed_venues, through: :venue_managers 
-  has_many :event_managers
+  has_many :event_managers, dependent: :destroy
   has_many :managed_events, through: :event_managers
   has_many :bands
   has_many :events

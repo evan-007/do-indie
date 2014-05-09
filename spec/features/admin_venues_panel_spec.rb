@@ -34,4 +34,11 @@ feature "Admin band panel" do
 		click_button "Update Venue"
 		expect(page).to have_content("updated")
 	end
+
+	scenario "admins can delete venues" do
+		visit admin_venues_en_path
+		click_link @venue.name
+		click_link "Delete"
+		expect(page).to have_content("Venue Deleted")
+	end
 end
