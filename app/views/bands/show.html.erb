@@ -1,4 +1,8 @@
-<% provide(:title, "#{@band.name} #{@band.korean_name}") %>
+<% if I18n.locale == :en %>
+  <% provide(:title, @band.name) %>
+<% else %>
+  <% provide(:title, @band.korean_name) %>
+<% end %>
 <div class="container-fluid band-detail">
   <h1 class="page-title"><%= @band.name %></h1>
   <h2><%= @band.korean_name %></h2>

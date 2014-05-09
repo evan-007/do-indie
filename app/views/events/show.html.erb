@@ -1,4 +1,8 @@
-<% provide(:title, "#{@event.name} #{@event.ko_name}") %>
+<% if I18n.locale == :en %>
+  <% provide(:title, @event.name) %>
+<% else %>
+  <% provide(:title, @event.ko_name) %>
+<% end %>
 <div class="container-fluid event-detail">
   <div class="row">
     <h1 class="page-title"><%= @event.name %></h1>

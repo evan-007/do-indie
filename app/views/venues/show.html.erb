@@ -1,4 +1,8 @@
-<% provide(:title, "#{@venue.name} #{@venue.korean_name}") %>
+<% if I18n.locale == :en %>
+  <% provide(:title, @venue.name) %>
+<% else %>
+  <% provide(:title, @venue.korean_name) %>
+<% end %>
 <div class="container-fluid venue-detail">
   <h1 class="page-title"><%= @venue.name %></h1>
   <h2><%= @venue.korean_name %></h2>
