@@ -26,7 +26,11 @@
 			<% if @event.new_record? %>
 				<%= f.text_field :city_tokens %>
 			<% else %>
-				<%= f.text_field :city_tokens, data: {load: [@event.city] } %>
+				<% unless (@event.city.blank?) %>
+					<%= f.text_field :city_tokens, data: {load: [@event.city] } %>
+				<% else %>
+					<%= f.text_field :city_tokens, data: {load: []} %>
+				<% end %>
 			<% end %>
 		</p>
 		<p><%= t(:city_note) %></p>
@@ -56,7 +60,11 @@
 			<% if @event.new_record? %>
 				<%= f.text_field :venue_tokens %>
 			<% else %>
-				<%= f.text_field :venue_tokens, data: {load: [@event.venue] } %>
+				<% unless (@event.venue.blank?) %>
+					<%= f.text_field :venue_tokens, data: {load: [@event.venue] } %>
+				<% else %>
+					<%= f.text_field :venue_tokens, data: {load: []} %>
+				<% end %>
 			<% end %>
 		</p>
 		<p><%= t(:venue_note) %></p>

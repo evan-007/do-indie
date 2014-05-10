@@ -6,20 +6,11 @@
 <div class="container-fluid venue-detail">
   <h1 class="page-title"><%= @venue.name %></h1>
   <h2><%= @venue.korean_name %></h2>
-  <div class="row">
-    <div class="col-sm-1">
-      <p>Fans: <%= @venue.fans.count %></p>
-      <div class="likebtn">			
-  	   	<% if current_user && current_user.liked_venues.where(id: @venue.id).count != 0 %>
-  		    <%= link_to "<i class=\"fa fa-thumbs-up\"></i> Unlike".html_safe, venue_fan_path(id: @venue.id), method: 'delete' %>
-  			<% elsif current_user %>
-        <%= link_to "<i class=\"fa fa-thumbs-o-up\"></i> Like".html_safe, venue_fans_path(id: @venue.id), method: 'post' %>
-  			<% else %>
-  				<%= link_to t(:signup), new_user_registration_path %> 
-  			<% end %>
-  		</div>
+  <div class="row">    
+    <div class="col-sm-5 col-sm-push-7">
+      <div class="row"><%= image_tag(@venue.avatar :large) %></div>
     </div>
-    <div class="col-sm-7 vcard">
+    <div class="col-sm-7 vcard  col-sm-pull-5">
       <table class="table table-hover">
         <% unless @venue.phone == nil %>
           <tr>
@@ -49,7 +40,11 @@
         <% end %>
       </table> 
 
-      <ul class="nav nav-pills venue-socials">
+      <div class="pull-right">
+        
+      </div>
+
+      <ul class="nav nav-pills venue-socials pull-left">
         <% unless @venue.facebook.blank? %>
         <li><%= link_to "<i class=\"fa fa-facebook\"></i> ".html_safe+t(:facebook), @venue.facebook, class: 'facebook', target: "_blank" %></li>
         <% end %>
@@ -62,7 +57,19 @@
         <% unless @venue.cafe.blank? %>
         <li><%= link_to "<i class=\"fa fa-coffee\"></i> ".html_safe+t(:cafe), @venue.cafe, class: 'cafe', target: "_blank" %></li>
         <% end %>
+        <li>
+          <% fans_count = "<span class=\"badge\">" + @venue.fans.count.to_s + "</span> " + t(:fans) %>
+          <% if current_user && current_user.liked_venues.where(id: @venue.id).count != 0 %>
+            <%= link_to "#{fans_count} <i class=\"fa fa-thumbs-up\"></i>".html_safe, venue_fan_path(id: @venue.id), method: 'delete', :class => 'btn btn-success active', 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"Unlike" %>
+          <% elsif current_user %>
+          <%= link_to "#{fans_count} <i class=\"fa fa-thumbs-o-up\"></i>".html_safe, venue_fans_path(id: @venue.id), method: 'post', :class => 'btn btn-success', 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"Like" %>
+          <% else %>
+            <%= link_to "#{fans_count} <i class=\"fa fa-thumbs-o-up\"></i>".html_safe, new_user_registration_path, :class => 'btn btn-success', 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>t(:signup) %> 
+          <% end %>
+        </li>
       </ul>     
+
+      <div class="clearfix"></div>
 
       <% unless @venue.twitter.blank? %> 
         <%unless @venue.tweets.blank? %>
@@ -182,3 +189,9 @@
   <% if current_user && current_user.admin == true %>
   <%= link_to t(:venue_edit), edit_venue_path(@venue) %>
   <% end %>
+
+<script>
+  $(document).ready(function(){
+    $('a[data-toggle=tooltip]').tooltip({});
+  });
+</script>

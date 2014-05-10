@@ -41,14 +41,27 @@
             <td><%= @event.city.en_name %> | <%= @event.city.ko_name %></td>
           </tr>
         <% end %>
- 
-
       </table>
+
+      <ul class="nav nav-pills event-socials pull-left">
+        <% unless @event.facebook.blank? %>
+        <li><%= link_to "<i class=\"fa fa-facebook\"></i> ".html_safe+t(:facebook), @event.facebook, class: 'facebook', target: "_blank" %></li>
+        <% end %>
+
+        <% unless @event.ticket_url.blank? %>
+        <li><%= link_to "<i class=\"fa fa-ticket\"></i>  ".html_safe+t(:buy_ticket), @event.ticket_url, class: 'buyticket', target: "_blank" %></li>
+        <% end %>
+
+        
+      </ul>
+
+      <div class="clearfix"></div>
       
-      <h2><%= t(:venue) %></h2>
+      <h3 style="float:left; margin-right: 12px;"><%= t(:venue) %></h3>
       <% if @event.venue %> <!-- venue detail -->
+        <h3 style="float:left"><%= link_to @event.venue.name, venue_path(@event.venue), :class => 'link-bd-block' %></h3>
+        <div class="clearfix"></div>
         <div class="row-fluid"><%= image_tag @event.venue.avatar(:medium) %></div>
-        <h3><%= link_to @event.venue.name, venue_path(@event.venue) %></h3>
         <div class="row-fluid vcard">
           <table class="table table-hover">
           <% unless @event.venue.phone == nil %>
@@ -72,7 +85,6 @@
           </table>
         </div>
 
-
         <h3><%= t(:directions) %></h3>  
         <!-- Direction -->
         <% if I18n.locale == :ko %>
@@ -91,6 +103,7 @@
         <% end %>
         
       <% else %>
+      <div class="clearfix"></div>
       <p>This event has no venue yet<p>
       <% end %> <!-- /venue detail -->
       

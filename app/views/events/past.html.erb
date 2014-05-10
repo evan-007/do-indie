@@ -13,11 +13,23 @@
     </div>
     <div class="clearfix"></div>
   </div>
+
+  <div class="col-sm-3">
+    <%= form_tag calendar_path, method: 'get', html: {role: "form"}, class: 'form-inline' do %>
+      <div class="input-group col-xs-12">
+        <%= text_field_tag :date_search, params[:date_search], placeholder: "Date search", class: "form-control date input-sm" %>
+        <span class="input-group-btn">
+          <button type="submit" id="date-search" class="btn btn-primary btn-sm"><i class="fa fa-calendar"></i></button>
+        </span>
+      </div>
+    <% end %>
+  </div>
+  
   <div class="col-sm-3 searchform">
     <%= form_tag past_events_path, method: :get, class: 'form-inline' do %>
     <div>
       <div class="input-group col-xs-12">
-      	<%= text_field_tag :query, params[:query], placeholder: "Enter an event", class: "form-control  input-sm" %>
+      	<%= text_field_tag :query, params[:query], placeholder: "Search", class: "form-control  input-sm" %>
       <span class="input-group-btn">
         <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
       </span>
