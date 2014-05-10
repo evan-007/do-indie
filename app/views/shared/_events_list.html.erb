@@ -1,9 +1,15 @@
 <div class="row-fluid events-listing">
+  <% event_color = 2 %>
   <% events.each do |event| %>
-  <% event_color = 1+rand(10) %>
+  <% #event_color = 1+rand(10) %>
+  <% unless (event_color==1) 
+      event_color = 1 
+    else 
+      event_color = 2 
+      end %>
   <div class="col-xs-12 row-fluid event">
     <div class="row-fluid">
-      <div class="info col-sm-6 event-color-<%= event_color %>">
+      <div class="info col-sm-6 event-color-d<%= event_color %>">
         <div class="avatar"><%= image_tag event.avatar.url(:medium) %></div>
         <% unless event.date.blank? %>
           <div class="">
@@ -18,7 +24,7 @@
         </div>
       </div>
 
-      <div class="bands col-sm-4 event-color-<%= event_color %>">
+      <div class="bands col-sm-6 event-color-d<%= event_color %>">
         <% if event.event_bands.count != 0 %>
         <p>
           <% event.event_bands.each do |eventband| %>
