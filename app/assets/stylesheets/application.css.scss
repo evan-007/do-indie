@@ -453,11 +453,20 @@ body {
 }
 
 .venue-detail .venue-socials a:hover,
-.band-detail .band-socials a:hover {
+.band-detail .band-socials a:hover,
+.event-detail .event-socials a:hover {
   background-color: #CD503C;
 }
+
+
+.event-detail .event-socials .buyticket {
+  background-color: #ffeea7;
+  color: #336697;
+}
+
 .venue-detail .venue-socials .facebook,
-.band-detail .band-socials .facebook {
+.band-detail .band-socials .facebook,
+.event-detail .event-socials .facebook {
   background-color: #3b5998;
 }
 

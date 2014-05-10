@@ -40,10 +40,6 @@
         </tr>
       </table> 
 
-      <div class="pull-right">
-        
-      </div>
-
       <ul class="nav nav-pills band-socials pull-left">
         <% unless @band.facebook.blank? %>
         <li><%= link_to "<i class=\"fa fa-facebook\"></i> ".html_safe+t(:facebook), @band.facebook, class: 'facebook', target: "_blank" %></li>
@@ -130,7 +126,7 @@
   <div class="row">
     <h3><%= t(:band_videos) %></h3>
     <% unless @band.youtube.blank? %>
-    <div class="col-sm-12 col-md-6">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
       <div class="video-container">
         <iframe width="100%" height="349" src="http://www.youtube.com/embed/<%= youtube_fix @band.youtube %>" frameborder="0" allowfullscreen></iframe>
       </div>
@@ -138,7 +134,7 @@
     <% end %>   
     <% @band.youtubes.each do |yt| %>
     <% unless yt.link.blank? %>
-    <div class="col-sm-6">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
       <div class="video-container">
         <iframe width="100%" height="349" src="http://www.youtube.com/embed/<%= youtube_fix yt.link %>" frameborder="0" allowfullscreen></iframe>
       </div>
