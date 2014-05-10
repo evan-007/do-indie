@@ -1,3 +1,6 @@
+<p>View in front end: <%=link_to @event.name, event_path(@event) %></p>
+
+
 <% if @event.bands.unapproved.present? %>
   <h2>WARNING: This event has unapproved bands</h2>
   <p>
@@ -17,6 +20,8 @@
 <% end %>
 
 <%= render 'form' %>
+<br/>
+<%= link_to "Delete", admin_event_path, method: "DELETE", data: {confirm: "Are you sure?"} %>
 
 <script>
   $(document).ready(function() { $('#event_band_ids').chosen({width: "50%"}); });

@@ -1,15 +1,15 @@
 class Band < ActiveRecord::Base
 	extend FriendlyId
 	friendly_id :name, use: :slugged
-	has_many :user_fans
+	has_many :user_fans, dependent: :destroy
 	has_many :users, through: :user_fans
-	has_many :event_bands
+	has_many :event_bands, dependent: :destroy
 	has_many :events, through: :event_bands
-	has_many :band_genres
+	has_many :band_genres, dependent: :destroy
 	has_many :genres, through: :band_genres
-	has_many :tagged_bands
+	has_many :tagged_bands, dependent: :destroy
 	has_many :posts, through: :tagged_bands
-	has_many :youtubes
+	has_many :youtubes, dependent: :destroy
 	belongs_to :user
 	accepts_nested_attributes_for :youtubes, allow_destroy: true
 	accepts_nested_attributes_for :genres

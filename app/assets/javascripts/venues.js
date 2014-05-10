@@ -1,0 +1,1 @@
+$(document).ready(function() { $('#venue_city_id').chosen({width: "50%"}); });

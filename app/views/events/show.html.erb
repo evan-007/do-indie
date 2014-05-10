@@ -1,3 +1,8 @@
+<% if I18n.locale == :en %>
+  <% provide(:title, @event.name) %>
+<% else %>
+  <% provide(:title, @event.ko_name) %>
+<% end %>
 <div class="container-fluid event-detail">
   <div class="row">
     <h1 class="page-title"><%= @event.name %></h1>
@@ -164,7 +169,7 @@
     <% elsif current_user && current_user.event_managers.where(event_id: @event.id).count != 0 %>
     <p><%= t(:pending_approval) %></p>
     <% else %>
-    <p><%= t(:login_request) %><p>
+    <p><%= link_to t(:login_request), new_user_session_path %><p>
     <% end %>
     <% if current_user && current_user.admin == true %>
     <%= link_to t(:event_edit), edit_event_path(@event) %>
@@ -172,30 +177,3 @@
   </div>
 
 </div><!-- /container-fluid -->
-
-
-
-<script>
-  $(document).ready(function(){
-    $('#raw_data').toggle();
-    console.log('loaded');
-    $('#showData').click(function(){
-      $('#raw_data').toggle();
-    });
-  });
-</script>
-
-
-<script>
-  $(document).ready(function(){
-    init_grid_tiles();
-    $(window).trigger('resize');
-    //imagesLoaded
-    $('.grid-tiles').imagesLoaded(function() {
-      $(window).trigger('resize');
-    });
-  });
-</script>
-
-
-

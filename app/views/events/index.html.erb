@@ -1,8 +1,16 @@
+<% provide(:title, t(:events)) %>
 <div class="row page-header">
   <div class="col-sm-9">
     <h1 class="page-title pull-left">
       <%= t(:events) %>
     </h1>
+
+    <div class="row events_selector pull-right cities">
+      <% @cities.each do |city| %>
+        <%= link_to "#{city.en_name} #{city.ko_name}", city_event_path(city.en_name), class: 'btn btn-default col-xs-6' %>
+      <% end %>
+    </div>
+
     <div class="row events_selector pull-right">
       <div class="col-xs-12 row-fluid">
         <div class="btn-group col-xs-12 row-fluid">
@@ -11,13 +19,27 @@
         </div>
       </div>
     </div>
+
     <div class="clearfix"></div>
   </div>
-  <div class="col-sm-3 searchform">
+
+  <div class="col-sm-2">
+    <%= form_tag calendar_path, method: 'get', html: {role: "form"} do %>
+      <div class="input-group col-xs-12">
+        <%= text_field_tag :date_search, params[:date_search], placeholder: "Date search", class: "form-control date input-sm" %>
+        <span class="input-group-btn">
+          <button type="submit" id="date-search" class="btn btn-primary btn-sm"><i class="fa fa-calendar"></i></button>
+        </span>
+      </div>
+    <% end %>
+  </div>
+
+
+  <div class="col-sm-2 searchform">
     <%= form_tag events_path, method: :get, class: 'form-inline' do %>
     <div>
       <div class="input-group col-xs-12">
-      	<%= text_field_tag :query, params[:query], placeholder: "Search", class: "form-control date input-sm" %>
+      	<%= text_field_tag :query, params[:query], placeholder: "Search", class: "form-control input-sm" %>
       <span class="input-group-btn">
         <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
       </span>
@@ -26,12 +48,8 @@
     <% end %>
   </div>
 </div>
-
-<%= render 'shared/events_list', :events => @events %>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-    $('.date').datepicker();
-  })
-</script>
-
+<% unless @events.blank? %>
+  <%= render 'shared/events_list', :events => @events %>
+<% else %>
+  <h2><%= t(:no_results) %></h2>
+<% end %>

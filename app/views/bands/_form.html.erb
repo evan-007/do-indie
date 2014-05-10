@@ -68,7 +68,7 @@
 
 <p>
   <%= f.label t(:contact) %>
-  <%= f.text_field :contact, placeholder: "010-1234-1234", class: "form-control half" %>
+  <%= f.text_field :contact, placeholder: "your label or 'unsigned'", class: "form-control half" %>
 </p>
 
 <p>
@@ -119,14 +119,3 @@
 
 <%= f.submit %>
 <% end %>
-
-<script>
-  $(document).ready(function() { $('#band_genre_ids').chosen({width: "50%"}); });
-
-  $(document).ready(function() {
-    $('#b_genres').find("#band_genre_tokens").tokenInput("/genres.json", { theme: "facebook",
-      prePopulate: $('#band_genre_tokens').data('load')}
-      );
-  });
-  
-</script>

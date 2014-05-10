@@ -2,7 +2,7 @@ class Venue < ActiveRecord::Base
 	extend FriendlyId
 	friendly_id :name, use: :slugged
 	validates :name, presence: true, uniqueness: true
-	has_many :event_venues
+	has_many :event_venues, dependent: :destroy
 	has_many :events, through: :event_venues
 	has_many :venue_managers
 	has_many :users, through: :venue_managers

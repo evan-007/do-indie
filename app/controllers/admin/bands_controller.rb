@@ -8,7 +8,7 @@ class Admin::BandsController < Admin::BaseController
   
 
   def index
-    @bands = Band.admin_search(params[:search], params[:page])
+    @bands = Band.order(params[:sort]).admin_search(params[:search], params[:page])
   end
   
   def show
@@ -26,6 +26,16 @@ class Admin::BandsController < Admin::BaseController
     else
       flash[:alert] = "#{@band.name} couldn't be updated."
       render :edit
+    end
+  end
+
+  def destroy
+    if @band.destroy
+      flash[:notice] = "Band Deleted"
+      redirect_to admin_bands_path
+    else
+      flash[:notice] = "Couldn't be deleted"
+      redirect_to admin_bands_path
     end
   end
   
@@ -59,7 +69,7 @@ class Admin::BandsController < Admin::BaseController
     :approved,
     :genre_tokens,
     genre_ids: [],
-    youtube_attributes: [:link],
+    youtubes_attributes: [:link, :_destroy, :id],
     genres_attributes: [:name]
     )
   end

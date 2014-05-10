@@ -1,73 +1,110 @@
 <div id="raw_data">
-
   <p>
-    <%= @event.ko_name %> / <%= @event.name %> [Eng below]<br />
-    * 일시: <%= @event.date %> <%= @event.time %><br />
-    <% unless @event.venue.blank? %>
-      * 장소: <%= @event.venue.ko_name %><br />
+    ✦✦✦✦ <%= @event.ko_name %> / <%= @event.name %> [Eng below] ✦✦✦✦
+  </p>
+  <p>
+    * 일시: <%= @event.date %> <%= @event.time %>
+    <% unless @event.venue.blank? %><br/>
+      * 장소: <%= @event.venue.ko_name %>
     <% end %>
     <% unless @event.door_price.blank? %>
-      * 입장료: (현매) <%= @event.door_price %>원<br />
+      * 입장료: (현매) <%= @event.door_price %>원<br/>
     <% end %>
     <% unless @event.ticket_price.blank? %>
-      * 입장료: (에매) <%= @event.ticket_price %>원<br />
+      * 입장료: (에매) <%= @event.ticket_price %>원
+    </p>
     <% end %>
-    <% unless @event.bands.blank? %>
-      * 라인업 : <% @event.bands.each do |b| %> <%= b.name %>, <% end %><br /><br />
-    <% end %>
-
-    hidden-dawn-9617.herokuapp.com<%= url_for(event_ko_path(@event)) %><br /><br />
-
-    *Date: <%= @event.date %> <%= @event.time %><br />
+  <% unless @event.bands.blank? %>
+    <p>
+      * 라인업 : <% @event.bands.each do |b| %> <%= b.korean_name %> / <% end %>
+    </p>
+  <% end %>
+  <p>
+    hidden-dawn-9617.herokuapp.com<%= url_for(event_ko_path(@event)) %>
+  </p>
+  <p>
+    * Date: <%= @event.date %> <%= @event.time %><br/>
     <% unless @event.venue.blank? %>
-      *Venue: <%= @event.venue.name %><br />
+      * Venue: <%= @event.venue.name %><br/>
     <% end %>
     <% unless @event.ticket_price.blank? %>
-      * Adv: <%= @event.ticket_price %>원<br />
+      * Adv: <%= @event.ticket_price %>원<br/>
     <% end %>
     <% unless @event.door_price.blank? %>
-      * Door: <%= @event.door_price %>원<br />
+      * Door: <%= @event.door_price %>원
     <% end %>
+  </p>
     <% unless @event.bands.blank? %>
-      * Lineup : <% @event.bands.each do |b| %> <%= b.name %>, <% end %><br /><br />
-    <% end %>
-
-    ----✦✦ 밴드들 (Bands) ✦✦----<br /><br />
+    <p>
+      * Lineup : <% @event.bands.each do |b| %> <%= b.name %> / <% end %>
+    </p>
+  <% end %>
+  <p>
+    hidden-dawn-9617.herokuapp.com<%= url_for(event_en_path(@event)) %>
+  </p>
+  
+  <p>
+    ----✦✦ 밴드들 (Bands) ✦✦----
+  </p>
     <% unless @event.bands.blank? %>
       <% @event.bands.each do |b| %>
-        *<%= b.korean_name %> (<%= b.name %>)<br/>
-        <%= b.facebook %><br />
-        <%= b.site %><br />
-        <%= b.twitter %><br />
-        hidden-dawn-9617.herokuapp.com<%= url_for(b) %><br />
-        <% end %> <br />
-    <% end %> <br /><br />
+        <p>
+          * <%= b.korean_name %> (<%= b.name %>)<br/>
+          <% unless b.facebook.blank? %>
+            <%= b.facebook %><br />
+          <% end %>
+          <% unless b.site.blank? %>
+            <%= b.site %><br />
+          <% end %>
+          <% unless b.twitter.blank? %>
+            <%= b.twitter %><br />
+          <% end %>
+          hidden-dawn-9617.herokuapp.com<%= url_for(b) %>
+        </p>
+      <% end %> 
+    <% end %>
 
     <% unless @event.venue.blank? %>
-      ----✦✦ 장소 / Venue ✦✦----<br />
-      <%= @event.venue.ko_name%> (<%= @event.venue.name %>)
-      <%= @event.venue.facebook %><br/>
-      <%= @event.venue.twitter %><br/>
-      <%= @event.venue.website %><br/>
-      hidden-dawn-9617.herokuapp.com<%= url_for(@event) %><br />
-    <% end %><br /><br />
+      <p>
+        ----✦✦ 장소 / Venue ✦✦----<br />
+        <%= @event.venue.ko_name%> (<%= @event.venue.name %>)<br/>
+        <% unless @event.venue.facebook.blank? %>
+          <%= @event.venue.facebook %><br/>
+        <% end %>
+        <% unless @event.venue.twitter.blank? %>
+          <%= @event.venue.twitter %><br/>
+        <% end %>
+        <% unless @event.venue.website? %>
+          <%= @event.venue.website %><br/>
+        <% end %>
+      </p>
+    <% end %>
 
-    * 오시는 길 / Directions :
-      <% unless @event.venue.blank? %>
-      <%= @event.venue.en_directions %><br />
+    <% unless @event.venue.blank? %>
+    <p>
+      * 오시는 길 / Directions : 
       <%= @event.venue.ko_directions %><br />
-      <% end %><br />
+      <%= @event.venue.en_directions %>
+    </p>
+    <% end %>
+  
+    <p>
+      ----✦✦ <%= @event.name %> ✦✦----<br />
+      <% unless @event.info_ko.blank? %>
+        <%= @event.info_ko%><br/>
+      <% end %>
+      <% unless @event.info.blank? %>
+        <%= @event.info%>
+      <% end %>
+    </p>
 
-    ----✦✦ <%= @event.name %> ✦✦----
-    <p><%= @event.info%></p>
-    <p><%= @event.info_ko%></p>
-
-
-    ♪♪ powered by doindie ♪♪ doindie links<br/>
-
-    ✦ www.doindie.co.kr<br />
-    ✦ www.facebook.com/doindie.kr<br />
-    ✦ www.twitter.com/DoIndieKorea<br />
-    ✦ http://blog.naver.com/doindie<br />
-  </p>
+    <p>
+      ♪♪ powered by doindie ♪♪
+    </p>
+    <p>
+      ✦ www.doindie.co.kr<br />
+      ✦ www.facebook.com/doindie.kr<br />
+      ✦ www.twitter.com/DoIndieKorea<br />
+      ✦ http://blog.naver.com/doindie<br />
+    </p>
 </div>

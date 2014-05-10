@@ -1,5 +1,6 @@
 en:
-  hello: "Hello world"
+  facebook_login: "Sign in with Facebook"
+  twitter_login: "Sign in with Twitter"
   sign-up: "Sign up to like your fav bands!"
   slide_1_header: "Example headline."
   #_navigavtion.html.erb
@@ -16,6 +17,7 @@ en:
   band_manager: "Band Managers"
   venue_manager: "Venue Managers"
   event_manager: "Event Managers"
+
   #_navigation_links.html.erb
   account: "Account"
   signin: "Sign in"
@@ -62,6 +64,9 @@ en:
   #fan alert
   new_fan: "You are a fan of %{thing}"
   not_fan: "You are no longer a fan of %{thing}"
+
+  #events_index
+  no_results: "Sorry, no results match your search criteria."
 
   #for events#show
   show_time: "Time:"
@@ -187,7 +192,8 @@ en:
   mp3_upload: "MP3 Uploads:"
   mp3_note: "NOTE:  You can enter up to 10 tracks to be streamed on your profile, they will not be available for users to download."
   band_after_submission: "Thanks for submitting your band to doindie, it is currently awaiting review by our moderators  (To avoid spam / non music related profiles appearing on doindie we check all submissions individually before publishing them to the site). Please allow up to 24 hours before your band profile goes live on doindie."
-  
+  band_posts: "Related posts to"
+
   #signup
   pre_sign: "In order to be able to add profiles for bands & venues or to be able to submit events you must first join doindie. Please fill in your details below."
   after_sign: "Thanks for joining doinide. You are now free to login and submit bands, venues & events to our database."

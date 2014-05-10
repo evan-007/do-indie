@@ -1,1 +1,5 @@
-<%= render 'form' %>
+<p>View in front end: <%=link_to @band.name, band_path(@band) %></p>
+
+<%= render 'form' %><br/>
+
+<%= link_to "Delete", admin_band_path(@band), method: "DELETE", data: {confirm: "Are you sure?"} %>

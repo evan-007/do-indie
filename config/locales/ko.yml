@@ -1,5 +1,6 @@
 ko:
-  hello: "Hello world"
+  facebook_login: "페이스북으로 로그인하기"
+  twitter_login: "트위터로 로그인하기"
   slide_1_header: "Example headline."
   #_navigation.html.erb
   events: "공연"
@@ -21,7 +22,7 @@ ko:
   password: "암호"
   email: "이메일"
   remember: "기억하기"
-  login_request: "missing"
+  login_request: "수정 권한을 가지시려면 로그인이 필요합니다."
   manager_request: "해당 페이지의 관리자가 되고 싶다면 클릭"
   pending_approval: "감사합니다. 두인디 담당자가 확인 후 이메일 드리겠습니다."
   past_events: "지난 공연"
@@ -59,6 +60,9 @@ ko:
   #fan alert
   new_fan: "%{thing}의 팬이 되었습니다."
   not_fan: "%{thing}의 팬이 취소되었습니다."
+
+  #events_index
+  no_results: "죄송합니다. 검색어와 일치하는 정보를 찾을 수 없습니다."
 
   #for events#show
   show_time: "시간:"
@@ -132,11 +136,11 @@ ko:
   event_details_ko: "공연 상세 정보 (한글)"
   event_details_notes: "공연과 관련된 어떠한 정보라도 이곳에 기입해주세요. (예 : 예매 티켓 구매 방법, 기타 링크, 기타 정보 등) 또한, 두인디의 데이터베이스에 공연장이 없다면 주소와 가는 법을 이곳에 추가해주세요."
   event_submission_note: "두인디에 공연을 등록해주셔서 감사합니다. 현재 관리자의 검토를 기다리고 있습니다. (두인디는 스팸/음악과 관련되지 않은 프로필이 올라오는 것을 방지하기 위해 사이트에 게재하기 전에 관리자가 검토합니다.) 24시간 안에 완료되어 목록에 나타날겁니다."
-  event_new_login: "이벤트를 제출하기 위해서 두인디 계정을 만들어 주세요. 가입 후에, 공연을 추가하실 수 있습니다."
+  event_new_login: "이벤트를 제출하기 위해서 두인디 계정을 만들어 주세요.<br /> 가입 후에, 공연을 추가하실 수 있습니다."
 
 
   #venue#new
-  non_member_note: "공연장 프로필을 등록하기 위해서 두인디 계정을 만들어 주세요. 가입 후에, 공연장 정보를 추가하실 수 있습니다."
+  non_member_note: "공연장 프로필을 등록하기 위해서 두인디 계정을 만들어 주세요.<br /> 가입 후에, 공연장 정보를 추가하실 수 있습니다."
   venue_pre_form: "이미 많은 공연장이 두인디 캘린더에 있습니다. 새로운 공연장을 입력하기 전에, 이미 올려져 있는지 확인 부탁드립니다. 해당 페이지의 관리자가 되고 싶다면, 공연장 프로필 페이지의 하단에 있는 ’해당 페이지의 관리자가 되고 싶다면 클릭'을 눌러주세요."
   venue_name_en: "공연장 이름 (영문):"
   venue_name_ko: "공연장 이름 (한글):"
@@ -162,7 +166,7 @@ ko:
   full_link: "http:// 를 포함한 완전한 링크로 넣어주세요. (예 : http://www.facebook.com/doindie.kr)"
 
   #band#new
-  member_band_note: "밴드 프로필을 등록하기 위해서 두인디 계정을 만들어 주세요. 가입 후에, 밴드 정보를 추가하실 수 있습니다."
+  member_band_note: "밴드 프로필을 등록하기 위해서 두인디 계정을 만들어 주세요.<br /> 가입 후에, 밴드 정보를 추가하실 수 있습니다."
   band_note: "이미 많은 밴드가 두인디 데이터베이스에 있습니다. 새로운 밴드를 입력하기 전에, 이미 올려져 있는지 확인 부탁드립니다. 해당 페이지의 관리자가 되고 싶다면, 밴드 프로필 페이지의 하단에 있는 ’해당 페이지의 관리자가 되고 싶다면 클릭'을 눌러주세요."
   band_name_en: "밴드 이름 (영문):"
   band_name_ko: "밴드 이름 (한글):"
@@ -182,6 +186,7 @@ ko:
   mp3_upload: "MP3 업로드:"
   mp3_note: "프로필 페이지에 나오는 곡을 10개까지 등록할 수 있으며 다운로드는 되지 않습니다."
   band_after_submission: "두인디에 밴드를 등록해주셔서 감사합니다. 현재 관리자의 검토를 기다리고 있습니다. (두인디는 스팸/음악과 관련되지 않은 프로필이 올라오는 것을 방지하기 위해 사이트에 게재하기 전에 관리자가 검토합니다.) 24시간 안에 완료되어 목록에 나타날겁니다."
+  band_posts: "관련 게시글"
 
   #signup
   pre_sign: "밴드와 공연장 또는 공연의 프로필을 등록하기 위해서는 먼저 두인디에 가입해야합니다. 아래의 양식을 작성해주세요."
@@ -329,7 +334,7 @@ ko:
       not_an_integer: 에 정수를 입력해 주세요
       odd: 에 홀수를 입력해 주세요
       record_invalid: 데이터 검증에 실패하였습니다. %{errors}
-      taken: 은(는) 이미 존재합니다.
+      taken: 이미 존재합니다.
       too_long: 은(는) %{count}자를 넘을 수 없습니다
       too_short: 은(는) 적어도 %{count}자를 넘어야 합니다
       wrong_length: 은(는) %{count}자여야 합니다
@@ -405,8 +410,8 @@ ko:
   activerecord:
     attributes:
       user:
-        email: "이메일"
-        username: "사용자명"
+        email: "이메일은"
+        username: "사용자명은"
         password: "암호"
     errors:
       models:

@@ -27,4 +27,29 @@ feature "Viewing events" do
 		visit past_events_en_path
 		expect(page).to have_content @event.name
 	end
+
+	context "viewing events by city" do
+
+		scenario "users can view upcoming events" do
+			@city = create(:city)
+			@event.update(city: @city)
+			visit events_en_path
+			click_link @city.en_name
+			expect(page).to have_content @event.name
+		end
+
+		scenario "no city link when no upcoming events" do
+			@city = create(:city)
+			visit events_en_path
+			expect(page).to_not have_content @city.en_name
+		end
+
+		scenario "city#event shows error when no upcoming events" do
+			@city = create(:city)
+			visit city_event_en_path(@city.en_name)
+			expect(page).to have_content("Sorry, no")
+		end
+    
+    scenario "#index only shows cities with upcoming events"
+	end
 end
