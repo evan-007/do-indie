@@ -9,7 +9,7 @@
 
 <%= form_tag admin_event_managers_path, method: 'get', html: {role: "form"} do %>
   <p>
-    <%= text_field_tag :search, params[:search], placeholder: "Search not built yet" %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search by username" %>
     <%= submit_tag "Search", :name => nil, class: "btn btn-sm btn-primary" %>
     <%= link_to "All", admin_event_managers_path, {class: "btn btn-sm btn-link"} %>
   </p>
