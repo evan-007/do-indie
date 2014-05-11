@@ -1,4 +1,5 @@
 class Admin::EventsController < Admin::BaseController
+  helper_method :sort_column, :sort_direction
   before_action :set_event, only: [
     :show,
     :edit,
@@ -8,7 +9,7 @@ class Admin::EventsController < Admin::BaseController
   
 
   def index
-    @events = Event.order(params[:sort]).admin_search(params[:search], params[:page])
+    @events = Event.order(sort_column + " " + sort_direction).admin_search(params[:search], params[:page])
   end
   
   def show
@@ -91,6 +92,14 @@ class Admin::EventsController < Admin::BaseController
         venue_attributes: [:name, :city],
         city_attributes: [:name, :id]
         )
+    end
+
+    def sort_column
+      params[:sort] || "created_at"
+    end
+
+    def sort_direction
+      params[:direction] || "desc"
     end
   
 end
