@@ -16,12 +16,12 @@
 
 <table class="table table-striped">
   <tr>
-    <th><%= link_to "Band ID", sort: "id" %></th>
+    <th><%= sortable "id" %></th>
     <th>Name</th>
     <th>Korean Name</th>
     <th>Approved?</th>
-    <th><%= link_to "Created At", sort: "created_at" %></th>
-    <th><%= link_to "Created By", sort: "user_id" %></th>
+    <th><%= sortable "created_at", "Created At" %></th>
+    <th><%= sortable "user_id", "Created by" %></th>
   </tr>
   
   <% @bands.each do |band| %>

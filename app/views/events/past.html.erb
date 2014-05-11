@@ -1,3 +1,9 @@
+<% if I18n.locale == :en %>
+  <% provide(:title, t(:past_events)) %>
+<% else %>
+  <% provide(:title, t(:past_events)) %>
+<% end %>
+
 <div class="row page-header">
   <div class="col-sm-9">
     <h1 class="page-title pull-left">

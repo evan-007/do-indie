@@ -1,4 +1,5 @@
 class Admin::EventsController < Admin::BaseController
+  helper_method :sort_column, :sort_direction
   before_action :set_event, only: [
     :show,
     :edit,
@@ -8,7 +9,7 @@ class Admin::EventsController < Admin::BaseController
   
 
   def index
-    @events = Event.order(params[:sort]).admin_search(params[:search], params[:page])
+    @events = Event.order(sort_column + " " + sort_direction).admin_search(params[:search], params[:page])
   end
   
   def show
@@ -20,14 +21,7 @@ class Admin::EventsController < Admin::BaseController
   
   def update
     @event.update(event_params)
-
-    # if current_event.id != @event.id
-    #   @event.admin = new_params[:admin]=="0" ? false : true
-    #   @event.locked = new_params[:locked]=="0" ? false : true
-    # end
-    
     if @event.valid?
-     # @event.skip_reconfirmation! only for users model
       @event.save
       redirect_to admin_events_path, notice: "#{@event.name} updated."
     else
@@ -91,6 +85,14 @@ class Admin::EventsController < Admin::BaseController
         venue_attributes: [:name, :city],
         city_attributes: [:name, :id]
         )
+    end
+
+    def sort_column
+      params[:sort] || "created_at"
+    end
+
+    def sort_direction
+      params[:direction] || "desc"
     end
   
 end

@@ -1,3 +1,51 @@
+<% provide(:title, t(:events)) %>
+
+<div class="row page-header">
+  <div class="col-sm-9">
+    <h1 class="page-title pull-left">
+      <%= t(:events) %>
+    </h1>
+
+    <div class="row events_selector pull-right">
+      <div class="col-xs-12 row-fluid">
+        <div class="btn-group col-xs-12 row-fluid">
+          <%= link_to t(:upcoming), events_path, class: 'btn btn-warning active col-xs-6' %>
+          <%= link_to t(:past), past_events_path, class: 'btn btn-default col-xs-6' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+  </div>
+
+  <div class="col-sm-3">
+    <%= form_tag calendar_path, method: 'get', html: {role: "form"}, class: 'form-inline' do %>
+      <div class="input-group col-xs-12">
+        <%= text_field_tag :date_search, params[:date_search], placeholder: "Date search", class: "form-control date input-sm" %>
+        <span class="input-group-btn">
+          <button type="submit" id="date-search" class="btn btn-primary btn-sm"><i class="fa fa-calendar"></i></button>
+        </span>
+      </div>
+    <% end %>
+  </div>
+
+
+  <div class="col-sm-3 searchform">
+    <%= form_tag events_path, method: :get, class: 'form-inline' do %>
+    <div>
+      <div class="input-group col-xs-12">
+        <%= text_field_tag :query, params[:query], placeholder: "Search", class: "form-control input-sm" %>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
+      </span>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="clearfix"></div>
+</div>
+
+
 <div class="row">
 	<div class="col-md-12">
     <% unless @events.blank? %>
@@ -9,13 +57,7 @@
 	</div>
 </div>
 
-  <%= form_tag calendar_path, method: 'get', html: {role: "form"} do %>
-    <p>
-      <%= text_field_tag :date_search, params[:date_search], placeholder: "Date search", class: "form-control half date" %>
-      <%= submit_tag "Search", :name => nil, class: "btn btn-sm btn-primary" %>
-      <%= link_to "All", events_path, {class: "btn btn-sm btn-link"} %>
-    </p>
-  <% end %>
+
 
 <script type="text/javascript">
 	$(document).ready(function() {

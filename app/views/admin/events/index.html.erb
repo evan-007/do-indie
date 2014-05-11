@@ -18,13 +18,13 @@
 
 <table class="table table-striped">
   <tr>
-    <th><%= link_to "Event ID", sort: "id" %></th>
-    <th><%= link_to "Name", sort: "name" %></th>
+    <th><%= sortable "id" %></th>
+    <th><%= sortable "name" %></th>
     <th>Ko Name</th>
     <th>Approved</th>
     <th>Venue</th>
     <th>Created by</th>
-    <th><%= link_to "Created at", sort: "created_at" %></th>
+    <th><%= sortable "created_at", "Created At" %></th>
   </tr>
   
   <% @events.each do |event| %>

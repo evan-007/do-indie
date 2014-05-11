@@ -1,3 +1,6 @@
+<% provide(:title, t(:winners)) %>
+
+
 <% if current_user && current_user.admin == true %>
   <%= link_to "Update Winners", edit_page_path(@page), class: 'btn btn-lg btn-primary' %>
 <% end %>
