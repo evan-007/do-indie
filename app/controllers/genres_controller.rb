@@ -9,7 +9,7 @@ class GenresController < ApplicationController
 	end
 
 	def show
-    @genres = Genre.all
+    	@genres = Genre.all_with_weight
 		@genre = Genre.find_by(name: params[:name])
 	end
 end

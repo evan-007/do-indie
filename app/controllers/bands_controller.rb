@@ -5,7 +5,7 @@ class BandsController < ApplicationController
   before_action :soundcloud, only: [:show]
   
   def index
-    @genres = Genre.all
+    @genres = Genre.all_with_weight
     @bands = Band.index_search(params[:query], params[:page])
     @all_bands = Band.approved
     respond_to do |format|

@@ -41,3 +41,35 @@ $(document).ready(function() {
     // apply dropdownHover to all elements with the data-hover="dropdown" attribute
     $('[data-hover="dropdown"]').dropdownHover();
 });
+
+$(document).ready(function() {
+    var maxValue = 0;
+    var total = 0;
+    if ($('.tagscloud li').length > 0) {
+        $('.tagscloud li').each(function(index, item) {
+            if (parseInt($(item).attr('value')) > maxValue)
+                maxValue = parseInt($(item).attr('value'));
+
+            total = total + parseInt($(item).attr('value'));
+        });
+        if (maxValue > total * 0.25) {
+            maxValue = Math.round(total * 0.25);
+        }
+        $('.tagscloud li').each(function(index, item) {
+            var value = parseInt($(item).attr('value'))
+            if (value >= maxValue)
+                $(item).find('a').addClass('tagsize6');
+            else if (value >= maxValue * 0.75 && value < maxValue)
+                $(item).find('a').addClass('tagsize5');
+            else if (value >= maxValue * 0.50 && value < maxValue * 0.75)
+                $(item).find('a').addClass('tagsize4');
+            else if (value >= maxValue * 0.25 && value < maxValue * 0.50)
+                $(item).find('a').addClass('tagsize3');
+            else if (value >= maxValue * 0.1 && value < maxValue * 0.25)
+                $(item).find('a').addClass('tagsize2');
+            else
+                $(item).find('a').addClass('tagsize1');
+
+        });
+    }
+});

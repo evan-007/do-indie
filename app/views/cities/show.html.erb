@@ -1,81 +1,83 @@
 <% provide(:title, "#{@city.en_name} #{@city.ko_name}") %>
-
-
 <div class="container-fluid">
 	<div class="row page-header">
-	  <div class="col-sm-9">
-	    <h1 class="page-title">
-	      <%= t(:city) %>
-	      <% if I18n.locale == :en %>
-	      	<%= @city.en_name %>
-	      <% else %>
-					<%= @city.ko_name %>      
-	      <% end %>
-	    </h1>
-	  </div>
-	  <div class="col-sm-3 searchform">
-	    <%= form_tag venues_path, method: :get, class: 'form-inline' do %>
-	    <div>
-	      <div class="input-group col-sm-12">
-	        <%= text_field_tag :query, params[:query], placeholder: "Enter a venue name or city", class: "form-control input-sm" %>     
-	      <span class="input-group-btn">
-	        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
-	      </span>
-	      </div>
-	    </div>
-	    <% end %>
-	  </div>
+		<div class="col-sm-9">
+			<h1 class="page-title">
+			<%= t(:city) %>
+			<% if I18n.locale == :en %>
+			<%= @city.en_name %>
+			<% else %>
+			<%= @city.ko_name %>
+			<% end %>
+			</h1>
+		</div>
+		<div class="col-sm-3 searchform">
+			<%= form_tag venues_path, method: :get, class: 'form-inline' do %>
+			<div>
+				<div class="input-group col-sm-12">
+					<%= text_field_tag :query, params[:query], placeholder: "Enter a venue name or city", class: "form-control input-sm" %>
+					<span class="input-group-btn">
+					<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
+					</span>
+				</div>
+			</div>
+			<% end %>
+		</div>
 	</div>
 	
 	
-	
+	<h2><%= t(:venues) %></h2>
 	<div class="row">
-	
-		<div id="venues-grid" class="col-sm-9">
-			<div class="row">
-				<div id="map" style='width: 100%; height: 350px;'></div>
+		<div class="col-md-9">
+			<div id="map" style="width: 100%; height: 350px;"></div>
+		</div>
+		<div class="col-sm-3 sidebar">
+			<div class="cities">
+				<h1><%= t(:cities) %></h1>
+				<p><% @cities.each do |city| %>
+				<%= link_to city.en_name, city_path(city.en_name) %>
+				<% end %>
+				</p>
 			</div>
-			<h2><%= t(:venues) %></h2>
-	    <div class="grid-tiles">
-	      <% @venues.each do |venue| %>
-	        <%= div_for(venue, class: "list venues-grid-item tile") do %>
-	          <div class="thumbnail">
-	            <%= image_tag venue.avatar.url(:medium) %>
-	            
-	            <div class="caption">
-	              <h3><%= link_to venue.name, venue_path(venue) %></h3>
-	              <h4><%= venue.korean_name %></h4>
-	              <p><%= venue.area%></p>
-	                
-	            </div>
-	          </div>
-	        <% end %>
-	      <% end %>
-	    </div>
-	    
-	    
-	  </div>
-	
-	  <div class="col-sm-3 sidebar">
-	    <div class="cities">
-	      <h1><%= t(:cities) %></h1>
-	      <p><% @cities.each do |city| %>
-	        <%= link_to city.en_name, city_path(city.en_name) %>
-	        <% end %>
-	      </p>
-	    </div>
-	  </div>
-	
+		</div>
+	</div>
+	<div class="row">
+		
+		<div id="venues-grid" class="col-sm-9">
+			<div class="grid-tiles">
+				<% @venues.each do |venue| %>
+				<%= div_for(venue, class: "list venues-grid-item tile") do %>
+				<div class="thumbnail">
+					<%= image_tag venue.avatar.url(:medium) %>
+					
+					<div class="caption">
+						<h3><%= link_to venue.name, venue_path(venue) %></h3>
+						<h4><%= venue.korean_name %></h4>
+						<p><%= venue.area%></p>
+						<div class="likebtn">
+							<% if current_user && current_user.venue_fans.where(venue_id: venue.id).count != 0 %>
+							<%= link_to "<i class=\"fa fa-thumbs-up\"></i> Unlike".html_safe, venue_fan_path(id: venue.id), method: 'delete' %>
+							<% elsif current_user %>
+							<%= link_to "<i class=\"fa fa-thumbs-o-up\"></i> Like".html_safe, venue_fans_path(id: venue.id), method: 'post' %>
+							<% else %>
+							<%= link_to t(:signup), new_user_registration_path %>
+							<% end %>
+						</div>
+						
+					</div>
+				</div>
+				<% end %>
+				<% end %>
+			</div>
+			
+		</div>
+
 	</div><!--row-->
 </div>
-
-
-
 <script>
 	handler = Gmaps.build('Google');
 	handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 		markers = handler.addMarkers(<%=raw @hash.to_json %>);
-
 		handler.bounds.extendWith(markers);
 		handler.fitMapToBounds();
 		handler.getMap().setZoom(12)
