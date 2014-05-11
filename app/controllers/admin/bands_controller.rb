@@ -1,4 +1,5 @@
 class Admin::BandsController < Admin::BaseController
+  helper_method :sort_column, :sort_direction
   before_action :set_band, only: [
     :show,
     :edit,
@@ -8,7 +9,7 @@ class Admin::BandsController < Admin::BaseController
   
 
   def index
-    @bands = Band.order(params[:sort]).admin_search(params[:search], params[:page])
+    @bands = Band.order(sort_column + " " + sort_direction).admin_search(params[:search], params[:page])
   end
   
   def show
@@ -41,37 +42,45 @@ class Admin::BandsController < Admin::BaseController
   
   
   private 
-  
-  def set_band
-    @band = Band.friendly.find(params[:id])
-  rescue
-    flash[:alert] = "The band with an id of #{params[:id]} doesn't exist."
-    redirect_to admin_bands_path
-  end
-  
-  def band_params
-    params.require(:band).permit(:name,
-    :korean_name,
-    :contact,
-    :facebook,
-    :myspace,
-    :bandcamp,
-    :twitter,
-    :cafe,
-    :itunes,
-    :soundcloud,
-    :youtube,
-    :site,
-    :en_bio,
-    :label,
-    :ko_bio,
-    :avatar,
-    :approved,
-    :genre_tokens,
-    genre_ids: [],
-    youtubes_attributes: [:link, :_destroy, :id],
-    genres_attributes: [:name]
-    )
-  end
+    
+    def set_band
+      @band = Band.friendly.find(params[:id])
+    rescue
+      flash[:alert] = "The band with an id of #{params[:id]} doesn't exist."
+      redirect_to admin_bands_path
+    end
+    
+    def band_params
+      params.require(:band).permit(:name,
+      :korean_name,
+      :contact,
+      :facebook,
+      :myspace,
+      :bandcamp,
+      :twitter,
+      :cafe,
+      :itunes,
+      :soundcloud,
+      :youtube,
+      :site,
+      :en_bio,
+      :label,
+      :ko_bio,
+      :avatar,
+      :approved,
+      :genre_tokens,
+      genre_ids: [],
+      youtubes_attributes: [:link, :_destroy, :id],
+      genres_attributes: [:name]
+      )
+    end
+
+    def sort_column
+      params[:sort] || "created_at"
+    end
+
+    def sort_direction
+      params[:direction] || "desc"
+    end
   
 end

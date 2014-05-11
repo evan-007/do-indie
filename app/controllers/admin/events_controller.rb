@@ -21,14 +21,7 @@ class Admin::EventsController < Admin::BaseController
   
   def update
     @event.update(event_params)
-
-    # if current_event.id != @event.id
-    #   @event.admin = new_params[:admin]=="0" ? false : true
-    #   @event.locked = new_params[:locked]=="0" ? false : true
-    # end
-    
     if @event.valid?
-     # @event.skip_reconfirmation! only for users model
       @event.save
       redirect_to admin_events_path, notice: "#{@event.name} updated."
     else
