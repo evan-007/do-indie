@@ -1,3 +1,4 @@
+<% provide(:title, t(:events)) %>
 <div class="row page-header">
   <div class="col-sm-9">
     <h1 class="page-title pull-left">
@@ -44,7 +45,7 @@
 </div>
 
 <div class="container-fluid">
-  <% provide(:title, t(:events)) %>
+  
   <% @cities.each do |city| %>
     <%= link_to "#{city.en_name} #{city.ko_name}", city_event_path(city.en_name), class: 'light-block-link' %>
   <% end %>

@@ -1,6 +1,8 @@
+<% provide(:title, t(:photos)) %>
+
 <% if current_user && current_user.admin == true %>
   <%= link_to "Update Contest", edit_page_path(@page), class: 'btn btn-lg btn-primary' %>
 <% end %>
 
 
-	<%= raw "#{@page.body}" %>
+<%= raw "#{@page.body}" %>
