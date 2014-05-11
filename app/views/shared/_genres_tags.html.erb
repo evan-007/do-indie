@@ -1,0 +1,8 @@
+<div class="genres-tags">
+	<h1><%= t(:genres) %></h1>
+	<ul class="tagscloud">
+		<% @genres.each do |genre| %>
+		<li value="<%= genre.bands_count %>"><%= link_to genre.name, genre_path(genre.name) %></li>
+		<% end %>
+	</ul>
+</div>

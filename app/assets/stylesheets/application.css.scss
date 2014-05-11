@@ -613,5 +613,30 @@ a.link-bd-block:hover {
   background-color: #198CAF;
 }
 
+ul.tagscloud {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.tagscloud li {
+  float:left; margin-right:5px;
+}
+
+ul.tagscloud li a {
+  text-decoration: none;
+  border-bottom: 1px dotted #ffffff;
+}
+
+ul.tagscloud li a:hover {
+  border-bottom: 2px solid #ffffff;
+}
+
+.tagsize1 {}
+.tagsize2 {font-size: 120%}
+.tagsize3 {font-size: 130%}
+.tagsize4 {font-size: 140%}
+.tagsize5 {font-size: 150%}
+.tagsize6 {font-size: 160%}
 
 @import "responsive";

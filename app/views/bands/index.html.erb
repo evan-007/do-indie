@@ -63,16 +63,7 @@
 		</div>
 <% end %>
 	<div class="col-sm-3 sidebar">		
-			
-
-			<div class="genres-tags">
-				<h1><%= t(:genres) %></h1>
-				<p>
-					<% @genres.each do |genre| %>
-					<%= link_to genre.name, genre_path(genre.name) %> 
-					<% end %>
-				</p>
-			</div>
-		</div>
-	</div><!--row-->
+		<%= render 'shared/genres_tags' %>
+	</div>
+</div><!--row-->
 

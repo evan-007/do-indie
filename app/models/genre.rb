@@ -3,6 +3,13 @@ class Genre < ActiveRecord::Base
 	has_many :band_genres, dependent: :destroy
 	has_many :bands, through: :band_genres
 
+  scope :all_with_weight, { 
+    select: 'genres.*, COUNT(band_genres.id) as bands_count', 
+    joins: 'LEFT JOIN band_genres ON band_genres.genre_id = genres.id', 
+    group: 'genres.id'
+  }
+
+
   def self.tokens(query)
   	genres = self.where("name ilike :q", q: "%#{query}%")
   	if genres.empty?
