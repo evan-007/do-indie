@@ -1,1 +1,1 @@
-Gibbon::API.api_key = "d8e4cb8f8688b35a04c145da4b83aedd-us8"
+Gibbon::API.api_key = ENV['GIBBON_KEY']
