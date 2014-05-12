@@ -7,12 +7,14 @@
 	<tr>
 		<th>Id</th>
 		<th>Link</th>
+    <th>Korean link</th>
 	</tr>
 
 	<% @ads.each do |ad| %>
 	<tr>
 		<td><%= link_to ad.id, edit_admin_ad_path(ad) %></td>
 		<td><%= link_to ad.link, edit_admin_ad_path(ad) %></td>
+    <td><%= link_to ad.ko_link, edit_admin_ad_path(ad) %></td>
 	</tr>
 	<% end %>
 </table>

@@ -1,6 +1,5 @@
 <% provide(:title, t(:blog)) %>
 
-
 <div class="row page-header">
   <div class="col-md-9">
     <h1 class="page-title">
@@ -48,7 +47,11 @@
     </div>
     <% @ads.each do |ad| %>
       <%= div_for(ad, class: 'ad') %>
-      <%= link_to(image_tag(ad.image.url(:medium)), ad.link) %>
+      <% if I18n.locale == :en %>
+        <%= link_to(image_tag(ad.image.url(:medium)), ad.link) %>
+      <% else %>
+        <%= link_to(image_tag(ad.image.url(:medium)), ad.ko_link) %>
+      <% end %>
     <% end %>
   </div><!--sidebar-->
 
