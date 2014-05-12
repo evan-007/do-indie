@@ -8,7 +8,7 @@ class CitiesController < ApplicationController
 	   # marker.title venue.name
 	    marker.infowindow "<a href=\"http://hidden-dawn-9617.herokuapp.com/venues/#{venue.slug}\">#{venue.name}</a>"
     end
-    @cities = City.all
+    @cities = City.find_by_ids(City.unique_has_venues)
 	end
 
 	def events
