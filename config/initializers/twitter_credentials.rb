@@ -1,8 +1,8 @@
 def twitter_client
   Twitter::REST::Client.new do |config|
-    config.consumer_key = 'yX4aDmZuINOVnBmAtUCA'
-    config.consumer_secret = 'WScPyFRQXCRFjf5BeskzB7YV7RQSmtU377kkFpoZ0Y'
-    config.access_token        = "2399019596-tqFcnAhjgIJZZAbLoVjteRj4KsJV42VSIOIy4QF"
-    config.access_token_secret = "Nxt8o3YyRNSMKhehmrrfo3OhRelcx5A8TR0sI46ITbqhh"
+    config.consumer_key = ENV['TWITTER_CONSUMER_KEY']
+    config.consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
+    config.access_token        =  ENV['TWITTER_ACCESS_TOKEN']
+    config.access_token_secret =  ENV['TWITTER_ACCESS_SECRET']
   end
 end

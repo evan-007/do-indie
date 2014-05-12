@@ -16,6 +16,8 @@ Full setup requires the following API keys and variables to be set in applicatio
 
 *Amazon S3 settings for paperclip uploads
 
+To set variables, cp config/application.yml.example config/application.yml  and then fill in the missing keys. Just add username and password for Gmail mailer.
+
 Importing the old data from rake tasks: Old wp-site data is in csv files in /lib. Import with rake tasks after creating and migrating the database:
 
 * import_artists
