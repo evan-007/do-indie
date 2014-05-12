@@ -35,8 +35,8 @@
 			<div class="cities">
 				<h1><%= t(:cities) %></h1>
 				<p><% @cities.each do |city| %>
-				<%= link_to city.en_name, city_path(city.en_name) %>
-				<% end %>
+          <%= link_to "#{city.en_name} #{city.ko_name}", city_path(city.en_name) %>
+          <% end %>
 				</p>
 			</div>
 		</div>
