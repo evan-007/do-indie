@@ -7,7 +7,7 @@ class VenueFansController < ApplicationController
       @fan = current_user.venue_fans.build(venue_id: (params[:id]))
       if @fan.save
         flash[:notice] = t(:new_fan, thing: @fan.venue.name)
-        redirect_to venues_path
+        redirect_to(:back)
       else
         flash[:notice] = "You can't do that, sorry"
         redirect_to venues_path

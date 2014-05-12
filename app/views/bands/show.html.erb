@@ -62,7 +62,7 @@
         <% end %>
           <% fans_count = "<span class=\"badge\">" + @band.fans.to_s + "</span> " + t(:fans) %>
           <% if current_user && current_user.user_fans.where(band_id: @band.id).count != 0 %>
-            <%= link_to "#{fans_count} <i class=\"fa fa-thumbs-up\"></i>".html_safe, user_fan_path(band_id: @band.id), method: 'delete', :class => 'btn btn-success active', 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"Unlike" %>
+            <%= link_to "#{fans_count} <i class=\"fa fa-thumbs-up\"></i>".html_safe, user_fan_path(id: @band.id), method: 'delete', :class => 'btn btn-success active', 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"Unlike" %>
           <% elsif current_user %>
           <%= link_to "#{fans_count} <i class=\"fa fa-thumbs-o-up\"></i>".html_safe, user_fans_path(band_id: @band.id), method: 'post', :class => 'btn btn-success', 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"Like" %>
           <% else %>
