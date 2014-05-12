@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :ad do
     link "http://nytimes.com"
+    ko_link "http://korea.com"
   end
 end

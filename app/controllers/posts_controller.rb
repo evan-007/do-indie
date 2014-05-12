@@ -85,6 +85,6 @@ class PostsController < ApplicationController
     end
 
     def set_ads
-      @ads = Ad.all
+      @ads = Ad.take(4)
     end
 end

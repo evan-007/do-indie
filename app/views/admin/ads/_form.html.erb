@@ -1,8 +1,14 @@
 <%= form_for [:admin, @ad] do |f| %>
 <p>
-	Note: use a full url like http://doindie.co.kr/some-event-name
+  Note: use a full url like http://doindie.co.kr/some-event-name<br/>
 	<%= f.label :link %>
-	<%= f.text_field :link %>
+  <%= f.text_field :link, class: "form-control half" %>
+</p>
+
+<p>
+  Note: use a full url like http://doindie.co.kr/some-event-name<br/>
+	<%= f.label "Korean Link" %>
+  <%= f.text_field :ko_link, class: "form-control half" %>
 </p>
 
 <% unless @ad.image.blank? %>

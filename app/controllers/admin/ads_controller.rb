@@ -46,7 +46,7 @@ class Admin::AdsController < ApplicationController
 
 	private
 	  def ad_params
-	  	params.require(:ad).permit(:link, :image)
+	  	params.require(:ad).permit(:image, :ko_link, :link)
 	  end
 
 	  def set_ad

@@ -52,5 +52,9 @@ feature "Advertisements" do
 			visit blog_path
 			expect(page).to have_css(".ad")
 		end
+    
+    scenario "see korean ads in korean locale"
+
+    scenario "see english ads in english locale"
 	end
 end
