@@ -113,7 +113,7 @@ class BandsController < ApplicationController
     
     def soundcloud
       @client = Soundcloud.new(
-        :client_id => 'b8e640fd38bce5816e3e15ca83bc75cc'        
+        client_id: ENV['SOUNDCLOUD_ID']        
       )
     end
 end
