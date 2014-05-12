@@ -60,7 +60,7 @@
           <li><%= link_to "<i class=\"fa fa-coffee\"></i> ".html_safe+t(:cafe), @band.cafe, class: 'cafe', target: "_blank" %></li>
           <li>
         <% end %>
-          <% fans_count = "<span class=\"badge\">" + @band.fans.to_s + "</span> " + t(:fans) %>
+          <% fans_count = "<span class=\"badge\">" + @band.fans.to_s + "</span> " %>
           <% if current_user && current_user.user_fans.where(band_id: @band.id).count != 0 %>
             <%= link_to "#{fans_count} <i class=\"fa fa-thumbs-up\"></i>".html_safe, user_fan_path(id: @band.id), method: 'delete', :class => 'btn btn-success active', 'data-toggle'=>"tooltip", 'data-placement'=>"top", 'title'=>"Unlike" %>
           <% elsif current_user %>
