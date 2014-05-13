@@ -31,6 +31,9 @@ class User < ActiveRecord::Base
          
   paginates_per 100
   
+  #callbacks
+  after_create :welcome_email
+  
   def liked_band_events
     event_ids = []
     self.user_fans.each do |f|
@@ -147,4 +150,9 @@ class User < ActiveRecord::Base
       :merge_vars => {:FNAME => "#{user.username}", :LNAME => nil}, 
       :double_optin => false})
   end
+
+  private
+      def welcome_email
+        UserMailer.welcome_email(self).deliver
+      end
 end

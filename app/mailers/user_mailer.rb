@@ -1,5 +1,10 @@
 class UserMailer < ActionMailer::Base
   default from: "somewhere@random.com"
+  
+  def welcome_email(user)
+    @user = user
+    mail(to: @user.email, subject: 'Welcome to Doindie!')
+  end
 
   def band_approved_email(band)
   	@band = band
