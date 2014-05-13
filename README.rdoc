@@ -1,8 +1,12 @@
 == README
 
-Setup: clone the repo and install all gems. The textacular gem has a dependency on the postgres pg_trgm module. Without it, search buttons and some forms on Events#new and Events#edit will not work.
+--Setup: 
 
-Full setup requires the following API keys and variables to be set in application.yml
+Clone the repo and run `bundle install`. The textacular gem has a dependency on the postgres `pg_trgm` module. Without it, search buttons and some forms on Events#new and Events#edit will not work. It should be installed by running all of the migrations, but in some cases (heroku and server), it needs to be added through psql: `CREATE EXTENSION pg_trgm;`
+
+Full setup requires the following API keys and variables to be set in application.yml:
+
+`cp config/application.yml.example config/application.yml`
 
 *Email settings
 
@@ -12,30 +16,39 @@ Full setup requires the following API keys and variables to be set in applicatio
 
 *Twitter API
 
-*MailChimp API
+*MailChimp API and list id
 
 *Amazon S3 settings for paperclip uploads
 
-Importing the old data from rake tasks: Old wp-site data is in csv files in /lib. Import with rake tasks after creating and migrating the database:
+--Database Setup and seeding
 
-* import_artists
+Only postgres is supported. After creating the db, run rake db:migrate db:test:clone. Then, run the following rake tasks to import the old data from the csv files in /lib. They can be run in succession to build the complete starter DB
 
-* System dependencies
+* `rake import_artists` Imports bands into database
 
-* Configuration
+* `rake band_categories` Adds first genre to each band
 
-* Database creation
+* `rake build_genres` Fills out genres table
 
-* Database initialization
+* `rake seed_genres` Builds the relation between a band and a genre
 
-* How to run the test suite
+* `rake herok_import_photos` Sets bands' images from S3 bucket !!This can take several hours to import and process images again if reuploading to S3. Usually only takes a long time when run on heroku or a server.!!
 
-* Services (job queues, cache servers, search engines, etc.)
+* `rake import_venues` Imports venues
 
-* Deployment instructions
+* `rake import_venue_data` Imports venue bio information
 
-* ...
+* `rake import_venue_photos` Import venue photos from S3
 
+* `rake import_venue_maps` Import venue maps from S3
+
+* `rake seed_cities` Imports all cities in Korea to database
+
+* `rake venue_cities` Sets city/venue relationship
+
+* `rake approve_all` Approves all bands and venues so they appear in the main index
+
+* `rake create_page` Creates the pages for the photo contests and results
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
