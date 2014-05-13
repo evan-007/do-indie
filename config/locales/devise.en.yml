@@ -20,7 +20,7 @@ en:
       confirmation_instructions:
         subject: "Confirmation instructions"
       reset_password_instructions:
-        subject: "Reset password instructions"
+        subject: "비밀번호 변경 요청이 있었습니다 / Change password request."
       unlock_instructions:
         subject: "Unlock Instructions"
     omniauth_callbacks:

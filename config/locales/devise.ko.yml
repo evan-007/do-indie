@@ -50,6 +50,6 @@ ko:
       confirmation_instructions:
         subject: '이메일 주소 확인 메일'
       reset_password_instructions:
-        subject: '비밀번호 변경 확인 메일'
+        subject: '비밀번호 변경 요청이 있었습니다 / Change password request.'
       unlock_instructions:
         subject: '계정 Unlock 메일'
