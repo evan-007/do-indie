@@ -3,7 +3,9 @@ class UserMailer < ActionMailer::Base
   
   def welcome_email(user)
     @user = user
-    mail(to: @user.email, subject: 'Welcome to Doindie!')
+    unless @user.get_email == false
+      mail(to: @user.email, subject: 'Welcome to Doindie!')      
+    end
   end
 
   def band_approved_email(band)
