@@ -2,11 +2,11 @@
 ---
 = Setup: 
 
-Clone the repo and run `bundle install`. The textacular gem has a dependency on the postgres `pg_trgm` module. Without it, search buttons and some forms on Events#new and Events#edit will not work. It should be installed by running all of the migrations, but in some cases (heroku and server), it needs to be added through psql: `CREATE EXTENSION pg_trgm;`
+Clone the repo and run <tt>bundle install</tt>. The textacular gem has a dependency on the postgres <tt>pg_trgm</tt> module. Without it, search buttons and some forms on Events#new and Events#edit will not work. It should be installed by running all of the migrations, but in some cases (heroku and server), it needs to be added through psql: <tt>CREATE EXTENSION pg_trgm;</tt>
 
 Full setup requires the following API keys and variables to be set in application.yml:
 
-`cp config/application.yml.example config/application.yml`
+<tt>cp config/application.yml.example config/application.yml</tt>
 
 *Email settings
 
@@ -22,7 +22,7 @@ Full setup requires the following API keys and variables to be set in applicatio
 ---
 = Database Setup and seeding
 
-Only postgres is supported. After creating the db, run rake db:migrate db:test:clone. Then, run the following rake tasks to import the old data from the csv files in /lib. They can be run in succession to build the complete starter DB
+Only postgres is supported. After creating the db, run <tt>rake db:migrate db:test:clone</tt>. Then, run the following rake tasks to import the old data from the csv files in /lib. They can be run in succession to build the complete starter DB
 
 * <tt>rake import_artists</tt> Imports bands into database
 
