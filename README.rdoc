@@ -1,6 +1,6 @@
 == README
-
---Setup: 
+---
+= Setup: 
 
 Clone the repo and run `bundle install`. The textacular gem has a dependency on the postgres `pg_trgm` module. Without it, search buttons and some forms on Events#new and Events#edit will not work. It should be installed by running all of the migrations, but in some cases (heroku and server), it needs to be added through psql: `CREATE EXTENSION pg_trgm;`
 
@@ -19,36 +19,38 @@ Full setup requires the following API keys and variables to be set in applicatio
 *MailChimp API and list id
 
 *Amazon S3 settings for paperclip uploads
-
---Database Setup and seeding
+---
+= Database Setup and seeding
 
 Only postgres is supported. After creating the db, run rake db:migrate db:test:clone. Then, run the following rake tasks to import the old data from the csv files in /lib. They can be run in succession to build the complete starter DB
 
-* `rake import_artists` Imports bands into database
+* <tt>rake import_artists</tt> Imports bands into database
 
-* `rake band_categories` Adds first genre to each band
+* <tt>rake band_categories</tt> Adds first genre to each band
 
-* `rake build_genres` Fills out genres table
+* <tt>rake build_genres</tt> Fills out genres table
 
-* `rake seed_genres` Builds the relation between a band and a genre
+* <tt>rake seed_genres</tt> Builds the relation between a band and a genre
 
-* `rake herok_import_photos` Sets bands' images from S3 bucket !!This can take several hours to import and process images again if reuploading to S3. Usually only takes a long time when run on heroku or a server.!!
+* <tt>rake herok_import_photos</tt> Sets bands' images from S3 bucket !!This can take several hours to import and process images again if reuploading to S3. Usually only takes a long time when run on heroku or a server.!!
 
-* `rake import_venues` Imports venues
+* <tt>rake import_venues</tt> Imports venues
 
-* `rake import_venue_data` Imports venue bio information
+* <tt>rake import_venue_data</tt> Imports venue bio information
 
-* `rake import_venue_photos` Import venue photos from S3
+* <tt>rake import_venue_photos</tt> Import venue photos from S3
 
-* `rake import_venue_maps` Import venue maps from S3
+* <tt>rake import_venue_maps</tt> Import venue maps from S3
 
-* `rake seed_cities` Imports all cities in Korea to database
+* <tt>rake seed_cities</tt> Imports all cities in Korea to database
 
-* `rake venue_cities` Sets city/venue relationship
+* <tt>rake venue_cities</tt> Sets city/venue relationship
 
-* `rake approve_all` Approves all bands and venues so they appear in the main index
+* <tt>rake approve_all</tt> Approves all bands and venues so they appear in the main index
 
-* `rake create_page` Creates the pages for the photo contests and results
+* <tt>rake create_page</tt> Creates the pages for the photo contests and results
 
+* <tt>rake db:seed</tt> Creates admin user <tt>admin</tt> password: <tt>1234</tt>
+---
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
