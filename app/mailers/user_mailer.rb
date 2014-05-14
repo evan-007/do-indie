@@ -53,7 +53,7 @@ class UserMailer < ActionMailer::Base
   	@venue = venue_manager.venue
   	@user = venue_manager.user
     unless @user.get_email == false
-    	mail(to: @user.email, subject: "DoIndie: manager approval")
+    	mail(to: @user.email, subject: "공연장 관리자 권한이 승인되었습니다! / Venue manager status granted!")
     end
   end
 end
