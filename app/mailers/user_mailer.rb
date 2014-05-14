@@ -45,7 +45,8 @@ class UserMailer < ActionMailer::Base
    	@band = band_manager.band
   	@user = band_manager.user
     unless @user.get_email == false
-    	mail(to: @user.email, subject: "DoIndie: manager approval")
+    	mail(to: @user.email, subject: " 밴드 관리자 권한이 승인됐습니다.
+ / Band manager status granted! ")
     end
   end
 

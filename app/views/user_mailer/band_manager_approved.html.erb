@@ -4,13 +4,74 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>What's up <%= @user.username %>?</h1>
-    <p>
-      Congrats! You're approved to manage <%= @band.name %>!<br/>
-      Login and you can access the edit form from the bottom of this page:<br/>
-      http://hidden-dawn-9617.herokuapp.com<%= url_for @band %>
-    </p>
-    <p>Thanks for your contributions and have a great day!</p>
-    <p>Don't want to get emails like this? <a href="http://hidden-dawn-9617.herokuapp.com/en/users/edit">Click here</a> and update your profile settings</p>
+    <p id="english">[For English, see below]</a> 
+
+    <h1>안녕하세요 <%= @user.username %>?</h1>
+
+  <p>축하합니다! <%= @band.korean_name %>의 정보를 관리할 수 있는 요청이 우리 관리자에 의해 승인되었습니다. 당신의 밴드 프로필 페이지 아래 쪽에 있는 ‘밴드 프로필 수정하기’를 클릭하기만 하면 언제든지 밴드 정보를 자유롭게 수정할 수 있습니다. (반드시 로그인된 상태여야만, 이 옵션이 나타납니다.) 공연/공연장/프로필 편집 권한자 목록들은 로그인한 상태에서 ‘마이 페이지’에 가면 간단하게 확인할 수 있습니다. (‘마이 페이지’는 메인메뉴인 ‘회원가입' 아래에 있습니다. 다시한번 말씀드리지만 반드시 로그인된 상태여야만 이것을 보실 수 있습니다.) 밴드에 관한 정보를 계속해서 리뉴얼해주세요. 당신의 팬(앞으로 생길 팬들과 기존의 팬)들이 당신이 어디에서 공연을 하고 어떤 공연을 갖는지 항상 확인할 수 있도록 말입니다.</p>
+
+<p>두인디 회원으로서 당신은, 밴드의 다가오는 공연에 대한 정보를 저희의 공연 Calendar에 등록하실 수 있습니다. 간단히 로그인을 하고 공연의 세부 정보를 기입하세요. : <a href="http://doindie.co.kr/events/new">http://doindie.co.kr/events/new</a>. 두인디에 공연을 등록하는데 몇 분 정도가 소요될 수 있습니다. 매달 수 천명의 방문자들이 두인디를 방문하고 있습니다. 그러니 주저하지마시고 두인디에 당신의 공연 정보를 등록하고 홍보하세요. ;)</p>
+
+<p>두인디에는 ‘fan profile’라는 새로운 기능이 생겼습니다. 당신의 팬들은 당신의 밴드를 팔로우할 수 있습니다. 두인디에서 당신 밴드를 ‘like’하는 팬들은 그들의 개인 공연 캘린더에서 당신 밴드의 공연 정보와 날짜를 확인할 수 있습니다. 현재 두인디의 ‘fan profile’은 개인별 공연 캘린더를 제공합니다. (‘like’를 누른 밴드들의 공연만이 나타납니다) 하지만 우리는 곧 ‘news feed’ 기능을 들여놓을 것입니다. 그렇게되면 팬들은 다가오는 공연들은 물론이며, 밴드 소식, 앨범 발매 소식 등 모든 관련 소식을 받아볼 수 있을 것입니다. ‘fan profile’ 기능은 앞으로도 계속해서 발전될 것입니다. 이 기능은 당신의 밴드와 팬들을 서로 긴밀하게 연결할 수 있는 중요한 가교역할을 할 수 있을것이라고 생각합니다. 그러니 당신의 팬들이 두인디에 가입하고 당신 밴드에 ‘like’를 누를 수 있도록, 새롭게 등록된 두인디 프로필을 페이스북이나 트위터를 비롯한 밴드의 SNS로 널리 공유해 주세요.</p>
+
+<p>두인디는 그밖에도 새로운 멋진 기능들을 추가할 계획을 갖고 있습니다. (이 모든 것들은 한국의 인디 밴드들이 팬들에게 음악과 공연을 홍보할 수 있도록 고안되었습니다.) 앞으로 만나게 될 기능에 대해선 아래를 참고해주세요 :</p>
+
+<p>- 당신들의 밴드 페이스북 페이지에서 두인디 공연 정보를 볼 수 있는 ‘탭'이 자동으로 생성됩니다. <br>
+- 밴드 관련 상품과 CD, 공연티켓을 팔 수 있는 온라인 샵이 생깁니다. 이제 국내 뿐만이 아닌 세계 어느 곳에서도 구입이 가능할 것입니다.<br>
+- 두인디 프로필에 당신 밴드의 음악과 사진을 올릴 수 있습니다.<br>
+- 두인디 믹스테입들은 팬들이 새로운 밴드를 발견할 수 있는데 도움이 될 것 입니다.<br>
+  - 그리고 수많은 다른 것들.</p>
+
+<p>만약 당신의 밴드가 어떤 특별한 공연을 갖게 된다면(CD발매 파티 기타 등등) 망설이지말고 우리에게 연락주세요. 두인디는 언제나 기꺼이 당신들의 홍보를 돕겠습니다. 또한 앞으로 공개될 새로운 CD나 뮤직 비디오가 있다면 역시 알려주세요. 우리는 당신의 뉴스 섹션에 당신의 소식을 실겠습니다.  <a href="http://doindie.co.kr/blog">http://doindie.co.kr/blog</a> </p>
+<p>
+두인디를 이용해주시는 것에 대해 다시 한번 감사드립니다. 당신의 친구들에게 두인디에 관한 이야기를 전해주세요. 그리하여 이 웹사이트가 오래도록 한국 지역 음악 씬의 든든한 기둥으로 자리잡을 수 있게 도와주세요. 언제나 새롭게 향상되고 발전된 모습을 보여드릴 수 있도록 두인디는 늘 고군분투하겠습니다. 개선점이나 잘못된 부분이 있거나 혹은 새로운 기능을 제안하고 싶다면 부디 언제나 주저말고 우리에게 메세지를 전달해주세요.</p>
+
+<p>두인디를 이용해주셔서 감사합니다. 멋진 하루 되시길 바랍니다!</p>
+
+<p>Doindie (doindiekorea@gmail.com)</p> 
+<p>https://www.facebook.com/doindie.kr<br>
+https://twitter.com/DoIndieKorea<br>
+blog.naver.com/doindie</p>
+
+<p>이 이메일을 받고 싶지 않으세요? 아래 링크를 따라 당신의 프로필 설정을 변경해주세요.<br>
+<a href="http://doindie.co.kr/users/edit">http://doindie.co.kr/users/edit</a></p>
+
+
+
+<h1 id="english">What's up <%= @user.username %>?</h1>
+
+<p>Congrats! Your request to manage <%= @band.name %> has been approved by our moderators. You can now edit your bands information at anytime by clicking ‘edit this band’ at the very bottom of your band’s profile page (please note, you must be logged in to see this option). To see a list of all the events / venues / band profiles you manage, simply log in and go to ‘Your Page’ (under ‘account’ in the main menu, again you must be logged in to see this). Make sure to keep your band profile up to date so your fans (both new and old) know where to find you and what you are up to. </p>
+
+
+<p>As a user of DoIndie you can also add all your upcoming shows to our show calendar by simply logging in and submitting your gig details here :  <a href="http://doindie.co.kr/events/new">http://doindie.co.kr/events/new</a>. It takes just a few short minutes to create an event on DoIndie. We have thousands of visitors to our site every month. So what are you waiting for, submit your show and get promoting now ;)</p>
+
+<p>We now have a ‘fan profile’ feature on DoIndie, where your fans will be able to follow you band. People who ‘like’ your band on DoIndie will be able to keep up to date with all your gigs in their own personalized gig calendar. For now, our ‘fan profiles’ simply offer users a personalized gig calendar (showing only shows from bands they have ‘liked’), however, we will soon be implementing a ‘news feed’ feature where we will inform your fans about all your comings and goings, news, gigs, releases etc. In the future, as our ‘fan profile’ feature develops we are confident it will become a great tool for connecting your band with the people who matter most, your fans. Please encourage your friends and fans to sign up and ‘like’ you by sharing your band’s profile with them on facebook, twitter etc.</p>
+
+<p>We have loads of other cool new features in the works (all designed to help bands promote their music and shows to their fans), including the following :</p>
+
+<p>- Auto export your DoIndie shows to a facebook ‘tab’ in your band’s facebook page.<br>
+- A Shop to sell your merchandise / CDs and gig tickets to people not only in Korea, but all around the world<br>
+- Ability to upload your music and pictures to your profile on DoIndie<br>
+- DoIndie mixtapes to help fans discover new bands<br>
+
+  - and many more.</p>
+
+<p>
+If you have any special shows coming up (like a CD release party etc), please do not hesitate to contact us as we are always happy to help promote local bands. Additionally if you have a new CD or video out coming out, please let us know. We would love to feature you in our news section (LINK TO BLOG ENGLISH LANGUAGE).</p>
+
+<p>Thanks again for using Doindie. Please tell your friends about us and help us to build this website into a long lasting pillar of the local Korean Music scene. DoIndie is always striving to develop and improve, if you have any advice, spot any mistakes on the website or want to suggest some new features to us, please drop us a message any time.</p>
+
+  <p>Thanks for using DoIndie. Have a great day! </p>
+
+  <p>Doindie (doindiekorea@gmail.com)</p>
+ 
+<p>https://www.facebook.com/doindie.kr<br>
+https://twitter.com/DoIndieKorea<br>
+blog.naver.com/doindie</p>
+ 
+<p>
+Don't want to get emails like this? Update your profile settings at the link below:<br>
+http://hidden-dawn-9617.herokuapp.com/en/users/edit</p>
+  
   </body>
 </html>
