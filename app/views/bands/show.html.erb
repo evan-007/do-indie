@@ -146,20 +146,18 @@
   
   <% unless @band.tagged_bands.blank? %>
     <div class="row">
-      <% if I18n.locale == :en %>
-        <h3><%= "#{t(:band_posts)} #{@band.name}" %></h3>
-        <% @band.tagged_bands.take(3).each do |tb| %>
-          <div class="col-sm-12 col-md-6">
-            <%= link_to tb.post.title, post_path(tb.post) %>
-          </div>
-        <% end %>
-      <% else %>
-        <h3><%= "#{@band.korean_name} #{t(:band_posts)}" %></h3>
-        <% @band.tagged_bands.take(3).each do |tb| %>
-          <div class="col-sm-12 col-md-6">
-            <%= link_to tb.post.ko_title, post_path(tb.post) %>
-          </div>
-        <% end %>
+      <h3><%= "#{t(:band_posts)} #{@band.name}" %></h3>
+      <% @band.tagged_bands.take(3).each do |tb| %>
+        <div class="col-sm-12 col-md-6">
+          <% if I18n.locale == :en %>
+            <%= link_to tb.post.title, post_en_path(tb.post) %>
+            <%= link_to (image_tag tb.post.image :medium), post_en_path(tb.post) %>
+          <% else %>
+            <%= link_to tb.post.ko_title, post_ko_path(tb.post) %>
+            <%= link_to (image_tag tb.post.image :medium), post_ko_path(tb.post) %>
+          <% end %>
+            
+        </div>
       <% end %>
     </div>
   <% end %>
