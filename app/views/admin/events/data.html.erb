@@ -24,7 +24,7 @@
 		@<%= event.venue.name %> (<%= event.time %>)<br />
 	<% end %>
 	<% event.bands.each do |band| %>
-	<%= band.name %> | <%= band.korean_name %>
+	<%= band.korean_name %> (<%= band.name %>) |
 	<% end %><br />
 	http://doindie.co.kr<%= url_for(event_ko_path(event)) %></p>
 <% end %>
