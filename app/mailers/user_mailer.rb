@@ -36,7 +36,8 @@ class UserMailer < ActionMailer::Base
   	@event = event_manager.event
   	@user = event_manager.user
     unless @user.get_email == false
-    	mail(to: @user.email, subject: "DoIndie: manager approval")
+    	mail(to: @user.email, subject: "공연 내용을 관리할 수 있게 되었습니다!
+ / Event manager status granted! ")
     end
   end
 
