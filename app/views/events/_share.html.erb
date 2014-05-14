@@ -59,7 +59,9 @@
           <% unless b.twitter.blank? %>
             <%= b.twitter %><br />
           <% end %>
-          hidden-dawn-9617.herokuapp.com<%= url_for(b) %>
+          <% if b.approved %>
+            hidden-dawn-9617.herokuapp.com<%= url_for(b) %>
+          <% end %>
         </p>
       <% end %> 
     <% end %>
@@ -89,7 +91,7 @@
     <% end %>
   
     <p>
-      ----✦✦ <%= @event.name %> ✦✦----<br />
+      ----✦✦ <%= @event.ko_name %> / <%= @event.name %> ✦✦----<br />
       <% unless @event.info_ko.blank? %>
         <%= @event.info_ko%><br/>
       <% end %>
