@@ -216,6 +216,21 @@ ko:
 
   #validations
   user_valid: "특수문자를 제외한 글자와 숫자만 가능합니다"
+  
+  
+  helpers:
+    page_entries_info:
+      single_page:
+        zero:  "No %{model} found"
+        one:   "Displaying 1 %{model}"
+        other: "Displaying all %{count} %{model}"
+      single_page_html:
+        zero:  "No %{model} found"
+        one:   "Displaying <b>1</b> %{model}"
+        other: "Displaying <b>all&nbsp;%{count}</b> %{model}"
+      more_pages:
+        display_entries: "Displaying %{model} %{from} - %{to} of %{count} in total"
+        multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total"
 
   #i18n translations
   date:
