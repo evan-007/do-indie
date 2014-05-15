@@ -3,7 +3,7 @@ class EventManager < ActiveRecord::Base
   belongs_to :event
   scope :approved, -> { where(approved: true) }
   after_create :approval_notification
-  after_save :approval_notification, if: :approved_changed?
+  after_update :approval_notification, if: :approved_changed?
 
   def self.search_and_order(search, page_number)
     if search
