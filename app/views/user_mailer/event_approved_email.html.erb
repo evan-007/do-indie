@@ -6,7 +6,7 @@
   <body>
     <p><a href="#english">[For English, see below]</a> 
 
-    <p>안녕하신가요 <% @user.username %>! 당신의 이벤트를 두인디의 공연 캘린더에 등록해주셔서 감사합니다. 당신이 올리신 <%= @event.ko_name %> 우리의 관리자들에게 승인되었으며 이곳에서 확인하실 수 있습니다 : <a href="http://doindie.co.kr".</p>
+    <p>안녕하신가요 <% @user.username %>! 당신의 이벤트를 두인디의 공연 캘린더에 등록해주셔서 감사합니다. 당신이 올리신 <%= @event.ko_name %> 우리의 관리자들에게 승인되었으며 이곳에서 확인하실 수 있습니다 :  http://doindie.co.kr<%= url_for @event %></p>
 
 <p>공연 프로필 페이지 아래 쪽에 있는 ‘공연 프로필 수정하기’를 클릭하기만 하면 언제든지 공연에 관한 정보를 자유롭게 수정할 수 있습니다. (반드시 로그인된 상태여야만, 이 옵션이 나타납니다.) 공연/공연장/프로필 편집 권한자 목록들은 로그인한 상태에서 ‘마이 페이지’에 가면 간단하게 확인할 수 있습니다. (‘마이 페이지’는 메인메뉴인 ‘회원가입' 아래에 있습니다. 다시한번 말씀드리지만 반드시 로그인된 상태여야만 이것을 보실 수 있습니다.) 다른 사람들에게도 해당 프로필을 수정할 수 있는 권한을 주려면, 개별적으로 두인디에 가입한 후 공연 프로필 페이지 아래에 있는 ‘해당 페이지의 관리자가 되고 싶다면 클릭’을 누르도록 해주세요. 요청이 승인되는 즉시 두인디에서 이메일이 발송될 것입니다.</p>
 
@@ -24,7 +24,7 @@ blog.naver.com/doindie</p>
 <a href="http://doindie.co.kr/users/edit">http://doindie.co.kr/users/edit</a></p>
 
 
-    <p id="english">What’s up <%= @user.username %>? Thanks for adding your event to DoIndie’s show calendar. Your submission for <%= @event.name %>  was approved by our moderators, you can view it here : LINK TO ENGLISH EVENT PAGE.</p>
+    <p id="english">What’s up <%= @user.username %>? Thanks for adding your event to DoIndie’s show calendar. Your submission for <%= @event.name %>  was approved by our moderators, you can view it here :  http://doindie.co.kr/en<%= url_for @event %>.</p>
 
 <p>You can now edit your shows’ information at anytime by clicking ‘edit this event’ at the very bottom of the event page (please note, you must be logged in to see this option). To see a list of all the events / venues / profiles you manage, simply log in and go to ‘Your Page’ (under ‘account’ in the main menu, again you must be logged in to see this). To give the other people editing capabilities for this event, please get them to sign up with DoIndie and then click ‘request manager status’ at the bottom of the event page. We will send them an email when their request has been confirmed.</p>
 
