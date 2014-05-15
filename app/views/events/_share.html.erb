@@ -47,21 +47,26 @@
     ----✦✦ 밴드들 (Bands) ✦✦----
   </p>
     <% unless @event.bands.blank? %>
-      <% @event.bands.each do |b| %>
+      <% @event.bands.approved.each do |b| %>
         <p>
           * <%= b.korean_name %> (<%= b.name %>)<br/>
-          <% unless b.facebook.blank?|!b.approved %>
+          <% unless b.facebook.blank? %>
             <%= b.facebook %><br />
           <% end %>
-          <% unless b.site.blank?|!b.approved %>
+          <% unless b.site.blank? %>
             <%= b.site %><br />
           <% end %>
-          <% unless b.twitter.blank?|!b.approved %>
+          <% unless b.twitter.blank? %>
             <%= b.twitter %><br />
           <% end %>
           <% if b.approved %>
             hidden-dawn-9617.herokuapp.com<%= url_for(b) %>
           <% end %>
+        </p>
+      <% end %>
+      <% @event.bands.unapproved.each do |b| %>
+        <p>
+          * <%= b.korean_name %>
         </p>
       <% end %> 
     <% end %>
