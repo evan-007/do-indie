@@ -12,7 +12,8 @@ class UserMailer < ActionMailer::Base
   	@band = band
   	@user = @band.user
     unless @user.get_email == false
-    	mail(to: @user.email, subject: 'Your band was approved!')
+    	mail(to: @user.email, subject: '밴드의 프로필이 두인디에 등록되었습니다. You band’s profile is now live on Doindie!
+')
     end
   end
 
@@ -20,7 +21,8 @@ class UserMailer < ActionMailer::Base
     @event = event
     @user = @event.user
     unless @user.get_email == false
-      mail(to: @user.email, subject: 'Your event was approved!')
+      mail(to: @user.email, subject: '당신의 이벤트가 두인디에 등록되었습니다! / You event is now live on Doindie!
+')
     end
   end
 
@@ -28,7 +30,8 @@ class UserMailer < ActionMailer::Base
     @venue = venue
     @user = @venue.user
     unless @user.get_email == false
-      mail(to: @user.email, subject: 'Your venue was approved!')
+      mail(to: @user.email, subject: '당신의 공연장이 두인디에 등록되었습니다. / Your venue’s profile is now live on Doindie!
+')
     end
   end
 
