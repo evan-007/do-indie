@@ -50,13 +50,13 @@
       <% @event.bands.each do |b| %>
         <p>
           * <%= b.korean_name %> (<%= b.name %>)<br/>
-          <% unless b.facebook.blank? %>
+          <% unless b.facebook.blank?|!b.approved %>
             <%= b.facebook %><br />
           <% end %>
-          <% unless b.site.blank? %>
+          <% unless b.site.blank?|!b.approved %>
             <%= b.site %><br />
           <% end %>
-          <% unless b.twitter.blank? %>
+          <% unless b.twitter.blank?|!b.approved %>
             <%= b.twitter %><br />
           <% end %>
           <% if b.approved %>
