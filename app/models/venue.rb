@@ -36,7 +36,7 @@ class Venue < ActiveRecord::Base
   end
   
   def self.ids_from_tokens(tokens)
-    tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1).id }
+    tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1, ko_name: $1).id }
   	tokens.split(',')
     return tokens
   end
