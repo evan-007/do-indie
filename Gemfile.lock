@@ -273,6 +273,8 @@ GEM
     simple_calendar (0.1.10)
       rails (>= 3.0)
     simple_oauth (0.2.0)
+    sitemap_generator (5.0.3)
+      builder
     soundcloud (0.3.2)
       hashie (~> 2.0)
       httmultiparty (~> 0.3.0)
@@ -391,6 +393,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.1)
   sdoc
   simple_calendar (~> 0.1.10)
+  sitemap_generator
   soundcloud
   textacular
   therubyracer

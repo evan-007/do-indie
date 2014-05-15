@@ -46,6 +46,8 @@ gem 'gibbon'
 #nested forms
 gem 'cocoon'
 
+gem 'sitemap_generator'
+
 #for deploying
 gem 'capistrano', '~> 3.0.1'
 gem 'capistrano-rails', '~> 1.1.0'
