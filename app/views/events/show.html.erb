@@ -122,7 +122,9 @@
                 <%= image_tag band.avatar.url(:medium) %>
                 <div class="caption">
                   <h3><%= link_to band.name, band_path(band) %></h3>
-                  <h4><%= link_to band.korean_name, band_path(band) %></h4>
+                  <% unless band.korean_name.blank? %>
+                    <h4><%= link_to band.korean_name, band_path(band) %></h4>
+                  <% end %>
                   <div class="fanbadge small">
                     Fans
                     <span class="badge"><%= band.fans %></span>
