@@ -47,6 +47,11 @@
 	<% end %>
 </table>
 
+<div class="text-center">
+	<div class="small"><%= page_entries_info @posts %></div>
+	<%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+</div>
+
 <h2>Slides</h2>
 <%= link_to "New Slide", new_slide_path, class: "btn btn-primary" %>
 

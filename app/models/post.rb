@@ -32,4 +32,12 @@ class Post < ActiveRecord::Base
 			order(created_at: :desc).page page_number
 		end
 	end
+
+  def self.index_search(query, page_number)
+    if query.present?
+    	self.approved.where("name ilike :q or korean_name ilike :q", q: "%#{query}%").page page_number
+    else
+	    approved.page page_number
+    end
+  end
 end

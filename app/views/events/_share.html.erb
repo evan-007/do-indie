@@ -98,10 +98,10 @@
     <p>
       ----✦✦ <%= @event.ko_name %> / <%= @event.name %> ✦✦----<br />
       <% unless @event.info_ko.blank? %>
-        <%= @event.info_ko%><br/>
+        <%= @event.info_ko.html_safe %><br/>
       <% end %>
       <% unless @event.info.blank? %>
-        <%= @event.info%>
+        <%= @event.info.html_safe %>
       <% end %>
     </p>
 
