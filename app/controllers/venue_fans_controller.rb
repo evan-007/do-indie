@@ -10,7 +10,7 @@ class VenueFansController < ApplicationController
         redirect_to(:back)
       else
         flash[:notice] = "You can't do that, sorry"
-        redirect_to venues_path
+        redirect_to(:back)
       end
     end
   end
@@ -19,9 +19,10 @@ class VenueFansController < ApplicationController
     @fan = current_user.venue_fans.where(venue_id: params[:id]).first
     if @fan.destroy
       flash[:notice]= t(:not_fan, thing: @fan.venue.name)
-      redirect_to venues_path
+      redirect_to(:back)
     else
       flash[:notice] = "You can't do that!"
+      redirect_to(:back)
     end
   end
     

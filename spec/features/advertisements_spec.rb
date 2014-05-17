@@ -43,7 +43,7 @@ feature "Advertisements" do
 		end
 
 		scenario "see ads on blog posts" do
-			visit blog_path
+			visit blog_en_path
 			click_link @post.title
 			expect(page).to have_css(".ad")
 		end
