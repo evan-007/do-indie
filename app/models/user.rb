@@ -146,7 +146,7 @@ class User < ActiveRecord::Base
 
   def self.email_signup(user)
     @gb = Gibbon::API.new
-    @gb.lists.subscribe({:id => '40a37c22ca', :email => {:email => "#{user.email}"},
+    @gb.lists.subscribe({:id => '683c62f66a', :email => {:email => "#{user.email}"},
       :merge_vars => {:FNAME => "#{user.username}", :LNAME => nil}, 
       :double_optin => false})
   end
