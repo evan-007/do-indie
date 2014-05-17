@@ -29,7 +29,11 @@
       			  		<%= link_to (image_tag post.image.url(:medium)), post_path(post) %>
               <% end %>
   	  				<div class="caption">
-  		  				<h3><%= link_to post.title, post_path(post) %></h3>
+                <% if I18n.locale == :en %>
+    		  				<h3><%= link_to post.title, post_path(post) %></h3>
+                <% else %>
+                  <h3><%= link_to post.ko_title, post_path(post) %></h3>
+                <% end %>
   			  		</div>
   				  </div>
     			<% end %> <!--div_for-->
