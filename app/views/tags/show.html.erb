@@ -1,6 +1,3 @@
-
-
-
 <h2>Posts under: <%= @tag.name %></h2>
 <% @tag.post_tags.each do |pt| %>
   <h3><%= link_to pt.post.title, post_path(pt.post) %></h3>
