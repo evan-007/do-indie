@@ -1,16 +1,11 @@
 class PostsController < ApplicationController
   before_filter :blogger!, only: [:admin, :edit, :update, :new, :destroy, :create]
   before_action :get_post, only: [:show, :edit, :update, :destroy]
-  before_action :set_ads, only: [:show, :index]
+  before_action :set_ads, only: [:show, :index, :tags]
 
   def index
-    if params[:tag]
-      @posts = Post.published.tagged_with(params[:tag]).order(created_at: :desc)
-      @categories = Category.all
-    else
-      @posts = Post.published.order(created_at: :desc)
-      @categories = Category.all
-    end
+    @posts = Post.index_search(params[:query], params[:page])
+    @categories = Category.all
   end
   
   def show
@@ -53,6 +48,11 @@ class PostsController < ApplicationController
       flash[:notice] = "Post wasn't updated"
       redirect_to edit_post_path(@post)
     end
+  end
+
+  def tags
+    @posts = Post.published.tagged_with(params[:tag]).order(created_at: :desc)
+    @categories = Category.all
   end
   
   private

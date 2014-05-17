@@ -1,31 +1,19 @@
 <% provide(:title, t(:blog)) %>
 
 <div class="row page-header">
-  <div class="col-md-6">
+  <div class="col-md-9">
     <h1 class="page-title">
-      <%= t(:blog_title) %>
+      <%= link_to t(:blog_title), blog_path %>
     </h1>
   </div>
-    <div class="col-md-3 searchform text-center">
-    <%= form_tag blog_path, method: :get, class: 'form-inline' do %>
-    <div>
-      <div class="input-group col-md-12">
-      <%= text_field_tag :query, params[:query], placeholder: "Search: English or Korean", class: "form-control" %>
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-      </span>
-      </div>
-    </div>
-    <% end %>
-  </div> 
   <div class="col-md-3 searchform text-center">
     <% if current_user && current_user.blogger == true %>
     <div class="btn-group">
       <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
       <%= link_to "Blog Admin Page", blog_admin_path, class: "btn btn-danger" %>
-    </div>
+    </div>      
     <% end %>
-  </div> 
+  </div>
 </div>
 
 
@@ -71,10 +59,3 @@
     <% end %>
   </div><!--sidebar-->
 </div><!--row-->
-
-<div class="row" style="margin-top:15px">
-  <div class="text-center">
-    <div class="small"><%= page_entries_info @posts %></div>
-    <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
-  </div>
-</div>

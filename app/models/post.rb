@@ -35,9 +35,9 @@ class Post < ActiveRecord::Base
 
   def self.index_search(query, page_number)
     if query.present?
-    	self.approved.where("name ilike :q or korean_name ilike :q", q: "%#{query}%").page page_number
+    	self.published.where("title ilike :q or ko_title ilike :q", q: "%#{query}%").page page_number
     else
-	    approved.page page_number
+	    published.page page_number
     end
   end
 end
