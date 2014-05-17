@@ -39,12 +39,6 @@
       </p>
     </div><!--meta info-->
 
-    <% unless @post.image.blank? %>
-      <div class="container-fluid">
-          <%= image_tag @post.image.url %>
-      </div>
-    <% end %><!--slideImage-->
-
     <div class="container-fluid">
       <% if I18n.locale == :en %>
         <p><%=  @post.en_body.html_safe %></p>
