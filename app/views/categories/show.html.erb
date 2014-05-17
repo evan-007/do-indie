@@ -55,16 +55,3 @@
   <p><%= link_to 'Edit', edit_category_path(@category) %> |
   <%= link_to 'Back', categories_path %></p>
 <% end %>
-
-
-<script>
-  $(document).ready(function(){
-    init_grid_tiles();
-    $(window).trigger('resize');
-    //imagesLoaded
-    $('.grid-tiles-sidebar').imagesLoaded(function() {
-      $(window).trigger('resize');
-    });      
-  });
-</script>
-
