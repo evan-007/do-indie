@@ -60,7 +60,7 @@ class Event < ActiveRecord::Base
 
 	def self.date_search(date)
     unless date.blank?
-      events = where(date: Date.parse(date))
+      events = where(date: Date.parse(date)).order(date: :asc)
     else
     	events = []
 		end
@@ -89,17 +89,17 @@ class Event < ActiveRecord::Base
 
 	def self.index_search(query, page_number)
 	    if query.present?
-	    	self.approved.where("name ilike :q or ko_name ilike :q", q: "%#{query}%").page page_number
+        self.approved.where("name ilike :q or ko_name ilike :q", q: "%#{query}%").order(date: :asc).page page_number
 	    else
-	      approved.upcoming.order(approved: :asc).page page_number
+        approved.upcoming.order(date: :asc).page page_number
 	    end
 	end
 
 	def self.past_index_search(query, page_number)
     if query.present?
-    	self.approved.where("name ilike :q or ko_name ilike :q", q: "%#{query}%").page page_number
+      self.approved.where("name ilike :q or ko_name ilike :q", q: "%#{query}%").order(date: :asc).page page_number
     else
-			approved.past.order(approved: :asc).page page_number
+      approved.past.order(date: :asc).page page_number
     end
 	end
 
