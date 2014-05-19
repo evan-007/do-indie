@@ -44,4 +44,12 @@
     <% end %>
   </div>
 </div>
-<%= render 'shared/events_list', :events => @events %>
+<% unless @events.blank? %>
+  <%= render 'shared/events_list', :events => @events %>
+  	<div class="row" style="margin-top:15px">
+		  <div class="text-center">
+        <div class="small"><%= page_entries_info @events %></div>
+        <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+		  </div>
+		</div>
+<% end %>
