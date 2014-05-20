@@ -54,6 +54,6 @@ class PagesController < ApplicationController
   
   private
     def page_params
-      params.require(:page).permit(:body)
+      params.require(:page).permit(:body, :ko_body)
     end
 end

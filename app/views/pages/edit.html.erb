@@ -2,6 +2,7 @@
 <%= form_for @page do |f| %>
   <%= f.label :body %>
   <%= f.cktext_area :body, class: "form-control half" %><br/>
+  <%= f.label "Korean text area for photo winners, ignore if this is the main photo page" %><br/>
   <%= f.cktext_area :ko_body, class: "form-control half", placeholder: "This is only for the photo winners page" %><br/>
   <%= f.submit %>
 <% end %>
