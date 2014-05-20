@@ -24,4 +24,19 @@ SitemapGenerator::Sitemap.create do
   #   Article.find_each do |article|
   #     add article_path(article), :lastmod => article.updated_at
   #   end
+  Band.find_each do |band|
+    add band_path(band), lastmod: band.updated_at
+  end
+
+  Venue.find_each do |venue|
+    add venue_path(venue), lastmod: venue.updated_at
+  end
+
+  Event.find_each do |event|
+    add event_path(event), lastmod: event.updated_at
+  end
+
+  Post.find_each do |post|
+    add post_path(post), lastmod: post.updated_at
+  end
 end
