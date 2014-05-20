@@ -5,6 +5,8 @@
   <%= link_to "Update Winners", edit_page_path(@page), class: 'btn btn-lg btn-primary' %>
 <% end %>
 
-<div id="some-div" data-no-turbolink>
-<%= raw "#{@page.body}" %>
-</div>
+<% if I18n.locale == :en %>
+	<%= raw "#{@page.body}" %>
+<% else %>
+	<%= raw "#{@page.ko_body}" %>
+<% end %>
