@@ -19,10 +19,7 @@ module DoIndie
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :ko
-
-    #for error pages
-    config.exceptions_app = self.routes
-
+    
     #sanitize for youtube
     config.action_view.sanitized_allowed_tags = 'table', 'tr', 'iframe'
     #more youtube iframe stuff
