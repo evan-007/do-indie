@@ -9,6 +9,9 @@ DoIndie::Application.routes.draw do
   localized do
   
     mount Ckeditor::Engine => '/ckeditor'
+    get "/404", to: "errors#not_found"
+    get "/422", to: "errors#unacceptable"
+    get "/500", to: "errors#internal_error"
     get "inside", to: "pages#inside", as: "inside"
     get "/blog", to: "posts#index", as: "blog"
     get "/genres/:name", to: "genres#show", as: "genre"
