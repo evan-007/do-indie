@@ -7,7 +7,7 @@ class BandsController < ApplicationController
   def index
     @genres = Genre.all_with_weight
     @bands = Band.index_search(params[:query], params[:page])
-    @all_bands = Band.approved
+    @all_bands = Band.all
     respond_to do |format|
       format.html
       format.json { render json: @all_bands.tokens(params[:q]) }
