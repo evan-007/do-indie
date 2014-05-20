@@ -1,7 +1,7 @@
 <h2><%= "#{@city.en_name} #{@city.ko_name}" %></h2>
 
 <% unless @city.events.upcoming.blank? %>
-  <%= render 'shared/events_list', :events => @city.events.upcoming %>
+  <%= render 'shared/events_list', :events => @city.events.upcoming.order(date: :asc) %>
 <% else%>
   <h2>Sorry, no upcoming events for this city</h2>
 <% end %>
