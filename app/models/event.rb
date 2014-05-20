@@ -62,7 +62,7 @@ class Event < ActiveRecord::Base
 
 	def self.date_search(date)
     unless date.blank?
-      events = where(date: Date.parse(date)).order(date: :asc)
+      events = where(date: Date.parse(date)).order(date: :asc).group("id")
     else
     	events = []
 		end
