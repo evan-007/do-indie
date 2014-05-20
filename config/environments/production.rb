@@ -76,7 +76,7 @@ DoIndie::Application.configure do
   :email => {
     :email_prefix => "[DoIndie Error Alert] ",
     :sender_address => %{"notifier" <evan.u.lloyd@gmail.com>},
-    :exception_recipients => %w{evan.u.lloyd@gmail.com}
+    :exception_recipients => %w{evan.u.lloyd@gmail.com mods2003@gmail.com}
   }
 
   # Disable automatic flushing of the log to improve performance.
