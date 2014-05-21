@@ -10,7 +10,8 @@
   <div class="col-xs-12 row-fluid event">
     <div class="row-fluid">
       <div class="info col-sm-6 event-color-d<%= event_color %>">
-        <div class="avatar"><%= image_tag event.avatar.url(:medium) %></div>
+        <div class="avatar hidden-xs"><%= image_tag event.avatar.url(:medium) %></div>
+        <div class="avatar visible-xs"><%= image_tag event.avatar.url(:large) %></div>
         <% unless event.date.blank? %>
           <div class="">
             <h4><%= event.date.strftime("%Y/%m/%d") %> <span class="event-time"><%= event.time %></span></h4>
@@ -43,3 +44,4 @@
   </div>
   <% end %>
 </div><!--row-->
+

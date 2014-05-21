@@ -1,4 +1,47 @@
-<h2><%= t(:my_events)%></h2>
-<% current_user.liked_band_events.each do |e| %>
-	<%= link_to e.name, event_path(e) %>
-<% end %>
+<h2><%= t(:my_events) %></h2>
+<div class="row-fluid events-listing">
+  <% event_color = 2 %>
+  <% current_user.liked_band_events.each do |event| %>
+  <% #event_color = 1+rand(10) %>
+  <% unless (event_color==1) 
+      event_color = 1 
+    else 
+      event_color = 2 
+      end %>
+  <div class="col-xs-12 row-fluid event">
+    <div class="row-fluid">
+      <div class="info col-sm-6 event-color-d<%= event_color %>">
+        <div class="avatar"><%= image_tag event.avatar.url(:medium) %></div>
+        <% unless event.date.blank? %>
+          <div class="">
+            <h4><%= event.date.strftime("%Y/%m/%d") %> <span class="event-time"><%= event.time %></span></h4>
+          <% end %>
+          <h4><%= link_to event.name, event_path(event) %></h4>
+          <% unless event.venue == nil %>
+          <h4><%= event.venue.name %></h4>
+          <% else %>
+          <h4>(No venue yet)</h4>
+          <% end %>  
+        </div>
+      </div>
+
+      <div class="bands col-sm-6 event-color-d<%= event_color %>">
+        <% if event.event_bands.count != 0 %>
+          <% event.event_bands.each do |eventband| %>
+            <% if eventband.band.approved? %>
+              <%= link_to eventband.band.name, band_path(eventband.band) %>,
+            <% else %>
+              <%= eventband.band.name %>, 
+            <% end %>
+          <% end %>
+        <% else %>
+        <p>No bands yet!</p>
+        <% end %>
+      </div>    
+    </div>
+  </div>
+  <% end %>
+</div><!--row-->
+
+
+
