@@ -29,7 +29,7 @@ class VenuesController < ApplicationController
     @hash = Gmaps4rails.build_markers(@venues) do |venue, marker|
       marker.lat venue.latitude
       marker.lng venue.longitude
-      marker.infowindow "<a href=\"http://hidden-dawn-9617.herokuapp.com/venues/#{venue.slug}\">#{venue.name}</a>"
+      marker.infowindow "<a href=\"http://www.doindie.co.kr/venues/#{venue.slug}\">#{venue.name}</a>"
     end
   end
 

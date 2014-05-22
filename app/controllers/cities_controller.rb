@@ -6,7 +6,7 @@ class CitiesController < ApplicationController
 	    marker.lat venue.latitude
 	    marker.lng venue.longitude
 	   # marker.title venue.name
-	    marker.infowindow "<a href=\"http://hidden-dawn-9617.herokuapp.com/venues/#{venue.slug}\">#{venue.name}</a>"
+	    marker.infowindow "<a href=\"http://www.doindie.co.kr/venues/#{venue.slug}\">#{venue.name}</a>"
     end
     @cities = City.find_by_ids(City.unique_has_venues)
 	end
