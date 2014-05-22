@@ -1,5 +1,5 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "http://doindie.co.kr"
+SitemapGenerator::Sitemap.default_host = "http://www.doindie.co.kr"
 
 SitemapGenerator::Sitemap.create do
   # Put links creation logic here.
@@ -24,6 +24,17 @@ SitemapGenerator::Sitemap.create do
   #   Article.find_each do |article|
   #     add article_path(article), :lastmod => article.updated_at
   #   end
+  add '/contact'
+  add '/photo-of-the-month'
+  add '/photo-of-the-month-winners'
+  add '/winner'
+  add '/blog'
+  
+  
+  Page.find_each do |page|
+    add page_path(page), lastmid: page.updated_at
+  end
+  
   Band.find_each do |band|
     add band_path(band), lastmod: band.updated_at
   end
