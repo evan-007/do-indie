@@ -32,7 +32,7 @@ SitemapGenerator::Sitemap.create do
   
   
   Page.find_each do |page|
-    add page_path(page), lastmid: page.updated_at
+    add page_path(page), lastmod: page.updated_at
   end
   
   Band.find_each do |band|
