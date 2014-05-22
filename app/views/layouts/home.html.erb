@@ -2,6 +2,11 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <% if I18n.locale == :en %>
+    <meta charset="utf-8"> 
+  <% else %>
+    <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+  <% end %>
   <title><%= @title || "DoIndie" %></title>
   <%= favicon_link_tag 'favicon.ico' %>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>

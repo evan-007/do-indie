@@ -2,7 +2,11 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+  <% if I18n.locale == :en %>
+    <meta charset="utf-8"> 
+  <% else %>
+    <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+  <% end %>
   <% if content_for :title %>
     <title><%= yield(:title) %> < DOINDIE</title>
   <% else %>
