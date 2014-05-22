@@ -78,7 +78,7 @@
       <% end %>
       
       <% unless @band.twitter.blank? %>
-      <% unless @band.tweets.blank? %>
+      <% unless @band.tweets[0].blank? %>
       <blockquote class="blockquote-reverse">
         <p><%= (Twitter::Autolink::auto_link @band.tweets[0].text).html_safe %></p>
         <footer><%= t(:twitter_latest_feed) %></footer>
