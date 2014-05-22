@@ -2,6 +2,8 @@ DoIndie::Application.routes.draw do
   scope "(:locale)", locale: /en/ do
     root "pages#home"
   end
+  
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }
 
   get '/ko', to: "pages#home"
   
@@ -39,7 +41,7 @@ DoIndie::Application.routes.draw do
     resources :slides, except: [:show]
   
     
-    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }
+    devise_for :users, :controllers => { :registrations => "registrations" }, skip: [:omniauth_callbacks]
 
     namespace :admin do
       root "base#index"
