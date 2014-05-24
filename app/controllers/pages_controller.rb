@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   ]
 
   def home
-    @slides = Slide.active_slides
+    @slides = Slide.active_slides.order(created_at: :desc)
     @events = Event.upcoming
     @posts = Post.published
   end

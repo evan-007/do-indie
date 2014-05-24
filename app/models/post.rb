@@ -35,7 +35,7 @@ class Post < ActiveRecord::Base
 
   def self.index_search(query, page_number)
     if query.present?
-    	self.published.where("title ilike :q or ko_title ilike :q", q: "%#{query}%").page page_number
+    	self.published.where("title ilike :q or ko_title ilike :q", q: "%#{query}%").order(created_at: :desc).page page_number
     else
 	    published.order(created_at: :desc).page page_number
     end
