@@ -40,6 +40,11 @@ $(document).ready(function() {
 $(document).ready(function() {
     // apply dropdownHover to all elements with the data-hover="dropdown" attribute
     $('[data-hover="dropdown"]').dropdownHover();
+    // render social buttons
+    $('#socialshare').share({
+        networks: ['facebook','twitter','googleplus','pinterest'],
+        theme: 'square'
+    });
 });
 
 $(document).ready(function() {
