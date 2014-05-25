@@ -49,6 +49,12 @@
     </div>
   </div><!--sidebar-->
 
+  <div class="row" style="margin-top:15px">
+    <div class="text-center">
+      <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+
 </div><!--row-->
 
 <% if current_user.present? && current_user.blogger == true %>
