@@ -147,7 +147,7 @@
   <% unless @band.tagged_bands.blank? %>
     <div class="row">
       <h3><%= "#{t(:band_posts)} #{@band.name}" %></h3>
-      <% @band.tagged_bands.where(approved: true).take(3).each do |tb| %>
+      <% @band.tagged_bands.take(3).each do |tb| %>
         <div class="col-sm-12 col-md-6">
           <% if I18n.locale == :en %>
             <%= link_to tb.post.title, post_en_path(tb.post) %>
