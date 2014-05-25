@@ -21,9 +21,9 @@
 <div class="row">
 
   <div id="posts-grid" class="col-sm-9">
-    <div class="grid-tiles-sidebar">
+    <div class="grid-tiles">
       <% first_post = " width-double" %>
-      <% @category.post_categories.each do |pc| %>
+      <% @category.post_categories.order(created_at: :desc).each do |pc| %>
         <% post = pc.post %>
           <%= div_for(post, class: "list posts-grid-item tile"+first_post) do %>
             <div class="thumbnail">
