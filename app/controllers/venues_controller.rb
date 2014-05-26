@@ -49,7 +49,7 @@ class VenuesController < ApplicationController
       redirect_to venues_path
     else
       flash[:notice] = "Not created!"
-      redirect_to new_venue_path
+      render :new
     end
   end
 
