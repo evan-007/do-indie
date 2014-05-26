@@ -34,7 +34,7 @@ class EventsController < ApplicationController
 			redirect_to events_path
 		else
 			flash[:notice] = "Event not created!"
-			redirect_to new_event_path
+      render :new
 		end
 	end
   
