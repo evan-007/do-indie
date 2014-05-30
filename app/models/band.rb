@@ -48,8 +48,10 @@ class Band < ActiveRecord::Base
 	def genre_tokens=(tokens)
 		self.genre_ids = Genre.ids_from_tokens(tokens)
 	end
-
-
+  
+  def upcoming_events
+    self.events.where(["date > ? ", Date.today])
+  end
 	
 
 	def self.search_and_order(search, page_number)
