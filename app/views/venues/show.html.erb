@@ -153,9 +153,9 @@
     <% end %>
   </div>
 
-  <div class="row">
-    <h3><%= t(:share) %></h3>
-    <%= render 'shared/socialshare' %>
+  <div class="shares">
+    <h2><% t(:share) %></h2>
+    <%= social_share_button_tag(@venue.name) %>
   </div> <!-- social share -->
   
   <% unless @venue.latitude.blank? %>

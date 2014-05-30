@@ -67,9 +67,9 @@
       </div>
     <% end %><!--tags-->
 
-    <div class="container-fluid">
-      <h2><%= t(:share) %></h2>
-      <%= render 'shared/socialshare' %>
+    <div class="shares">
+      <h2><% t(:share) %></h2>
+      <%= social_share_button_tag(@venue.name) %>
     </div> <!-- social share -->
 
     <div class="container-fluid">

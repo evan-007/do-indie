@@ -168,9 +168,10 @@
     <% end %>
   </div>
 
-  <div class="row-fluid">
-    <%= render 'shared/socialshare' %>
-  </div>
+  <div class="shares">
+    <h2><% t(:share) %></h2>
+    <%= social_share_button_tag(@event.name) %>
+  </div> <!-- social share -->
 
   <div class="row-fluid">
     <div id="showData" class="btn btn-lg btn-primary"><%= t(:share_event)%></div>

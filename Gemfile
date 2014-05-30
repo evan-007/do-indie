@@ -50,6 +50,9 @@ gem 'cocoon'
 gem 'sitemap_generator'
 gem 'whenever'
 
+#socialshare-icons
+gem 'social-share-button'
+
 #for deploying
 gem 'capistrano', '~> 3.0.1'
 gem 'capistrano-rails', '~> 1.1.0'

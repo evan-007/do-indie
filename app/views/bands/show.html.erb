@@ -162,9 +162,9 @@
     </div>
   <% end %>
 
-  <div class="now">
+  <div class="shares">
     <h2><% t(:share) %></h2>
-    <%= render 'shared/socialshare' %>
+    <%= social_share_button_tag(@band.name) %>
   </div> <!-- social share -->
   
   

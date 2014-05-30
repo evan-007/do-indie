@@ -276,6 +276,9 @@ GEM
     simple_oauth (0.2.0)
     sitemap_generator (5.0.3)
       builder
+    social-share-button (0.1.6)
+      coffee-rails
+      sass-rails
     soundcloud (0.3.2)
       hashie (~> 2.0)
       httmultiparty (~> 0.3.0)
@@ -398,6 +401,7 @@ DEPENDENCIES
   sdoc
   simple_calendar (~> 0.1.10)
   sitemap_generator
+  social-share-button
   soundcloud
   textacular
   therubyracer
