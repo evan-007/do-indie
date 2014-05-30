@@ -50,7 +50,7 @@ class Band < ActiveRecord::Base
 	end
   
   def upcoming_events
-    self.events.where(["date > ? ", Date.today])
+    self.events.where(["date > ? ", Date.yesterday])
   end
 	
 
