@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 	before_action :get_event, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@events = Event.index_search(params[:query], params[:page])
+		@events = Event.index_search(params[:query]).paginate(page: params[:page])
 		@cities = City.has_upcoming_events
 	end
 

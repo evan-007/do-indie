@@ -89,11 +89,11 @@ class Event < ActiveRecord::Base
     end
 	end
 
-	def self.index_search(query, page_number)
+	def self.index_search(query)
 	    if query.present?
-        self.approved.where("name ilike :q or ko_name ilike :q", q: "%#{query}%").order(date: :asc).group("id").page page_number
+        self.approved.where("name ilike :q or ko_name ilike :q", q: "%#{query}%").order(date: :asc).group("id")
 	    else
-        approved.upcoming.order(date: :asc).page page_number
+        approved.upcoming.order(date: :asc)
 	    end
 	end
 

@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
   helper_method :require_admin!
       
   def fetch_next_events
-    @next_events = Event.index_search(nil, nil)
+    @next_events = Event.index_search(nil)
   end
   
 end
