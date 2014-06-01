@@ -299,6 +299,13 @@ namespace :ckeditor do
   end
 end
 
+task pagination_check: :environment do
+  for n in 1..50 do
+    a = Event.new(name: "Event #{n}", date: Date.tomorrow, approved: true)
+    a.save
+  end
+end
+
 # auto run ckeditor:create_nondigest_assets after assets:precompile
 Rake::Task['assets:precompile'].enhance do
   Rake::Task['ckeditor:create_nondigest_assets'].invoke
