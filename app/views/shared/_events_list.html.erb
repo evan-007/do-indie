@@ -26,7 +26,7 @@
       </div>
 
       <div class="bands col-sm-6 event-color-d<%= event_color %>">
-        <% if event.event_bands.count != 0 %>
+        <% if event.event_bands.size != 0 %>
         <p>
           <% event.event_bands.each do |eventband| %>
             <% if eventband.band.approved? %>
