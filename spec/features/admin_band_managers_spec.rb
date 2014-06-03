@@ -41,4 +41,12 @@ feature "Admin band managers" do
 		click_button ("Save changes")
 		expect(page).to have_content("created manager")
 	end
+
+	scenario "admin can destroy band managers" do
+		visit admin_root_en_path
+		click_link("Band Managers")
+		click_link(@user.username.capitalize)
+		click_link "Delete"
+		expect(page).to have_content "Deleted!"
+	end		
 end

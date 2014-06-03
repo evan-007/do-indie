@@ -39,12 +39,21 @@ class Admin::BandManagersController < Admin::BaseController
     @manager.update(manager_params)
     
     if @manager.valid?
-     # @event.skip_reconfirmation! only for users model
       @manager.save
       redirect_to admin_band_managers_en_path, notice: "Updated permissions for #{@manager.user.username}."
     else
       flash[:alert] = "#{@manager.user.username} couldn't be updated."
       render :edit
+    end
+  end
+
+  def destroy
+    if @manager.destroy
+      flash[:notice] = "Deleted!"
+      redirect_to admin_band_managers_en_path
+    else
+      flash[:notice] = "Couldn't delete the manager"
+      redirect_to edit_admin_band_managers_en_path
     end
   end
   
