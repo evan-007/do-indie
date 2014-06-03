@@ -271,6 +271,8 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    shoulda-matchers (2.6.1)
+      activesupport (>= 3.0.0)
     simple_calendar (0.1.10)
       rails (>= 3.0)
     simple_oauth (0.2.0)
@@ -399,6 +401,7 @@ DEPENDENCIES
   sass
   sass-rails (~> 4.0.1)
   sdoc
+  shoulda-matchers
   simple_calendar (~> 0.1.10)
   sitemap_generator
   social-share-button

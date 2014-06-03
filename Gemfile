@@ -71,6 +71,7 @@ end
 group :development, :test do
        # env variables
   gem "faker"
+  gem "shoulda-matchers"
 end
 
 # Paging

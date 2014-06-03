@@ -10,6 +10,8 @@ class Band < ActiveRecord::Base
 	has_many :tagged_bands, dependent: :destroy
 	has_many :posts, through: :tagged_bands
 	has_many :youtubes, dependent: :destroy
+	has_many :band_managers, dependent: :destroy
+	#has_many :managers, through: :band_managers, class_name: 'User'
 	belongs_to :user
 	accepts_nested_attributes_for :youtubes, allow_destroy: true
 	accepts_nested_attributes_for :genres

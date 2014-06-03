@@ -1,7 +1,7 @@
 class BandManager < ActiveRecord::Base
   validates :user_id, :band_id, presence: true
-  belongs_to :user, dependent: :destroy
-  belongs_to :band, dependent: :destroy
+  belongs_to :user
+  belongs_to :band
   scope :approved, -> { where(approved: true) }
   after_create :approval_notification
   after_update :approval_notification, if: :approved_changed?
