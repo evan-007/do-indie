@@ -1,8 +1,12 @@
 <div class="row">
   <div class="col-sm-6">
+    <% unless @manager.band.blank? %>
     <h1>
       Edit manager <small><%= "#{@manager.user.username.capitalize} - band: #{@manager.band.name}" %></small>
     </h1>
+    <% else %>
+      <h1>Opps, this manager was created for a band no longer exists, please delete it.</h1>
+    <% end %>
     <p><%= link_to "Back to managers", admin_band_managers_path %></p>
 
     <%= form_for [:admin, @manager], :html => { :role => "form" } do |f| %>
