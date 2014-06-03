@@ -31,7 +31,7 @@
     <td><%= manager.id %></td>
     <td><%= link_to manager.user.username.capitalize, admin_band_manager_path(manager) %></td>
     <td><%= manager.user.email %></td>
-    <% unless manager.band.name.blank? %>
+    <% unless manager.band.blank? %>
       <td><%= manager.band.name %></td>
     <% else %>
       <td>No name for this band</td>
