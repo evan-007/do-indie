@@ -18,7 +18,7 @@ class Event < ActiveRecord::Base
 	after_save :approval_notification, if: :approved_changed?
 	after_create :make_manager
 	paginates_per 50
-  self.per_page = 10
+  self.per_page = 15
   
 	accepts_nested_attributes_for :event_bands, :venue, :bands
 	has_attached_file :avatar, :styles => { :large => "900x900>", :medium => "300x300#", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
