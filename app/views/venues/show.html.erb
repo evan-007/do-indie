@@ -145,7 +145,7 @@
 
   <div class="row">
     <h3><%= t(:next_events)%></h3>
-    <% events = Event.upcoming.approved.where(venue_id: @venue.id) %>
+    <% events = Event.upcoming.approved.where(venue_id: @venue.id).order(date: :asc) %>
     <% unless events.empty? %>
       <%= render 'shared/events_list', :events => events %>
     <% else %>
